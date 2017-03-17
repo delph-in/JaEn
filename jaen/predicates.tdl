@@ -1,0 +1,98 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;
+;;; temporary quantifier for possess nouns.
+;;;
+possed_q_rel := quant_rel.
+;;; for possessed idioms
+id_rel  := predsort. 
+
+;;; Missing predicates, used by the jaen parallel corpus rules
+
+expected_event_v_rel := predsort.
+_away_p_dir_rel := predsort.
+_across_p_dir_rel := predsort.
+_on_p_dir_rel := predsort.
+_over_p_dir_rel := predsort.
+_around_p_dir_rel := predsort.
+_through_p_dir_rel := predsort.
+with_p_rel := predsort.
+_until_p_rel := predsort.
+_out_p_dir_rel := predsort.
+_at_p_temp_rel := predsort.
+_along_p_dir_rel := predsort.
+_along_p_state_rel := predsort.
+_out+of_p_dir_rel := predsort.
+_as_p_nbar_rel := predsort.
+_off_p_dir_rel := predsort.
+_as+to_p_rel := predsort.
+_along+with_p_rel := predsort.
+_by+means+of_p_rel := predsort.
+_as+far+as_p_dir_rel := predsort.
+_onto_p_rel := predsort.
+_up+to_p_rel := predsort.
+_short_a_sel_rel := predsort.
+_right_a_1_rel := predsort.
+_left_a_1_rel := predsort.
+_piece_n_of-i_rel := predsort.
+_pair_n_of-i_rel := predsort.
+_underground_a_1_rel := predsort.
+_too_a_also_rel := predsort.
+_face+to+face_a_1_rel := predsort.
+_in+general_a_1_rel := predsort.
+_overnight_a_1_rel := predsort.
+_such_q_rel := predsort.
+_uptown_a_1_rel := predsort.
+_overhead_a_1_rel := predsort.
+_ought_v_qmodal_rel := predsort.
+_be_v_nv_rel := predsort.
+_downtown_a_1_rel := predsort.
+_used+to_v_qmodal_rel := predsort.
+_dare_v_qmodal_rel := predsort.
+_for+lack+of_p_rel := predsort.
+_by_p_dir_rel := predsort.
+_by+way+of_p_rel := predsort.
+_from_p_to_rel := predsort.
+_in_p_state_rel := predsort.
+_but_p_except_rel := predsort.
+_on_p_state_rel := predsort.
+_from_p_dir_rel := predsort.
+_through_p_state_rel := predsort.
+_prior+to_p_rel := predsort.
+_by_p_temp_rel := predsort.
+_outside+of_p_rel := predsort.
+_under_p_state_rel := predsort.
+_from_p_state_rel := predsort.
+_up_p_dir_rel := predsort.
+_near_p_rel := predsort.
+_either_q_rel := predsort.
+_less+than_p_rel := predsort.
+_under_p_dir_rel := predsort.
+_in+case+of_p_rel := predsort.
+_rather+than_p_rel := predsort.
+_in+connection+with_p_rel := predsort.
+_owing+to_p_rel := predsort.
+_off+of_p_rel := predsort.
+_in_p_dir_rel := predsort.
+_once+again_a_1_rel := predsort.
+_any+more_q_rel := predsort.
+indef_q_rel := predsort.
+_above_p_dir_rel := predsort.
+_above_p_state_rel := predsort.
+_aboard_p_dir_rel := predsort.
+_behind_p_dir_rel := predsort.
+_in+place+of_p_rel := predsort.
+_among_p_state_rel := predsort.
+_by_p_state_rel := predsort.
+_once_p_rel := predsort.
+_all+over_p_rel := predsort.
+_elsewhere_a_1_rel := predsort.
+_in+the+know_a_1_rel := predsort.
+_going+to_v_qmodal_rel := predsort.
+garu_v_seem_rel := predsort.
+_awhile_n_1_rel := predsort.
+_such+as_p_rel := predsort.
+_each_p_rel := predsort.
+_what+with_p_rel := predsort.
+_than_p_ind_rel := predsort.
+

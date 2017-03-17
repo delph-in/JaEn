@@ -1,0 +1,20 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; final transfer phase, JaCY-specific accomodation.
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;
+;;; JaCY, it seems, never adopted the TPC and PSV poor man's encoding of
+;;; information structure; just as well, it would seem, as it is about to be
+;;; recoded (once again) in the message-free universe.
+;;;
+; tpc_structure_tf := monotonic_mtr &
+; [ INPUT.RELS < [ PRED message_m_rel, TPC [ DITCH - ] ] >,
+;   OUTPUT.RELS < +copy+ & [ TPC [ DITCH + ], PSV [ DITCH + ] ] > ].
+
+; psv_structure_tf := monotonic_mtr &
+; [ INPUT.RELS < [ PRED message_m_rel, PSV [ DITCH - ] ] >,
+;   OUTPUT.RELS < +copy+ & [ TPC [ DITCH + ], PSV [ DITCH + ] ] > ].

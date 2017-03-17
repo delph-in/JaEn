@@ -1,0 +1,5 @@
+; "_hinan_s_1_rel" "_seikatsu_s_1_rel" >> "_evacuation_n_of_rel" "_shelter_n_1_rel"	1	0.070175
+hinan_s_1+seikatsu_s_1--evacuation_n_of+shelter_n_1--any-mtr := n+n_n+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_hinan_s_1_rel" ] , [ PRED "ja:_seikatsu_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_evacuation_n_of_rel" ] , [ PRED "_shelter_n_1_rel" ] , ... > ].
+

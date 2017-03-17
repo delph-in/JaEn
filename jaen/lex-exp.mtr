@@ -1,0 +1,589 @@
+; -*- Mode: TDL; Package: LKB; Coding: utf-8; -*-
+; Experimental lexicon for IWSLT06 data: 2006/9/5
+;;
+;; hand done by Eric and Francis
+;;
+
+;; 犬 が なる 。 → The dog grew.
+;; FIXME Is this really OK in Japanese?
+naru_v_5-grow_v_id-mtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_5_rel", LBL #h1, ARG0 #e1, ARG1 #x1 ] >,
+  OUTPUT.RELS < [ PRED "_grow_v_1_rel", LBL #h1, ARG0 #e1, ARG1 #x1 ] > ].
+
+
+;;;  猫 に 犬 が いる  → The cat has a dog.
+ ni_p+exist_v-have_v-mtr := optional_mtr &
+ [ INPUT.RELS < [ PRED "ja:_exist_v_rel", LBL #h1, ARG0 #e1, ARG1 #x1 ],
+ 	       [ PRED "ja:_ni_p_rel", LBL #h1, ARG0 #e2, ARG1 #e1, ARG2 #x2 ] >,
+   OUTPUT.RELS < [ PRED "_have_v_1_rel", LBL #h1,  ARG0 #e1, ARG1 #x2, ARG2 #x1 ] > ].
+
+
+; Handle ある existence rels -- eric-n
+
+;;; 犬 が [庭 に] いる → There is a dog in the garden
+;;; could be more constrained (i.e. not definite)
+exist_v_rel-be_v_there_rel-mtr := arg1_v_omtr &
+[ JA.RELS < [ PRED "ja:_exist_v_rel", ARG1 #x1 & x ] >,
+  EN.RELS < [ PRED _be_v_there_rel ] >,
+  FLAGS.EQUAL < #x1 > ].
+
+;;; 高熱 が ある の です 。 -> I have a high fever.
+;;; The output ARG2 should be constrained to be indefinite     (2010-11-11; ph)
+exist_v_rel-pron+have_v_1_rel-mtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_exist_v_rel", LBL #h1,
+                 ARG0 #e1, ARG1 #x1 & x ] >,
+  OUTPUT [ RELS < [ PRED "_have_v_1_rel", LBL #h1, 
+		    ARG0 #e1, ARG1 #x2, ARG2 #x1 ],
+		  [ PRED pron_rel, LBL #h2, ARG0 #x2 ],
+		  [ PRED pronoun_q_rel, ARG0 #x2, RSTR #h3 ] >,
+	   HCONS < qeq & [ HARG #h3, LARG #h2 ] > ] ].
+
+;;; 犬 が 庭 に いる → A dog is in the garden
+;;; not quite right
+ni+exist-unspec_loc_rel-mtr := monotonic_omtr &
+[ INPUT.RELS < [ PRED "ja:_exist_v_rel", LBL #h1 , ARG0 #e1 & e, ARG1 #x1 ],
+	       [ PRED "ja:_ni_p_rel", LBL #h1,  ARG0 #e2 & e, ARG1 #e1, ARG2 #x2 ] >,
+  OUTPUT.RELS < [ PRED unspec_loc_rel, LBL #h1,  ARG0 #e1, ARG1 #x1, ARG2 #x2 ] > ].
+
+unspec-unspec_loc_rel-mtr := preposition_mtr &
+[ JA.RELS < [ PRED "ja:unspec_p_rel" ] >,
+  EN.RELS < [ PRED unspec_loc_rel ] > ].
+;;;
+;;; Some languages
+;;;
+;;; 日本語 は 話せ ます か 。 → can you speak Japanese?
+nihongo_n_rel-japanese+named_rel-mtr := n_named-pred_mtr &
+[ JA.RELS < [ PRED "ja:_nihongo_n_rel"], ... >,
+  EN.RELS < [ CARG "japanese" ], ... > ].
+
+;;; 英語 は 話せ ます か 。 → can you speak English?
+eigo_n_rel-english+named_rel-mtr := n_named-pred_mtr &
+[ JA.RELS < [ PRED "ja:_eigo_n_rel" ], ... >,
+  EN.RELS < [ CARG "english" ], ... > ].
+
+;;; more languages, done right
+
+doitsugo_n_rel-german+named_rel-mtr := n_named-pred_mtr &
+[ INPUT.RELS < [ PRED "ja:_doitsugo_n_rel" ], ... >,
+  OUTPUT.RELS < [ CARG "german" ], ... > ].
+
+furansugo_n_rel-french+named_rel-mtr := n_named-pred_mtr &
+[ INPUT.RELS < [ PRED "ja:_furansugo_n_rel" ], ... >,
+  OUTPUT.RELS < [ CARG "french" ], ... > ].
+
+ratengo_n_1-latin+named_rel-mtr := n_named-pred_mtr &
+[ INPUT.RELS < [ PRED "ja:_ratengo_n_1_rel" ], ... >,
+  OUTPUT.RELS < [ CARG "latin" ], ... > ].
+
+chuugokugo_n_rel-chinese+named_rel-mtr := n_named-pred_mtr &
+[ INPUT.RELS < [ PRED "ja:_chuugokugo_n_rel" ], ... >,
+  OUTPUT.RELS < [ CARG "chinese" ], ... > ].
+
+;;; other languages are segmented
+;;; 彼 は ギリシャ 語 が 少し わかる 。	He has a smattering of Greek.
+
+
+;;;
+;;; Have to do before preposition rules
+;;;
+
+kureru-for-pres := monotonic_mtr &
+ [ CONTEXT.RELS < [ LBL #hp, ARG0 #ev ] >,
+   INPUT.RELS < [ PRED "ja:_kureru_v_aux_rel",
+		   ARG0 #e0 & [TENSE PRES], ARG2 #x2, ARG3 #h3 ]
+		   >,
+   INPUT.HCONS < qeq & [ HARG #h3, LARG #hp ] >,
+   OUTPUT.RELS < [ PRED _for_p_rel, 
+		   LBL #hp, ARG0 #e0,
+		   ARG1 #ev & [TENSE PRES], ARG2 #x2 ]  > ].
+
+kureru-for-past := monotonic_mtr &
+ [ CONTEXT.RELS < [ LBL #hp, ARG0 #ev ] >,
+   INPUT.RELS < [ PRED "ja:_kureru_v_aux_rel",
+		   ARG0 #e0 & [TENSE PAST], ARG2 #x2, ARG3 #h3 ]
+		   >,
+   INPUT.HCONS < qeq & [ HARG #h3, LARG #hp ] >,
+   OUTPUT.RELS < [ PRED _for_p_rel, 
+		   LBL #hp, ARG0 #e0,
+		   ARG1 #ev & [TENSE PAST], ARG2 #x2 ]  > ].
+
+; kureru-for-me-pres := monotonic_mtr &
+;  [ CONTEXT.RELS < [ LBL #hp, ARG0 #ev ] >,
+;    INPUT.RELS < [ PRED "ja:_kureru_v_aux_rel",
+; 		   ARG0 #e0 & [TENSE PRES], ARG2 #x2, ARG3 #h3 ]
+; 		   >,
+;    INPUT.HCONS < qeq & [ HARG #h3, LARG #hp ] >,
+;    OUTPUT.RELS < [ PRED _for_p_rel, 
+; 		   LBL #hp, ARG0 #e0,
+; 		   ARG1 #ev & [TENSE PRES], ARG2 #x2 ]  > ].
+
+; kureru-for-me-past := monotonic_mtr &
+;  [ CONTEXT.RELS < [ LBL #hp, ARG0 #ev ] >,
+;    INPUT.RELS < [ PRED "ja:_kureru_v_aux_rel",
+; 		   ARG0 #e0 & [TENSE PAST], ARG2 #x2, ARG3 #h3 ]
+; 		   >,
+;    INPUT.HCONS < qeq & [ HARG #h3, LARG #hp ] >,
+;    OUTPUT.RELS < [ PRED _for_p_rel, 
+; 		   LBL #hp, ARG0 #e0,
+; 		   ARG1 #ev & [TENSE PAST], ARG2 #x2 ]  > ].
+
+
+
+;;; Auxiliary verbs, copula, etc.
+
+;;; Handle negatives: should Jacy's neg be a real relation? -- eric-n
+neg_rel-neg_rel-mtr := monotonic_mtr &
+[ JA.RELS < [ PRED "ja:neg_rel", LBL #h1, ARG0 #e1, ARG1 #x1 ] >,
+  EN.RELS < [ PRED neg_rel, LBL #h1, ARG0 #e1, ARG1 #x1 ]  > ].
+
+;;; 犬 が 吠え ない 。 → the dog doesn't bark.
+neg_v_rel-neg_rel-mtr := monotonic_mtr &
+[ JA.RELS < [ PRED "ja:_neg_v_rel", LBL #h1, ARG0 #e2, ARG1 #h3 ] >,
+  EN.RELS < [ PRED neg_rel, LBL #h1,
+	      ARG0 #e2 & e & [ TENSE untensed, 
+			       MOOD indicative, 
+			       PERF -, PROG -, SF PROP,
+			       MARK complete ],
+	      ARG1 #h3 ] > ].
+
+;;; FIXME Both "neg_v_rel" and "_neg_v_rel" are used in Jacy. I added an
+;;; extra rule for now:
+;;; Rule for "ja:neg_v_rel" without an underscore before 'neg' (2011-01-25; ph)
+;;; うそ を 言う な >> Don't tell lies.
+neg_v_rel-neg_rel_2-mtr := monotonic_mtr &
+[ JA.RELS < [ PRED "ja:neg_v_rel", LBL #h1, ARG0 #e2, ARG1 #h3 ] >,
+  EN.RELS < [ PRED neg_rel, LBL #h1,
+	      ARG0 #e2 & e & [ TENSE untensed, 
+			       MOOD indicative, 
+			       PERF -, PROG -, SF PROP,
+			       MARK complete ],
+	      ARG1 #h3 ] > ].
+
+;;; FIXME 犬 が ない と 思う 。
+
+;;; 犬 が ない 。 → there aren't any dogs.
+;nai_a_1_rel-neg_rel-mtr := arg1_v_mtr &
+;[ JA.RELS < [ PRED "ja:_nai_a_1_rel" ] >,
+;  EN.RELS < [ PRED neg_rel ] > ].
+
+;;; 犬 が 無い 。 → there aren't any dogs.
+;nai_a_4_rel-neg_rel+be_v_there_rel-mtr := monotonic_mtr &
+;[ JA.RELS < [ PRED "ja:_nai_a_4_rel", LBL #h1, ARG0 #e1, ARG1 #x1 ] >,
+;  EN [ RELS < [ PRED neg_rel, LBL #h1, ARG0 #u1 & u, ARG1 #h2 & h ],
+;	      [ PRED _be_v_there_rel, LBL #h3 & h, ARG0 #e1, ARG1 #x1 ] >,
+;       HCONS < qeq & [ HARG #h2, LARG #h3 ] > ] ].
+
+neg_rel-add_event := monotonic_mtr &
+[ INPUT.RELS < [ PRED neg_rel, LBL #h1, ARG0 #u & u, ARG1 #h2 ] >,
+  OUTPUT.RELS < [ PRED neg_rel, LBL #h1, 
+		  ARG0 #e3 & e & [ TENSE untensed, 
+				   MOOD indicative,
+				   PERF -, PROG -, SF PROP,
+				   MARK complete ],
+		  ARG1 #h2 ] >,
+  FILTER.RELS < [ PRED neg_rel, LBL #h1, 
+		  ARG0 #e3 & e & [ TENSE untensed, 
+				   MOOD indicative, 
+				   PERF -, PROG -, SF PROP,
+				   MARK complete ],
+		  ARG1 #h2 ] >,
+  FLAGS.EQUAL < #u > ].
+
+neg_rel-unlink_arg0 := monotonic_mtr &
+[ CONTEXT [ RELS < [ LBL #h1, ARG0 #e2 ] >,
+	    HCONS < qeq & [ HARG #h3, LARG #h1 ] > ],
+  INPUT.RELS < [ PRED neg_rel, LBL #h5, ARG0 #e2, ARG1 #h3 ] >,
+  OUTPUT.RELS < [ PRED neg_rel, LBL #h5, 
+		  ARG0 #e3 & e & [ TENSE untensed, 
+				   MOOD indicative, 
+				   PERF -, PROG -, SF PROP,
+				   MARK complete ], 
+		  ARG1 #h3 ] >,
+  FILTER.RELS < [ PRED neg_rel, LBL #h5, 
+		  ARG0 #e3 & e & [ TENSE untensed, 
+				   MOOD indicative, 
+				   PERF -, PROG -, SF PROP,
+				   MARK complete ], 
+		  ARG1 #h3 ] > ].
+	    
+
+;;; 犬 です 。 → it is a dog.
+;;;
+;;; This rule does not seem to trigger in the above example. In order to 
+;;; prevent prepositions in connection with `where': `Where are the registers 
+;;; on?' I changed the output relation from `unspec_loc_rel' to 
+;;; `loc_nonsp_rel'.                                            (23-sep-10; ph)
+;;;
+; cop_id_rel-unspec_loc_rel := arg12_v_mtr &
+; [ CONTEXT.RELS < [ PRED "ja:place_rel", ARG2 #x ] >,
+;   JA.RELS < [ PRED "ja:cop_id_rel", ARG0 #x ] >,
+;   EN.RELS < [ PRED unspec_loc_rel, ARG0 #x ] > ].
+
+cop_id_rel-loc_nonsp_rel := arg12_v_mtr &
+[ CONTEXT.RELS < [ PRED "ja:place_rel", ARG2 #x ] >,
+  JA.RELS < [ PRED "ja:cop_id_rel", ARG0 #x ] >,
+  EN.RELS < [ PRED loc_nonsp_rel, ARG0 #x ] > ].
+
+;;; 彼女 は どこ に 行っ た の >> Where did she go?
+ni_p_rel-loc_nonsp_rel := arg12_v_mtr &
+[ CONTEXT.RELS < [ PRED "ja:place_rel", ARG2 #x ] >,
+  JA.RELS < [ PRED "ja:_ni_p_rel", ARG0 #x ] >,
+  EN.RELS < [ PRED loc_nonsp_rel, ARG0 #x ] > ].
+
+e_p_rel-loc_nonsp_rel := arg12_v_mtr &
+[ CONTEXT.RELS < [ PRED "ja:place_rel", ARG2 #x ] >,
+  JA.RELS < [ PRED "ja:_e_p_rel", ARG0 #x ] >,
+  EN.RELS < [ PRED loc_nonsp_rel, ARG0 #x ] > ].
+
+;;; Handle copulas: which relations for 'to be' are acceptable? -- eric-n
+;;; swaps ARG0s FIXME: in the Japanese grammar, 
+;;; OR add HCONS to ensure proper scope
+
+
+;;; 犬 が 猫 で は ない 。 → dogs are not cats.
+cop_id_rel+neg_rel-be_v_id_rel-neg_rel_mtr := monotonic_mtr &
+ [ INPUT.RELS < [ PRED neg_rel, LBL #h1, ARG0 #e1, ARG1 #h2 ],
+ 	       	[ PRED "ja:cop_id_rel", LBL #h3, ARG0 #e2, ARG1 #x1, ARG2 #x2 ] >,
+   OUTPUT.RELS < [ PRED neg_rel, LBL #h1, ARG0 #e2 & e_untensed, ARG1 #h2 ],
+ 		 [ PRED _be_v_id_rel, LBL #h3, ARG0 #e1, ARG1 #x1, ARG2 #x2 ] > ].
+
+;; NP to fragment: すり だ 。　→ thief
+cop_id_rel-unknown_rel-mtr := monotonic_omtr &
+[ JA.RELS < [ PRED "ja:cop_id_rel", LBL #h, ARG0  #e0, ARG1 #i1 & i, ARG2 #x2 ] >,
+  EN.RELS < [ PRED unknown_rel, LBL #h, ARG0 #e0, ARG #x2 ] >,
+  FLAGS.EQUAL < #i1 > ].
+
+
+unknown-rel-mtr  := monotonic_mtr &
+[ INPUT.RELS <  [ PRED "ja:unknown_rel" ] >,
+  OUTPUT.RELS <  +copy+ & [PRED unknown_rel]  >].
+
+
+;;; 犬 が 猫 だ 。   犬 が 猫 です 。
+;;; need to harmonize number somewhere
+;;; maybe do this earlier to block the the quantifier(s)?
+;;; 
+cop_id_rel-be_v_id_rel-mtr := arg12_v_mtr &
+[ JA.RELS < [ PRED "ja:cop_id_rel" ] >,
+  EN.RELS < [ PRED _be_v_id_rel ] > ].
+
+;;; 犬 が 猫  (omitted verb)
+unknown_cop_id_rel-be_v_id_rel-mtr := arg12_v_mtr &
+[ JA.RELS < [ PRED "ja:unknown_cop_rel" ] >,
+  EN.RELS < [ PRED _be_v_id_rel ] > ].
+
+
+
+
+;;; Why is there an "exist" rel? -- eric-n
+;; 犬 が ない 。 → there aren't any dogs.
+;exist-be_v_there_rel-mtr := arg1_v_mtr &
+;[ JA.RELS < [ PRED "ja:exist" ] >,
+;  EN.RELS < [ PRED _be_v_there_rel ] > ].
+
+;;;  these go before the default quantifier rules 
+
+;;; 犬 が ない → there aren't any dogs.
+be_v_there_rel-neg_rel--udef_q_rel-any_q_rel-omtr := monotonic_omtr &
+[ CONTEXT [ INDEX #e0,
+	    RELS < [ PRED _be_v_there_rel, LBL #h1, ARG0 #e0, ARG1 #x1 ],
+		   [ PRED neg_rel, ARG1 #h2 ] >,
+	    HCONS < qeq & [ HARG #h2, LARG #h1 ] > ],
+  INPUT.RELS < [ PRED "ja:udef_q_rel", LBL #h3, ARG0 #x1 , RSTR #h4, BODY #h5 ] >,
+  OUTPUT.RELS < [ PRED _any_q_rel, LBL #h3, ARG0 #x1 , RSTR #h4, BODY #h5 ] > ].
+
+;;; 犬 が ない → there are no dogs.
+be_v_there_rel--udef_q_rel+neg_rel-no_q_rel-mtr := monotonic_mtr &
+[ CONTEXT [ INDEX #e0,
+	    RELS < [ PRED _be_v_there_rel, LBL #h1, ARG0 #e0, ARG1 #x1 ] > ],
+  INPUT [ RELS < [ PRED "ja:udef_q_rel", LBL #h2, ARG0 #x1, RSTR #h3, BODY #h4 ],
+ 		 [ PRED neg_rel, LBL #h5, ARG1 #h6 ] >,
+ 	  HCONS < qeq & [ HARG #h6, LARG #h1 ] > ],
+   OUTPUT.RELS < [ PRED _no_q_rel, LBL #h2, ARG0 #x1 , RSTR #h3, BODY #h4 ] > ].
+
+;;; 犬 が ある 。 → there are dogs.
+be_v_there_rel--udef_q_rel-udef_q_rel-omtr := monotonic_mtr &
+[ CONTEXT [ INDEX #e0,
+	    RELS < [ PRED _be_v_there_rel, LBL #h1, ARG1 #x1 ] > ],
+  INPUT.RELS < [ PRED "ja:udef_q_rel", LBL #h2, ARG0 #x1 , RSTR #h3, BODY #h4 ] >,
+  OUTPUT.RELS < [ PRED udef_q_rel, LBL #h2, ARG0 #x1 , RSTR #h3, BODY #h4 ] >,
+  FILTER [ RELS < [ PRED neg_rel, LBL #h5, ARG1 #h6 ] >,
+	   HCONS < qeq & [ HARG #h7, LARG #h5 ],
+		   qeq & [ HARG #h6, LARG #h1 ] > ] ].
+
+;;; 犬 が ある 。 → there is a dog.
+be_v_there_rel--udef_q_rel-a_q_rel-mtr := monotonic_mtr &
+[ CONTEXT [ INDEX #e0,
+	    RELS < [ PRED _be_v_there_rel, LBL #h1, ARG1 #x1 ] > ],
+  INPUT.RELS < [ PRED "ja:udef_q_rel", LBL #h2, ARG0 #x1 , RSTR #h3, BODY #h4 ] >,
+  OUTPUT.RELS < [ PRED _a_q_rel, LBL #h2, ARG0 #x1 , RSTR #h3, BODY #h4 ] >,
+  FILTER [ RELS < [ PRED neg_rel, LBL #h5, ARG1 #h6 ] >,
+	   HCONS < qeq & [ HARG #h7, LARG #h5 ],
+		   qeq & [ HARG #h6, LARG #h1 ] > ] ].
+
+;;; 犬 が する 。 → the dog does it.
+suru_v_rel-do_v_rel-mtr := arg12_v_mtr &
+[ JA.RELS < [ PRED "ja:_suru_v_rel" ] >,
+  EN.RELS < [ PRED "_do_v_1_rel" ] > ].
+
+;;; 犬 が なさる 。 → the dog does it.
+nasaru_v_1_rel-do_v_rel-mtr := arg12_v_mtr &
+[ JA.RELS < [ PRED "ja:_nasaru_v_1_rel" ] >,
+  EN.RELS < [ PRED "_do_v_1_rel" ] > ].
+
+
+;;; ko-/so-/aso- demonstratives
+
+;;; この 犬 が 吠える 。 → this dog barks.
+kono-this_q-mtr := quantifier_mtr &
+[ JA.RELS < [ PRED "ja:_kono_q_rel" ] >,
+  EN.RELS < [ PRED _this_q_dem_rel ] > ].
+
+; "_koko_n_rel" --> "_koko_n_3_rel" : changed in 2006/09/27 grammar
+; 		--> "_koko_n_rel", "_koko_n_7_rel"
+
+;;; 犬 は ここ です 。→ the dog is here.
+koko_n_rel-here_a_1_rel := n_adj_mtr &
+[ JA.RELS < [ PRED "ja:_koko_n_3_rel" ] >,
+  EN.RELS < [ PRED _here_a_1_rel ], ... > ].
+
+;;; 犬 は そこ です 。→ the dog is there.
+soko_n_rel-there_a_1_rel := n_adj_mtr &
+[ JA.RELS < [ PRED "ja:_soko_n_rel" ] >,
+  EN.RELS < [ PRED _there_a_1_rel ], ... > ].
+
+;;; FIXME: where is _over_x_deg_rel defined?
+;;; 犬 は あそこ です 。→ the dog is over there.
+asoko_n_rel-over_x_deg_rel+there_a_1_rel := monotonic_mtr &
+[ JA.RELS < [ PRED "ja:_asoko_n_rel", LBL #h1, ARG0 #x1 ] >,
+  EN.RELS < [ PRED "_over_x_deg_rel", LBL #h1, 
+	      ARG0 #e1 & e_untensed, ARG1 #e2 ],
+	    [ PRED _there_a_1_rel, LBL #h1, ARG1 #x1, ARG0 #e2 & e] > ].
+
+
+;;; the embedded verb must be untensed (this will also untense modifiers)
+;; (mt::parse-interactively "この　犬 が 吠え たい")
+;; this dog wants to bark
+
+tai_v_want_rel-want_v_1_rel := monotonic_mtr &
+ [ CONTEXT.HCONS  < qeq & [ HARG #h, LARG #hv ] >,
+   INPUT.RELS < [ LBL #l, PRED "ja:tai_v_want_rel", ARG0 #e, ARG1 #x, ARG2 #h ],
+		[ LBL #hv ] >,
+   OUTPUT.RELS < [ LBL #l, PRED "_want_v_1_rel", ARG0 #e, ARG1 #x, ARG2 #h ], 
+		 +copy+ & [ ARG0 e_untensed ]> ].
+
+
+
+; why does rareru_v_can_rel need to be in quotes? -- eric-n 2006/8/28
+; -- make sure it is in predicates.tdl
+; changed rareru_rel to rareru_v_can_rel in 2006/09/27 grammar
+; NOTE: no subject for modal
+;(mt::parse-interactively "この　犬 が 吠え られる")
+;; this dog can bark
+;; Note unlink events from the Japanese side
+rareru_v_can+PRES_rel-can_v_modal_rel-mtr := monotonic_mtr &
+[ CONTEXT.HCONS  < qeq & [ HARG #h, LARG #hv ] >,
+   INPUT.RELS < [ LBL #l, PRED "ja:rareru_v_can_rel", 
+		  ARG0 e & [TENSE PRES], ARG1 #x, ARG2 #h ],
+		[ LBL #hv ] >,
+   OUTPUT.RELS < [ LBL #l, PRED _can_v_modal_rel, 
+		   ARG0 e &  [TENSE PRES],  ARG1 #h ], 
+		 +copy+ & [ ARG0 e_untensed ]> ].
+
+rareru_v_can+PAST_rel-can_v_modal_rel-mtr := monotonic_mtr &
+[ CONTEXT.HCONS  < qeq & [ HARG #h, LARG #hv ] >,
+   INPUT.RELS < [ LBL #l, PRED "ja:rareru_v_can_rel", 
+		  ARG0 e & [TENSE PAST], ARG1 #x, ARG2 #h ],
+		[ LBL #hv ] >,
+   OUTPUT.RELS < [ LBL #l, PRED _can_v_modal_rel, 
+		   ARG0 e &  [TENSE PAST],  ARG1 #h ], 
+		 +copy+ & [ ARG0 e_untensed ]> ].
+
+
+
+; handle ellipsed arguments -- we need to produce an ellipse_ref_rel in ERG
+; EN 2007/2/5
+dekiru_v_1_rel-can_v_modal_rel-mtr := monotonic_mtr &
+[ JA.RELS < [ PRED "ja:_dekiru_v_1_rel", LBL #h0, ARG0 #e1, ARG1 #x1 ] >,
+  EN [ RELS < [ PRED _can_v_modal_rel, LBL #h0, ARG0 #e1, ARG1 #h1 ],
+              [ PRED ellipsis_ref_rel, LBL #h2,
+		ARG0 #e2 & e_untensed, ARG1 #x1 ]
+	      >,
+       HCONS < qeq & [ HARG #h1, LARG #h2 ] > ]].
+
+;;; FIX ME: what about modifiers like 犬が静かに寝る
+dekiru_v_can_rel+koto_n_nom_rel-can_v_modal_rel-mtr := monotonic_mtr &
+[ CONTEXT [ HCONS < qeq & [ HARG #h4, LARG #h9 ] > ],
+  INPUT.RELS < [ LBL #h9, ARG0 e ],
+	       [ PRED "ja:_dekiru_v_can_rel", LBL #h3, ARG0 #e1, ARG1 #x1 ],
+	       [ PRED "ja:_koto_n_nom_rel", LBL #h5, ARG0 #x1, ARG1 #h4 ],
+	       [ PRED "ja:udef_q_rel", LBL #h6, ARG0 #x1, RSTR #h7, BODY #h8 ] >,
+  OUTPUT.RELS < +copy+ & [ LBL #h9, ARG0 e_untensed ],
+                [ PRED _can_v_modal_rel, LBL #h3, ARG0 #e1, ARG1 #h4 ] > ]. 
+
+dekiru_v_can_rel+no_n_nom_rel-can_v_modal_rel-mtr := monotonic_mtr &
+[ CONTEXT [ HCONS < qeq & [ HARG #h4, LARG #h9 ] > ],
+  INPUT.RELS < [ LBL #h9, ARG0 e ],
+	       [ PRED "ja:_dekiru_v_can_rel", LBL #h3, ARG0 #e1, ARG1 #x1 ],
+	       [ PRED "ja:_no_n_nom_rel", LBL #h5, ARG0 #x1, ARG1 #h4 ],
+	       [ PRED "ja:udef_q_rel", LBL #h6, ARG0 #x1, RSTR #h7, BODY #h8 ] >,
+  OUTPUT.RELS < +copy+ & [ LBL #h9, ARG0 e_untensed ],
+                [ PRED _can_v_modal_rel, LBL #h3, ARG0 #e1, ARG1 #h4 ] > ].
+               
+
+;;;
+;;; この　猫  が その　犬 を 追う べき -> This dog should chase this cat.
+;;; 
+
+beki-should_modal_rel-mtr := monotonic_mtr &
+[ CONTEXT.HCONS  < qeq & [ HARG #h, LARG #hv ] >,
+INPUT.RELS < [ PRED "ja:_beki_v_modal_rel", LBL #l, ARG0 #e, ARG1 #h ],
+	     [ LBL #hv ] >,
+  OUTPUT.RELS < [ PRED _should_v_modal_rel, LBL #l, ARG0 #e, ARG1 #h ], 
+		 +copy+ & [ ARG0 e_untensed ] >].
+
+
+
+
+;;; FCB fix me!
+;;; "like" taking a verbal complement
+;;; * maybe split?
+;;; link ARG2 through the "no/koto"
+;;; link the ARG1 if they are empty 
+;;;; FIXME: generalize to other verbs
+;;; (mt::parse-interactively "犬 が  猫　を　食べる　の が 好き だ")
+suki_a_rel+koto_n_rel-likes-to-mtr := monotonic_mtr &
+ [  INPUT [ RELS <  [ PRED #verb,
+		      LBL #h8, ARG0 #e10, ARG1 #x1  ],
+		    [ PRED "~ja:_(koto|no)_n_nom_rel",
+		      LBL #h11, ARG0 #x2,  ARG1 #h13 ],
+		    [ PRED "ja:udef_q_rel",  LBL #h14,  ARG0 #x2,  RSTR #h16 ],
+		    [ PRED "ja:_suki_a_1_rel" ,
+		      LBL #h1, ARG0 #e0, ARG1 i & #i, ARG2 #x2	 ] >,
+	    HCONS < qeq & [ HARG #h16, LARG #h11 ] > ],
+    OUTPUT [RELS < +copy+ & [ PRED #verb,  LBL #h8, ARG0 #e10, ARG1 #x1 ],
+		   [ PRED "mark_strip_tense", LBL #h8, ARG0 #e10 & [ TENSE UNTENSED ]],
+		   [ PRED "_like_v_1_rel", LBL #h3,
+		     LBL #h1, ARG0 #e0, ARG1 #x1, ARG2 #h ] >,
+	    HCONS < qeq & [ HARG #h, LARG #h8 ]> ],
+    FLAGS.EQUAL < #i > ].
+
+kirai_a_rel+koto_n_rel-dont-like-to-mtr := monotonic_mtr &
+ [  INPUT [ RELS <  [ PRED #verb,
+		      LBL #h8, ARG0 #e10, ARG1 #x1  ],
+		    [ PRED "~ja:_(koto|no)_n_nom_rel",
+		      LBL #h11, ARG0 #x2,  ARG1 #h13 ],
+		    [ PRED "ja:udef_q_rel",  LBL #h14,  ARG0 #x2,  RSTR #h16 ],
+		    [ PRED "ja:_kirai_a_2_rel" ,
+		      LBL #h1, ARG0 #e0, ARG1 i & #i, ARG2 #x2	 ] >,
+	    HCONS < qeq & [ HARG #h16, LARG #h11 ] > ],
+    OUTPUT [RELS < +copy+ & [ PRED #verb,  LBL #h8, ARG0 #e10, ARG1 #x1 ],
+		   [ PRED "mark_strip_tense", LBL #h8, ARG0 #e10 & [ TENSE UNTENSED ]],
+		   [ PRED neg_rel, LBL #hn, ARG0 #en & e & [TENSE UNTENSED ], ARG1 #hnn ],
+		   [ PRED "_like_v_1_rel", LBL #h3,
+		     LBL #h1, ARG0 #e0, ARG1 #x1, ARG2 #h ] >,
+	    HCONS < qeq & [ HARG #h, LARG #h8 ],
+		    qeq & [ HARG #hnn, LARG #h3 ]> ],
+    FLAGS.EQUAL < #i, #en > ].
+
+
+
+
+;;; FIXME what does this do?
+drop_strip_tense-mtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED "mark_strip_tense", LBL #h1,
+  ARG0 #e1 & [ TENSE UNTENSED ] ] > ].
+
+
+
+;;; Nominalization, thing, place -- predicates with slightly different names
+
+
+relation-nominalization_rel-mtr := arg1_v_mtr &
+[ JA.RELS < [ PRED "ja:nominalization_rel" ] >,
+  EN.RELS < [ PRED nominalization_rel ] > ].
+
+generic_entity_rel := noun_mtr &
+[ JA.RELS < [ PRED "ja:generic_entity_rel" ] >,
+  EN.RELS < [ PRED generic_entity_rel ] > ].
+
+reason_reason_rel := noun_mtr &
+[ JA.RELS < [ PRED "ja:_reason_n_rel" ] >,
+  EN.RELS < [ PRED reason_rel ] > ].
+
+thing_n_rel-thing_rel-mtr := noun_mtr &
+[ JA.RELS < [ PRED "ja:_thing_n_rel" ] >,
+  EN.RELS < [ PRED thing_rel ] > ].
+
+place_rel-place_n_rel-mtr := noun_mtr &
+[ JA.RELS < [ PRED "ja:place_rel" ] >,
+  EN.RELS < [ PRED place_n_rel ] > ].
+
+place_rel-place_n_rel-mtr := noun_mtr &
+[ JA.RELS < [ PRED "ja:place_n_rel" ] >,
+  EN.RELS < [ PRED place_n_rel ] > ].
+
+way-manner-mtr := noun_mtr &
+[ JA.RELS < [ PRED "ja:_way_a_rel" ] >,
+  EN.RELS < [ PRED manner_rel ] > ].
+
+itsu-time-mtr := noun_mtr &
+[ JA.RELS < [ PRED "ja:_itsu_n_rel" ] >,
+  EN.RELS < [ PRED time_n_rel ] > ].
+
+unknown_rel-mtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:unknown_rel" ] >,
+  OUTPUT.RELS < +copy+ & [ PRED unknown_rel ] > ].
+
+;;; English grammar uses different predicates!
+
+manner_manner_mtr := preposition_omtr &
+[ CONTEXT.RELS < [PRED manner_rel, ARG0 #x2] >,
+  INPUT.RELS < [ PRED "ja:unspec_p_manner_rel", ARG2 #x2 ] >,
+  OUTPUT.RELS < [ PRED unspec_manner_rel ] > ].
+
+manner_for_mtr := preposition_mtr &
+[ CONTEXT.RELS < [PRED reason_rel, ARG0 #x2] >,
+  INPUT.RELS < [ PRED "ja:unspec_p_manner_rel", ARG2 #x2 ] >,
+  OUTPUT.RELS < [ PRED _for_p_rel ] > ].
+
+;;;
+;;;  For the moment we lose all titles
+;;;
+lose-title-mtr := monotonic_mtr &
+[ CONTEXT [ HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+  INPUT [ RELS < [ LBL #h4, ARG0 #x2 ],
+		 [ PRED "ja:title-id_rel", 
+		   ARG1 #x2 ],
+		 [ PRED "ja:udef_q_rel", LBL #h6, ARG0 #x2, RSTR #h7 ] >,
+	  HCONS < qeq & [ HARG #h7, LARG #h4 ] > ]].
+
+
+
+ shi_n_rel-mister_rel-mtr := noun_mtr &
+  [ JA.RELS < [ PRED "ja:_shi_n_8_rel" ] >,
+    EN.RELS < [ PRED "_mister_n_1_rel" ] > ].
+
+ san_n_rel-mister_rel-mtr := noun_mtr &
+  [ JA.RELS < [ PRED "ja:_san_n_7_rel" ] >,
+    EN.RELS < [ PRED "_mister_n_1_rel" ] > ].
+
+
+
+no_n_nom--nominalization-mtr := monotonic_mtr &
+[ INPUT [ RELS < [ PRED "ja:_no_n_nom_rel",
+		   LBL #h1, ARG0 #x, ARG1 #h2 ] >,
+	  HCONS < qeq & [ HARG #h2, LARG #h3 ] > ],
+  OUTPUT.RELS < [ PRED nominalization_rel,
+		  LBL #h1, 
+		  ARG0 #x & [ PERS 3, NUM SG, GEND N ], 
+		  ARG1 #h3 ] > ].
+
+;;; iru -> need -- eric-n 2009/08/11
+
+iru-need-mtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_iru_v_need_rel", ARG0 #e0, ARG1 #x1 ] >,
+  OUTPUT.RELS < [ PRED "_need_v_1_rel", ARG0 #e0, ARG1 #i1 & i, ARG2 #x1 ] > ].
+
+;;; この ラジオ は いくら です か 。 -> How much is this radio?	
+

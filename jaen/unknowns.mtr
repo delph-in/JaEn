@@ -1,0 +1,39 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;
+;;; upon completion of `core' transfer, attempt to
+;;; translate unknown words
+;;;
+
+
+;;;
+;;;  Unknown Names
+;;;
+
+unknown_mtr :=  pn_mtr &
+[ INPUT.RELS < [ CARG #carg ] >,
+  OUTPUT.RELS < [ CARG #carg & +downcase+ ] > ].
+
+;;;
+;;; Unknown nouns (pretend they are names)
+;;; FIXME should clean up the ja:_ _rel in the postprocessing
+
+mark-unknown  := monotonic_mtr &
+ [ CONTEXT [ RELS < [ PRED "~^ja:_", LBL #h0, ARG0 #x0 & x ] >,
+	     HCONS < qeq & [ LARG #hn ] > ],
+  FILTER.RELS < [ PRED "unk_noun_mark", LBL #h0, ARG0 #x0 ] >,
+  OUTPUT.RELS < [ PRED "unk_noun_mark", LBL #h0, ARG0 #x0 ] >,
+  FLAGS.EQUAL < #x0 > ].
+
+
+
+
+unknown-noun-mtr := monotonic_mtr &
+  [ CONTEXT.RELS < [ PRED "unk_noun_mark", LBL #hn, ARG0 #x] >,
+    FILTER.RELS < [ PRED named_rel, LBL #hn, ARG0 #x ] >,
+    INPUT.RELS <   [ PRED #pred, LBL #hn, ARG0 #x & [ MARK test ]]  >,
+    OUTPUT.RELS <  [ PRED named_rel,
+ 		    CARG #pred, LBL #hn, ARG0 #x &[ MARK complete ]] > ].
+
+unknown_mark_ditch_cf := elision_mtr &
+[ INPUT.RELS < [ PRED "unk_noun_mark" ] > ].

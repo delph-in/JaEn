@@ -1,0 +1,7 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;
+;;; finally, perform some post-core fix-up: make sure variable equations are
+;;; being propagated, delete transfer-internal meta EPs, et al.
+;;;
+

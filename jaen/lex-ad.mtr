@@ -1,0 +1,65 @@
+;;; -*- Mode: TDL; Package: LKB; -*- 
+;;;
+;;; Hand written rules for adjective/adverbs
+;;;  * the goal is to cover most basic level nouns (maybe 9,000 or so)
+;;; 
+
+saikin_n--recent_a_1-mtr := pp_ad_mtr &
+[ INPUT.RELS < [ PRED unspec_loc_rel ],
+	       [ PRED "ja:udef_q_rel" ],
+	       [ PRED "ja:_saikin_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_recent_a_1_rel" ] , ... > ].
+
+
+;;;
+;;; Common Rational Quantifiers
+;;;
+
+;; 少し　-> a-little (only if modifying an event?)
+sukoshi_a_3_rel-a+little_a_1 := intersective_adverb_mtr &
+[ INPUT.RELS < [ PRED "ja:_sukoshi_a_3_rel" ] >,
+  OUTPUT.RELS < [ PRED "_a+little_a_1_rel" ] > ].
+
+takusan_a_1_rel-a+lot_a_1 := intersective_adverb_mtr &
+[ INPUT.RELS < [ PRED "ja:_takusan_a_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_a+lot_a_1_rel" ] > ].
+
+chikai--close-mtr := adjective_mtr &
+[ JA.RELS < [ PRED "ja:_chikai_a_rel" ] >,
+  EN.RELS < [ PRED "_close_a_to_rel" ] > ].
+
+chikai--near-mtr := adjective_mtr &
+[ JA.RELS < [ PRED "ja:_chikai_a_rel" ] >,
+  EN.RELS < [ PRED "_near_a_to_rel" ] > ].
+
+tooi--far-mtr := adjective_mtr &
+[ JA.RELS < [ PRED "ja:_tooi_a_rel" ] >,
+  EN.RELS < [ PRED "_far_a_1_rel" ] > ].
+
+tooi--distant-mtr := adjective_mtr &
+[ JA.RELS < [ PRED "ja:_tooi_a_rel" ] >,
+  EN.RELS < [ PRED "_distant_a_1_rel" ] > ].
+
+; 丸い >> round	0.276923
+marui_a_1--round_a_1-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_marui_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_round_a_1_rel" ] , ... > ].
+
+
+; すっぱい >> sour
+suppai_a_2--sour_a_1-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_suppai_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sour_a_1_rel" ] , ... > ].
+
+;;; ひょっとしたら -> possibly 
+;;; FIXME doesn't fire
+hyottoshitara_a--possibly-a-mtr := intersective_scopal_adverb_mtr &
+[ INPUT.RELS < [ PRED "ja:_hyottoshitara_a_1_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_possible_a_for_rel" ], ... > ].
+
+;;; できる だけ As possible -> really hard!
+; dekirudake-as+possible-mtr := adverb_pp_mtr &
+; [ INPUT.RELS < [ PRED "ja:_dekirudake_a_rel" ], ... >,
+;   OUTPUT.RELS < [ PRED "_possible_a_for_rel" ], ... > ].
+
+;;; 酔っている -> drunk  FIXME>>>>>>> .r9334

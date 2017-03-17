@@ -1,0 +1,2560 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Coding: utf-8; -*- got it?
+
+monotonic_mtr := mrs_transfer_rule &
+[ CONTEXT [ LTOP #h, INDEX #i ],
+  INPUT [ LTOP #h, INDEX #i ],
+  OUTPUT [ LTOP #h, INDEX #i ] ].
+  
+monotonic_omtr := monotonic_mtr & optional_mtr.
+
+optional_mtr := mrs_transfer_rule &
+[ FLAGS.OPTIONAL + ].
+
+quantifier_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x1, RSTR #h2, BODY #h3 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x1, RSTR #h2, BODY #h3 ] > ].
+
+quantifier_omtr := quantifier_mtr & optional_mtr.
+
+;;;
+;;; @ 1 pluss 2 >> 1 plus 2
+;;;
+arit_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #i1, ARG1 #x1, ARG2 #h2, ARG3 #h3 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #i1, ARG1 #x1, ARG2 #h2, ARG3 #h3 ] > ].
+
+arit_omtr := arit_mtr & optional_mtr.
+
+;;;
+;;; @ skiltet >> the sign
+;;;
+noun_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x1 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x1 ] > ].
+
+noun_omtr := noun_mtr & optional_mtr.
+
+;;;
+;;; _fix_me_
+;;; quite possibly there is no need for the relational vs. non-relational
+;;; distinction for nouns and adjectives (see below).  we could just always
+;;; co-index an ARG1 (ARG2 for adjectives), since this will only take effect
+;;; when the input actually supplies that role.  however, we probably still
+;;; want to classify relational nouns somewhere, possibly in the SEM-I, since
+;;; that could be required information for, e.g. compounds.    (17-apr-04; oe)
+;;;
+;;; @ bruken av naturen >> the use of the nature
+;;;
+relational_noun_mtr := noun_mtr &
+[ INPUT.RELS < [ ARG1 #x1 ] >,
+  OUTPUT.RELS < [ ARG1 #x1 ] > ].
+
+relational_noun_omtr := relational_noun_mtr & optional_mtr.
+
+;;;
+;;; in some cases, we need to transfer complete NPs, i.e. both the nominal EP
+;;; and its quantifier.
+;;;
+np_mtr := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ HARG #h4, LARG #h1 ] >,
+  INPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+               [ LBL #h3, ARG0 #x2, RSTR #h4, BODY #h5 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+                [ LBL #h3, ARG0 #x2, RSTR #h4, BODY #h5 ] > ].
+
+;;;
+;;; @ Det blåser. >> It is windy.
+;;;
+expl_v_mtr :=  monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #e1 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1 ] > ].
+
+;;;
+;;; @ Vi arbeider. >> We work.
+;;;
+arg1_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #e1, ARG1 #x1 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #x1 ] > ].
+
+;;;
+;;; @ Vi spiser isen. >> We eat the ice.
+;;;
+arg12_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #e1, ARG1 #x1, ARG2 #x2 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #x1, ARG2 #x2 ] > ].
+
+;;;
+;;; @ Vi brakte ham isen. >> We brought him the ice.
+;;;
+arg123_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #e1, ARG1 #x1, ARG2 #x2, ARG3 #x3 ], ... >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #x1, ARG2 #x2, ARG3 #x3 ], ... > ].
+
+;;;
+;;; @ Vi veddet 50 kroner med Abrams på at han sover.
+;;; >> We bet Abrams 50 crowns that he sleeps.
+;;;
+arg1234_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #e1, ARG1 #x1, ARG2 #2, ARG3 #3, ARG4 #4 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #x1, ARG2 #2, ARG3 #3, ARG4 #4 ] > ].
+
+arg1_v_omtr := arg1_v_mtr & optional_mtr.
+
+arg12_v_omtr := arg12_v_mtr & optional_mtr.
+
+arg123_v_omtr := arg123_v_mtr & optional_mtr.
+
+arg1234_v_omtr := arg1234_v_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams kan sove. >> Abrams may sleep.
+;;;
+modal_mtr := arg1_v_mtr.
+
+modal_omtr := modal_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams kan synge. >> Abrams can sing.
+;;;
+arg12_modal_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG2 #h1 & h ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #h1 ] >,
+  FLAGS.EQUAL < #h1 > ].
+
+arg12_modal_omtr := arg12_modal_mtr & optional_mtr.
+
+
+;;;
+;;; and now for more interesting cases of argument dropping or switching
+;;;
+
+;;;
+;;; @ Han begynner å synge. >> He begins to sing.
+;;;
+arg12_arg1_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e1, ARG2 #2 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #2 ] > ].
+
+arg12_arg1_v_omtr := arg12_arg1_v_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams synes å sove. >> Abrams seems to sleep.
+;;;
+arg1_arg2_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,
+                 ARG0 #e1, ARG1 #1 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG2 #1 ] > ].
+
+arg1_arg2_v_omtr := arg1_arg2_v_mtr & optional_mtr.
+
+;;;
+;;; @ Vi grublet over treet. >> We thought about the tree.
+;;;
+arg12_arg13_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,
+                 ARG0 #e1, ARG1 #1, ARG2 #2 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #1, ARG3 #2 ] > ].
+
+arg12_arg13_v_omtr := arg12_arg13_v_mtr & optional_mtr.
+
+;;;
+;;; @ Vi lønner Abrams. >> We pay for Abrams.
+;;;
+arg13_arg12_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,
+                 ARG0 #e1, ARG1 #1, ARG3 #2 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #1, ARG2 #2 ] > ].
+
+arg13_arg12_v_omtr := arg13_arg12_v_mtr & optional_mtr.
+
+;;;
+;;; @ Du kan forlate deg på at Abrams sover. >> You can bet Abrams sleeps.
+;;;                                                              (9-jan-08; ph)
+arg12_arg14_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,
+                 ARG0 #e1, ARG1 #1, ARG2 #2 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #1, ARG4 #2 ] > ].
+
+arg12_arg14_v_omtr := arg12_arg14_v_mtr & optional_mtr.
+
+;;;
+;;; PH 2007-11-12: 
+;;;
+;;; @ Abrams anser bilen som en fare. >> Abrams considers the car a danger.
+;;;
+arg123_arg132_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,
+                 ARG0 #e1, ARG1 #1, ARG2 #2, ARG3 #3 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #1, ARG2 #3, ARG3 #2 ] > ].
+
+arg123_arg132_v_omtr := arg123_arg132_v_mtr & optional_mtr.
+
+;;; no instantiations                                            (3-dec-07; ph)
+arg2_arg1_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,
+                 ARG0 #e1, ARG2 #1 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #1 ] > ].
+
+arg2_arg1_v_omtr := arg2_arg1_v_mtr & optional_mtr.
+
+;;;
+;;; @ Isen smaker meg. >> I enjoy the ice.
+;;;
+arg12_arg21_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,
+                 ARG0 #e1, ARG1 #1, ARG2 #2 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #2, ARG2 #1 ] > ].
+
+arg12_arg21_v_omtr := arg12_arg21_v_mtr & optional_mtr.
+
+;;; no functioning instantiations                                (3-dec-07; ph)
+arg23_arg12_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,
+                 ARG0 #e1, ARG2 #1, ARG3 #2 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #1, ARG2 #2 ] > ].
+
+arg23_arg12_v_omtr := arg23_arg12_v_mtr & optional_mtr.
+
+;;;
+;;; In some cases the ERG encapsulates the wh-clause inside a `nominalization'
+;;; EP.                                                         (11-jan-08; ph)
+;;;
+;;; @ De krangler om hvem som sover. >> They argue over who sleeps.
+;;;
+arg12_arg12+nominalization_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h3 ] >,
+  INPUT [ RELS < [ LBL #h1, 
+		   ARG0 #e1, ARG1 #x1, ARG2 #h2 ] >,
+	  HCONS < qeq & [ HARG #h2, LARG #h3 ] > ],
+  OUTPUT [ RELS < [ LBL #h1, 
+		    ARG0 #e1, ARG1 #x1, ARG2 #x2 ],
+		  [ PRED udef_q_rel, ARG0 #x2, RSTR #h4 ],
+		  [ PRED nominalization_rel, LBL #h5, 
+                    ARG0 #x2 & [ NUM sg, PERS 3, GRIND - ], ARG1 #h3 ] >,
+	   HCONS < qeq & [ HARG #h4, LARG #h5 ] > ] ].
+
+arg12_arg12+nominalization_omtr := 
+arg12_arg12+nominalization_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams tråkker på isen. >> Abrams treads on the ice.
+;;;
+arg12_arg1+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ] >, 
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ],
+                [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ] > ].
+
+arg12_arg1+pp_omtr := arg12_arg1+pp_mtr & optional_mtr.
+
+;;;
+;;; @ Gresset tar av for fallet. >> The grass cusions the fall.
+;;;
+arg1+pp_arg12_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ],
+               [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ] >,
+OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ] > ].
+
+arg1+pp_arg12_omtr := arg1+pp_arg12_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams skiller seg fra Browne. >> Abrams separates from Browne.
+;;;
+arg1+pp_arg13_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ],
+               [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ] >,
+OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG3 #x3 ] > ].
+
+arg1+pp_arg13_omtr := arg1+pp_arg13_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams havnet i Norge. >> Abrams ended up in Norway.
+;;;                                                           (16-dec-2007; ph)
+arg1+pp_arg12pp3pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ],
+               [ LBL #h0, ARG0 #e2 & e_untensed, ARG1 #e1, ARG2 #x3 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #e2, ARG3 #h1 ],
+		  [ LBL #h2, ARG0 #e2, ARG1 #x2, ARG2 #x3 ] >,
+	   HCONS < qeq & [ HARG #h1, LARG #h2 ] > ] ].
+
+arg1+pp_arg12pp3pp_omtr := arg1+pp_arg12pp3pp_mtr & optional_mtr.
+
+;;;
+;;; @ Vi skriver kortet til Abrams. >> We write Abrams the card.
+;;;
+arg12+pp_arg123_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 , ARG2 #x3 ],
+               [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x4 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3, ARG3 #x4 ] > ].
+
+arg12+pp_arg123_omtr := arg12+pp_arg123_mtr & optional_mtr.
+
+;;;
+;;; @ Vi inviterer Abrams til is. >> We invite Abrams for ice.
+;;;
+arg123_arg12+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3, ARG3 #x4 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 , ARG2 #x3 ],
+                [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x4 ] > ].
+
+arg123_arg12+pp_omtr := arg123_arg12+pp_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams deler inn isen i deler. >> Abrams divided the ice into parts.
+;;;
+arg12+pp_arg12+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 , ARG2 #x3 ],
+               [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x4 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ],
+		[ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x4 ]  > ].
+
+arg12+pp_arg12+pp_omtr := arg12+pp_arg12+pp_mtr & optional_mtr.
+
+;;;
+;;; these days, at least, the NorGram and ERG analyses for
+;;;
+;;; @ Abrams slår Browne som gammel. >> Abrams strikes Browne as old.
+;;;
+;;; differ in arity.  the ERG analysis has Browne as the ARG1, essentially as
+;;; the experiencer of the state of affairs of Abrams being old, i.e. the ARG2
+;;; of a two-place `_strike_v_as'.  i admit, i find the NorGram analysis more
+;;; immediately accessible.                                    (14-sep-07; oe)
+;;;
+arg123_arg12_predicative_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG2 #x0, ARG3 #h1 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #h1 ] > ].
+
+arg123_arg12_predicative_omtr := arg123_arg12_predicative_mtr & optional_mtr.
+
+;;;
+;;; PH 2007-09-25
+;;;
+;;; @ Vi baserer ideen på dette. >> We base the idea on this.
+;;;
+arg123_arg123_prop_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1, ARG3 #x2 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1, ARG3 #h1 ],
+		[ LBL #h1, ARG0 e, ARG1 #x1, ARG2 #x2 ] > ].
+
+arg123_arg123_prop_omtr := arg123_arg123_prop_mtr & optional_mtr.
+
+
+;;;
+;;; This is a sort of arg123_arg132 followed by arg123_arg12+pp.  One can 
+;;; wonder when the arg123_arg132 switches are real or accidental the way the 
+;;; arguments 2 and 3 are numered.                              (9-sep-06; jtl)
+;;;
+;;; 
+;;; no instantiations                                            (3-dec-07; ph)
+;;;
+arg123_arg13+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3, ARG3 #x4 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 , ARG2 #x4 ],
+                [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ] > ].
+
+arg123_arg13+pp_omtr := arg123_arg13+pp_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams druknet seg. >> Abrams drowned himself.
+;;;
+arg1refl_arg12pron_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x4 ],
+                  [ PRED pron_rel, LBL #h5, ARG0 #x4 ],
+                  [ PRED pronoun_q_rel, ARG0 #x4, RSTR #h6 ],
+                  [ PRED identity_rel, LBL #h5, ARG0 #x2, ARG1 #x4 ] >,
+           HCONS < qeq & [ HARG #h6, LARG #h5 ] > ] ].
+
+arg1refl_arg12pron_omtr := arg1refl_arg12pron_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams unner seg is. >> Abrams allows himself ice.
+;;;
+arg12refl_arg123pron_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3, ARG3 #x4 ],
+                  [ PRED pron_rel, LBL #h5, ARG0 #x4 ],
+                  [ PRED pronoun_q_rel, ARG0 #x4, RSTR #h6 ],
+                  [ PRED identity_rel, LBL #h5, ARG0 #x2, ARG1 #x4 ] >,
+           HCONS < qeq & [ HARG #h6, LARG #h5 ] > ] ].
+
+arg12refl_arg123pron_omtr := arg12refl_arg123pron_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams forsikrer seg om isen. >> Abrams assures himself of the ice.
+;;;
+arg12refl_arg12pron3_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x4, ARG3 #x3 ],
+                  [ PRED pron_rel, LBL #h5, ARG0 #x4 ],
+                  [ PRED pronoun_q_rel, ARG0 #x4, RSTR #h6 ],
+                  [ PRED identity_rel, LBL #h5, ARG0 #x2, ARG1 #x4 ] >,
+           HCONS < qeq & [ HARG #h6, LARG #h5 ] > ] ].
+
+arg12refl_arg12pron3_omtr := arg12refl_arg12pron3_mtr & optional_mtr. 
+
+
+;;;
+;;; @ Abrams forsikrer seg om isen. >> Abrams assures himself of the ice.
+;;;
+arg12refl_arg12pron3inf_mtr := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ HARG #h3, LARG #h4 ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #h3 ],
+	       [ LBL #h4, ARG1 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x4, ARG3 #h3 ],
+		  [ LBL #h4, ARG1 x & [ DITCH - ] ],
+                  [ PRED pron_rel, LBL #h5, ARG0 #x4 ],
+                  [ PRED pronoun_q_rel, ARG0 #x4, RSTR #h6 ],
+                  [ PRED identity_rel, LBL #h5, ARG0 #x2, ARG1 #x4 ] >,
+           HCONS < qeq & [ HARG #h6, LARG #h5 ] > ] ].
+
+arg12refl_arg12pron3inf_omtr := arg12refl_arg12pron3inf_mtr & optional_mtr. 
+
+;;;
+;;; @ Abrams markerer seg som forsker. 
+;;; >> Abrams distinguishes himself as a researcher.
+;;;
+arg12refl_arg12pron+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x4 ],
+                  [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ],
+                  [ PRED pron_rel, LBL #h5, ARG0 #x4 ],
+                  [ PRED pronoun_q_rel, ARG0 #x4, RSTR #h6 ],
+                  [ PRED identity_rel, LBL #h5, ARG0 #x2, ARG1 #x4 ] >,
+           HCONS < qeq & [ HARG #h6, LARG #h5 ] > ] ].
+
+arg12refl_arg12pron+pp_omtr := arg12refl_arg12pron+pp_mtr & optional_mtr. 
+
+;;;
+;;; a reflexive pronoun inside a PP modifier.                   (16-jan-08; ph)
+;;;
+;;; @ Abrams sikret seg isen. >> Abrams secured the ice for himself.
+;;;
+arg12refl_arg12+pp-pron_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ],
+                  [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x4 ],
+                  [ PRED pron_rel, LBL #h5, ARG0 #x4 ],
+                  [ PRED pronoun_q_rel, ARG0 #x4, RSTR #h6 ],
+                  [ PRED identity_rel, LBL #h5, ARG0 #x2, ARG1 #x4 ] >,
+           HCONS < qeq & [ HARG #h6, LARG #h5 ] > ] ].
+
+arg12refl_arg12+pp-pron_omtr := arg12refl_arg12+pp-pron_mtr & optional_mtr. 
+
+;;;
+;;; sometimes one has to add an adverb or PP in the output.    (22-sep-05; jtl)
+;;;
+;;; @ Abrams reiser rundt. >> Abrams travels around.
+;;;
+arg1_arg1+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #e1, ARG1 #x1 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #x1 ],
+                [ LBL #h1, ARG0 e_untensed, ARG1 #e1 ] > ].
+
+arg1_arg1+pp_omtr := arg1_arg1+pp_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams river seg løs. >> Abrams tears himself away.
+;;;
+arg1refl_arg12pron+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x4 ],
+		  [ LBL #h0, ARG0 e_untensed, ARG1 #e1 ],
+                  [ PRED pron_rel, LBL #h5, ARG0 #x4 ],
+                  [ PRED pronoun_q_rel, ARG0 #x4, RSTR #h6 ],
+                  [ PRED identity_rel, LBL #h5, ARG0 #x2, ARG1 #x4 ] >,
+           HCONS < qeq & [ HARG #h6, LARG #h5 ] > ] ].
+
+arg1refl_arg12pron+pp_omtr := arg1refl_arg12pron+pp_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams henger i. >> Abrams keeps it up.
+;;;                                                           (16-dec-2007; ph)
+arg1_arg12pron_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, 
+		    ARG2 #x4 & x & 
+			[ NUM sg, PERS 3, GEND n, PRONTYPE std_pron ] ],
+		  [ PRED pron_rel, LBL #h5, ARG0 #x4 ],
+                  [ PRED pronoun_q_rel, ARG0 #x4, RSTR #h6 ] >,
+           HCONS < qeq & [ HARG #h6, LARG #h5 ] > ] ].
+
+arg1_arg12pron_omtr := arg1_arg12pron_mtr & optional_mtr.
+
+;;;
+;;; PH 2007-09-27: Add a preposition and a noun in the output.
+;;;
+;;; @ Isen ble til. >> The ice came into existence.
+;;;
+arg1_arg1+p+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, 
+                 ARG0 #e0, ARG1 #x0 ] >,
+  OUTPUT [ RELS < [ LBL #h0, 
+		    ARG0 #e0, ARG1 #x0 ],
+		  [ LBL #h0, ARG0 e_untensed, ARG1 #e0, ARG2 #x1 ],
+		  [ LBL #h2,  ARG0 #x1 & [ NUM sg, PERS 3, GRIND - ] ],
+		  [ ARG0 #x1, RSTR #h1 ] >,
+	   HCONS < qeq & [ HARG #h1, LARG #h2 ] > ] ].
+
+arg1_arg1+p+n_omtr := arg1_arg1+p+n_mtr & optional_mtr.
+
+;;;
+;;; The object of the prepostion needs to be specified for number in the
+;;; rule instances.
+;;;
+;;; @ Skogen begeistrer meg. >> The wood fills me with enthusiasm.
+;;;                                                             (13-nov-07; ph)
+;;;
+arg12_arg12+p+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #e1, ARG1 #x1, ARG2 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h1, 
+		    ARG0 #e1, ARG1 #x1, ARG2 #x2 ],
+		  [ LBL #h1, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ],
+		  [ LBL #h2, ARG0 #x3 & [ PERS 3, GRIND - ] ],
+		  [ PRED udef_q_rel,
+		    ARG0 #x3,
+		    RSTR #h3 ] >,
+	   HCONS < qeq & [ HARG #h3, LARG #h2 ] > ] ].
+
+arg12_arg12+p+n_omtr := arg12_arg12+p+n_mtr & optional_mtr.
+
+;;;
+;;; The PRED value of the object quantifier must be set.        (16-jan-08; ph)
+;;;
+;;; @ Abrams får fatt i isen. >> Abrams gets hold of the ice.
+;;;
+arg12_arg12+n*p+np_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #e1, ARG1 #x1, ARG2 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h1, 
+		    ARG0 #e1, ARG1 #x1, ARG2 #x3 ],
+		  [ ARG0 #x3,
+		    RSTR #h3 ],
+		  [ LBL #h2, 
+		    ARG0 #x3 & [ PERS 3, NUM sg, GRIND - ], ARG1 #x2 ] >,
+	   HCONS < qeq & [ HARG #h3, LARG #h2 ] > ] ].
+
+arg12_arg12+n*p+np_omtr := arg12_arg12+n*p+np_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams sørger for isen. >> Abrams takes care of the ice.
+;;;                                                              (7-jan-08; ph)
+arg12_arg12+n+p+np_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #e1, ARG1 #x1, ARG2 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h1, 
+		    ARG0 #e1, ARG1 #x1, ARG2 #x3 ],
+		  [ LBL #h2, 
+		    ARG0 #x3 & [ PERS 3, NUM sg, GRIND - ] ],
+		  [ LBL #h2, ARG0 e_untensed, ARG1 #x3, ARG2 #x2 ],
+		  [ PRED udef_q_rel,
+		    ARG0 #x3,
+		    RSTR #h3 ] >,
+	   HCONS < qeq & [ HARG #h3, LARG #h2 ] > ] ].
+
+arg12_arg12+n+p+np_omtr := arg12_arg12+n+p+np_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams skimter isen. >> Abrams barely sees the ice.
+;;;
+arg12_arg12+pp_mtr := monotonic_mtr & [ INPUT.RELS < [ LBL #h1,
+                 ARG0 #e1, ARG1 #x1, ARG2 #x2 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #x1, ARG2 #x2 ],
+                [ LBL #h1, ARG0 e_untensed, ARG1 #e1 ] > ].
+
+arg12_arg12+pp_omtr := arg12_arg12+pp_mtr & optional_mtr.
+
+
+;;;
+;;; Or one has to remove an adverb or PP in the output.        (26-may-06; jtl)
+;;; 
+;;; @ Abrams klorer seg fast til isen. >> Abrams clings to the ice.
+;;;
+arg1+pp_arg1_mtr := monotonic_mtr &
+[ INPUT.RELS  < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #x1 ],
+                [ LBL #h1, ARG0 e_untensed, ARG1 #e1 ] >,
+  OUTPUT.RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #x1 ] > ].
+
+arg1+pp_arg1_omtr := arg1+pp_arg1_mtr & optional_mtr.
+
+
+;;;
+;;; for `drive jakt på', transfer the verb, its direct object NP, and a PP[på]
+;;; adjunct (which should probably be the internal argument of a relational
+;;; `jakt') into a simple transitive.
+;;;
+;;; _fix_me_
+;;; interestingly, the PP will often be optional, and we are thus forced to use
+;;; two distinct correspondence types; if there were a way of marking select
+;;; input elements as optional, these could be collapsed.       (23-feb-06; oe)
+;;;
+;;; --- `jakt på' is now relational, but nevertheless keep this type as is.
+;;;
+;;; @ Abrams gjør inntrykk. >> Abrams impresses.
+;;;
+arg12+np_arg1_v_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 & x ],
+                 [ ARG0 #x3, RSTR #h4 ],
+                 [ LBL #h5, ARG0 #x3 ] >,
+          HCONS < qeq & [ HARG #h4, LARG #h5 ] > ],
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ] >,
+  FLAGS.EQUAL < #x3 > ].
+
+arg12+np_arg1_v_omtr := arg12+np_arg1_v_mtr & optional_mtr.
+
+;;;
+;;; The instances of this type must constrain the index of the object to e.g.
+;;; [ NUM pl, PERS 3, GRIND - ], and the PRED value of the quantifier.
+;;;
+;;; @ Vi grøfter. >> We dig ditches.
+;;;
+arg1_arg12+np_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 & x ],
+                 [ ARG0 #x3, RSTR #h4 ],
+                 [ LBL #h5, ARG0 #x3 ] >,
+          HCONS < qeq & [ HARG #h4, LARG #h5 ] > ] ].
+
+arg1_arg12+np_v_omtr := arg1_arg12+np_v_mtr & optional_mtr.
+
+;;;
+;;; Intrans to trans with a compound object. The number of the first noun
+;;; and quantifier relation needs to be specified in the rule intances. (E.g.
+;;; [ NUM sg ] and _a_q_rel)                                    (10-jan-08; ph)
+;;;
+;;; @ Abrams huker av. >> Abrams makes a check mark.
+;;;
+arg1_arg12+compound-np_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 & x ],
+		  [ ARG0 #x3 & [ PERS 3, GRIND - ], RSTR #h4 ],
+		  [ LBL #h7, ARG0 #x4 ],
+		  [ LBL #h5, ARG0 #x3 ],
+		  [ PRED compound_rel, LBL #h5, ARG1 #x3, ARG2 #x4 ],
+		  [ PRED udef_q_rel, 
+		    ARG0 #x4 & [ NUM sg, PERS 3, GRIND - ], RSTR #h6 ] >,
+	   HCONS < qeq & [ HARG #h4, LARG #h5 ],
+		   qeq & [ HARG #h6, LARG #h7 ] > ] ].
+
+arg1_arg12+compound-np_omtr := arg1_arg12+compound-np_mtr & optional_mtr.
+
+;;;
+;;; Adding an AP in the output.                                 (13-dec-07; ph)
+;;;
+;;; @ Det flasket seg. >> It went fine.
+;;;
+arg1_arg12+ap_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, 
+                 ARG0 #e1, ARG1 #x1 ] >,
+  OUTPUT [ RELS < [ LBL #h1, 
+                  ARG0 #e1, ARG1 #x1, ARG2 #h2 ],
+		  [ LBL #h3, ARG0 e_untensed & [ SF prop ], ARG1 #x1 ] >,
+	   HCONS < [ HARG #h2,
+		     LARG #h3 ] > ] ].
+
+arg1_arg12+ap_omtr := arg1_arg12+ap_mtr & optional_mtr.
+
+;;;
+;;; PH 2007-09-27
+;;;
+;;; @ Han brente seg. >> He got burned.
+;;;
+arg1_arg12+vp_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0 ] >,
+  OUTPUT [ RELS < [ LBL #h3, ARG0 #e1, ARG2 #x0 ],
+		  [ PRED "_get_v_state_rel", 
+		    LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #h1 ],
+		  [ PRED parg_d_rel, LBL #h3, ARG1 #e1, ARG2 #x0 ]>,
+          HCONS < qeq & [ HARG #h1, LARG #h3 ] > ] ].
+
+arg1_arg12+vp_v_omtr := arg1_arg12+vp_v_mtr & optional_mtr.
+
+;;;
+;;; @ Dalen har formet seg etter isen. 
+;;; >> The valley has been shaped by the ice.
+;;;                                                             (13-dec-07; ph)
+arg12_arg21+pass_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x1, ARG2 #x0 ],
+		[ PRED parg_d_rel, LBL #h0, ARG1 #e0, ARG2 #x0 ] > ].
+
+arg12_arg21+pass_v_omtr := arg12_arg21+pass_v_mtr & optional_mtr.
+
+;;;
+;;; @ Alt ligger til rette for at Abrams sover.
+;;; >> All is set for Abrams to sleep.
+;;;                                                             (12-jan-08; ph)
+sup-arg12_arg2+pass+cond-pp_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #e1, ARG1 #x1, ARG2 #h2 ],
+		 [ LBL #h3 ], ... >,
+	  HCONS < qeq & [ HARG #h2, LARG #h3 ], ... > ],
+  OUTPUT [ RELS < [ LBL #h1, ARG0 #e1, ARG1 p, ARG2 #x1 ],
+		  relation,
+		  [ ARG0 e_untensed, ARG1 #h4, ARG2 #h5 ],
+		  [ PRED parg_d_rel,
+		    LBL #h1, ARG1 #e1, ARG2 #x1 ] >,
+	   HCONS < qeq & [ HARG #h4, LARG #h1 ],
+		   qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+;;;
+;;; @ Alt ligger til rette for at Abrams sover.
+;;; >> All is set for Abrams to sleep.
+;;;                                                             (12-jan-08; ph)
+arg12_arg2+pass+cond-pp_mtr := sup-arg12_arg2+pass+cond-pp_mtr &
+[ INPUT [ RELS < relation, relation >,
+	  HCONS < qeq > ] ].
+
+arg12_arg2+pass+cond-pp_omtr := arg12_arg2+pass+cond-pp_mtr & optional_mtr.
+
+;;;
+;;; @ Alt ligger til rette for at Abrams kan sove.
+;;; >> All is set for Abrams to sleep.
+;;;                                                             (12-jan-08; ph)
+arg12-aux_arg2+pass+cond-pp_mtr := sup-arg12_arg2+pass+cond-pp_mtr &
+[ INPUT [ RELS < [ ARG2 #h2 ],
+		 [ LBL #h3 ],
+		 [ LBL #h6, ARG1 #h7 ] >,
+	  HCONS < qeq & [ HARG #h2, LARG #h6 ],
+		  qeq & [ HARG #h7, LARG #h3 ] > ] ].
+
+arg12-aux_arg2+pass+cond-pp_omtr := 
+arg12-aux_arg2+pass+cond-pp_mtr & optional_mtr.
+;;;
+;;; a light verb plus NP or relational NP complements, e.g. `drive jakt [på]'.
+;;;
+
+;;;
+;;; @ Abrams gjør inntrykk på oss. >> Abrams makes an impression on us.
+;;;
+arg12+np+pp_arg12_v_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 & x ],
+                 [ ARG0 #x3, RSTR #h4 ],
+                 [ LBL #h5, ARG0 #x3 ],
+                 [ LBL #h5, ARG1 #x3, ARG2 #x6 ] >,
+          HCONS < qeq & [ HARG #h4, LARG #h5 ] > ],
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x6 ] >,
+  FLAGS.EQUAL < #x3 > ].
+
+arg12+np+pp_arg12_v_omtr := arg12+np+pp_arg12_v_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams driver jakt på elger. >> Abrams hunts moose.
+;;;
+arg12+rnp_arg12_v_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 & x ],
+                 [ ARG0 #x3, RSTR #h4 ],
+                 [ LBL #h5, ARG0 #x3, ARG1 #x6 & x ] >,
+          HCONS < qeq & [ HARG #h4, LARG #h5 ] > ],
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x6 ] >,
+  FLAGS.EQUAL < #x3, #x6 > ].
+
+arg12+rnp_arg12_v_omtr := arg12+rnp_arg12_v_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams grunnet opp innsjøen. >> Abrams made the lake shallow.
+;;;
+arg12_arg12+ap_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1 & x ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #h1 ], 
+		  [ LBL #h1, ARG1 #x1 ] > ] ].
+
+arg12_arg12+ap_v_omtr := arg12_arg12+ap_v_mtr & optional_mtr.
+
+;;;
+;;; This rule works for both AP ('shiny') and PP ('down') complements. 
+;;;                                                             (15-jan-08; ph)
+;;;
+;;; @ Abrams blankskurte isen. >> Abrams scrubbed the ice shiny.
+;;;
+arg12_arg123_ap_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1 & x ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1 & x, ARG3 #h2 ], 
+		  [ LBL #h1, ARG1 #x1 ] >,
+	   HCONS < qeq & [ HARG #h2, LARG #h1 ] > ] ].
+
+arg12_arg123_ap_v_omtr := arg12_arg123_ap_v_mtr & optional_mtr.
+
+;;;
+;;; This is a type for verb particles that translate into resultative PPs. 
+;;; 'kakke*i+stykker' is in the NorGram SEM-I but not in the lexicon. 
+;;;                                                             (18-dec-07; ph)
+;;; @ Abrams kakker istykker isen. >> Abrams knocks the ice to pieces.
+;;;
+arg12_arg123_p+n_v_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1 & x ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1 & x, ARG3 #h2 ], 
+		  [ LBL #h1, ARG0 e_untensed, ARG1 #x1, ARG2 #x2 ],
+		  [ ARG0 #x2, RSTR #h3 ],
+		  [ LBL #h4, ARG0 #x2 ] >,
+	   HCONS < qeq & [ HARG #h2, LARG #h1 ],
+		   qeq & [ HARG #h3, LARG #h4 ] > ] ].
+
+arg12_arg123_p+n_v_omtr := arg12_arg123_p+n_v_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams avstår fra å sove. >> Abrams refrains from sleeping.
+;;;
+arg12+inf_arg12+nominalization_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h2, ARG0 #e1, ARG1 p ] >,
+  INPUT [ RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #h1 ] >,
+          HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x2 ],
+                  [ PRED implicit_q_rel, ARG0 #x2, RSTR #h4 ],
+                  [ PRED nominalization_rel, LBL #h5,
+                    ARG0 #x2 & [ NUM sg, PERS 3, GRIND - ], ARG1 #h2 ],
+                  [ PRED prog_mark, LBL #h2, ARG0 #e1 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h5 ] > ] ].
+
+arg12+inf_arg12+nominalization_omtr := 
+arg12+inf_arg12+nominalization_mtr & optional_mtr.
+
+;;;
+;;; The progressive aspect of the nominalized verb must be set at each instance
+;;; of this type.                                               (13-dec-07; ph)
+;;;
+;;; @ Abrams forhindret Browne fra å sove. 
+;;; >> Abrams prevented Browne from sleeping.
+;;;
+arg123+inf_arg123+prog_mtr := monotonic_mtr &
+[ CONTEXT [ RELS < [ LBL #h2, ARG0 #e1, ARG1 x ] >,
+            HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+  INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1, ARG3 #h1 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1, ARG3 #h1 ],
+                [ PRED prog_mark, LBL #h2, ARG0 #e1 ] > ].
+
+arg123+inf_arg123+prog_omtr := arg123+inf_arg123+prog_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams lurte seg til å sove. 
+;;; >> Abrams tricked himself into sleeping.
+;;;
+arg1refl2+inf_arg123+nominalization_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h2, ARG0 #e1, ARG1 x ] >,
+  INPUT [ RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #h1 ] >,
+          HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],          
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1, ARG3 #h3 ],
+		  [ LBL #h4, ARG1 #x1, ARG2 #x2 ],
+                  [ PRED pronoun_q_rel, ARG0 #x1, RSTR #h5 ],
+                  [ PRED pron_rel, LBL #h6, 
+                    ARG0 #x1 & x_3sg & [ PRONTYPE refl ] ],
+                  [ PRED gend_equate, ARG0 #x1, ARG1 #x0 ],
+                  [ PRED implicit_q_rel, ARG0 #x2, RSTR #h7 ],
+                  [ PRED nominalization_rel, LBL #h8, 
+                    ARG0 #x2 & x_3sg, ARG1 #h2 ],
+                  [ PRED prog_mark, LBL #h2, ARG0 #e1 ] >,
+	   HCONS < qeq & [ HARG #h3, LARG #h4 ],
+		   qeq & [ HARG #h5, LARG #h6 ],
+		   qeq & [ HARG #h7, LARG #h8 ] > ] ].
+
+arg1refl2+inf_arg123+nominalization_omtr := 
+arg1refl2+inf_arg123+nominalization_mtr & optional_mtr.
+
+;;;
+;;; @ Det kommer an på om han sover. >> It depends whether he sleeps.
+;;;
+arg12+subord_arg12+subord_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x0 ] >,
+  INPUT [ RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #h1 ],
+		 [ LBL #h2, ARG0 e & [ DITCH - ] ] >,
+           HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+  OUTPUT [ RELS < [ LBL #h3, ARG0 #e0, ARG1 #x0  ],
+		  [ LBL #h2, ARG0 e ],
+		  [ LBL #h0, ARG0 e, ARG1 #h4, ARG2 #h5 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h3 ],
+		   qeq & [ HARG #h5, LARG #h2 ] > ] ].
+
+arg12+subord_arg12+subord_omtr := arg12+subord_arg12+subord_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams får henne til å le. >> Abrams makes her laugh.
+;;;
+arg123+inf_arg12+small-cl_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #x1, ARG3 #h1 ]>,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0, ARG2 #h1 ] > ].
+
+arg123+inf_arg12+small-cl_omtr := arg123+inf_arg12+small-cl_mtr &
+				  optional_mtr.
+
+;;;
+;;; _fix_me_
+;;; now that we have conflated the `j' vs. `r' distinction in predicate names
+;;; on both ends, we could just have one `intersective_attribute_mtr' type, 
+;;; say, and not make the adjective vs. adverb distinction where both have the
+;;; same translation(s).                                  (21-jun-05; jtl & oe)
+;;;
+;;; @ Turen var utmerket. >> The trip was excellent.
+;;; @ en utmerket tur >> an excellent trip
+;;;
+intersective_attribute_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #i3 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #i3 ] > ].
+
+intersective_attribute_omtr := intersective_attribute_mtr & optional_mtr.
+
+;;;
+;;; @ Turen var lang. >> The trip was long.
+;;; @ en lang tur >> a long trip
+;;;
+adjective_mtr := intersective_attribute_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #p3 & p ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #p3 ] >,
+  FLAGS.SUBSUME < #p3 > ].
+
+adjective_omtr := adjective_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams er klar over isen. >> Abrams is aware of the ice.
+;;;
+relational_adjective_mtr := adjective_mtr &
+[ INPUT.RELS < [  ARG2 #i1 ] >,
+  OUTPUT.RELS < [ ARG2 #i1 ] > ].
+
+relational_adjective_omtr := relational_adjective_mtr & optional_mtr.
+
+;;;
+;;; @ Mannen er fjellvant. >> The man is familiar with the mountains.
+;;; @ den fjellvante mannen >> the man familiar with the mountains
+;;;
+adj_reladj+np_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x3 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x3, ARG2 #x4 ],
+                  [ LBL #h5, ARG0 #x4, RSTR #h5],
+                  [ LBL #h6, ARG0 #x4] >,
+           HCONS < qeq & [ HARG #h5, LARG #h6 ] > ] ].
+
+adj_reladj+np_omtr := adj_reladj+np_mtr & optional_mtr.
+
+;;;
+;;; This type works adjectives that translates into adjectives modified by 
+;;; adverbs and degree specifiers (_x_deg_rel).
+;;;
+;;; @ Mannen er dødssyk. >> The man is mortally ill.
+;;; @ den dødssyke mannen >> the mortally ill man
+;;;
+ad_deg+ad_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #p3 & i ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG1 #e2 ] ,
+                [ LBL #h1, ARG0 #e2, ARG1 #p3 ] > ].
+
+ad_deg+ad_omtr := ad_deg+ad_mtr & optional_mtr.
+
+;;;
+;;; _fix_me_
+;;; we cannot make the PROG and TENSE (overwriting) constraints part of the MTR
+;;; definition, because then we fail to match the input.  thus, we merely mark 
+;;; the event for later processing in the `snug' phase.  once again, another 
+;;; kind of overwriting would be required here.                 (29-may-06; oe)
+;;;
+;;; @ Veien er svinget. >> The road is winding.
+;;; @ den svingete veien >> the winding road
+;;;
+adjective_prp_participle_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #p3 & p ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #p3 ],
+		[ PRED prog_mark, LBL #h1, ARG0 #e2 ] >,
+  FLAGS.SUBSUME < #p3 > ].
+
+adjective_prp_participle_omtr := adjective_prp_participle_mtr & optional_mtr.
+
+;;;
+;;; @ Stien er samfunnsnyttig. >> The path is serving the public.
+;;; @ den samfunnsnyttige stien >> the path serving the public
+;;;
+adjective_prp_participle+arg2_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #p0 & p ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e0, ARG1 #p0, ARG2 #x0 ],
+		  [ LBL h, ARG0 #x0, RSTR #h2 ],
+		  [ LBL #h3, ARG0 #x0 & [ NUM sg, PERS 3, GRIND - ] ],
+		  [ PRED prog_mark, LBL #h0, ARG0 #e0 ] >,
+	   HCONS < qeq & [ HARG #h2, LARG #h3 ] > ],
+  FLAGS.SUBSUME < #p0 > ].
+
+adjective_prp_participle+arg2_omtr :=
+adjective_prp_participle+arg2_mtr & optional_mtr.
+
+;;;
+;;; @ Stien er anerkjent. >> The path is recognized.
+;;; @ den anerkjente stien >> the recognized path
+;;;
+adjective_psp_participle_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #p3 & p ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 u, ARG2 #p3 ],
+		[ PRED parg_d_rel, LBL #h1, ARG1 #e2 , ARG2 #p3 ] >,
+  FLAGS.SUBSUME < #p3 > ].
+
+adjective_psp_participle_omtr := adjective_psp_participle_mtr & optional_mtr.
+
+;;;
+;;; @ Stien er rødmerket. >> The path is marked with red.
+;;; @ den rødmerkede stien >> the path marked with red
+;;;
+adjective_psp_participle+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e0, ARG1 #p3 & p ] >,
+  OUTPUT [ RELS < [ LBL #h1, ARG0 #e0, ARG1 u, ARG2 #p3 ],
+                  [ LBL #h1, ARG1 #e0, ARG2 #x7 ],
+                  [ ARG0 #x7, RSTR #h9 ],
+                  [ LBL #h8, ARG0 #x7 & [ NUM sg, PERS 3, GRIND - ] ],
+		  [ PRED parg_d_rel, LBL #h1, 
+		    ARG0 e_untensed, ARG1 #e0, ARG2 #p3 ] >,
+           HCONS < qeq & [ HARG #h9, LARG #h8 ] > ],
+  FLAGS.SUBSUME < #p3 > ].
+
+adjective_psp_participle+pp_omtr := 
+adjective_psp_participle+pp_mtr & optional_mtr.
+
+;;;
+;;; @ Stien er nyanlagt. >> The path is newly built.
+;;; @ den nyanlagte stien >> the newly built path
+;;;
+adjective_psp_participle+intersective_adverb_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #p3 & p ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #e2 ],
+		[ LBL #h1, ARG0 #e2, ARG1 u, ARG2 #p3 ],
+		[ PRED parg_d_rel, LBL #h1, ARG1 #e2 , ARG2 #p3 ] >,
+  FLAGS.SUBSUME < #p3 > ].
+
+adjective_psp_participle+intersective_adverb_omtr := optional_mtr &
+                              adjective_psp_participle+intersective_adverb_mtr.
+
+;;;
+;;; @ Stien er usikret. >> The path is unsecured.
+;;; @ den usikrede stien >> the unsecured path
+;;;
+adjective_psp_participle+scopal_adverb_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #p3 & p ] >,
+  OUTPUT [ RELS < [ LBL #h1, ARG0 e_untensed & #e2, ARG2 #p3 ],
+		  [ LBL #h1, ARG0 e_untensed, ARG1 #h2 ],
+		  [ PRED parg_d_rel, LBL #h1, ARG1 #e2 , ARG2 #p3 ] >,
+	   HCONS < qeq & [ HARG #h2, LARG #h1 ] > ],
+  FLAGS.SUBSUME < #p3 > ].
+
+adjective_psp_participle+scopal_adverb_omtr := optional_mtr &
+                                    adjective_psp_participle+scopal_adverb_mtr.
+
+;;;
+;;; @ hytta beliggende i Bergen >> the cabin situated in Bergen
+;;;
+prp_participle_adjective_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e2 & [ PROG +, PERF - ], ARG1 #p3 & p ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #p3 ] >,
+  FLAGS.SUBSUME < #p3 > ].
+
+prp_participle_adjective_omtr := prp_participle_adjective_mtr & optional_mtr.
+
+
+;;;
+;;; @ Bilen er motorisert. >> The car is motorized.
+;;; @ den motoriserte bilen >> the motorized car.
+;;;
+psp_participle_adjective_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h4, ARG0 #e2 & e, ARG1 u, ARG2 #p3 & p ],
+               [ PRED parg_d_rel, LBL #h4, ARG1 #e2, ARG2 #p3 ] >,
+  OUTPUT.RELS < [ LBL #h4, ARG0 #e2, ARG1 #p3 ] >,
+  FLAGS.SUBSUME < #e2, #p3 > ].
+
+psp_participle_adjective_omtr := 
+psp_participle_adjective_mtr & optional_mtr.
+
+
+;;;
+;;; This takes a past participle attributively modifying a noun, and transfers 
+;;; it into the modifier of an N+N compounds.d.                (08-sep-06; jtl)
+;;;
+;;; @ et laftet bygg >> a log building
+;;;
+psp_participle_compound_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h4, ARG0 #e2, ARG2 #p3 ],
+               [ PRED parg_d_rel, LBL #h1, ARG1 #e2, ARG2 #p3 ] >,
+  OUTPUT [ RELS <  [ LBL #h4, ARG0 #x14 ],
+                   [ PRED compound_rel, LBL #h1, ARG1 #p3, ARG2 #x14 ],
+                   [ PRED udef_q_rel, 
+                     ARG0 #x14 & [ PERS 3, NUM sg, GRIND - ], RSTR #h15 ] >,
+           HCONS < qeq & [ HARG #h15, LARG #h4 ] > ] ].
+
+psp_participle_compound_omtr := psp_participle_compound_mtr & optional_mtr.
+
+;;;
+;;; @ den større isen >> the larger ice
+;;;
+comparative_mtr := arg12_v_mtr.
+
+comparative_omtr := comparative_mtr & optional_mtr.
+
+
+;;;
+;;; New type superlative_mtr (compared to comparative_mtr) to prevent ARG2 
+;;; which again prevents generation.                           (11-may-06; jtl)
+;;;
+;;; @ den største isen >> the largest ice
+;;;
+superlative_mtr := arg1_v_mtr.
+
+superlative_omtr := superlative_mtr & optional_mtr.
+
+;;;
+;;; @ 20 >> 20
+;;;
+cardinal_mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "card_rel", LBL #h1, 
+                 ARG0 #e2, ARG1 #i3, CARG string ] >,
+  OUTPUT.RELS < [ PRED card_rel, LBL #h1, 
+                  ARG0 #e2, ARG1 #i3, CARG string ] > ].
+
+cardinal_omtr := cardinal_mtr & optional_mtr.
+
+;;;
+;;; @ den første mannen >> the first man
+;;;
+ordinal_mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ord_rel", LBL #h1,
+                 ARG0 #e2, ARG1 #i3, CARG string ] >,
+  OUTPUT.RELS < [ PRED ord_rel, LBL #h1, 
+                  ARG0 #e2, ARG1 #i3, CARG string ] > ].
+
+ordinal_omtr := ordinal_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams sover fortsatt. >> Abrams still sleeps.
+;;;
+intersective_adverb_mtr := intersective_attribute_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG1 #e2 & e ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG1 #e2 ] >,
+  FLAGS.EQUAL < #e2 > ].
+
+intersective_adverb_omtr := intersective_adverb_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams sover sannsynligvis. >> Abrams probably sleeps.
+;;;
+scopal_adverb_mtr := monotonic_mtr &
+[ INPUT.RELS < [  LBL #h1, ARG1 #h2 & h ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG1 #h2 ] > ].
+
+scopal_adverb_omtr := scopal_adverb_mtr & optional_mtr.
+
+
+;;;
+;;; _fix_me_
+;;; adverbs like `too', `usually', et al. are scopal in the ERG; see whether we
+;;; can convert an intersective NorGram adverb into a scopal modifier: it has
+;;; to insert itself into the QEQ of the message introducing the tensed event
+;;; that the original adverb modifies.  this should probably not be required.
+;;;                                                            (25-apr-04; oe)
+;;; This does not work with two intersective adverbs that are to be scopal.
+;;; The transfer of the second does not fire because at this time it is not in
+;;; the immediate scope of a message but of the scopal adverb.  Therefore try
+;;; with a looser constraint.                                  (06-oct-06; jtl)
+;;;
+;;; @ Abrams sover vanligvis. >> Abrams usually sleeps.
+;;;
+intersective_scopal_adverb_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h1, ARG0 #e2 & e ] >,
+  INPUT [ RELS < [ LBL #h1, ARG1 #e2 ] >,
+          HCONS < qeq & [ HARG #h0, LARG #h1 ] > ],
+  OUTPUT [ RELS < [ LBL #h3, ARG1 h & #h4 ] >,
+           HCONS < qeq & [ HARG #h0, LARG #h3 ], 
+                   qeq & [ HARG #h4, LARG #h1 ] > ] ].
+
+intersective_scopal_adverb_omtr := 
+intersective_scopal_adverb_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams sover stort sett. >> Abrams generally sleeps.
+;;;
+scopal_intersective_adverb_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h1, ARG0 #e2 & e ] >,
+  INPUT [ RELS < [ LBL #h3, ARG1 h & #h4 ] >,
+           HCONS < qeq & [ HARG #h0, LARG #h3 ], 
+                   qeq & [ HARG #h4, LARG #h1 ] > ],
+  OUTPUT [ RELS < [ LBL #h1, ARG1 #e2 ] >,
+          HCONS < qeq & [ HARG #h0, LARG #h1 ] > ] ].
+
+scopal_intersective_adverb_omtr := 
+scopal_intersective_adverb_mtr & optional_mtr.
+
+;;;
+;;; mapping discourse adverb to conjunction.                   (14-jul-06; dpf)
+;;;
+;;; @ Men han synger. >> But he sings.
+;;;
+discourse_adverb_conjunction_mtr := mrs_transfer_rule &
+[ CONTEXT [ LTOP #h0, INDEX #e1, RELS < [ ARG0 #e1 & e ] > ],
+  INPUT.RELS < [ ARG2 #e1 ] >,
+  OUTPUT [ LTOP #h2,
+           RELS < [ LBL #h2, R-HNDL #h0, R-INDEX #e1 ] >,
+           HCONS < > ],
+  FLAGS.EQUAL < #e1 > ].
+
+;;;
+;;; @ Abrams sover øverst. >> Abrams sleeps at the uppermost place.
+;;;
+adverb_pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #e2 ] >,
+  OUTPUT [ RELS < [ LBL #h1, ARG0 #e1, ARG1 #e2, ARG2 #x3 ],
+                  [ ARG0 #x3 & [ PERS 3, GRIND - ], RSTR #h4 ],
+                  [ LBL #h5, ARG0 #x3 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h5 ] > ] ].
+
+adverb_pp_omtr := adverb_pp_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams er sant å si en mann. >> Abrams is a man in truth.
+;;;
+scopal_intersective_pp_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h1, ARG0 #e2 & e ] >,
+  INPUT [ RELS < [ LBL #h3, ARG1 h & #h4 ] >,
+           HCONS < qeq & [ HARG #h0, LARG #h3 ], 
+                   qeq & [ HARG #h4, LARG #h1 ] > ],
+  OUTPUT [ RELS < [ LBL #h1, ARG1 #e2, ARG2 #x3 ],
+                  [ ARG0 #x3 & [ PERS 3, GRIND - ], RSTR #h4 ],
+                  [ LBL #h5, ARG0 #x3 ] >,
+           HCONS < qeq & [ HARG #h0, LARG #h1 ], 
+                   qeq & [ HARG #h4, LARG #h5 ] > ] ].
+
+scopal_intersective_pp_omtr := scopal_intersective_pp_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams sover garantert. >> Abrams is guaranteed to sleep.
+;;;
+adverb_part+inf_mtr := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ HARG #h1, LARG #h2 ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #e0 & e, ARG1 #h1 ],
+	       [ LBL #h2, PRED #pred, 
+		 ARG0 #e1, ARG1 #x0, ARG2 #u1, ARG3 #u2 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG2 #x0, ARG3 #h1 ],
+		[ LBL #h2, PRED #pred,
+		  ARG0 e_untensed, ARG1 #x0, ARG2 #u1, ARG3 #u2 ],
+		[ LBL #h0, PRED parg_d_rel, 
+		  ARG0 e_untensed, ARG1 #e1, ARG2 #x0 ] >,
+  FLAGS.EQUAL < #e0 > ].
+
+adverb_part+inf_omtr := adverb_part+inf_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams blir garantert hentet. >> Abrams is guaranteed to be fetched.
+;;;
+adverb_part+inf-pass_mtr := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ HARG #h1, LARG #h2 ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #e0 & e, ARG1 #h1 ],
+	       [ LBL #h2, PRED #pred, 
+		 ARG0 #e1, ARG2 #x0, ARG3 #u2 ],
+	       [ LBL #h2, PRED parg_d_rel, 
+		 ARG0 e_untensed, ARG1 #e1, ARG2 #x0 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 p, ARG2 #x0, ARG3 #h1 ],
+		[ LBL #h2, PRED #pred,
+		  ARG0 #e2 & e_untensed, ARG1 p, ARG2 #x0, ARG3 #u2 ],
+		[ LBL #h0, PRED parg_d_rel, 
+		  ARG0 e_untensed, ARG1 #e1, ARG2 #x0 ],
+	       [ LBL #h2, PRED parg_d_rel, 
+		 ARG0 e_untensed, ARG1 #e2, ARG2 #x0 ] >,
+  FLAGS.EQUAL < #e0 > ].
+
+adverb_part+inf-pass_omtr := adverb_part+inf-pass_mtr & optional_mtr.
+
+;;;
+;;; @ Æren var i behold. >> The honor was intact.
+;;;
+pp_ad_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #e1, ARG1 #p2, ARG2 #x3 ],
+                  [ ARG0 #x3 & [ PERS 3, GRIND - ], RSTR #h4 ],
+                  [ LBL #h5, ARG0 #x3 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h5 ] > ],
+ OUTPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #p2 ] > ].
+
+pp_ad_omtr := pp_ad_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams er i anmarsj. >> Abrams is on the way.
+;;;
+pp_pp_mtr := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ HARG #h0, LARG #h1 ] >,
+  INPUT [ RELS < [ LBL #h2, ARG0 #e0, ARG1 #p0, ARG2 #x0 ],
+		 [ ARG0 #x0 & [ PERS 3, GRIND - ], RSTR #h0 ],
+		 [ LBL #h1, ARG0 #x0 ], ... > ],
+  OUTPUT.RELS < [ LBL #h2, ARG0 #e0, ARG1 #p0, ARG2 #x0 ],
+		[ ARG0 #x0 & [ PERS 3, GRIND - ], RSTR #h0 ],
+		[ LBL #h1, ARG0 #x0 ], ... > ].
+
+pp_pp_omtr := pp_pp_mtr & optional_mtr.
+
+;;;
+;;; @ til fortrengsel for >> at the expence of
+;;;
+pp+prep_pp+prep_mtr := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ HARG #h0, LARG #h1 ] >,
+  INPUT.RELS < [ LBL #h2, ARG0 #e0, ARG1 #e1, ARG2 #x0 & x ],
+	       [ ARG0 #x0 & [ NUM sg, PERS 3, GRIND - ], RSTR #h0 ],
+	       [ LBL #h1, ARG0 #x0 ],
+	       [ LBL #h1, ARG0 #e2, ARG1 #x0, ARG2 #x1 & x ] >,
+  OUTPUT.RELS < [ LBL #h2, ARG0 #e0, ARG1 #e1, ARG2 #x0 & x ],
+		[ ARG0 #x0, RSTR #h0 ],
+		[ LBL #h1, ARG0 #x0 ],
+		[ LBL #h1, ARG0 #e2, ARG1 #x0, ARG2 #x1 & x ] > ].
+
+pp+prep_pp+prep_omtr := pp+prep_pp+prep_mtr & optional_mtr.
+
+;;; supertype
+adverb_lexical_pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #e2 ] >,
+  OUTPUT [ RELS < [ LBL #h5, ARG0 e_untensed, ARG1 #x3 ],
+                  [ LBL #h5, ARG0 #x3 & [ GRIND - ] ],
+                  [ PRED unspec_loc_rel, LBL #h1, 
+                    ARG0 #e1, ARG1 #e2, ARG2 #x3 ],
+                  [ PRED implicit_q_rel,
+                    ARG0 #x3, RSTR #h4 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h5 ] > ] ].
+
+adverb_lexical_pp_omtr := adverb_lexical_pp_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams har lenge blitt beundret. >> Abrams has long been admired.
+;;;
+adverb_lexical_pp_time_mtr := adverb_lexical_pp_mtr &
+[ OUTPUT.RELS < relation,
+                [ PRED time_n_rel ],
+                  ... > ].
+
+adverb_lexical_pp_time_omtr := adverb_lexical_pp_time_mtr & optional_mtr.
+
+;;;
+;;; @ Stien går vestover. >> The path goes westwards.
+;;;
+adverb_lexical_pp_place_mtr := adverb_lexical_pp_mtr &
+[ OUTPUT.RELS < relation,
+                [ PRED place_n_rel ],
+                  ... > ].
+
+adverb_lexical_pp_place_omtr := adverb_lexical_pp_place_mtr & optional_mtr.
+
+;;; supertype                                                    (3-dec-07; ph)
+prep_lexical_pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #e2, ARG2 #x9] >,
+  OUTPUT [ RELS < [ LBL #h5, ARG0 e_untensed, ARG1 #x3, ARG2 #x9 ],
+                  [ LBL #h5, ARG0 #x3 & [ GRIND - ] ],
+                  [ PRED unspec_loc_rel, LBL #h1, 
+                    ARG0 #e1, ARG1 #e2, ARG2 #x3 ],
+                  [ PRED implicit_q_rel,
+                    ARG0 #x3, RSTR #h4 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h5 ] > ] ].
+
+prep_lexical_pp_omtr := prep_lexical_pp_mtr  & optional_mtr.
+
+;;; no instantiations                                            (3-dec-07; ph)
+prep_lexical_pp_time_mtr := prep_lexical_pp_mtr &
+[ OUTPUT.RELS < relation,
+                [ PRED time_n_rel ],
+                  ... > ].
+
+prep_lexical_pp_time_omtr := prep_lexical_pp_time_mtr  & optional_mtr.
+
+;;;
+;;; @ Abrams går vestover veien. >> Abrams walks to the west on the road.
+;;;
+prep_lexical_pp_place_mtr := prep_lexical_pp_mtr &
+[ OUTPUT.RELS < relation,
+                [ PRED place_n_rel ],
+                  ... > ].
+
+prep_lexical_pp_place_omtr := prep_lexical_pp_place_mtr  & optional_mtr.
+
+;;; no instantiations                                            (3-dec-07; ph)
+prep_lexical_pp_place+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #e2, ARG2 #x4 & x ] >,
+  OUTPUT [ RELS < [ LBL #h5, ARG0 e_untensed, ARG1 #x3 ],
+                  [ LBL #h5, ARG0 e_untensed, ARG1 #x3, ARG2 #x4 ],
+                  [ PRED place_n_rel, LBL #h5, ARG0 #x3 & [ GRIND - ] ],
+                  [ PRED unspec_loc_rel, LBL #h1, 
+                    ARG0 #e1, ARG1 #e2, ARG2 #x3 ],
+                  [ PRED implicit_q_rel,
+                    ARG0 #x3, RSTR #h4 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h5 ] > ],
+  FLAGS.EQUAL < #x4 > ].
+
+prep_lexical_pp_place+pp_omtr := prep_lexical_pp_place+pp_mtr & optional_mtr.
+
+;;; supertype
+lexical_pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h5, ARG1 #x2 ],
+               [ LBL #h5, ARG0 #x2 ],
+               [ PRED "def_q_rel", LBL #h1,
+                 ARG0 #x2, RSTR #h3, BODY #h4 ] >,
+  OUTPUT.RELS < [ LBL #h5, ARG0 e_untensed, ARG1 #x2 ],
+                [ LBL #h5, ARG0 #x2 ],
+                [ PRED implicit_q_rel, LBL #h1, 
+                  ARG0 #x2, RSTR #h3, BODY #h4 ] > ].
+
+;;;
+;;; @ Abrams er her. >> Abrams is here.
+;;;
+lexical_pp_place_mtr := lexical_pp_mtr &
+[ INPUT.RELS < relation,
+               [ PRED "sted_rel" ],
+               ... >,
+  OUTPUT.RELS < relation,
+                [ PRED place_n_rel ],
+                ... > ].
+
+lexical_pp_place_omtr := lexical_pp_place_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams kommer i dag. >> Abrams arrives today.
+;;;
+lexical_pp_time_mtr := lexical_pp_mtr &
+[ INPUT.RELS < relation,
+               [ PRED "tid_rel" ],
+               ... >,
+  OUTPUT.RELS < relation,
+                [ PRED time_n_rel ],
+                ... > ].
+
+lexical_pp_time_omtr := lexical_pp_time_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams er der inne. >> Abrams is in there.
+;;;
+lexical_pp_place_proper_pp_place_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h5, ARG1 #x2 ],
+               [ PRED "sted_rel", LBL #h5, ARG0 #x2 ],
+               [ PRED "unspec_loc_rel", LBL #h6, 
+                 ARG0 #e7, ARG1 #e8, ARG2 #x2 ],
+               [ PRED "def_q_rel", LBL #h1,
+                 ARG0 #x2, RSTR #h3, BODY #h4 ] >,
+  OUTPUT.RELS < [ LBL #h6, ARG0 #e7, ARG1 #e8, ARG2 #x2 ],
+                [ LBL #h5, ARG0 e_untensed, ARG1 #x2, ARG2 u ],
+                [ PRED place_n_rel, LBL #h5, ARG0 #x2 ],
+                [ PRED implicit_q_rel, LBL #h1, 
+                  ARG0 #x2, RSTR #h3, BODY #h4 ] > ].
+
+lexical_pp_place_proper_pp_place_omtr := 
+               lexical_pp_place_proper_pp_place_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams går til fjells. >> Abrams walks in the mountains.
+;;;
+lexical_pp_place_proper_pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG1 #x0 ],
+               [ PRED "unspec_loc_rel", LBL #h0,
+                 ARG0 #e0, ARG1 #e1, ARG2 #x0 ],
+               [ PRED "sted_rel", LBL #h1, ARG0 #x0 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #e1, ARG2 #x0 ],
+                [ LBL #h1, ARG0 #x0 ] > ].
+
+lexical_pp_place_proper_pp_omtr := 
+lexical_pp_place_proper_pp_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams sover oppe. >> Abrams sleeps upstairs.
+;;;
+lexical_pp_place_adverb_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h5, ARG1 #x3 ],
+                 [ ARG0 #x3, RSTR #h4 ],
+                 [ PRED "unspec_loc_rel", LBL #h0,
+                   ARG0 #e1, ARG1 #e2, ARG2 #x3 ],
+                 [ PRED "sted_rel", LBL #h5, ARG0 #x3 ] >,
+          HCONS < qeq & [ HARG #h4, LARG #h5 ] > ],
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #e2 ] > ],
+  FLAGS.EQUAL < #h4 > ].
+
+
+lexical_pp_place_adverb_omtr := lexical_pp_place_adverb_mtr & optional_mtr. 
+
+;;; no instantiations
+lexical_pp_time_adverb_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h5, ARG1 #x3 ],
+                 [ ARG0 #x3, RSTR #h4 ],
+                 [ PRED "unspec_loc_rel", LBL #h0,
+                   ARG0 #e1, ARG1 #e2, ARG2 #x3 ],
+                 [ PRED "tid_rel", LBL #h5, ARG0 #x3 ] >,
+          HCONS < qeq & [ HARG #h4, LARG #h5 ] > ],
+  OUTPUT [RELS < [ LBL #h0,  ARG0 #e1, ARG1 #e2 ] > ] ].
+
+
+lexical_pp_time_adverb_omtr := lexical_pp_time_adverb_mtr & optional_mtr. 
+
+;;;
+;;; @ Hytten ligger vest i fjellet. 
+;;; >> The cabin lies to the west in the mountain.
+;;;
+prep_pp+prep_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #e2, ARG2 #x4 & x ] >,
+  OUTPUT [ RELS < [ LBL #h1, ARG0 #e1, ARG1 #e2, ARG2 #x3 ],
+                  [ ARG0 #x3 & [ PERS 3, GRIND - ], RSTR #h4 ],
+                  [ LBL #h5, ARG0 #x3 ],
+                  [ LBL #h1, ARG0 e_untensed, ARG1 #e1, ARG2 #x4 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h5 ] > ],
+  FLAGS.EQUAL < #x4 > ].
+
+prep_pp+prep_omtr := prep_pp+prep_mtr & optional_mtr.
+
+;;;
+;;; @ på fjellet >> at the mountain
+;;;
+preposition_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 e & #e1, ARG1 #u2, ARG2 #u3 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #u2, ARG2 #u3 ] > ].
+
+preposition_omtr := preposition_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams går fremover. >> Abrams walks forward.
+;;;
+prep_intr_mtr :=  monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 e & #e1, ARG1 #u2, ARG2 a ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #u2 ] > ].
+
+prep_intr_omtr := prep_intr_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams går fremover isen. >> Abrams walks along the ice.
+;;;
+prep_tran_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 e & #e1, ARG1 #u2, ARG2  #u3 & i ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #u2, ARG2 #u3 ] > ,
+  FLAGS.SUBSUME < #u3 > ].
+
+prep_tran_omtr := prep_tran_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams går bortom fjellet. >> Abrams walks over to the mountain.
+;;;
+prep_prep+prep_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,
+                 ARG0 e & #e1, ARG1 #u2, ARG2 #u3 ] >,
+  OUTPUT.RELS < [ LBL #h1,
+                  ARG0 #e1, ARG1 #u2, ARG2 u ],
+                [ LBL #h1, 
+                  ARG0 e_untensed, ARG1 #e1, ARG2 #u3 ] > ].
+
+prep_prep+prep_omtr := prep_prep+prep_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams går inn i hytta. >> Abrams walks into the cabin.
+;;;
+prep+prep_prep_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 e & #e1, ARG1 #u2 ],
+               [ LBL #h1,  ARG1 #e1, ARG2 #u3 ] >,
+  OUTPUT.RELS < [ LBL #h1,
+                  ARG0  #e1, ARG1 #u2, ARG2 #u3 ] > ].
+
+prep+prep_prep_omtr := prep+prep_prep_mtr & optional_mtr.
+
+;;; No functioning instantiation. (midt+på_p)
+prep_deg+prep_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,
+                 ARG0 e & #e1, ARG1 #u2, ARG2 #u3 ] >,
+  OUTPUT.RELS < [ LBL #h1,  ARG1 #e1 ],
+                [ LBL #h1,
+                  ARG0 #e1, ARG1 #u2, ARG2 #u3 ] > ].
+
+prep_deg+prep_omtr := prep_deg+prep_mtr & optional_mtr.
+
+;;;
+;;; this will not separate between the two prepositions.       (22-may-06; jtl)
+;;;
+;;; No instantiations
+;;;
+prep_prep+np+prep_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #e2, ARG2 #x3 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #e2, ARG2 #x4 ],
+                  [ LBL #h5, ARG0 #x4, RSTR #h5],
+                  [ LBL #h6, ARG0 #x4],
+                  [ LBL #h6, ARG1 #x4, ARG2 #x3] >,
+           HCONS < qeq & [ HARG #h5, LARG #h6 ] > ] ].
+
+prep_prep+np+prep_omtr := prep_prep+np+prep_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams går i retning isen.
+;;; >> Abrams walks in the direction of the ice.
+;;;
+prep_prep+relnp+prep_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #e2, ARG2 #x3 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #e2, ARG2 #x4 ],
+                  [  ARG0 #x4, RSTR #h5],
+                  [ LBL #h6, ARG0 #x4, ARG1 #x3 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h6 ] > ] ].
+
+prep_prep+relnp+prep_omtr := prep_prep+relnp+prep_mtr & optional_mtr.
+
+;;; supertype
+preposition_subordination := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ HARG #h3, LARG #h4 ] >,
+  INPUT.RELS < [ LBL #h4, ARG0 #e0, ARG2 #x5 & x ], ... >,
+  OUTPUT [ RELS < [ LBL #h12, ARG0 e_untensed & #e2, ARG2 #x5 ],
+                  [ PRED subord_rel, LBL #h6, ARG1 #h9, ARG2 #h11 ],
+                  [ PRED intersective_equate, ARG0 #e2, ARG1 #e0 ],
+                  [ PRED intersective_equate, ARG0 #h12, ARG1 #h4 ], ... >,
+           HCONS < qeq & [ HARG #h3, LARG #h6 ],
+                   qeq & [ HARG #h9, LARG #h4 ],
+                   qeq & [ HARG #h11, LARG #h12 ] > ],
+  FLAGS.EQUAL < #x5 > ].
+
+;;;
+;;; @ Han synger uansett vær. >> He sings regardless of weather.
+;;;
+preposition_subordination_mtr := 
+preposition_subordination &
+[ INPUT.RELS < [] >,
+  OUTPUT.RELS < [], [], [], [] > ].
+
+preposition_subordination_omtr :=
+preposition_subordination_mtr & optional_mtr.
+
+;;;
+;;; @ Huset ligger værhardt til. >> The house lies exposed.
+;;;
+adjective_subordination_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h0, ARG0 #e1 & e ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #e1 ] >,
+  OUTPUT [ RELS < [ LBL #h1, ARG0 e_untensed & #e0 ],
+                  [ PRED subord_rel, ARG1 #h2, ARG2 #h3 ] >,
+           HCONS < qeq & [ HARG #h2, LARG #h0 ],
+                   qeq & [ HARG #h3, LARG #h1 ] > ] ].
+
+adjective_subordination_omtr := adjective_subordination_mtr &
+				optional_mtr.
+
+;;; no well-funktioning instantiation (inklusive_p)
+pp_appos_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 e & #e1, ARG1 #u2, ARG2 #u3 ] >,
+  OUTPUT.RELS < [ LBL #h1, PRED appos_rel, 
+                  ARG0 #e1, ARG1 #u2, ARG2 #u3 ] > ].
+
+;;;
+;;; @ Abrams og Browne >> Abrams and Browne
+;;;
+conjunction_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h4, ARG0 #e5, 
+                 L-HNDL #h0, L-INDEX #e1, 
+                 R-HNDL #h2, R-INDEX #e3 ] >,
+  OUTPUT.RELS < [ LBL #h4, ARG0 #e5,
+                  L-HNDL #h0, L-INDEX #e1, 
+                  R-HNDL #h2, R-INDEX #e3 ] > ].
+
+conjunction_omtr := conjunction_mtr & optional_mtr.
+
+;;;
+;;; @ Abrams synger når Browne sover. >> Abrams sings once Browne sleeps.
+;;;
+subordination_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, MAIN #h2, SUBORD #h3 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #h2, ARG2 #h3 ] > ].
+
+subordination_omtr := subordination_mtr & optional_mtr.
+
+;;;
+;;; 'for' is analyzed as a conjunction in NorGram and as a subjunction in the 
+;;; ERG.                                                        (23-jan-08; ph)
+;;;
+;;; @ Abrams synger for Browne sleeps. >> Abrams sings for Browne sleeps.
+;;;
+coord_subord_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, L-HNDL #h1, R-HNDL #h2 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 e_untensed, ARG1 #h1, ARG2 #h2 ] > ].
+ 
+
+;;;
+;;; @ Petter synger, for Embla sover. >> Petter sings because Embla sleeps.
+;;;
+conjunction_subordination_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, L-HNDL #h1, R-HNDL #h2 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #h1, ARG2 #h2 ] > ].
+
+conjunction_subordination_omtr := conjunction_subordination_mtr & optional_mtr.
+
+;;;
+;;; in at least one case, a NorGram quantifier (`annen') is analyzed as an
+;;; adjective in the ERG (`other'); quite possibly a genuine difference among
+;;; the two languages.  when converting a quantifier into an adjective, there
+;;; will have be another quantifier to bind the variable (`bare_div_q' in most
+;;; cases presumably); re-use the original QEQ and make sure the adjective is
+;;; an intersective modifier.
+;;;
+;;; @ en del stier >> a few paths
+;;;
+quantifier_adjective_mtr := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ HARG #h1, LARG #h2 ] >,
+  INPUT.RELS < [ LBL #h3, ARG0 #x2, RSTR #h1, BODY #h4 ] >,
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x2, RSTR #h1, BODY #h4 ],
+                [ LBL #h2, ARG0 e_untensed, ARG1 #x2 ] > ].
+
+quantifier_adjective_omtr := quantifier_adjective_mtr & optional_mtr.
+
+;;;
+;;; @ en såpass fin tur >> such a nice trip
+;;;
+quantifier_quantifier+deg_spec_mtr := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ HARG #h1, LARG #h2 ] >,
+  INPUT.RELS < [ LBL #h3, ARG0 #x2, RSTR #h1, BODY #h4 ],
+               [ LBL #h2 ] >,
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x2, RSTR #h1, BODY #h4 ] > ].
+
+quantifier_quantifier+deg_spec_omtr := 
+quantifier_quantifier+deg_spec_mtr & optional_mtr.
+
+;;;
+;;; @ et loddrett stup >> a vertical cliff
+;;;
+n+a_a_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #e5, ARG1 #x4 ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #e5, ARG2 #x2 ],
+                 [ PRED "udef_q_rel", ARG0 #x2, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
+  OUTPUT.RELS < [ LBL #h3, ARG1 #x4 ] > ].
+
+n+a_a_omtr := n+a_a_mtr & optional_mtr.
+;;;
+;;; some SL compounds, even when going to an N -- N TL structure, require an
+;;; idiosyncratic translation, e.g. `båndtvang' --> `leash law'.
+;;;
+;;; @ båndtvang >> leash law
+n+n_n+n_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ] >,
+  INPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+               [ LBL #h3, ARG0 #x4 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+                [ LBL #h3, ARG0 #x4 ] > ].
+
+;;;
+;;; _fix_me_
+;;; not sure we will ever need the following, optional, variant of the above;
+;;; after all, the point is that the compound elements get an idiosyncratic 
+;;; translation.                                                (30-jun-04; oe)
+;;;
+n+n_n+n_omtr := n+n_n+n_mtr & optional_mtr.
+
+;;;
+;;; a compound whose modifier is a nominalization in the target language.
+;;;
+;;; @ fiskeutstyret >> the fishing equipment
+;;;
+n+n_nominalization+n_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ] >,
+  INPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+               [ LBL #h3, ARG0 #x4 ] >,
+  OUTPUT.RELS < [ LBL #h8, ARG0 e_untensed & [ PROG + ] ],
+                [ LBL #h3, ARG0 #x4 ],
+                [ PRED nominalization_rel, LBL #h1, ARG0 #x2, ARG1 #h8 ] > ].
+
+n+n_nominalization+n_omtr := n+n_nominalization+n_mtr & optional_mtr.
+
+;;;
+;;; @ hundekjøringen >> the dog racing
+;;;
+n+n_n+nominalization_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ] >,
+  INPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+               [ LBL #h3, ARG0 #x4 & [ NUM sg ] ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+                [ LBL #h8, ARG0 e_untensed & [ PROG + ] ],
+                [ PRED nominalization_rel, LBL #h3, ARG0 #x4, ARG1 #h8 ] > ].
+
+n+n_n+nominalization_omtr := n+n_n+nominalization_mtr & optional_mtr.
+
+;;;
+;;; @ sengetøyet >> the bedding
+;;;
+n+n_nominalization_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 & [ NUM sg ] ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ],
+                 [ PRED "udef_q_rel", ARG0 #x2, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
+  OUTPUT.RELS < [ LBL #h6, ARG0 e_untensed & [ PROG + ] ],
+                [ PRED nominalization_rel, LBL #h3, ARG0 #x4, ARG1 #h6 ] > ].
+
+n+n_nominalization_omtr := n+n_nominalization_mtr & optional_mtr.
+
+;;;
+;;; SL N -- N to Tl Adj -- N, e.g. `kulturlandskap' --> `cultivated land'.
+;;;
+;;; @ kulturlandskapet >> the cultivated land
+;;;
+n+n_adj+n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ],
+                 [ PRED "udef_q_rel", ARG0 #x2, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
+  OUTPUT.RELS < [ LBL #h3, ARG0 e_untensed, ARG1 #x4 ],
+                [ LBL #h3, ARG0 #x4 ] > ].
+
+n+n_adj+n_omtr := n+n_adj+n_mtr & optional_mtr.
+
+;;;
+;;; a few NorGram compounds appear to be `lexicalized' in English: `turgåer'
+;;; --> `hiker', for example.  ditch the two-place compound relation, embedded
+;;; quantifier, and nominal modifier relation.
+;;;
+;;; @ en tidsepoke >> an era
+;;;
+n+n_n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ],
+                 [ PRED "udef_q_rel", ARG0 #x2, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x4 ] > ].
+
+n+n_n_omtr := n+n_n_mtr & optional_mtr.
+
+;;;
+;;; we also see a number of three-way compounds that we want to translate in
+;;; an idiosyncratic manner, e.g. `fotturrute' --> `hiking trail'.
+;;; _fix_me_
+;;; presumably, there should be additional types, parallel to the n*n universe.
+;;;                                                             (15-oct-06; oe)
+;;;
+;;; @ en motorbåtrute >> a motorboat route
+;;;
+n*n*n_n*n_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ] >,
+  INPUT [ RELS < [ LBL #h0, ARG0 #x0 ],
+                 [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x0 ],
+                 [ PRED "udef_q_rel", ARG0 #x0, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h0 ] > ],
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+                [ LBL #h3, ARG0 #x4 ] > ].
+
+n*n*n_n*n_omtr := n*n*n_n*n_mtr & optional_mtr.
+
+;;;
+;;; @ en fotturrute >> a hiking trail
+;;;
+n*n*n_nominalization*n_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ] >,
+  INPUT [ RELS < [ LBL #h0, ARG0 #x0 ],
+                 [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x0 ],
+                 [ PRED "udef_q_rel", ARG0 #x0, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h0 ] > ],
+  OUTPUT.RELS < [ LBL #h8, ARG0 e_untensed & [ PROG + ] ],
+                [ LBL #h3, ARG0 #x4 ],
+                [ PRED nominalization_rel, LBL #h1, ARG0 #x2, ARG1 #h8 ] > ].
+
+n*n*n_nominalization*n_omtr := n*n*n_nominalization*n_mtr & optional_mtr.
+
+
+;;;
+;;; there is one instantiation of this rule (sommerskiløping_n). The transfer
+;;; does not generate.                                           (4-dec-07; ph)
+;;;
+n*n*n_n*nominalization_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ] >,
+  INPUT [ RELS < [ LBL #h0, ARG0 #x0 ],
+                 [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 & [ NUM sg ] ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x0 ],
+                 [ PRED "udef_q_rel", ARG0 #x0, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h0 ] > ],
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+                [ LBL #h8, ARG0 e_untensed & [ PROG + ] ],
+                [ PRED nominalization_rel, LBL #h3, ARG0 #x4, ARG1 #h8 ] > ].
+
+n*n*n_n*nominalization_omtr := n*n*n_n*nominalization_mtr & optional_mtr.
+
+;;; no instantiations
+n*n*n_adj+n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h0, ARG0 #x0 ],
+                 [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ],
+                 [ PRED "udef_q_rel", ARG0 #x2, RSTR #h5 ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x0 ],
+                 [ PRED "udef_q_rel", ARG0 #x0, RSTR #h7 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ],
+                  qeq & [ HARG #h7, LARG #h0 ] > ],
+  OUTPUT.RELS < [ LBL #h3, ARG0 e_untensed, ARG1 #x4 ],
+                [ LBL #h3, ARG0 #x4 ] > ].
+
+n*n*n_adj+n_omtr := n*n*n_adj+n_mtr & optional_mtr.
+
+;;; no instantiations
+n*n*n_n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h0, ARG0 #x0 ],
+                 [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ],
+                 [ PRED "udef_q_rel", ARG0 #x2, RSTR #h5 ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x0 ],
+                 [ PRED "udef_q_rel", ARG0 #x0, RSTR #h7 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ],
+                  qeq & [ HARG #h7, LARG #h0 ] > ],
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x4 ] > ].
+
+n*n*n_n_omtr := n*n*n_n_mtr & optional_mtr.
+
+;;; no instantiations
+n*n*n_nominalization_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h0, ARG0 #x0 ],
+                 [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 & [ NUM sg ] ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ],
+                 [ PRED "udef_q_rel", ARG0 #x2, RSTR #h5 ],
+                 [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x0 ],
+                 [ PRED "udef_q_rel", ARG0 #x0, RSTR #h7 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ],
+                  qeq & [ HARG #h7, LARG #h0 ] > ],
+  OUTPUT.RELS < [ LBL #h6, ARG0 e_untensed & [ PROG + ] ],
+                [ PRED nominalization_rel, LBL #h3, ARG0 #x4, ARG1 #h6 ] > ].
+
+n*n*n_nominalization_omtr := n*n*n_nominalization_mtr & optional_mtr.
+
+;;;
+;;; @ en nasjonalparkgrense >> a national park boundary
+;;;
+adj*n*n_adj*n*n_mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x2 ] >,
+  INPUT.RELS < [ ARG0 #e0 ],
+               [ LBL #h1, ARG0 #x2 ],
+               [ LBL #h3, ARG0 #x4 ],
+               [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #e0 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e0 & e_untensed, ARG1 #x2 ],
+                [ LBL #h1, ARG0 #x2 ],
+                [ LBL #h3, ARG0 #x4 ] > ].
+
+adj*n*n_adj*n*n_omtr := adj*n*n_adj*n*n_mtr & optional_mtr.
+
+;;;
+;;; _fix_me_
+;;; the following introduce a new naming convention, `adj*n' for a compound
+;;; comprised of those two categories (contrasted with `adj+n', which is simply
+;;; the syntactic unit of a noun and an attribute adjective).  once we complete
+;;; the `mo' integration, we should re-organize this file anyway, and then go
+;;; through the MTR types (and instances :-{) and make the naming consistent.
+;;;                                                             (14-oct-06; oe)
+;;;
+;;; @ en halvdel >> a half
+;;;
+adj*n_n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ ARG0 #e2 & e],
+               [ LBL #h3, ARG0 #x4 ],
+               [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #e2 ] >,
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x4 ] >,
+  FLAGS.EQUAL < #e2 > ].
+
+adj*n_n_omtr := adj*n_n_mtr & optional_mtr.
+
+;;;
+;;; @ tungmetallet >> the heavy metal
+;;;
+adj*n_adj+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ ARG0 #e2 & e],
+               [ LBL #h3, ARG0 #x4 ],
+               [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #e2 ] >,
+  OUTPUT.RELS < [ LBL #h3, ARG0 #e2, ARG1 #x4 ],
+                [ LBL #h3, ARG0 #x4 ] >,
+  FLAGS.EQUAL < #e2 > ].
+
+adj*n_adj+n_omtr := adj*n_adj+n_mtr & optional_mtr.
+
+;;;
+;;; @ en joggesko >> a sneaker
+;;;
+v+n_n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ ARG0 #e2 & e],
+               [ LBL #h3, ARG0 #x4 ],
+               [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #e2 ] >,
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x4 ] >,
+  FLAGS.EQUAL < #e2 > ].
+
+v+n_n_omtr := v+n_n_mtr & optional_mtr.
+
+
+;;;
+;;; _fix_me_
+;;; the following assumes that the `udef_q' binding the modifier in the source
+;;; compound remains a suitable quantifier in the target construction; probably
+;;; true for mass noun modifiers, but not very well suited for auto-generation
+;;; of transfer rules off the KF entries.                       (29-may-06; oe)
+;;;
+;;; no instantiations
+;;;
+n+n_n+p+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #x1 ],
+               [ LBL #h3, ARG0 #x4 ],
+               [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x1 ] >,
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x4 ],
+                [ LBL #h0, ARG0 #x1 ],
+                [ LBL #h3, ARG0 e_untensed, ARG1 #x4, ARG2 #x1 ] > ].
+
+n+n_n+p+n_omtr := n+n_n+p+n_mtr & optional_mtr.
+
+;;; supertype
+n+n_n+p+q+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #x1 ],
+               [ LBL #h3, ARG0 #x4 ],
+               [ PRED "unspec_rel", LBL #h3, ARG1 #x4, ARG2 #x1 ],
+               [ PRED "udef_q_rel", LBL #h5, ARG0 #x1, RSTR #h6, BODY #h7 ] >,
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x4 ],
+                [ LBL #h3, ARG0 e_untensed, ARG1 #x4, ARG2 #x1 ],
+                [ LBL #h5, ARG0 #x1, RSTR #h6, BODY #h7 ],
+                [ LBL #h0, ARG0 #x1 ], ... > ].
+
+;;;
+;;; @ frihetsfølelseen >> the sense of freedom
+;;;
+n+n_n+p+q+n_sg_mtr := n+n_n+p+q+n_mtr &
+[ OUTPUT.RELS < [], [], [],
+                [ LBL #h0, ARG0 #x1 ],
+                [ PRED sg_mark, LBL #h0, ARG0 #x1 ] > ].
+
+n+n_n+p+q+n_sg_omtr := n+n_n+p+q+n_sg_mtr & optional_mtr.
+
+;;;
+;;; @ deltakerantallet >> the number of participants
+;;;
+n+n_n+p+q+n_pl_mtr := n+n_n+p+q+n_mtr &
+[ OUTPUT.RELS < [], [], [],
+                [ LBL #h0, ARG0 #x1],
+                [ PRED pl_mark, LBL #h0, ARG0 #x1 ] > ].
+
+n+n_n+p+q+n_pl_omtr := n+n_n+p+q+n_pl_mtr & optional_mtr.
+
+;;;
+;;; sort of the inverse: Norwegian atomic predicates that need decomposing in
+;;; English; various subtypes depending on the OUTPUT requirements.
+;;;
+;;; @ et småbarn >> a small child
+;;;
+n_adj+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
+                [ LBL #h1, ARG0 #x2 ] > ].
+
+n_adj+n_omtr := n_adj+n_mtr & optional_mtr.
+
+;;;
+;;; @ et rundt skue >> a panorama
+;;;
+adj+n_n_mtr := monotonic_mtr &
+[ INPUT.RELS <  [ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
+                [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x2 ] > ].
+
+adj+n_n_omtr := adj+n_n_mtr & optional_mtr.
+
+;;;
+;;; @ drengen >> the hired hand
+;;;
+n_psp+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x3 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 u, ARG2 #x3 ],
+                [ LBL #h1,  ARG0 #x3 ],
+                [ PRED parg_d_rel, LBL #h1, ARG1 #e2, ARG2 #x3 ] > ].
+
+n_psp+n_omtr := n_psp+n_mtr & optional_mtr.
+
+;;;
+;;; The ERG generates "a friendly family car" - not "a family friendly car"
+;;;                                                               (3-12-07; ph)
+a_n+a_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #x6 ] >,
+  OUTPUT [ RELS < [ LBL #h3, ARG0 #x4 ],
+                  [ LBL #h1, ARG0 #e2, ARG1 #x6 ],
+                  [ PRED compound_rel, LBL #h1, ARG1 #x6, ARG2 #x4 ],
+                  [ PRED udef_q_rel, 
+                    ARG0 #x4 & [ PERS 3, NUM sg, GRIND - ], RSTR #h5 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+a_n+a_omtr := a_n+a_mtr & optional_mtr.
+
+;;;
+;;; @ et kjemisk produkt >> a chemical product
+;;;
+adj+n_n+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,  ARG0 e_untensed, ARG1 #x2 ],
+               [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h3, ARG0 #x4 ],
+                  [ LBL #h1, ARG0 #x2 ],
+                  [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x4 ],
+                  [ PRED udef_q_rel, 
+                    ARG0 #x4 & [ PERS 3, NUM sg, GRIND - ], RSTR #h5 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+adj+n_n+n_omtr := adj+n_n+n_mtr & optional_mtr.
+
+;;;
+;;; @ en lysegrønn plante >> a bright green plant
+;;;
+adj+n_adj+n+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,  ARG0 e_untensed, ARG1 #x2 ],
+               [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h3, ARG0 e_untensed, ARG1 #x4 ],
+                  [ LBL #h3, ARG0 #x4 ],
+                  [ LBL #h1, ARG0 #x2 ],
+                  [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x4 ],
+                  [ PRED udef_q_rel, 
+                    ARG0 #x4 & [ PERS 3, NUM sg, GRIND - ], RSTR #h5 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+adj+n_adj+n+n_omtr := adj+n_adj+n+n_mtr & optional_mtr.
+
+adj+n_n+n+n_min := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,  ARG0 e_untensed, ARG1 #x2 ],
+               [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h6, ARG0 #x7 ],
+                  [ LBL #h3, ARG0 #x4 ],
+                  [ LBL #h1, ARG0 #x2 ],
+                  [ PRED compound_rel, LBL #h3, ARG1 #x4, ARG2 #x7 ],
+                  [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x4 ],
+                  [ ARG0 #x4 & [ PERS 3, NUM sg, GRIND - ], RSTR #h5 ],
+                  [ PRED udef_q_rel, 
+                    ARG0 #x7 & [ PERS 3, NUM sg, GRIND - ], RSTR #h8 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ],
+                   qeq & [ HARG #h8, LARG #h6 ] > ] ].
+
+;;;
+;;; @ en selvbetjent hytte >> a self service cabin
+;;;
+adj+n_n+n+n_mtr := adj+n_n+n+n_min &
+[ OUTPUT.RELS < [],[],[],[],[],[ PRED udef_q_rel ],... > ].
+
+adj+n_n+n+n_omtr := adj+n_n+n+n_mtr & optional_mtr.
+
+;;;
+;;; @ en østnorsk hytte >> an east Norwegian cabin
+;;;
+adj+n_n+pn+n_mtr := adj+n_n+n+n_min &
+[ OUTPUT.RELS < [],[ PRED named_rel ],[],[],[],[ PRED proper_q_rel ],... > ].
+
+adj+n_n+pn+n_omtr := adj+n_n+pn+n_mtr & optional_mtr.
+
+;;;
+;;; @ en firhjuls sykkel >> a four wheeled bicycle
+;;;
+adj+n_card+n+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1,  ARG0 e_untensed, ARG1 #x2 ],
+               [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h3, PRED card_rel, ARG0 i, ARG1 #x4 ],
+                  [ LBL #h3, ARG0 #x4 ],
+                  [ LBL #h1, ARG0 #x2 ],
+                  [ PRED compound_rel, LBL #h1, ARG0 e_untensed, 
+		    ARG1 #x2, ARG2 #x4 ],
+                  [ PRED udef_q_rel, 
+                    ARG0 #x4 & [ PERS 3, NUM pl, GRIND - ], RSTR #h5 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+adj+n_card+n+n_omtr := adj+n_card+n+n_mtr & optional_mtr.
+
+;;;
+;;; _fix_me_
+;;; the way this tends to be used is a two-step rewrite, e.g.
+;;;
+;;; `_isblå_a' --> `unpsec_mod' + `_isblå_n'
+;;;
+;;; which is then followed by an application of `n_n+n_mtr' to decompose the
+;;; intermediate pseudo-predicate.  if nothing else, such sequences of rules
+;;; lead to spurious warning about unknown predicates, e.g. `_isblå_n' being
+;;; reported as an invalid output according to the ERG SEM-I.  either we would
+;;; have to rewrite the rule to do the conversion in a single step, or we will
+;;; need the `colour coding' mechanism on predicates (that we had contemplated
+;;; a few items in the past), i.e. declare that some rules output SL (or even
+;;; DMZ, i.e. purely transfer-internal) predicates.             (21-dec-06; oe)
+;;;
+;;; @ en isblå himmel >> an ice blue sky
+;;;
+adj_unspec+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e0, ARG1 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h3, ARG0 #x4 ],
+                  [ PRED unspec_mod_rel, LBL #h1,
+                    ARG0 #e0, ARG1 #x2, ARG2 #x4 ],
+                  [ PRED udef_q_rel, 
+                    ARG0 #x4 & [ PERS 3, NUM sg, GRIND - ], RSTR #h5 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+adj_unspec+n_omtr := adj_unspec+n_mtr & optional_mtr.
+
+;;;
+;;; @ en severdig vei >> a road worth seing
+;;;
+adj_adj+v_rais_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #x0 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #e0, ARG1 #h1 ],
+		  [ LBL #h2, ARG0 e & [ PROG + ], ARG1 p, ARG2 #x0 ] >,
+	   HCONS < qeq & [ HARG #h1, LARG #h2 ] > ] ].
+
+adj_adj+v_rais_omtr := adj_adj+v_rais_mtr & optional_mtr.
+
+;;;
+;;; @ en støl >> a mountain pasture
+;;;
+n_n+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h3, ARG0 #x4 ],
+                  [ LBL #h1, ARG0 #x2 ],
+                  [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x4 ],
+                  [ PRED udef_q_rel, 
+                    ARG0 #x4 & [ PERS 3, NUM sg, GRIND - ], RSTR #h5 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+n_n+n_omtr := n_n+n_mtr & optional_mtr.
+
+;;;
+;;; @ en flyttsame >> a Sami nomad
+;;;
+n_pn+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT [ RELS < [ PRED named_rel, LBL #h3, ARG0 #x4 ],
+                  [ LBL #h1, ARG0 #x2 ],
+                  [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x4 ],
+                  [ PRED proper_q_rel, 
+                    ARG0 #x4 & [ PERS 3, NUM sg, GRIND - ], RSTR #h5 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+n_pn+n_omtr := n_pn+n_mtr & optional_mtr.
+
+;;;
+;;; @ syklingen >> the bicycling
+;;;
+n_nominalization_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x2 & [ NUM sg ] ] >,
+  OUTPUT.RELS < [ LBL #h3, ARG0 e_untensed & [ PROG + ] ],
+                [ PRED nominalization_rel, LBL #h1, ARG0 #x2, ARG1 #h3 ] > ].
+
+n_nominalization_omtr := n_nominalization_mtr & optional_mtr.
+
+;;;
+;;; @ femårsperioden >> the five year period
+;;;
+n_adj+n+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #x1 ] >,
+  OUTPUT [ RELS < [ LBL #h2, ARG0 e_untensed, ARG1 #x3 ],
+                  [ LBL #h2, ARG0 #x3 & [ PERS 3, NUM sg, GRIND - ] ],
+                  [ LBL #h0, ARG0 #x1 ],
+                  [ PRED udef_q_rel, RSTR #h4, ARG0 #x3 ],
+                  [ PRED compound_rel, LBL #h0, ARG1 #x1, ARG2 #x3 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h2 ] > ] ].
+
+n_adj+n+n_omtr := n_adj+n+n_mtr & optional_mtr.
+
+;;;
+;;; @ en robåt >> a rowing boat
+;;; 
+n_nominalization+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h3, ARG0 e_untensed & [ PROG + ] ],
+                  [ LBL #h1, ARG0 #x2 & [ PERS 3, NUM sg, GRIND - ] ],
+                  [ PRED nominalization_rel, LBL #h7, ARG0 #x8, ARG1 #h3 ],
+                  [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x8 ],
+                  [ PRED udef_q_rel, RSTR #h9, ARG0 #x8 ] >,
+           HCONS < qeq & [ HARG #h9, LARG #h7 ] > ] ].
+
+n_nominalization+n_omtr := n_nominalization+n_mtr & optional_mtr.
+
+;;;
+;;; @ forgården >> the front building
+;;;
+n_n+nominalization_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x2 & [ NUM sg ] ] >,
+  OUTPUT [ RELS < [ LBL #h7, ARG0 #x8 & [ PERS 3, NUM sg, GRIND - ] ],
+                  [ LBL #h3, ARG0 e_untensed & [ PROG + ] ],
+                  [ PRED nominalization_rel, LBL #h1, ARG0 #x2, ARG1 #h3 ],
+                  [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x8 ],
+                  [ PRED udef_q_rel, RSTR #h9, ARG0 #x8 ] >,
+           HCONS < qeq & [ HARG #h9, LARG #h7 ] > ] ].
+
+n_n+nominalization_omtr := n_n+nominalization_mtr & optional_mtr.
+
+;;;
+;;; @ en nedbeiting >> a grazing down
+;;; 
+n_nominalization+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT.RELS < [ LBL #h3, ARG0 e_untensed & [ PROG + ] ],
+		[ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
+		[ PRED nominalization_rel, LBL #h1, ARG0 #x2, ARG1 #h3 ] > ].
+
+n_nominalization+pp_omtr := n_nominalization+pp_mtr & optional_mtr.
+
+;;;
+;;; _fix_me_
+;;; NorGram treats `Bergen Turlag' et al. as a single name, while the ERG opts
+;;; to decompose these.                                         (24-jul-04; oe)
+;;;
+;;; no instantiations
+;;;
+name_name+name_mtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED "named_rel", LBL #h1, ARG0 #x2 ] >,
+  OUTPUT [ RELS < [ PRED named_rel, LBL #h3, 
+                    ARG0 #x4 & [ NUM sg ] ],
+                  [ PRED named_rel, LBL #h1, ARG0 #x2 ],
+                  [ PRED compound_name_rel, LBL #h1, 
+                    ARG0 e_untensed, ARG1 #x4, ARG2 #x2 ],
+                  [ PRED "udef_q_rel", ARG0 #x4, RSTR #h5 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+;;;
+;;; _fix_me_
+;;; vaguely related, these should possibly be decomposed in NorGram already.
+;;;                                                     
+
+;;;
+;;; @ Øst-Jotunheimen >> Eastern Jotunheimen
+;;;
+name_adj+name_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ PRED "named_rel", LBL #h0, ARG0 #x0 ] > ],
+  OUTPUT [ RELS < [ PRED "named_rel", LBL #h0, ARG0 #x0 ],
+                  [ LBL #h0, ARG0 e_untensed, ARG1 #x0 ] > ] ].
+
+;;;
+;;; some nouns are analysed as relational in the source language, but then have
+;;; a plain PP modifier in the target language; since NorGram right now has a
+;;; strong preference against PP modifiers inside of NPs, this pattern could 
+;;; turn out relatively common.                                 (19-jul-04; oe)
+;;; 
+;;;
+;;; the instantiation of this type (bok_book+about_n) does not seem to trigger.
+;;;                                                              (4-dec-07; ph)
+n_n+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #x1, ARG1 #x2 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #x1 ],
+                [ LBL #h0, ARG0 e_untensed, ARG1 #x1, ARG2 #x2 ] > ].
+
+n_n+pp_omtr := n_n+pp_mtr & optional_mtr.
+
+;;;
+;;; the instantiation of this type (stenrøis_n) does not have an input.
+;;;                                                              (4-dec-07; ph)
+n_n+p+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #x1 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #x1 ],
+                  [ LBL #h3, ARG0 #x4 & [ PERS 3, NUM sg, GRIND - ] ],
+                  [ LBL #h0, ARG0 e_untensed, ARG1 #x1, ARG2 #x4 ],
+                  [ PRED udef_q_rel, ARG0 #x4, RSTR #h5 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+n_n+p+n_omtr := n_n+p+n_mtr & optional_mtr.
+
+n_n+p+q+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #x1 ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #x1 ],
+                  [ LBL #h0, ARG0 e_untensed, ARG1 #x1, ARG2 #x4 ],
+                  [ ARG0 #x4, RSTR #h5 ],
+                  [ LBL #h3, ARG0 #x4 & [ PERS 3, GRIND - ] ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+;;;
+;;; @ et kvarter >> a quarter of an hour
+;;;
+n_n+p+q+n_sg_mtr := n_n+p+q+n_mtr &
+[ OUTPUT.RELS < [], [ ARG2 [ NUM sg ] ], ... > ].
+
+n_n+p+q+n_sg_omtr := n_n+p+q+n_sg_mtr & optional_mtr.
+
+;;;
+;;; @ en røys >> a heap of stones
+;;;
+n_n+p+q+n_pl_mtr := n_n+p+q+n_mtr &
+[ OUTPUT.RELS < [], [ ARG2 [ NUM pl ] ], ... > ].
+
+n_n+p+q+n_pl_omtr := n_n+p+q+n_pl_mtr & optional_mtr.
+
+;;;
+;;; a group of nouns analyzed as `measure' classifiers in NorGram, while the
+;;; corresponding ERG analyses treat the noun as a head that is parasitic on
+;;; the (semantic) agreement properties of its complement, e.g.
+;;;
+;;; - den typen fjell --> this type of mountain
+;;; - en trofast skare bestyrere --> a loyal line of wardens
+;;;
+;;; _fix_me_
+;;; for some reason, no MTR variables are created for PRED values, unless the
+;;; co-references are redundantly repeated in each instance definition :-{.
+;;;                                                             (3-jan-07; oe)
+;;;
+;;; @ et glass steiner >> a glass of stones
+;;;
+measure_classifier_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h0, ARG0 #x0 & x ],
+                 [ PRED #q, LBL #h7, ARG0 #x0, RSTR #h8 & h, BODY #h9 ],
+                 [ PRED #n, LBL #h4, ARG0 #x1 & x ],
+                 [ PRED "measure_of_rel", ARG0 #x0, ARG1 #x1 & x ],
+                 [ PRED "~_q_rel", LBL #h1,
+                   ARG0 #x1, RSTR #h2 & h, BODY #h3 ] >,
+          HCONS < qeq & [ HARG #h2, LARG #h4 ],
+                  qeq & [ HARG #h8, LARG #h0 ] > ],
+  OUTPUT [ RELS < [ LBL #h10, ARG0 #x1, ARG1 #x2 ],
+                  [ PRED #q, LBL #h7, ARG0 #x1, RSTR #h11, BODY #h9 ],
+                  [ PRED #n, LBL #h6, ARG0 #x2 & [ PERS 3, GRIND - ] ],
+                  [ PRED "udef_q_rel", LBL #h1, ARG0 #x2, RSTR #h5, BODY #h3 ],
+                  [ PRED sg_mark, LBL #h10, ARG0 #x1 ],
+                  [ PRED intersective_equate, ARG0 #x1, ARG1 #x0 ],
+                  [ PRED intersective_equate, ARG0 #h10, ARG1 #h0 ],
+                  [ PRED intersective_num_equate, ARG0 #x2, ARG1 #x1 ],
+                  [ PRED intersective_equate, ARG0 #h6, ARG1 #h4 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h6 ],
+                   qeq & [ HARG #h11, LARG #h10 ] > ],
+  FLAGS.EQUAL < #x0, #x1, #h2, #h8 > ].
+
+;;;
+;;; @ en temmelig attraktiv rute >> a fairly attractive route
+;;;
+degree_specifier_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #i2, ARG1 #u3 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #i2, ARG1 #u3 ] > ].
+
+degree_specifier_omtr := degree_specifier_mtr & optional_mtr.
+
+;;;
+;;; some input relations are just redundant, e.g. selected-for prepositions.
+;;;
+;;; @ Abrams sover jo. >> Abrams sleeps.
+;;;
+elision_mtr := monotonic_mtr &
+[ INPUT.RELS < relation > ].
+
+elision_omtr := elision_mtr & optional_mtr.
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; pre-transfer fix-up: various corrections that, in my view, should be made
+;;; in the analysis grammar, at some point.
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;
+;;; _fix_me_
+;;; to get gender `agreement' with pronominal antecedents, e.g. in `Han vasker
+;;; sin bil', make sure that GEND is propagated to the anaphor; this would
+;;; maybe better be done in the analysis grammar.               (30-apr-05; oe)
+;;;
+pron_identity_nmtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "pron_rel", ARG0 #x0 ],
+                 [ PRED "identical_rel", LBL #h1, ARG0 #x0, ARG1 #x2 ] >,
+  INPUT.RELS < [ PRED "pron_rel", LBL #h1, 
+                 ARG0 #x2 & [ GEND no_gender ] ] >,
+  OUTPUT.RELS < [ PRED "pron_rel", LBL #h1, ARG0 #x2 ] > ].
+
+n_n+n_nmtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT [ RELS < [ LBL #h3, ARG0 #x4 ],
+                  [ LBL #h1, ARG0 #x2 ],
+                  [ PRED "unspec_rel", LBL #h1, ARG1 #x2, ARG2 #x4 ],
+                  [ PRED "udef_q_rel", 
+                    ARG0 #x4 & [ PERS 3, NUM sg, GRIND - ], RSTR #h5 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+n_n+n_onmtr := n_n+n_nmtr & optional_mtr. ;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; post-transfer fix-up: insertion of language-specific EPs, e.g. selected-for
+;;; prepositions with relational nouns and adjectives and classifier insertion.
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+equate_x_cmtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED equate, ARG0 #e1, ARG1 #e2 ] >,
+  INPUT.RELS < [ PRED #pred, LBL #h0, ARG0 #i3, ARG1 #e2 ] >,
+  FILTER.RELS < [ PRED equate_mark, LBL #h0, ARG0 #i3 ] >,
+  OUTPUT.RELS < [ PRED #pred, LBL #h0, ARG0 #i3, ARG1 #e1 ],
+                [ PRED equate_mark, LBL #h0, ARG0 #i3 ] > ].
+
+relational_adjective_amtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h1, ARG2 #x1 & x & [ MARK test ] ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG2 #x1 ] >,
+  FLAGS.SUBSUME < #x1 > ].
+
+relational_adjective_oamtr := relational_adjective_amtr & optional_mtr.
+
+relational_noun_amtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h1, ARG1 #x1 & x & [ MARK test ] ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG2 #x1 ] >,
+  FLAGS.SUBSUME < #x1 > ].
+
+arg1_v_amtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h1, ARG0 #e1 & [ MARK test ] ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #e1 ] > ].
+
+arg12_v_amtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h1, ARG2 #x1 & x & [ MARK test ] ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG2 #x1 ] >,
+  FLAGS.SUBSUME < #x1 > ].
+
+arg123_v_amtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h1, ARG3 #x1 & x & [ MARK test ] ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG2 #x1 ] >,
+  FLAGS.SUBSUME < #x1 > ].
+
+arg12_v_prtcl_amtr := arg12_v_amtr &
+[ CONTEXT.RELS < [ ARG0 #e1 ] >,
+  OUTPUT.RELS < [ ARG1 #e1 ] > ].
+
+decomposed_quantifier_amtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #x1, RSTR #h2, BODY #h3 ] >,
+  CONTEXT [ RELS < [ LBL #h4, ARG0 #x1 & x ] >,
+            HCONS < qeq & [ HARG #h2, LARG #h4 ] > ],
+  OUTPUT.RELS < [ LBL #h4, ARG0 e_untensed, ARG1 #x1 ],
+                [ PRED udef_q_rel, LBL #h0, ARG0 #x1, RSTR #h2, BODY #h3 ] >,
+  FLAGS.EQUAL < #x1 > ].
+
+count_mark_amtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h0, ARG0 #x0 & x ] >,
+  FILTER.RELS < [ PRED count_noun_mark, LBL #h0, ARGM #x0 ] >,
+  OUTPUT.RELS < [ PRED count_noun_mark, LBL #h0, ARG0 a, ARGM #x0 ] >,
+  FLAGS.EQUAL < #x0 > ].
+
+mass_mark_amtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h0, ARG0 #x0 & x ] >,
+  FILTER.RELS < [ PRED mass_noun_mark, LBL #h0, ARGM #x0 ] >,
+  OUTPUT.RELS < [ PRED mass_noun_mark, LBL #h0, ARG0 a, ARGM #x0 ] >,
+  FLAGS.EQUAL < #x0 > ].
+
+plural_mark_amtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h0, ARG0 #x0 & x ] >,
+  FILTER.RELS < [ PRED plural_noun_mark, LBL #h0, ARGM #x0 ] >,
+  OUTPUT.RELS < [ PRED plural_noun_mark, LBL #h0, ARG0 a, ARGM #x0 ] >,
+  FLAGS.EQUAL < #x0 > ].
+
+;;;
+;;; _fix_me_
+;;; for whatever obscure reason, this type is not quite doing what i would want
+;;; it to; at least when applied with a predicate variable (e.g. as a catch-all
+;;; insertion of `_unit_n_1' as the classifier), the rules cycle; see `erg.mtr'
+;;; for what i ended up doing tonight, given that there is very limited time 
+;;; and lots more juleøl.                                       (22-dec-06; oe)
+;;;
+#|
+classifier_insertion_amtr := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ LARG #h0 ] >,
+  INPUT.RELS < [ PRED #pred, LBL #h0, ARG0 #x1 & [ NUM pl ] ] >,
+  OUTPUT [ RELS < [ LBL #h0, ARG0 #x1, ARG1 #x2 ],
+                  [ PRED #pred, LBL #h4, 
+                    ARG0 #x2 & [ PERS 3, NUM sg, GRIND - ] ],
+                  [ PRED udef_q_rel, LBL h,
+                    ARG0 #x2, RSTR #h3, BODY h ] >,
+           HCONS < qeq & [ HARG #h3, LARG #h4 ] > ] ].
+|#
+

@@ -1,0 +1,904 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;
+;;; `multi-word' transfer rules: typically things we should process before the
+;;; `regular' transfer rules consume some of the pieces these rules require.;;;
+
+;;; Everyone complains about the weather, but no one does anything about it
+
+ame_rain_mwe_mtr := arg1+np_arg0_v_omtr &
+ [ INPUT [ RELS < [ PRED "ja:_ame_n_rel" ], [ PRED "ja:udef_q_rel" ], 
+		  [ PRED "ja:_furu_v_1_rel" ] >],
+   OUTPUT.RELS < [ PRED "_rain_v_1_rel" ] > ].
+
+yuki_snow_mwe_mtr := arg1+np_arg0_v_omtr &
+ [ INPUT.RELS < [ PRED "ja:_yuki_n_1_rel" ], [ PRED "ja:udef_q_rel" ],
+		[ PRED "ja:_furu_v_1_rel"] >,
+   OUTPUT.RELS < [ PRED "_snow_v_1_rel" ] > ].
+
+arare_hail_mwe_mtr := arg1+np_arg0_v_omtr &
+ [ INPUT.RELS < [ PRED "ja:_arare_n_1_rel" ], [ PRED "ja:udef_q_rel" ],
+		[ PRED "ja:_furu_v_1_rel"] >,
+   OUTPUT.RELS < [ PRED "_hail_v_1_rel" ] > ].
+
+arare_hail_mwe_mtr := arg1+np_arg0_v_omtr &
+ [ INPUT.RELS < [ PRED "ja:_kirisame_n_1_rel" ], [ PRED "ja:udef_q_rel" ],
+		[ PRED "ja:_furu_v_1_rel"] >,
+   OUTPUT.RELS < [ PRED "_drizzle_v_1_rel" ] > ].
+
+;;; FIXME: other things can also furu.
+;;; 0 argument verbs from the ERG
+;hail_v1 := v_atrans_le &
+;rain_v1 := v_atrans_le &
+;snow_v1 := v_atrans_le &
+;shower_v2 := v_atrans_le &
+;sprinkle_v1 := v_atrans_le &
+;drizzle_v1 := v_atrans_le &
+;;; add
+;pour_v1 := v_atrans_le &
+ 
+
+;WordNet
+;rain, rain down -- 
+;(precipitate as rain; "If it rains much more, we can expect some flooding")
+;       => drizzle, mizzle -- 
+;(rain lightly; "When it drizzles in summer, hiking can be pleasant")
+;       => shower, shower down -- 
+;(rain abundantly; "Meteors showered down over half of Australia")
+;       => sprinkle, spit, spatter, patter, pitter-patter -- 
+;(rain gently; "It has only sprinkled, but the roads are slick")
+;       => pour, pelt, stream, rain cats and dogs, rain buckets -- 
+;(rain heavily; "Put on your rain coat-- it's pouring outside!")
+;           => sheet -- 
+;(come down as if in sheets; "The rain was sheeting down during the monsoon")
+;           => sluice, sluice down -- 
+;(pour as if from a sluice; "An aggressive tide sluiced across the barrier reef")
+
+;;; FIXME tense/aspect 
+;;; FIXME "_shiru_v_rel" or "_shiru_v_1_rel"
+
+shiru_koto_v_mwe_mtr := monotonic_mtr &
+ [ INPUT.RELS <  [ PRED "ja:_koto_n_6_rel",
+            ARG0 #x18,
+            ARG1 #h17 ],
+          [ PRED "ja:udef_q_rel",
+            ARG0 #x18 ],
+          [ PRED "ja:_shiru_v_1_rel",
+	    LBL #h23,
+            ARG0 #e2,
+            ARG1 #x5,
+            ARG2 #x18 ] >,
+   OUTPUT.RELS < [ PRED "_know_v_1_rel",
+            LBL #h23,
+            ARG0 #e2,
+            ARG1 #x5,
+            ARG2 #h17 ] > ].
+
+
+;;; know, have, need, want, live
+
+
+;;;  How can I get these systematically?
+
+;;; 長身 の -> tall
+
+;; 日本 の -> Japanese
+nihon_no--japanese-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "nihon" ],
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_japanese_a_1_rel" ] > ].
+
+toyo_no--oriental-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "touyou_1" ],
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_oriental_a_1_rel" ] > ].
+
+supein_no--spanish-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "supein_1" ],
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_spanish_a_1_rel" ] > ].
+
+roshia_no--russian-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "roshia_1" ],
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_russian_a_1_rel" ] > ].
+
+chuugoku_no--chinese-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "chuugoku_1" ],
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_chinese_a_1_rel" ] > ].
+
+doitsu_no--german-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "doitsu" ],
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_german_a_1_rel" ] > ].
+
+youroppa_no--european-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "youroppa" ],
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_european_a_1_rel" ] > ].
+
+
+oosutoraria_no--australian-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "oosutoraria" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_australian_a_1_rel" ] > ].
+
+igirisu_no--english-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "igirisu_1" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_english_a_1_rel" ] > ].
+
+arabia_no--arabic-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "arabia_1" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_arabic_a_1_rel" ] > ].
+
+kankoku_2_no--korean-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "kankoku_2" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_korean_a_1_rel" ] > ].
+
+amerika_no--american-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "amerika" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_american_a_1_rel" ] > ].
+
+beikoku_no--american-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:named_rel", CARG "beikoku_1" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_american_a_1_rel" ] > ].
+
+nihon_jin--japanese-mtr := n+pn_n_mtr &
+[ INPUT.RELS < [PRED "ja:named_rel", CARG "nihon" ],
+	       [ PRED "ja:_hito_n_rel" ], ... >,
+  OUTPUT.RELS < [ PRED named_rel, CARG "Japanese" ], ... > ].
+
+
+
+
+;; With superlative!
+moyori_no--nearest-mtr := pp-adjest_mtr &
+  [ INPUT.RELS < [PRED "ja:_moyori_n_1_rel" ],
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_near_a_to_rel" ], ... > ].
+
+
+;;; colors
+
+kiiro_no--yellow-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:_kiiro_n_1_rel" ] ,
+	       [ PRED "ja:_no_p_rel" ], ...  >,
+   OUTPUT.RELS < [ PRED "_yellow_a_1_rel" ] > ].
+
+;;; others
+
+ooku_no--many-mtr  := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:_ooku_n_1_rel" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED much-many_a_rel ] > ].
+
+sukoshi_no--a+little-mtr  := pp-adj_omtr &
+   [ INPUT.RELS < [PRED "ja:_sukoshi_n_rel" ] ,
+                  [ PRED "ja:_no_p_rel" ], ...  >,
+    OUTPUT.RELS < [ PRED "_a+little_a_1_rel" ] > ].
+
+sukoshi_no--a+few-mtr  := pp-adj_mtr &
+  [ INPUT.RELS < [ PRED "ja:_sukoshi_n_rel" ],
+	         [ PRED "ja:_no_p_rel" ], ...  >,
+   OUTPUT.RELS < [ PRED "_a+few_a_1_rel" ] > ].
+
+
+;;; directional adjectives
+
+shita_n+no_p--low-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:_shita_n_rel" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_low_a_1_rel" ] > ].
+
+ue_n_3+no_p--top-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:_ue_n_3_rel" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_top_a_1_rel" ] > ].
+
+naka_n_2+no_p--middle-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:_naka_n_2_rel" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_middle_a_1_rel" ] > ].
+
+
+tsugi_n_1+no--next-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:_tsugi_n_1_rel" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_next_a_1_rel" ] > ].
+
+mae_n+no_p--previous-mtr := pp-adj_omtr &
+  [ INPUT.RELS < [PRED "ja:_mae_n_rel" ] ,
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_previous_a_1_rel" ] > ].
+
+;;;
+;;; complex prepositions
+;;;
+
+;; place
+no+ushiro+nonide-behind-mtr := pp+p-p-omtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_ushiro_n_1_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _behind_p_rel ] > ].
+
+;; time
+no+ushiro+nonide-behind-mtr := pp+p-p-omtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_ushiro_n_1_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _after_p_rel ] > ].
+
+;; place
+no+mae+nonide-in+front+of-mtr := pp+p-p-omtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_mae_n_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _in+front+of_p_rel ] > ].
+
+;; time
+no+mae+nonide-before-mtr := pp+p-p-omtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_mae_n_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _before_p_rel ] > ].
+
+
+no+naka+nonide-inside-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_naka_n_2_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _inside_p_rel ] > ].
+
+no+shita+nonide-under-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_shita_n_2_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _under_p_rel ] > ].
+
+no+ue+nonide-above-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_ue_n_3_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _above_p_rel ] > ].
+
+; FIXME; weird idiom for on+top+of
+; no+ue+nonide-on+top+of-mtr := pp+p-p-mtr &
+;    [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+;  		 [PRED "ja:_ue_n_3_rel" ] ,
+;  	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+;     OUTPUT.RELS < [ PRED _on+top+of_p_rel ] > ].
+
+
+no+waki-next+to-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_waki_n_1_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _next+to_p_rel ] > ].
+
+no+tonari-next+to-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_tonari_n_1_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _next+to_p_rel ] > ].
+
+no+yoko+nonide-next+to-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_yoko_n_1_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _next+to_p_rel ] > ].
+
+; の そば に → beside
+no+soba+nonide-beside-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_soba_n_1_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _beside_p_rel ] > ].
+
+; の 側 に → beside
+no+soba+nonide-beside-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_soba_n_2_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _beside_p_rel ] > ].
+
+no+mawari+nonide-around-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_mawari_n_surroundings_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _around_p_rel ] > ].
+
+no+mukou+nonide-opposite-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_mukou_n_5_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _opposite_p_rel ] > ].
+
+no+soto+nonide-outside-mtr := pp+p-p-mtr &
+   [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
+ 		 [PRED "ja:_soto_n_rel" ] ,
+ 	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
+    OUTPUT.RELS < [ PRED _outside_p_rel ] > ].
+
+
+
+nanika_a_3--something_rel_n_1-mtr := monotonic_mtr & 
+[ JA.RELS < [ PRED #verb,  LBL #hv, 
+	      ARG0 #ev, ARG1 #xv, ARG2 u & #u ],
+	    [ PRED "ja:_nanika_a_3_rel", ARG1 #ev, LBL #hn  ] >,
+  EN [RELS < [ PRED #verb,  LBL #hv, 
+	      ARG0 #ev, ARG1 #xv, ARG2 #xn ],
+	     [ PRED thing_rel, LBL #hn, ARG0 #xn ],
+	     [ PRED _some_q_rel, LBL #hs, ARG0 #xn, RSTR #hr ] >,
+      HCONS < qeq & [ HARG #hr, LARG #hn ]  > ],
+  FLAGS.EQUAL < #u >].
+
+;;; 分かる without any args goes to a bare "okay" -- eric-n
+wakaru_v_3+zero--okay_a_1 := monotonic_mtr &
+[ INPUT [ RELS <[ PRED "ja:_wakaru_v_3_rel",
+           LBL #h4, ARG0 #e2 , ARG1 #i5 & i , ARG2 #i6 & i ] >],
+  OUTPUT [ RELS < [ PRED unknown_rel,
+		    LBL #h4, ARG0 #e2 , ARG u ],
+		  [ PRED "_okay_a_1_rel",
+		    LBL #h5, ARG0 #e7 & e & [ TENSE untensed, MOOD indicative ],
+		    ARG1 #h6 ] >,
+       HCONS < qeq & [ HARG #h6, LARG #h4 ] > ],
+  FLAGS.EQUAL <  #i5, #i6 > ].
+
+
+;  ありがとう  goes to "thank you"
+arigatou_x_-thank-you := monotonic_mtr &
+[ INPUT.RELS <  [ PRED "ja:discourse_x_rel", LBL #h1,
+		  L-HNDL #hl, R-HNDL #hr ],
+		[ PRED "ja:_arigatou_x_rel", LBL #hx,
+		  ARG0 #ex ] >,
+  OUTPUT [RELS <[ PRED pron_rel, LBL #h10, ARG0 #x8 ],
+		 [ PRED pronoun_q_rel,  LBL #h6,
+		   ARG0 #x8 & [ PERS 2, PRONTYPE zero_pron ],
+		   RSTR #h7 ],
+		 [ PRED "_thank_v_1_rel", LBL #h11,
+		   ARG0 #e2 & e & [ SF comm ], ARG1 #x8, ARG2 #x12],
+		 [ PRED pron_rel, LBL #h13, ARG0 #x12],
+		 [ PRED pronoun_q_rel, LBL #h14, 
+		   ARG0 #x12 & [ PERS 2, PRONTYPE std_pron ], 
+		   RSTR #h15 ] >,
+	  HCONS < qeq & [ HARG #h7, LARG  #h10],
+		  qeq & [ HARG #h15, LARG  #h13] > ]].
+
+
+;;;
+;;; Ikura to how much <= it's a mess, but doable
+;;;
+
+; ikura-how_much  := monotonic_mtr &
+; [ INPUT [RELS < [ PRED "_quantity_n_rel"
+; 	    LBL #h8
+; 	    ARG0 #x9 ]
+; 		[ "part-of_rel"
+; 	    LBL #h10
+;             ARG0 #x11 ]
+;           [ PRED udef_q_rel
+;             LBL #h12
+;             ARG0 #x11
+;             RSTR #h13
+;             BODY #h14 ]
+;           [ PRED whq_rel
+;             LBL #h15
+;             ARG0 #x9
+;             RSTR #h16
+;             BODY #h17 ]
+;  HCONS < h19 QEQ h18 h16 QEQ h8 h13 QEQ h10 h4 QEQ h7 > ]
+; OUTPUT [RELS <
+;           [ PRED generic_entity_rel
+;             LBL #h7
+;             ARG0 #x5 ]
+;           [ PRED udef_q_rel
+;             LBL #h8
+;             ARG0 #x5
+;             RSTR #h9
+;             BODY #h10 ]
+;           [ PRED abstr_deg_rel
+;             LBL #h11
+;             ARG0 #x12 ]
+;           [ PRED which_q_rel
+;             LBL #h13
+;             ARG0 #x12
+;             RSTR #h14
+;             BODY #h15 ]
+;           [ PRED measure_rel
+;             LBL #h7
+;             ARG0 #i17
+;             ARG1 #e16 [ e TENSE #UNTENSED MOOD #INDICATIVE PROG #- PERF #- ]
+;             ARG2 #x12 ]
+;           [ PRED much-many_a_rel
+;             LBL #h7
+;             ARG0 #e16
+;             ARG1 #x5 ]
+;  HCONS #< h6 qeq h18 h9 qeq h7 h14 qeq h11 h22 qeq h23 > ]
+
+;; FIX_ME
+;; apparently _because_x_rel needs to be added to 
+;; predicates.erg.tdl, but what type is it? 
+;; -- eric-n 2008/11/08
+tame+ni--because := monotonic_mtr &
+[ INPUT [ RELS < [ PRED "ja:udef_q_rel", 
+		   ARG0 #x1, RSTR #h0 ],
+		 [ PRED "ja:_tame_n_rel", LBL #h1, 
+		   ARG0 #x1, ARG1 #h2 ],
+		 [ PRED "ja:_ni_p_rel", LBL #h3,
+		   ARG0 #e2, ARG1 #e3, ARG2 #x1 ] >,
+	  HCONS < qeq & [ HARG #h0, LARG #h1 ] > ],
+  OUTPUT [ RELS < [ PRED "_because_x_rel", LBL #h4 & h,
+		    ARG0 #e2, ARG1 #h5 & h, ARG2 #h2 ] >,
+	   HCONS < qeq & [ HARG #h5, LARG #h3 ] > ],
+  FLAGS.EQUAL < #h4, #h5 > ].
+
+tame+comma--because := monotonic_mtr &
+[ INPUT [ RELS < [ PRED "ja:udef_q_rel", 
+		   ARG0 #x1, RSTR #h0 ],
+		 [ PRED "ja:_tame_n_rel", LBL #h1, 
+		   ARG0 #x1, ARG1 #h2 ],
+		 [ PRED "ja:_comma_d_rel", LBL #h3,
+		   ARG0 #e2, ARG1 #e3, ARG2 #x1 ] >,
+	  HCONS < qeq & [ HARG #h0, LARG #h1 ] > ],
+  OUTPUT [ RELS < [ PRED "_because_x_rel", LBL #h4 & h,
+		    ARG0 #e2, ARG1 #h5 & h, ARG2 #h2 ] >,
+	   HCONS < qeq & [ HARG #h5, LARG #h3 ] > ],
+  FLAGS.EQUAL < #h4, #h5 > ].
+
+no+tame+ni--because+of := monotonic_omtr &
+[ INPUT [ RELS < [ PRED "ja:udef_q_rel", 
+		   ARG0 #x1, RSTR #h0 ],
+		 [ PRED "ja:_tame_n_rel", LBL #h1, 
+		   ARG0 #x1 ],
+		 [ PRED compound_rel, LBL #h2,
+		   ARG0 #e1, ARG1 #x1, ARG2 #x2 ],
+		 [ PRED "ja:_ni_p_rel", LBL #h3,
+		   ARG0 #e2, ARG1 #e3, ARG2 #x1 ] >,
+	  HCONS < qeq & [ HARG #h0, LARG #h1 ] > ],
+  OUTPUT.RELS < [ PRED _because+of_p_rel, LBL #h3,
+		  ARG0 #e2, ARG1 #e3, ARG2 #x2 ] > ].
+
+no+tame+ni--for := monotonic_mtr &
+[ INPUT [ RELS < [ PRED "ja:udef_q_rel", 
+		   ARG0 #x1, RSTR #h0 ],
+		 [ PRED "ja:_tame_n_rel", LBL #h1, 
+		   ARG0 #x1 ],
+		 [ PRED compound_rel, LBL #h2,
+		   ARG0 #e1, ARG1 #x1, ARG2 #x2 ],
+		 [ PRED "ja:_ni_p_rel", LBL #h3,
+		   ARG0 #e2, ARG1 #e3, ARG2 #x1 ] >,
+	  HCONS < qeq & [ HARG #h0, LARG #h1 ] > ],
+  OUTPUT.RELS < [ PRED _for_p_rel, LBL #h3,
+		  ARG0 #e2, ARG1 #e3, ARG2 #x2 ] > ].
+
+notame--because+of := preposition_omtr &
+ [ JA.RELS < [ PRED "ja:_notame_p_rel" ]>,
+   EN.RELS < [ PRED _because+of_p_rel ] >].
+
+notame--for := preposition_mtr &
+ [ JA.RELS < [ PRED "ja:_notame_p_rel" ]>,
+   EN.RELS < [ PRED _for_p_rel ] >].
+
+
+;; (mt::parse-interactively "すごく　なけれ　ば　なら　ない。") ->
+;; "It must be great." 
+nakereba+naranai--must := monotonic_mtr &
+ [ INPUT [ RELS < [ LBL #h7, ARG0 #e1 ],
+		  [ PRED "~neg_", LBL #h1, ARG1 #h2 ],
+		  [ PRED "ja:_eba_c_rel", 
+		    LBL #h3, ARG0 #e2,
+		    L-HNDL #h1, L-INDEX #e1,
+		    R-HNDL #h4, R-INDEX #e3 ],
+		  [ PRED "ja:_naru_v_5_rel", 
+		    LBL #h5, ARG0 #e3 ],
+          	  [ PRED "~neg_", LBL #h4, ARG1 #h6 ] >,
+	   HCONS < qeq & [ HARG #h6, LARG #h5 ] > ],
+   OUTPUT [ RELS < +copy+ & 
+		   [ ARG0 #e1 & e & [ TENSE UNTENSED ] ],
+		   [ PRED _must_v_modal_rel, LBL #h3, 
+		     ARG0 #e2 & e & [ TENSE PRES ], 
+		     ARG1 #h2 ] >,
+	    HCONS < > ],
+   FLAGS.EQUAL < #e1, #e2 > ].
+
+;; (mt::parse-interactively "すごく　なけれ　ば　いけ　ない。") ->
+;; "It must be great." 
+nakereba+ikenai--must := monotonic_mtr &
+ [ INPUT [ RELS < [ LBL #h7, ARG0 #e1 ],
+		  [ PRED "~neg_", LBL #h1, ARG1 #h2 ],
+		  [ PRED "ja:_eba_c_rel", 
+		    LBL #h3, ARG0 #e2,
+		    L-HNDL #h1, L-INDEX #e1,
+		    R-HNDL #h4, R-INDEX #e3 ],
+          	  [ PRED "~neg_", LBL #h4, ARG1 #h6 ],
+		  [ PRED "~rareru_v_can_", 
+		    LBL #h5, ARG0 #e3, ARG2 #h8 ],
+		  [ PRED "~_iku_v_", LBL #h9 ] >,
+	   HCONS < qeq & [ HARG #h6, LARG #h5 ],
+		   qeq & [ HARG #h8, LARG #h9 ] > ],
+   OUTPUT [ RELS < +copy+ & 
+		   [ ARG0 #e1 & e & [ TENSE UNTENSED ] ],
+		   [ PRED _must_v_modal_rel, LBL #h3, 
+		     ARG0 #e2 & e & [ TENSE PRES ], 
+		     ARG1 #h2 ] >,
+	    HCONS < > ],
+   FLAGS.EQUAL < #e1, #e2 > ].
+
+;; (mt::parse-interactively "すごく　なけれ　ば　なら　ない。") ->
+;; "It must be great." 
+nai+to+naranai--must := monotonic_mtr &
+ [ INPUT [ RELS < [ LBL #h7, ARG0 #e1 ],
+		  [ PRED "~neg_", LBL #h1, ARG1 #h2 ],
+		  [ PRED "ja:_to_p_sconj_rel", 
+		    LBL #h3, ARG0 #e2,
+		    L-HNDL #h1, L-INDEX #e1,
+		    R-HNDL #h4, R-INDEX #e3 ],
+		  [ PRED "ja:_naru_v_5_rel", 
+		    LBL #h5, ARG0 #e3 ],
+          	  [ PRED "~neg_", LBL #h4, ARG1 #h6 ] >,
+	   HCONS < qeq & [ HARG #h6, LARG #h5 ] > ],
+   OUTPUT [ RELS < +copy+ & 
+		   [ ARG0 #e1 & e & [ TENSE UNTENSED ] ],
+		   [ PRED _must_v_modal_rel, LBL #h3, 
+		     ARG0 #e2 & e & [ TENSE PRES ], 
+		     ARG1 #h2 ] >,
+	    HCONS < > ],
+   FLAGS.EQUAL < #e1, #e2 > ].
+
+;; (mt::parse-interactively "すごく　ない　と　いけ　ない。") ->
+;; "It must be great." 
+nai+to+ikenai--must := monotonic_mtr &
+ [ INPUT [ RELS < [ LBL #h7, ARG0 #e1 ],
+		  [ PRED "~neg_", LBL #h1, ARG1 #h2 ],
+		  [ PRED "ja:_to_p_sconj_rel", 
+		    LBL #h3, ARG0 #e2,
+		    L-HNDL #h1, L-INDEX #e1,
+		    R-HNDL #h4, R-INDEX #e3 ],
+          	  [ PRED "~neg_", LBL #h4, ARG1 #h6 ],
+		  [ PRED "~rareru_v_can_", 
+		    LBL #h5, ARG0 #e3, ARG2 #h8 ],
+		  [ PRED "~_iku_v_", LBL #h9 ] >,
+	   HCONS < qeq & [ HARG #h6, LARG #h5 ],
+		   qeq & [ HARG #h8, LARG #h9 ] > ],
+   OUTPUT [ RELS < +copy+ & 
+		   [ ARG0 #e1 & e & [ TENSE UNTENSED ] ],
+		   [ PRED _must_v_modal_rel, LBL #h3, 
+		     ARG0 #e2 & e & [ TENSE PRES ], 
+		     ARG1 #h2 ] >,
+	    HCONS < > ],
+   FLAGS.EQUAL < #e1, #e2 > ].
+
+
+
+
+;;;
+;;;  これらの -- these
+;;;
+
+korera-no--these  := monotonic_mtr &
+ [ INPUT [RELS < [ PRED "ja:_korera_n_rel",
+		   LBL #hk, ARG0 #xk ],
+		 [ PRED "ja:udef_q_rel", 
+		   ARG0 #xk, RSTR #hkr ],
+		 [ PRED "ja:_no_p_rel",
+		   ARG1 #xq, ARG2 #xk ],
+		 [ PRED "ja:udef_q_rel", 
+		   LBL  #hq,  ARG0 #xq, RSTR #hqr, BODY #hqb] >,
+	  HCONS  < qeq & [ HARG #hkr, LARG #hk ] > ],
+   OUTPUT.RELS < [ PRED _these_q_dem_rel,
+		   LBL  #hq,  ARG0 #xq & [ NUM pl ], RSTR #hqr, BODY #hqb] >].
+
+;;; FIXME "all the"
+
+subete-no--all  := monotonic_mtr &
+ [ INPUT [RELS < [ PRED "ja:_subete_n_1_rel",
+		   LBL #hk, ARG0 #xk ],
+		 [ PRED "ja:udef_q_rel", 
+		   ARG0 #xk, RSTR #hkr ],
+		 [ PRED "ja:_no_p_rel",
+		   ARG1 #xq, ARG2 #xk ],
+		 [ PRED "ja:udef_q_rel", 
+		   LBL  #hq,  ARG0 #xq, RSTR #hqr, BODY #hqb] >,
+	  HCONS  < qeq & [ HARG #hkr, LARG #hk ] > ],
+   OUTPUT.RELS < [ PRED _all_q_rel,
+		   LBL  #hq,  ARG0 #xq & [ NUM pl ], RSTR #hqr, BODY #hqb] >].
+
+zenbu-no--all  := monotonic_mtr &
+ [ INPUT [RELS < [ PRED "ja:_zenbu_n_rel",
+		   LBL #hk, ARG0 #xk ],
+		 [ PRED "ja:udef_q_rel", 
+		   ARG0 #xk, RSTR #hkr ],
+		 [ PRED "ja:_no_p_rel",
+		   ARG1 #xq, ARG2 #xk ],
+		 [ PRED "ja:udef_q_rel", 
+		   LBL  #hq,  ARG0 #xq, RSTR #hqr, BODY #hqb] >,
+	  HCONS  < qeq & [ HARG #hkr, LARG #hk ] > ],
+   OUTPUT.RELS < [ PRED _all_q_rel,
+		   LBL  #hq,  ARG0 #xq & [ NUM pl ], RSTR #hqr, BODY #hqb] >].
+
+
+;;;  家にいる -> at home
+ire-ni-iru--at-home_mtr := monotonic_mtr &
+[ INPUT [RELS < [ PRED "ja:_ie_n_rel", LBL #hie, ARG0 #xie ],
+	       [ PRED "ja:udef_q_rel", 
+		 ARG0 #xie, RSTR #hier ],
+		[ PRED "ja:_ni_p_rel", LBL #hv, ARG0 #ep, ARG1 #ev, ARG2 #xie ],
+		[ PRED "ja:_exist_v_rel", LBL #hv, ARG0 #ev, ARG1 #x1 ]>,
+	 HCONS  < qeq & [ HARG #hier, LARG #hie ] >],
+  OUTPUT [ RELS < [ LBL #hv, PRED _at_p_rel, 
+ 		     ARG0 #ev, ARG1 #x1, ARG2 #xp ],
+ 		   [ PRED def_implicit_q_rel, ARG0 #xp, RSTR #h1 ],
+ 		   [ LBL #h2, PRED place_n_rel, ARG0 #xp ],
+ 		   [ LBL #h2, PRED _home_p_rel, ARG0 #ehome & e & e_untensed, ARG1 #xp ] >,
+ 	   HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+  FLAGS.EQUAL < #ehome >].
+
+hokubu_n_1+named--northern_a_1+named_mtr := card-dir+named_mtr &
+[ INPUT.RELS < [ PRED "ja:_hokubu_n_1_rel" ], [ CARG #carg ], ... >,
+  OUTPUT.RELS < [ PRED "_northern_a_1_rel" ], [ CARG #carg ], ... > ].
+
+nanbu_n_1+named--southern_a_1+named_mtr := card-dir+named_mtr &
+[ INPUT.RELS < [ PRED "ja:_nanbu_n_1_rel" ], [ CARG #carg ], ... >,
+  OUTPUT.RELS < [ PRED "_southern_a_1_rel" ], [ CARG #carg ], ... > ].
+
+toubu_n_1+named--eastern_a_1+named_mtr := card-dir+named_mtr &
+[ INPUT.RELS < [ PRED "ja:_toubu_n_1_rel" ], [ CARG #carg ], ... >,
+  OUTPUT.RELS < [ PRED "_eastern_a_1_rel" ], [ CARG #carg ], ... > ].
+
+seibu_n_1+named--western_a_1+named_mtr := card-dir+named_mtr &
+[ INPUT.RELS < [ PRED "ja:_seibu_n_1_rel" ], [ CARG #carg ], ... >,
+  OUTPUT.RELS < [ PRED "_western_a_1_rel" ], [ CARG #carg ], ... > ].
+
+nanseibu_n_1+named--southwestern_a_1+named_mtr := card-dir+named_mtr &
+[ INPUT.RELS < [ PRED "ja:_nanseibu_n_1_rel" ], [ CARG #carg ], ... >,
+  OUTPUT.RELS < [ PRED "_southwestern_a_1_rel" ], [ CARG #carg ], ... > ].
+
+nantoubu_n_1+named--southeastern_a_1+named_mtr := card-dir+named_mtr &
+[ INPUT.RELS < [ PRED "ja:_nantoubu_n_1_rel" ], [ CARG #carg ], ... >,
+  OUTPUT.RELS < [ PRED "_southeastern_a_1_rel" ], [ CARG #carg ], ... > ].
+
+hokutoubu_n_1+named--northeastern_a_1+named_mtr := card-dir+named_mtr &
+[ INPUT.RELS < [ PRED "ja:_hokutoubu_n_1_rel" ], [ CARG #carg ], ... >,
+  OUTPUT.RELS < [ PRED "_northeastern_a_1_rel" ], [ CARG #carg ], ... > ].
+
+hokuseibu_n_1+named--northwestern_a_1+named_mtr := card-dir+named_mtr &
+[ INPUT.RELS < [ PRED "ja:_hokuseibu_n_1_rel" ], [ CARG #carg ], ... >,
+  OUTPUT.RELS < [ PRED "_northwestern_a_1_rel" ], [ CARG #carg ], ... > ].
+
+;;; 
+;;; Some common means of transport
+;;;
+;;; 飛行機で -> by plane
+;;; FIXME -- add more
+hikouki+de---by+plane := pp_mtr &
+[ INPUT.RELS  < [ PRED "ja:_de_p_rel" ], 
+		[ PRED "ja:_hikouki_n_rel" ], 
+		[ PRED "ja:udef_q_rel" ], ... >,
+  OUTPUT.RELS < [ PRED _by_p_means_rel ], 
+		[ PRED "_plane_n_1_rel" ], 
+		[ PRED udef_q_rel ], ... > ].
+
+;;; tc: 外国 >> abroad	0.333333 	301
+;;; FIXME overseas
+gaikoku+de--abroad-mtr := pp_omtr &
+  [ INPUT.RELS < [ PRED "~ja:_(ni|de)_p_rel" ], 
+		 [PRED "ja:_gaikoku_n_rel", LBL #h, ARG0 #x ],
+		 [PRED "ja:udef_q_rel" ] >,
+   OUTPUT.RELS < [ PRED loc_nonsp_rel ],
+		 [ PRED place_n_rel  ],
+		 [ PRED def_implicit_q_rel ],
+		 [ PRED _abroad_p_rel, ARG0 e & [TENSE UNTENSED], 
+		   LBL #h, ARG1 #x   ]   > ].
+
+gaikoku+de--overseas-mtr := pp_mtr &
+  [ INPUT.RELS < [ PRED "~ja:_(ni|de)_p_rel" ], 
+		 [PRED "ja:_gaikoku_n_rel", LBL #h, ARG0 #x ],
+		 [PRED "ja:udef_q_rel" ] >,
+   OUTPUT.RELS < [ PRED loc_nonsp_rel ],
+		 [ PRED place_n_rel  ],
+		 [ PRED def_implicit_q_rel ],
+		 [ PRED _overseas_a_1_rel, ARG0 e & [TENSE UNTENSED], 
+		   LBL #h, ARG1 #x   ]   > ].
+
+
+
+;;;
+;;; noun + copula -> adjective
+;;;
+
+kanemochi+da--rich_a_1 := arg12+np_arg1_v_omtr &
+[ INPUT.RELS < [ PRED "ja:cop_id_rel" ], 
+               [ PRED "ja:udef_q_rel"],
+	       [ PRED "ja:_kanemochi_n_1_rel" ],  ... >,    
+  OUTPUT.RELS < [ PRED "_rich_a_in_rel" ], ... > ].
+
+;;;
+;;; A ha B ga C
+;;; 背 が 高い → tall (N-ga Adj → Adj)
+
+ N+ha+se+ga+takai--tall_a_1 := n+adj-adj-mtr &
+  [ 
+   INPUT.RELS < [ PRED "ja:_se_n_1_rel" ], 
+ 	        [ PRED "ja:_takai_a_rel" ], 
+ 		 ... >, 
+   OUTPUT.RELS < [ PRED "_tall_a_1_rel" ], ... > ].
+
+;;;
+;;; Need two rules, for  PROG ±
+;;; PROG + get angry, PROG - angry
+;;; + ARG2 angered 
+
+N+ha+hara+ga+tatsu--angry_a_at := n+adj-adj-mtr &
+  [ 
+   INPUT.RELS < [ PRED "ja:_hara_n_1_rel" ], 
+ 	        [ PRED "ja:_tatsu_v_1_rel", ARG0 e & [PROG +]], 
+ 		 ... >, 
+   OUTPUT.RELS < [ PRED "_angry_a_at_rel", 
+		   ARG0 e & [PROG -], ARG2 i & #i ], ... >,
+   FLAGS.EQUAL < #i >].
+
+
+
+
+;;;
+;;; pp-pp
+;;;
+
+;; 
+tetuya+de--all+night-mtr := pp_pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_de_p_rel"], 
+                [ PRED "ja:udef_q_rel"],
+ 	        [ PRED "ja:_tetsuya_s_1_rel" ],  ... >, 
+  OUTPUT.RELS < [ PRED loc_nonsp_rel ],
+		[ PRED def_implicit_q_rel ],
+		[ PRED "_night_n_of_rel", ARG0 #x, LBL #hn ],
+ 		[ PRED "_all_a_1_rel", ARG1 #x, LBL #hn ],
+		... > ].
+
+; 放課後 -> after school
+
+hougako+unspec--after+school-mtr := pp_pp_mtr &
+[ INPUT.RELS < [ PRED "ja:unspec_p_rel"], 
+                [ PRED "ja:udef_q_rel"],
+ 	        [ PRED "ja:_houkago_n_1_rel" ],  ... >, 
+  OUTPUT.RELS < [ PRED _after_p_rel ],
+		[ PRED udef_q_rel ],
+		[ PRED "_school_n_1_rel", ARG0 #x & [NUM sg]] > ].
+
+; tetuya+de--all-night-mtr := pp_pp_mtr &
+; [ INPUT.RELS < [ PRED "ja:_de_p_rel"], 
+;                 [ PRED "ja:udef_q_rel"],
+; 		[ PRED "ja:nominalization_rel", ARG1 #h ], 
+; 	        [ PRED "ja:_tetsuya_s_1_rel", LBL #h ],  ... >, 
+;   OUTPUT.RELS < [ PRED loc_nonsp_rel ],
+; 		[ PRED def_implicit_q_rel ],
+; 		[ PRED "_night_n_of_rel", ARG0 #x, LBL #hn ],
+; 		[ PRED "_all_a_1_rel", ARG1 #x, LBL #hn ],
+; 		... > ].
+
+
+;;;
+;;; Verb and arguments 
+;;; (that have to come before automatically generated ones)
+;;;
+
+; 目 を 覚ます >> wake _up2 0.333333
+me_n+udef_q+samasu_v_3--wake_v_up-mtr := arg12+np_arg1_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_samasu_v_3_rel" ],
+	       [ PRED "ja:udef_q_rel" ], 
+	       [ PRED "ja:_me_n_rel" ],   ... >,
+ OUTPUT.RELS < [ PRED "_wake_v_up_rel" ], ... > ].
+
+; 目 を 覚ます >> awake 2 0.333333
+me_n+udef_q+samasu_v_3--wake_v_1-mtr := arg12+np_arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_samasu_v_3_rel" ],
+	       [ PRED "ja:udef_q_rel" ], 
+	       [ PRED "ja:_me_n_rel" ],   ... >,
+ OUTPUT.RELS < [ PRED "_awake_v_1_rel" ], ... > ].
+
+kaze-wo-hiku--catch-cold-1 := arg12+n_arg12+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_hiku_v_1_rel" ],
+               [ PRED "ja:_kaze_n_cold_rel" ] >,
+  OUTPUT.RELS < [ PRED "_catch_v_1_rel"  ],
+		[ PRED "_cold_n_1_rel"  ] > ].
+
+;; 風邪 を ひく
+kaze-wo-hiku--catch-cold-2 := arg12+n_arg12+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_hiku_v_4_rel" ],
+               [ PRED "ja:_kaze_n_cold_rel" ] >,
+  OUTPUT.RELS < [ PRED "_catch_v_1_rel"  ],
+		[ PRED "_cold_n_1_rel"  ] > ].
+
+;; 手紙 を くれる -> write a letter (FIXME or write)
+;; FIXME get the ARG3 right
+tegami+wo+kureru--write+letter := arg12+n_arg12+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kureru_v_3_rel" ],
+               [ PRED "ja:_tegami_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_write_v_to_rel"  ],
+		[ PRED "_letter_n_of_rel"  ] > ].
+
+;;
+;; Possessive Idioms
+;;
+chie-wo-shiboru--rack-ones-brains := arg12+n_arg12+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shiboru_v_rel" ],
+               [ PRED "ja:_chie_n_1_rel" ] >,
+ OUTPUT [RELS <[ PRED "_rack_v_i_rel",  LBL #hv, ARG1 #x1 ],
+	       [ PRED "_brains_n_i_rel", LBL #hn, ARG0 #xn ],
+	       [ PRED pron_rel,  LBL #hp, ARG0 #xp & x ],
+	       [ PRED pronoun_q_rel,  ARG0 #xp,  RSTR #hpr ],
+	       [ PRED id_rel, LBL #hv, ARG0 i, ARG1 #x1, ARG2 #xp ],
+	       [ PRED poss_rel,  LBL #hn, 
+		 ARG0 #e & e & [ TENSE UNTENSED ],
+		 ARG1 #xn, ARG2 #xp ]  >,
+	 HCONS <  qeq & [ HARG #hpr, LARG #hp ]  > ]].
+
+;,
+; 		 [ PRED "_brains_n_i_rel", LBL #hn, ARG0 #xn ] >].
+;;;
+;;; A ni hi-ga tsuku -> A cathes fire
+;;; swap arg1 and arg2!
+
+
+
+; Handle なる
+
+;;; 犬 が 猫 に なっ た 。 → The dog became a cat.
+
+naru_v_4-become_v_id-mtr := monotonic_omtr &
+ [ INPUT [ RELS < [ PRED "ja:_naru_v_4_rel", LBL #hn, 
+		    ARG0 #e1, ARG1 #h1 ],
+		  [ PRED "ja:cop_id_rel", LBL #hc, 
+		    ARG1 #x1, ARG2 #x2 ] >,
+	   HCONS < qeq & [ HARG #h1, LARG #hc ]> ] ,
+  OUTPUT.RELS < [ PRED "_become_v_id_rel", LBL #hn, 
+		  ARG0 #e1, ARG1 #x1, ARG2 #x2 ] > ].
+
+;;; 犬 が 猫 に なっ た 。 → The dog will be a cat.
+
+naru_v_4-will+be_v_id-mtr := monotonic_mtr &
+ [ INPUT [ RELS < [ PRED "ja:_naru_v_4_rel", LBL #hn, 
+		    ARG0 #e1 & e & [ TENSE PRES ], ARG1 #h1 ],
+		  [ PRED "ja:cop_id_rel", LBL #hc, 
+		    ARG1 #x1, ARG2 #x2 ] >,
+	   HCONS < qeq & [ HARG #h1, LARG #hc ]> ] ,
+   OUTPUT.RELS <  [ PRED _be_v_id_rel , LBL #hn, 
+		    ARG0 #e1 & e & [ TENSE FUT ], 
+		    ARG1 #x1, ARG2 #x2 ] >,
+   FLAGS.EQUAL < #e1 > ].
+
+;;; 犬 が 大きく なっ た 。 → The dog grew up.
+
+ookiku+naru_v-grow_v_up-mtr := monotonic_omtr &
+ [ INPUT.RELS < [ PRED "ja:_ookii_a_rel", LBL #hn, ARG1 #e1 ],
+		[ PRED "ja:_naru_v_5_rel", LBL #hn, 
+		  ARG0 #e1, ARG1 #x1 ] >,
+   OUTPUT.RELS < [ PRED "_grow_v_up_rel", 
+		   LBL #hn,  ARG0 #e1, ARG1 #x1 ] >].
+
+;;; 犬 が 猫 から なる 。 → The dog consists of  a cat.
+kara_p+naru_v_5-be_consist_v_of-omtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_5_rel", LBL #h1, ARG0 #e1, ARG1 #x1 ],
+ 	       [ PRED "ja:_kara_p_rel", LBL #h1, 
+ 		 ARG0 #e2, ARG1 #e1, ARG2 #x2 ] >,	
+   OUTPUT.RELS < [ PRED "_consist_v_of_rel", LBL #h1, 
+ 		  ARG0 #e1 , ARG1 #x1, ARG2 #x2 ] >].
+
+;;; 犬 が 古く なっ た 。 → The dog became old.
+
+naru_v-become_v_id+adj-mtr := monotonic_mtr &
+ [ INPUT.RELS < [ PRED #pred, LBL #hn, ARG1 #e1 ],
+		[ PRED "ja:_naru_v_5_rel", LBL #hn, 
+		  ARG0 #e1, ARG1 #x1 ] >,
+   OUTPUT [RELS < [ PRED #pred, ARG1 #x1, LBL #ha],
+		  [ PRED "_become_v_id_rel", LBL #hn, 
+		    ARG0 #e1, ARG1 #x1, ARG2 #h ] > ,
+	   HCONS < qeq & [ HARG #h, LARG #ha ] > ]].
+

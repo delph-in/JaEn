@@ -1,0 +1,39 @@
+M-x logon     ;for logon version of delphin
+
+(tsdb:tsdb :cpu :jacy :task :parse :file t) ; load jacy
+(read-script-file-aux "~/logon/uio/jaen/lkb/script")
+
+
+;;; start a generator [maybe in a new window]
+$LOGONROOT/lingo/lkb/server
+
+
+lex-auto-je.mtr:
+----------------
+made using edict as the base dictionary with corpus counts from the
+Tanaka Corpus.
+
+
+========================================================================
+Now my troubles begin
+========================================================================
+
+(mt::parse-interactively "食べる")
+
+(mt::parse-interactively "犬 が 猫 を 食べる")
+(mt::parse-interactively "猫 を 犬 が 食べる")
+(mt::parse-interactively "犬 が 吠える")
+
+
+
+(mt::parse-interactively "犬 が 猫 を 3 匹 食べる")
+(mt::parse-interactively "犬 が 猫 を 早く 食べる")
+
+
+========================================================================
+Useful shell thingies
+Find transfer predicate errors:
+grep "# 0"  *iwslt*11*.fan | grep transfer | cut -d: -f 5 | cut -d'|' -f 1 | sort | uniq -c | sort -n
+
+Find generation predicate errors (often misleading):
+grep "# 0"  *iwslt*11*.fan | grep output | cut -d: -f 4 | cut -d'|' -f 2 | sort | uniq -c | sort -n

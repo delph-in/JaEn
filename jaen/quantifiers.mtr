@@ -1,0 +1,192 @@
+;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;
+;;; a separate phase for prepositions, so that we can assume the arguments have
+;;; been transferred, and rules here can condition on the TL hierarchy.
+;;;
+
+;;; this has to go late, to avoid confusing real names
+;;; interlingua predicates
+named_n := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:named_rel" ] >,
+  OUTPUT.RELS < +copy+ & [ PRED named_rel ] > ].
+
+;;; TWEAKME
+;named_n := monotonic_mtr &
+;[ INPUT.RELS < [ PRED "ja:unknown_rel" ] >,
+;  OUTPUT.RELS < +copy+ & [ PRED unknown_rel ] > ].
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 
+;;; quantifiers
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+which_q := quantifier_mtr &
+[ INPUT.RELS < [ PRED "ja:which_q_rel" ] >,
+  OUTPUT.RELS < [ PRED which_q_rel ] > ].
+
+
+;;; in compounds, make the LHS NP always udef_q_rel
+
+udef_compound_q_mtr := monotonic_mtr &
+ [ CONTEXT.RELS < [PRED compound_rel, ARG2 #x1] >,
+  INPUT.RELS < [ PRED "ja:udef_q_rel", LBL #h1, 
+		 ARG0 #x1, RSTR #h2, BODY #h3 ] >,
+  OUTPUT.RELS < [ PRED udef_q_rel,
+		  LBL #h1, ARG0 #x1, RSTR #h2, BODY #h3 ] > ].
+
+;;; make nouns modified by superlative adjectives definite
+udef_superlative-def_q_rel := quantifier_mtr &
+ [ CONTEXT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #noun ],
+		  [ LBL #h0, ARG0 e,   ARG1 #e0, PRED superl_rel]>,
+   INPUT.RELS < [ PRED "ja:udef_q_rel",  ARG0 #noun ] >,
+   OUTPUT.RELS < [ PRED def_q_rel,  ARG0 #noun ] >].
+
+;;; for there is x
+udef-udef_q--there := quantifier_omtr &
+[ INPUT.RELS < [ PRED "ja:udef_q_rel", ARG0 #x  ] >,
+  CONTEXT.RELS < [ PRED _be_v_there_rel, ARG1 #x ] >,
+  OUTPUT.RELS < [ PRED udef_q_rel ] > ].
+
+;;; for there is x
+udef-a_q--there := quantifier_mtr &
+[ INPUT.RELS < [ PRED "ja:udef_q_rel", ARG0 #x  ] >,
+  CONTEXT.RELS < [ PRED _be_v_there_rel, ARG1 #x ] >,
+  OUTPUT.RELS < [ PRED _a_q_rel ] > ].
+
+;;; whose, which
+
+udef-implicit_def-wh_q := quantifier_mtr &
+[ INPUT.RELS < [ PRED "ja:udef_q_rel", ARG0 #x1 ] >,
+  CONTEXT.RELS < [ PRED poss_rel, ARG1 #x1, ARG2 #x2 ],
+		 [ PRED which_q_rel, ARG0 #x2] >,
+  OUTPUT.RELS < [ PRED def_implicit_q_rel ] > ].
+
+
+;;; possessor is an anchor so should be definite
+;;; A-no-B's A is normally definite (Marata 1993)
+udef-def-possessor_q := quantifier_mtr &
+[ INPUT.RELS < [ PRED "ja:udef_q_rel", ARG0 #x ] >,
+  CONTEXT.RELS < [ PRED poss_rel, ARG1 #x ] >,
+  OUTPUT.RELS < [ PRED def_explicit_q_rel ] > ].
+
+;;; for "at night"
+udef_q-implicit_q-mtr := quantifier_mtr &
+[ CONTEXT [ HCONS < qeq & [ HARG #h1, LARG #h2 ] >,
+	    RELS < [ PRED "_night_n_of_rel", LBL #h2 ] > ],
+  JA.RELS < [ PRED "ja:udef_q_rel", RSTR #h1 ] >,
+  EN.RELS < [ PRED def_implicit_q_rel, RSTR #h1 ] > ].
+
+;;; for season_rel (spring, summer, autumn, winter)
+udef_q-udef_q-mtr := quantifier_mtr &
+[ CONTEXT [ HCONS < qeq & [ HARG #h1, LARG #h2 ] >,
+	    RELS < [ PRED season_rel, LBL #h2 ] > ],
+  JA.RELS < [ PRED "ja:udef_q_rel", RSTR #h1 ] >,
+  EN.RELS < [ PRED udef_q_rel, RSTR #h1 ] > ].
+
+
+udef-def_udef_a_q := quantifier_mtr &
+[ INPUT.RELS < [ PRED "ja:udef_q_rel" ] >,
+  OUTPUT.RELS < [ PRED def_udef_a_q_rel ] > ].
+
+; ;;; only do this for things compatible with singular
+; udef-a_q--num := quantifier_omtr &
+; [ INPUT.RELS < [ PRED "ja:udef_q_rel", ARG0 #x & [ NUM number ] ]>,
+;   FILTER.RELS < [ PRED "card_rel", ARG1 #x ]>,
+;   OUTPUT.RELS < [ PRED _a_q_rel ] > ].
+
+;;; now handled by supertype def_udef_a_q_rel
+
+; udef_udef_q := quantifier_omtr &
+; [ INPUT.RELS < [ PRED "ja:udef_q_rel" ] >,
+;   OUTPUT.RELS < [ PRED udef_q_rel ] > ].
+
+; ;;; only do this for things compatible with singular
+; udef_a_q := quantifier_mtr &
+;  [ INPUT.RELS < [ PRED "ja:udef_q_rel", ARG0 #x & [NUM number ] ]>,
+;    FILTER.RELS < [ PRED "card_rel", ARG1 #x ]>,
+;    OUTPUT.RELS < [ PRED _a_q_rel ] > ].
+
+; ;udef_the_q := quantifier_mtr &
+; ;[ INPUT.RELS < [ PRED "ja:udef_q_rel" ] >,
+; ;  OUTPUT.RELS < [ PRED _the_q_rel ] > ].
+
+
+
+
+
+
+
+
+pronoun_q := quantifier_mtr &
+ [ CONTEXT.RELS < [ PRED pron_rel, ARG0 #x ] >,
+   INPUT.RELS   < [ PRED "ja:def_q_rel", ARG0 #x  ] >,
+   OUTPUT.RELS  < [ PRED pronoun_q_rel, ARG0 #x ] >].
+
+; proper_q := quantifier_mtr &
+; [ CONTEXT.RELS < [ PRED "ja:named_rel", ARG0 #x1 ] >,
+;   INPUT.RELS < [ PRED "ja:udef_q_rel", ARG0 #x1 ] >,
+;   OUTPUT.RELS < [ PRED proper_q_rel, ARG0 #x1 ] > ].
+
+
+
+;;; time of day/week day (Monday morning) 
+possesed_dofw_q := quantifier_mtr &
+[ CONTEXT.RELS < [ PRED dofw_rel, ARG0 #x ],
+		 [ PRED poss_rel, ARG1 #x1, ARG2 #x],
+		 [ PRED "~^_(morning|afternoon|evening|night)_n_of_rel", ARG0 #x1 ] >,
+  INPUT.RELS < [ PRED "ja:def_q_rel", ARG0 #x ] >,
+  OUTPUT.RELS < [ PRED def_implicit_q_rel, ARG0 #x & [ NUM sg, PERS 3 ] ]> ].
+
+
+proper_dofw_q := quantifier_mtr &
+[ CONTEXT.RELS < [ PRED dofw_rel, ARG0 #x1 ] >,
+  INPUT.RELS < [ PRED "ja:def_q_rel", ARG0 #x1 ] >,
+  OUTPUT.RELS < [ PRED proper_q_rel, ARG0 #x1 ] > ].
+
+proper_named_q := quantifier_mtr &
+[ CONTEXT.RELS < [ PRED named_rel, ARG0 #x1 ] >,
+  INPUT.RELS < [ PRED "ja:def_q_rel", ARG0 #x1 ] >,
+  OUTPUT.RELS < [ PRED proper_q_rel, ARG0 #x1 ] > ].
+
+def_q := quantifier_mtr &
+[ INPUT.RELS < [ PRED "ja:def_q_rel" ] >,
+  OUTPUT.RELS < [ PRED def_q_rel ] > ].
+;
+; FIXME -demo is not linking the argument
+;
+; wh-demo-any_q := monotonic_mtr &
+; [ INPUT.RELS < [ PRED "ja:whq_rel", 
+; 		 LBL #h, ARG0 #x, RSTR #r, BODY #b ],
+; 	       [ PRED "ja:_demo_d_rel", ARG2 #x ] >,
+;   OUTPUT.RELS < [ PRED _any_q_rel, 
+; 		 LBL #h, ARG0 #x, RSTR #r, BODY #b  ] > ].
+
+;;; ko-/so-/aso- demonstratives
+
+;;; この 犬 が 吠える 。 → this dog barks.
+kono-this_q-mtr := quantifier_mtr &
+[ JA.RELS < [ PRED "ja:_kono_q_rel" ] >,
+  EN.RELS < [ PRED _this_q_dem_rel ] > ].
+
+;;; その こ が 吠える 。 → the child barks.
+sono-that_q-mtr := quantifier_omtr &
+[ CONTEXT.RELS   < [ PRED "poss_mark", ARG0 #xn ] >,
+  INPUT.RELS < [ PRED "ja:_sono_q_rel", ARG0 #xn ] >,
+  OUTPUT.RELS < [ PRED def_q_rel ] > ].
+
+;;; その 犬 が 吠える 。 → that dog barks.
+sono-that_q-mtr := quantifier_mtr &
+[ JA.RELS < [ PRED "ja:_sono_q_rel" ] >,
+  EN.RELS < [ PRED _that_q_dem_rel ] > ].
+
+;;; あの 犬 が 吠える 。 → that dog barks.
+ano-that_q-mtr := quantifier_mtr &
+[ JA.RELS < [ PRED "ja:_ano_q_rel" ] >,
+  EN.RELS < [ PRED _that_q_dem_rel ] > ].
+

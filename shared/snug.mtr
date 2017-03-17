@@ -1,0 +1,219 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Coding: utf-8; -*- got it?
+
+;;;
+;;; finally, perform some post-core fix-up: make sure variable equations are
+;;; being propagated, delete transfer-internal meta EPs, et al.
+;;;
+
+
+;;;
+;;; _fix_me_
+;;; the way +copy+ works, we cannot change variable bindings; using a variable
+;;; for PRED, on the other hand, results in a spurious overwrite with the PRED
+;;; regular expression.  we should fix the way +copy+ works!  for now, just go
+;;; for a larg-ish set of rules ... :-{.                       (24-jul-04; oe)
+;;;
+equate_m_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED equate, ARG0 #e0 & e, ARG1 #e1 & e ] >,
+  INPUT.RELS < [ PRED #pred, LBL #h0, 
+                 ARG0 #e1, MARG #h3 & h, TPC #u4, PSV #u5 ] >,
+  FILTER.RELS < [ PRED equate_mark, LBL #h0, ARG0 #h3 ] >,
+  OUTPUT.RELS < [ PRED #pred, LBL #h0, ARG0 #e0, MARG #h3, TPC #u4, PSV #u5 ],
+                [ PRED equate_mark, LBL #h0, ARG0 #h3 ] >,
+  FLAGS.EQUAL < #e0, #e1, #h3 > ].
+
+equate_p_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED intersective_equate, ARG0 #i0 & i, ARG1 #i1 & i ],
+                 [ PRED intersective_equate, ARG0 #h0 & h, ARG1 #h1 & h ] >,
+  INPUT.RELS < [ PRED #pred, LBL #h1, ARG0 #e2 & e, ARG1 #i1, ARG2 #x0 & x ] >,
+  FILTER.RELS < [ PRED equate_mark, ARG0 #e2 ] >,
+  OUTPUT.RELS < [ PRED #pred, LBL #h0, ARG0 #e2, ARG1 #i0, ARG2 #x0 & x ],
+                [ PRED equate_mark, ARG0 #e2 ] >,
+  FLAGS.SUBSUME < #i0, #i1, #h0, #h1, #e2, #x0 > ].
+
+equate_a_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED intersective_equate, ARG0 #i0 & i, ARG1 #i1 & i ],
+                 [ PRED intersective_equate, ARG0 #h0 & h, ARG1 #h1 & h ] >,
+  INPUT.RELS < [ PRED #pred, LBL #h1, ARG0 #e2 & e, ARG1 #i1 ] >,
+  FILTER.RELS < [ PRED equate_mark, ARG0 #e2 ] >,
+  OUTPUT.RELS < [ PRED #pred, LBL #h0, ARG0 #e2, ARG1 #i0 ],
+                [ PRED equate_mark, ARG0 #e2 ] >,
+  FLAGS.SUBSUME < #i0, #i1, #h0, #h1, #e2 > ].
+
+equate_mark_ditch_cf := elision_mtr &
+[ INPUT.RELS < [ PRED equate_mark ] > ].
+
+;;;
+;;; it appears that we consider the `identity' mechanism (originally invented
+;;; for NorGram to record co-referentiality without equating pronouns) part of
+;;; the Transfer MatriX.  hence, whenever a pronoun is part of such identity,
+;;; we should see to it that it shares NUM and GEND with its antecedent.  the
+;;; `num_equate' and `gend_equate' mechanisms are in place aready, hence why
+;;; not activate them for these cases?  note that the `equate' rules reverse,
+;;; loosely speaking, the directionality of ARG0 and ARG1: for `identity', the
+;;; antecedent is ARG0, while in `equate' it corresponds to ARG1.
+;;;                                                             (19-nov-08; oe)
+identity_equate_gend_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED identity_rel, LBL #h0, ARG0 #x0, ARG1 #x1 ],
+                 [ PRED pron_rel, LBL #h0, ARG0 #x1 & x ] >,
+  FILTER.RELS < [ PRED gend_equate, ARG0 #x1, ARG1 #x0 ] >,
+  OUTPUT.RELS < [ PRED gend_equate, ARG0 #x1, ARG1 #x0 ] >,
+  FLAGS.EQUAL < #x1 > ].
+
+identity_equate_num_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED identity_rel, LBL #h0, ARG0 #x0, ARG1 #x1 ],
+                 [ PRED pron_rel, LBL #h0, ARG0 #x1 & x ] >,
+  FILTER.RELS < [ PRED num_equate, ARG0 #x1, ARG1 #x0 ] >,
+  OUTPUT.RELS < [ PRED num_equate, ARG0 #x1, ARG1 #x0 ] >,
+  FLAGS.EQUAL < #x1 > ].
+
+identity_equate_pers_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED identity_rel, LBL #h0, ARG0 #x0, ARG1 #x1 ],
+                 [ PRED pron_rel, LBL #h0, ARG0 #x1 & x ] >,
+  FILTER.RELS < [ PRED pers_equate, ARG0 #x1, ARG1 #x0 ] >,
+  OUTPUT.RELS < [ PRED pers_equate, ARG0 #x1, ARG1 #x0 ] >,
+  FLAGS.EQUAL < #x1 > ].
+
+;;;
+;;;
+;;; in some case, we (need to) introduce new indices and want them to pick up
+;;; number (or other properties) from another variable.
+;;; 
+num_equate_sg_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ NUM #sg & sg ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & x & [ NUM pl ] ],
+               [ PRED num_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ NUM sg ] ] >,
+  FLAGS.EQUAL < #x0, #sg > ].
+
+num_equate_pl_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ NUM #pl & pl ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & x & [ NUM sg ] ],
+               [ PRED num_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ NUM pl ] ] >,
+  FLAGS.EQUAL < #x0, #pl > ].
+
+;;;
+;;; the problem in doing the same thing for GEND is that, unlike with NUM, we
+;;; rarely have complete information.  hence, a cascade of rules in increasing
+;;; specificity, combined with a creative use of the type hierarchy, where the
+;;; underspecification `m-or-f' is a genuine super-type to `m' and `f', while
+;;; the `anti' type `not-n' will only unify with `m-or-f', but not `m' and `f'.
+;;; all crystal clear, ain't it?                                (25-jan-08; oe)
+;;;
+;;; _fix_me_
+;;; now that the FLAGS.EQUAL machinery also applies to variable properties, we
+;;; could presumably eliminate those `anti' types.              (20-nov-08; oe)
+;;;
+gend_equate_null_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ GEND #gender & gender ] ] >,
+  INPUT.RELS < [ PRED gend_equate, ARG0 #x0, ARG1 #x1 ] >,
+  FLAGS.EQUAL < #x1, #gender > ].
+
+gend_equate_m-or-f_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ GEND not-n ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & x ],
+               [ PRED gend_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ GEND m-or-f ] ] >,
+  FLAGS.EQUAL < #x0, #x1 > ].
+
+gend_equate_m-or-n_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ GEND not-f ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & x ],
+               [ PRED gend_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ GEND m-or-n ] ] >,
+  FLAGS.EQUAL < #x0, #x1 > ].
+
+gend_equate_f-or-n_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ GEND not-m ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 ],
+               [ PRED gend_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ GEND f-or-n ] ] >,
+  FLAGS.EQUAL < #x0, #x1 > ].
+
+gend_equate_m_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ GEND m ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & x ],
+               [ PRED gend_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ GEND m ] ] >,
+  FLAGS.EQUAL < #x0, #x1 > ].
+
+gend_equate_f_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ GEND f ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & x ],
+               [ PRED gend_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ GEND f ] ] >,
+  FLAGS.EQUAL < #x0, #x1 > ].
+
+gend_equate_n_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ GEND n ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & x ],
+               [ PRED gend_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ GEND n ] ] >,
+  FLAGS.EQUAL < #x0, #x1 > ].
+
+pers_equate_null_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ PERS #person & person ] ] >,
+  INPUT.RELS < [ PRED pers_equate, ARG0 #x0, ARG1 #x1 ] >,
+  FLAGS.EQUAL < #x1, #person > ].
+
+;;;
+;;; even though we do not save applications of transfer rules (because, either
+;;; way, we need to ditch the `pers_equate' EP), use the type hierarchy to only
+;;; apply a specialization rule in case it is needed.  hopefully this makes it
+;;; easier reading transfer derivations.                        (20-nov-08; oe)
+;;;
+pers_equate_1_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ PERS 1 ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & x & [ PERS 2-or-3 ] ],
+               [ PRED pers_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ PERS 1 ] ] >,
+  FLAGS.EQUAL < #x0, #x1 > ].
+
+pers_equate_2_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ PERS 2 ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & x & [ PERS 1-or-3 ] ],
+               [ PRED pers_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ PERS 2 ] ] >,
+  FLAGS.EQUAL < #x0, #x1 > ].
+
+pers_equate_3_cf := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #x1 & x & [ PERS 3 ] ] >,
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & x & [ PERS 1-or-2 ] ],
+               [ PRED pers_equate, ARG0 #x0, ARG1 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ PERS 3 ] ] >,
+  FLAGS.EQUAL < #x0, #x1 > ].
+
+;;;
+;;; _fix_me_
+;;; see comments on `adjective_prp_participle_mtr' definition for the rationale
+;;; behind the following mechanism.                             (29-may-06; oe)
+;;;
+prog_cf := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h4 & h, ARG0 #e2 & e ],
+               [ PRED prog_mark, LBL #h4, ARG0 #e2 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ PROG + ] ] >,
+  FLAGS.EQUAL < #h4, #e2 > ].
+
+prog_mark_ditch_cf := elision_mtr &
+[ INPUT.RELS < [ PRED prog_mark ] > ].
+
+;;;
+;;; something in the same spirit, for the `n+n_n+p+q+n_sg_mtr' type, et al.  we
+;;; need to make sure these rules are invoked after the `num_equate' group of
+;;; rules, so as to propagate the original values.
+;;;
+sg_cf := monotonic_mtr &
+[ INPUT.RELS < [ PRED "~_n_", LBL #h0 & h, ARG0 #x1 & x ],
+               [ PRED sg_mark, LBL #h0, ARG0 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ PERS 3, NUM sg, GRIND - ] ] >,
+  FLAGS.EQUAL < #h0, #x1 > ].
+
+pl_cf := monotonic_mtr &
+[ INPUT.RELS < [ PRED "~_n_", LBL #h0 & h, ARG0 #x1 & x ],
+               [ PRED pl_mark, LBL #h0, ARG0 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ PERS 3, NUM pl, GRIND - ] ] >,
+  FLAGS.EQUAL < #h0, #x1 > ].
+
+number_mark_ditch_cf := elision_mtr &
+[ INPUT.RELS < [ PRED number_mark ] > ].

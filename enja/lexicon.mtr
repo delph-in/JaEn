@@ -1,0 +1,140 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; a transfer rule is a qadruple <F, C, I, O>, where each element is a partial
+;;; MRS, with:
+;;;
+;;; - F: an input filter; when F matches against the input MRS, the rule is
+;;;      blocked; F is evaluated _after_ C and I have matched;
+;;; - C: the input context; needs to match for a rule to apply and binds 
+;;;      variables, but is preserved in the output;
+;;; - I: the input description; matches against the input MRS; everything that
+;;;      was matched in the input will be replaced by the OUTPUT part;
+;;; - O: the output description; everything in the OUTPUT part is inserting
+;;;      into the MRS, respecting variable bindings that have been established
+;;;      in matching earlier components.
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 
+;;; quantifiers
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; eric-n: 2006/5/2
+; filtered_quantifier_mtr := quantifier_mtr &
+; [ FILTER.RELS < [ PRED "_tame_n_rel", ARGO #x1 ], [ PRED udef_rel, ARG0 #x1 ] > ].
+
+;; eric-n: 2006/5/2
+; filtered_quantifier_omtr := quantifier_omtr &
+; [ FILTER.RELS < [ PRED "_tame_n_rel", ARGO #x1 ], [ PRED udef_rel, ARG0 #x1 ] > ].
+
+udef_udef_q := quantifier_omtr &
+[ OUTPUT.RELS < [ PRED udef_rel ] >,
+  INPUT.RELS < [ PRED udef_q_rel ] > ].
+
+udef_a_q := quantifier_omtr &
+[ OUTPUT.RELS < [ PRED udef_rel, ARG0 #x ] >,
+  FILTER.RELS < [ PRED "card_rel", ARG1 #x ] >,
+  INPUT.RELS < [ PRED _a_q_rel ] > ].
+
+udef_the_q := quantifier_mtr &
+[ OUTPUT.RELS < [ PRED udef_rel ] >,
+  INPUT.RELS < [ PRED _the_q_rel ] > ].
+
+def_q := quantifier_mtr &
+[ OUTPUT.RELS < [ PRED def_rel ] >,
+  INPUT.RELS < [ PRED def_q_rel ] > ].
+
+pronoun_q := quantifier_mtr &
+[ OUTPUT.RELS < [ PRED def_rel ] >,
+  INPUT.RELS < [ PRED pronoun_q_rel ] > ].
+
+
+proper_named_q := quantifier_mtr &
+[ CONTEXT.RELS < [ PRED named_rel, ARG0 #x1 ] >,
+  OUTPUT.RELS < [ PRED def_q_rel, ARG0 #x1 ] >,
+  INPUT.RELS < [ PRED proper_q_rel, ARG0 #x1 ] > ].
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 
+;;; messages and other meta-level (construction-specific) predicates
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; proposition_m := message_mtr &
+; [ INPUT.RELS < [ PRED prpstn_m_rel, LBL #h0, MARG #h1, ARG0 #e2] >,
+;   OUTPUT.RELS < [ PRED proposition_m_rel, LBL #h0, MARG #h1, ARG0 #e2 ] > ].
+
+; prop-or-ques_m+prpstn_m := message_omtr &
+; [ INPUT.RELS < [ PRED prop-or-ques_m_rel, LBL #h0, MARG #h1, ARG0 #e2] >,
+;   OUTPUT.RELS < [ PRED proposition_m_rel, LBL #h0, MARG #h1, ARG0 #e2 ] > ].
+
+; prop-or-ques_m+question_m := message_omtr &
+; [ INPUT.RELS < [ PRED prop-or-ques_m_rel, LBL #h0, MARG #h1, ARG0 #e2] >,
+;   OUTPUT.RELS < [ PRED question_m_rel, LBL #h0, MARG #h1, ARG0 #e2 ] > ].
+
+;;;
+;;; _fix_me_
+;;; JaCY, it seems, fails to implement the `questions as open propositions'
+;;; analysis of (Ginzburg & Sag, 2001).
+;;;
+question_m := monotonic_mtr &
+[ INPUT.RELS < [ PRED int_m_rel, LBL #h0, MARG #h1, ARG0 #e2 ] >,
+  OUTPUT.RELS < [ PRED question_m_rel, LBL #h0, MARG #h1, ARG0 #e2 ] > ].
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 
+;;; transfer correspondences for pieces of fragmented (incomplete) MRSs
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 
+;;; from here on, vocabularly as we encountered it in the various test suites
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+card_j := cardinal_mtr &
+[ OUTPUT.RELS < [ CARG #carg ] >,
+  INPUT.RELS < [ CARG #carg ] > ].
+
+
+; tame_n+ni_p*for_p := monotonic_mtr &
+;  [ OUTPUT
+;    [ RELS
+;      < [ PRED "_tame_n_rel",
+; 	 LBL #h6, 
+;          ARG0 #x4 ],
+
+;        [ PRED udef_q_rel,
+;          ARG0 #x4 & x,
+; 	 RSTR #h5 & h ],
+
+;        [ PRED unspec_compound_rel,
+; 	 ARG1 #x4,
+; 	 ARG2 #x1 ],
+
+;        [ PRED "_ni_p_rel",
+; 	 ARG1 #x4,
+; 	 ARG2 #e2 ] >,
+
+;    HCONS < qeq & [ HARG #h5, LARG #h6 ] > ],
+
+;    FLAGS.EQUAL < #h5, #x4 >,
+
+;    CONTEXT.RELS
+;      < [ PRED "~_v_", 
+; 	 LBL #h3,
+; 	 ARG0 #e2 ] >,
+   
+;    INPUT.RELS 
+;      < [ PRED _for_p_rel,
+; 	 LBL  #h3,
+; 	 ARG1 #e2,
+; 	 ARG2 #x1 ] > ].

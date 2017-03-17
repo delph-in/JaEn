@@ -1,0 +1,7 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;
+;;; upon completion of `core' transfer, attempt to fix up collocations (maybe
+;;; in some cases, the original rules should be refined instead).
+;;;
+

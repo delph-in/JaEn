@@ -1,0 +1,674 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; a transfer rule is a qadruple <F, C, I, O>, where each element is a partial
+;;; MRS, with:
+;;;
+;;; - F: an input filter; when F matches against the input MRS, the rule is
+;;;      blocked; F is evaluated _after_ C and I have matched;
+;;; - C: the input context; needs to match for a rule to apply and binds 
+;;;      variables, but is preserved in the output;
+;;; - I: the input description; matches against the input MRS; everything that
+;;;      was matched in the input will be replaced by the OUTPUT part;
+;;; - O: the output description; everything in the OUTPUT part is inserting
+;;;      into the MRS, respecting variable bindings that have been established
+;;;      in matching earlier components.
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; MWEs that include quantifiers
+
+;;; do this before we translate the quantifiers
+
+ko-so-a_it_q-mtr := monotonic_omtr &
+ [ CONTEXT.HCONS < qeq & [ HARG #h3, LARG #h1 ] >, 
+   INPUT.RELS < [ PRED "ja:generic-nom_rel",  LBL #h1, ARG0 #x ],
+		[ LBL #h2, ARG0 #x, RSTR #h3 ]>,
+   OUTPUT.RELS < [ PRED pron_rel,  LBL #h1, 
+		   ARG0 #x & [ PERS 3, PRONTYPE std_pron, NUM sg] ],
+		 [ PRED pronoun_q_rel,  LBL #h2, ARG0 #x, RSTR #h3 ] >,
+   FLAGS.EQUAL < #h3 > ].
+
+;;; explicit quantifiers 
+
+aru_some_q-mtr := quantifier_mtr &
+ [ JA.RELS < [ PRED "ja:_aru_q_rel"]  >,
+   EN.RELS < [ PRED _some_q_indiv_rel ] > ].
+
+kaku_every_q-mtr := quantifier_mtr &
+ [ JA.RELS < [ PRED "ja:_kaku_q_14_rel"]  >,
+   EN.RELS < [ PRED _every_q_rel ] > ].
+
+indef_some_q-mtr := quantifier_mtr &
+ [ JA.RELS < [ PRED "ja:indef_q_rel"]  >,
+   EN.RELS < [ PRED _some_q_rel ] > ].
+
+arayuru_every_q-mtr := quantifier_omtr &
+ [ JA.RELS < [ PRED "ja:_arayuru_q_1_rel"]  >,
+   EN.RELS < [ PRED _every_q_rel ] > ].
+
+
+arayuru_all_q-mtr := quantifier_mtr &
+ [ JA.RELS < [ PRED "ja:_arayuru_q_1_rel"]  >,
+   EN.RELS < [ PRED _all_q_rel ] > ].
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 
+;;; messages and other meta-level (construction-specific) predicates
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+; ERG now anaylzes requests as "polite_rel" with a CARG of "please"
+;
+; may have errors with losing the inner event...
+;
+; FIXME the kudasaru ARG0 needs to be smooshed with the verbs, ... 
+;
+; 吠え て ください  → Please bark
+request_m := monotonic_mtr &
+ [ INPUT [ RELS <  [  LBL #hv,  ARG0 #e0 ],
+		   [ PRED "ja:_kudasaru_v_aux_rel", LBL #h4, 
+		     ARG0 #e & e & [ SF comm], ARG3 #h3 ]  >,
+	   HCONS < qeq & [ HARG #h3, LARG #hv ] > ],
+   OUTPUT [ RELS < +copy+ & [ ARG0 #e0 & e & [ SF comm, TENSE tensed] ],
+		  [ PRED polite_rel, LBL #hv, 
+		     ARG0 #i & i, ARG1 #e0, CARG "please" ] > ],
+   FLAGS.EQUAL < #i, #e0 > ].
+
+;
+; if it isn't scoping over a verb
+;
+
+;   ビール を ください → Please give me a beer.
+kudasai_v_gimme_v := monotonic_mtr &
+ [ INPUT [ RELS <[ PRED "ja:_kudasaru_v_1_rel", LBL #hv, 
+		    ARG0 #e0 & e & [ SF comm],  ARG2 #x2 ] > ],
+   OUTPUT [ RELS < [ PRED polite_rel, LBL #hv, 
+		     ARG0 #i & i, ARG1 #e0, CARG "please" ],
+		   [ PRED "_give_v_1_rel", LBL #hv, ARG0 #e0, 
+		     ARG1 #x1, ARG2 #x2, ARG3 #x3 ],
+		   [ PRED pronoun_q_rel, ARG0 #x1, RSTR #hr1 ],
+		   [ PRED pron_rel, LBL #hp1, ARG0 #x1 & 
+		    [PERS 2, NUM sg, PRONTYPE zero_pron]],
+		   [ PRED pronoun_q_rel, ARG0 #x3, RSTR #hr ],
+		   [ PRED pron_rel, LBL #hp, ARG0 #x3 & 
+		    [PERS 1, NUM sg, PRONTYPE std_pron]]
+		   >,
+	    HCONS < qeq & [ HARG #hr1, LARG #hp1 ],
+		    qeq & [ HARG #hr, LARG #hp ] > ],
+   FLAGS.EQUAL < #i > ].
+
+
+;;;  ビール を お願い　し　ます → A beer, please.
+;;; FIXME: Why isn't the ARG0 i?
+onegai_v_please-mtr := monotonic_omtr &
+ [ INPUT.RELS <[ PRED "ja:_negau_v_1_rel", LBL #hv, 
+		 ARG0 #e0 & e & [ SF prop, TENSE pres],  ARG2 #x2 ] >,
+   OUTPUT.RELS < [ PRED unknown_rel, LBL #hv, ARG0 #e0, ARG #x2],
+		 [ PRED polite_rel, LBL #hv, 
+		   ARG0  i & [ SF prop, TENSE untensed, MOOD indicative],
+		   ARG1 #e0, CARG "please"] > ].
+
+
+
+;;; oe: Can I make this work?
+; refl_mark :=  monotonic_mtr &
+; [ FILTER.RELS  < [ LBL #h, PRED "refl_mark", ARG0 #e] >, 
+;   CONTEXT.RELS < [ LBL #h, PRED "ja:pron_rel", ARG0 #e & [ PRONTYPE refl] ] >,
+;   OUTPUT.RELS  < [ LBL #h, PRED "refl_mark", ARG0 #e] >, 
+;   FLAGS.EQUAL  < #e, #h > ].
+
+;;; make possessive pronouns: mine, his, etc
+
+; poss_pron_n := monotonic_mtr &
+; [ INPUT [RELS  < [ LBL #h, PRED "ja:pron_rel", ARG0 #x1 ] ,
+; 		 [ LBL #hd, PRED "ja:def_rel", RSTR #hdr ],
+; 		 [ LBL #h, PRED "ja:_no_n_4", 
+; 		   ARG0 #e, ARG1 #x1, ARG2 #x2 ] >,
+; 	 HCONS < qeq & [ HARG #hdr, LARG #h ] > ],
+;   OUTPUT [RELS < [ +copy+ LBL #h3,  PRED pron_rel, ARG0 #x2  
+; 		  & [ PRONTYPE std_pron] ],
+; 		 [ LBL #hd, PRED pronoun_q_rel, RSTR #hdr ],
+; 		[ LBL #h PRED poss_rel, ARG0 #ep & e,
+; 		  ARG1 #x1 & x, ARG2 #x2 & x ],
+; 		[ LBL #h, PRED "generic_entity_rel", 
+; 		  ARG0 #1 ],
+; 		[ PRED def_implicit_q_rel,
+; 		  ARG0 #x1 & x,
+; 		  RSTR #hr & h ]	> ,
+; 	  [ HCONS < qeq & [ HARG #hdr, LARG #h ],
+; 		    qeq & [ HARG #hr, LARG #h3 ],> ]].
+
+
+
+;;; makes all pronouns std_pron
+std_pron_n := monotonic_mtr &
+[ INPUT.RELS  < [ LBL #h, PRED "ja:pron_rel", ARG0 #e] >,
+  OUTPUT.RELS < +copy+ & 
+		[LBL #h,  PRED pron_rel, ARG0 #e  
+		 & [ PRONTYPE std_pron ] ] >, 
+  FLAGS.EQUAL  < #e,#h > ].
+
+
+
+
+;;; can't use cardinal_mtr because of ja:
+cardinal_je := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:card_rel", LBL #h1, 
+                 ARG0 #e2, ARG1 #i3, CARG #carg ] >,
+  OUTPUT.RELS < [ PRED card_rel, LBL #h1, 
+                  ARG0 #e2, ARG1 #i3, CARG #carg ] > ].
+
+
+
+; and_x := nominal_conjunction_mtr &
+; [ INPUT.RELS < [ PRED "_to_p_and_rel" ] >,
+;   OUTPUT.RELS < [ PRED _and_c_rel ] > ].
+
+
+;compound_c := monotonic_mtr  &
+; [ INPUT.RELS  < [ PRED "_nara_p_rel"], ... >,
+;   OUTPUT.RELS < [ PRED "_if_x_then_rel"], ... > ].
+
+; tame_n+ni_p*for_p := monotonic_mtr &
+;  [ INPUT
+;    [ RELS
+;      < [ PRED "_tame_n_rel",
+; 	 LBL #h6, 
+;          ARG0 #x4 ],
+
+;        [ PRED udef_q_rel,
+;          ARG0 #x4 & x,
+; 	 RSTR #h5 & h ],
+
+;        [ PRED unspec_compound_rel,
+; 	 ARG1 #x4,
+; 	 ARG2 #x1 ],
+
+;        [ PRED "_ni_p_rel",
+; 	 ARG1 #x4,
+; 	 ARG2 #e2 ] >,
+
+;    HCONS < qeq & [ HARG #h5, LARG #h6 ] > ],
+
+;    FLAGS.EQUAL < #h5, #x4 >,
+
+;    CONTEXT.RELS
+;      < [ PRED "~_v_", 
+; 	 LBL #h3,
+; 	 ARG0 #e2 ] >,
+   
+;    OUTPUT.RELS 
+;      < [ PRED _for_p_rel,
+; 	 LBL  #h3,
+; 	 ARG1 #e2,
+; 	 ARG2 #x1 ] > ].
+
+ichiban_a_3-best-mtr := intersective_adverb_mtr &
+[ JA.RELS < [ PRED "ja:_ichiban_a_3_rel" ] >,
+  EN.RELS < [ PRED superl_rel ] > ].
+
+ichiban_a_3-best-mtr := intersective_adverb_omtr &
+[ JA.RELS < [ PRED "ja:_ichiban_a_3_rel" ] >,
+  EN.RELS < [ PRED "_best_a_1_rel" ] > ].
+
+
+;;;
+;;; Superlatives  
+;;; Change superl_rel to "_most_a_1_rel" in erg.mtr
+
+ichiban_a_1-superlative-mtr := intersective_adverb_mtr &
+[ JA.RELS < [ PRED "ja:_ichiban_a_1_rel", ARG1 #e ] >,
+  EN.RELS < [ PRED superl_rel ] > ].
+
+;;; Kanji and hiragana
+mottomo_1-superlative-mtr := intersective_adverb_mtr &
+[ JA.RELS < [ PRED "ja:_mottomo_a_1_rel" ] >,
+  EN.RELS < [ PRED superl_rel ] > ].
+
+mottomo-superlative-mtr := intersective_adverb_mtr &
+[ JA.RELS < [ PRED "ja:_mottomo_a_rel"  ] >,
+  EN.RELS < [ PRED superl_rel ] > ].
+
+;;;
+;;; comparatives
+;;;
+;;; 犬 が もっと 吠える 。 → dogs bark more.
+motto_a_rel-comp_rel-mtr := adjective_mtr &
+[ JA.RELS < [ PRED "ja:_motto_a_rel" ] >,
+  EN.RELS < [ PRED comp_rel ] > ].
+
+motto_a_3_rel-comp_rel-mtr := adjective_mtr &
+[ JA.RELS < [ PRED "ja:_motto_a_3_rel" ] >,
+  EN.RELS < [ PRED comp_rel ] > ].
+
+yori_a_3_rel-comp_rel-mtr := adjective_mtr &
+[ JA.RELS < [ PRED "ja:_yori_a_3_rel" ] >,
+  EN.RELS < [ PRED comp_rel ] > ].
+
+yori_a_4_rel-comp_rel-mtr := adjective_mtr &
+[ JA.RELS < [ PRED "ja:_yori_a_4_rel" ] >,
+  EN.RELS < [ PRED comp_rel ] > ].
+
+mousukoshi_a_1-a_little+comp_rel-mtr := monotonic_mtr &
+ [ JA.RELS < [ PRED "ja:_mousukoshi_a_1_rel",  LBL #h, ARG0 #e, ARG1 #e1 ] >,
+   EN.RELS < [ PRED comp_rel,  LBL #h, ARG0 #e, ARG1 #e1],
+	     [ PRED "_a+little_x_deg_rel",  LBL #h, ARG0 e, ARG1 #e]> ].
+
+;;; Coordinate conjunctions
+;;;  犬が吠えるし猫を追う >> The dog barks and chases the cat.
+;;; ToDo link ARG1s for zero pronouns (in jacy.mtr)
+
+shi_p-and_c-mtr := conjunction_mtr &
+[ JA.RELS < [ PRED "ja:_shi_p_rel"  ] >,
+  EN.RELS < [ PRED _and_c_rel ] > ].
+
+
+
+daiji--important-mtr := adjective_mtr &
+[ JA.RELS < [ PRED "ja:_daiji_a_rel" ] >,
+  EN.RELS < [ PRED "_important_a_for_rel" ] > ].
+
+baka--idiot-mtr := noun_omtr &
+[ JA.RELS < [ PRED "ja:_baka_n_rel" ] >,
+  EN.RELS < [ PRED "_idiot_n_1_rel" ] > ].
+
+baka--fool-mtr := noun_mtr &
+[ JA.RELS < [ PRED "ja:_baka_n_rel" ] >,
+  EN.RELS < [ PRED "_fool_n_1_rel" ] > ].
+
+shinjiru-believe := arg12_v_mtr &
+[ JA.RELS < [ PRED "ja:_shinjiru_v_1_rel" ] >,
+  EN.RELS < [ PRED "_believe_v_1_rel" ] > ].
+
+
+;;; arg1_arg12+np_v_mtr  彼　が　青ざめ　た >> He turned pale
+
+aozemeru-turn+pale := arg1_arg12+ap_mtr &
+[ JA.RELS < [ PRED "ja:_aozameru_v_1_rel" ] >,
+  EN.RELS < [ PRED "_turn_v_prd_rel" ],
+	    [ PRED "_pale_a_1_rel" ] > ].
+
+uso_n_2-lie_n_1-omtr := noun_mtr &
+[ JA.RELS < [ PRED "ja:_uso_n_2_rel" ] >,
+  EN.RELS < [ PRED "_lie_n_1_rel" ] > ].
+
+
+;;;
+;;; Adverbs
+;;; 
+
+hontou-real-mtr := adjective_omtr  &
+ [ INPUT.RELS < [ PRED "ja:_hontou_a_2_rel"]  >,
+   OUTPUT.RELS < [ PRED "_real_a_1_rel" ] > ].
+
+hontou-really-mtr := intersective_scopal_adverb_mtr  &
+ [ INPUT.RELS < [ PRED "ja:_hontou_a_2_rel"]  >,
+   OUTPUT.RELS < [ PRED "_really_a_1_rel" ] > ].
+
+;;; 赤ちゃん は まだ 歩け ませ ん >> The baby can't walk yet.
+mada-yet-mtr := monotonic_mtr  &
+  [ CONTEXT.RELS < [ PRED neg_rel, LBL #h1 ] >,
+    INPUT.RELS < [ PRED "ja:_mada_a_1_rel", LBL #h1, ARG0 #e2, ARG1 #e3 ]  >,
+    OUTPUT.RELS < [ PRED "_yet_a_1_rel", LBL #h1, ARG0 #e2, ARG1 #e3 ] > ].
+
+mada-still-mtr := intersective_adverb_mtr  &
+ [ INPUT.RELS < [ PRED "ja:_mada_a_1_rel"]  >,
+   OUTPUT.RELS < [ PRED "_still_a_1_rel" ] > ].
+
+yahari-still-mtr := intersective_adverb_mtr  &
+ [ INPUT.RELS < [ PRED "ja:_yahari_a_rel"]  >,
+   OUTPUT.RELS < [ PRED "_still_a_1_rel" ] > ].
+
+isshoukenmei-hard-mtr := intersective_adverb_mtr  &
+ [ INPUT.RELS < [ PRED "ja:_isshoukenmei_a_1_rel"]  >,
+   OUTPUT.RELS < [ PRED "_hard_a_for_rel" ] > ].
+
+itsumo-always-mtr  := intersective_adverb_mtr  &
+ [ INPUT.RELS < [ PRED "ja:_itsumo_a_isect_rel"]  >,
+   OUTPUT.RELS < [ PRED "_always_a_1_rel" ] > ].
+
+
+;;;
+;;; Some common words
+;;;
+
+
+hon_book  :=  noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hon_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_book_n_of_rel" ] > ].
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; moved over from lex-exp.mtr -- eric-n 2008/10/27
+
+;;;
+;;; IWSLT predicates
+;;;
+suri_n_1-thief_n_1-omtr := noun_omtr &
+[ JA.RELS < [ PRED "ja:_suri_n_2_rel" ] >,
+  EN.RELS < [ PRED "_thief_n_1_rel" ] > ].
+
+suri_n_1-pick+pocket-omtr :=  n_n+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_suri_n_2_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_pick_n_of_rel" ], 
+		[ PRED "_pocket_n_1_rel" ], ... > ].
+
+isha_n_1-doctor_n_1-omtr := noun_mtr &
+[ JA.RELS < [ PRED "ja:_isha_n_1_rel" ] >,
+  EN.RELS < [ PRED "_doctor_n_1_rel" ] > ].
+
+shitashii_a_1--close_a_1-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shitashii_a_1_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_close_a_to_rel" ], ... > ].
+
+tooku_n_1--distance_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tooku_n_1_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_distance_n_1_rel" ], ... > ].
+
+;;
+;; FIXME: link に to arg2
+;;
+shitashii_a_1--close_a_1-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_anzen_a_2_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_safe_a_for_rel" ], ... > ].
+
+hoshii_a_emo-want_v_rel-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hoshii_a_emo_rel" ] >,
+  OUTPUT.RELS < [ PRED "_want_v_1_rel" ] > ].
+
+;;; just like 
+;;  (mt::parse-interactively "この　猫  が その　犬 を 好き だ")
+suki_a_1--like_v_rel-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_suki_a_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_like_v_1_rel" ] > ].
+
+;; (mt::parse-interactively "この　猫  が その　犬 を 嫌い だ")
+kirai_a_2--hate_v_rel-mtr := arg12_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_kirai_a_2_rel" ] >,
+  OUTPUT.RELS < [ PRED "_hate_v_1_rel" ] > ].
+
+;;
+kirai_a_2--dislike_v_rel-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kirai_a_2_rel" ] >,
+  OUTPUT.RELS < [ PRED "_dislike_v_1_rel" ] > ].
+
+;; (mt::parse-interactively "この　猫  が その　犬 を 大嫌い だ")
+daikirai_a_1--hate_v_rel-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_daikirai_a_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_hate_v_1_rel" ] > ].
+
+hitsuyou_a_5--need_v_1-omtr := arg12_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_hitsuyou_a_5_rel" ] >,
+  OUTPUT.RELS < [ PRED "_need_v_1_rel" ] > ].
+
+; とても 大きい 犬 が 吠える 。 → the very big dog barks.
+totemo_a_1-very_x_deg_rel-omtr := arg1_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_totemo_a_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_very_x_deg_rel" ] > ].
+
+; とても 大きい 犬 が 吠える 。 → the really big dog barks / the big dog really barks.
+totemo_a_1-really_a_1-mtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_totemo_a_1_rel", LBL #h3, ARG0 #e2, ARG1 #e1 ],
+	       [ PRED #p, LBL #h1, ARG0 #e1, ARG1 #x1 ] >,
+  OUTPUT [ RELS < [ PRED "_really_a_1_rel", LBL #h3, ARG0 #e2, ARG1 #h2 ],
+		  [ PRED #p, LBL #h4, ARG0 #e1, ARG1 #x1 ] >,
+	   HCONS < qeq & [ HARG #h2, LARG #h4 ] > ] ].
+
+totemo_a_2--very_x_deg_rel-omtr := arg1_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_totemo_a_2_rel" ] >,
+  OUTPUT.RELS < [ PRED "_very_x_deg_rel" ] > ].
+
+totemo_a_2-really_a_1-mtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_totemo_a_2_rel", LBL #h3, ARG0 #e2, ARG1 #e1 ],
+	       [ PRED #p, LBL #h1, ARG0 #e1, ARG1 #x1 ] >,
+  OUTPUT [ RELS < [ PRED "_really_a_1_rel", LBL #h3, ARG0 #e2, ARG1 #h2 ],
+		  [ PRED #p, LBL #h4, ARG0 #e1, ARG1 #x1 ] >,
+	   HCONS < qeq & [ HARG #h2, LARG #h4 ] > ] ].
+
+
+taihen_a_2--very_x_deg_rel-omtr := arg1_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_taihen_a_2_rel" ] >,
+  OUTPUT.RELS < [ PRED "_very_x_deg_rel" ] > ].
+
+
+ii_a_2-good_a_at-for := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ii_a_2_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
+
+ii_a_3-good_a_at-for := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ii_a_3_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
+
+ii_a_4-good_a_at-for := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ii_a_4_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
+
+yoi_a_1-good_a_at-for := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yoi_a_1_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
+
+ii_a_4-good_a_at-for := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yoi_a_9_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
+
+sensei_n_3-teacher_n_of := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sensei_n_3_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_teacher_n_of_rel" ], ... > ].
+
+
+
+; 1 28 凄い : 1 132 great -- scopal_adverb_omtr
+sugoi_a_1--great_a_1-omtr := scopal_adverb_omtr &
+[ INPUT.RELS < [ PRED "ja:_sugoi_a_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_great_a_1_rel" ], ... > ].
+
+; 1 28 凄い : 1 132 great -- intersective_attribute_omtr
+sugoi_a_1--great_a_for-omtr := intersective_attribute_omtr &
+[ INPUT.RELS < [ PRED "ja:_sugoi_a_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_great_a_for_rel" ], ... > ].
+
+; 1 28 凄い : 1 40 wonderful -- scopal_adverb_mtr
+sugoi_a_1--wonderful_a_1-mtr := scopal_adverb_mtr &
+[ INPUT.RELS < [ PRED "ja:_sugoi_a_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_wonderful_a_1_rel" ], ... > ].
+
+
+hitori+de--alone-mtr := pp-adj_omtr &
+  [ INPUT.RELS < [PRED "ja:_hitori_n_1_rel" ] ,
+	       [ PRED "ja:_de_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED _alone_p_rel ] > ].
+
+
+gaikoku+no--foreign-mtr := pp-adj_mtr &
+  [ INPUT.RELS < [PRED "ja:_gaikoku_n_rel" ],
+	       [ PRED "ja:_no_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_foreign_a_1_rel" ] > ].
+
+
+;;
+;; testing reflexives
+;;
+
+;;; The third argument to "commit" blocks "commits to suicide"
+jisatsu-commit-suicide := arg1_arg12+np_v_omtr &
+[ INPUT.RELS  < [ PRED "ja:_jisatsu_s_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_commit_v_to_rel", ARG3 i  ],
+		[ PRED udef_q_rel ],
+		[ PRED "_suicide_n_1_rel", 
+		  ARG0 x & [ NUM sg, PERS 3 ]] > ].
+
+jisatsu-kill+oneself := arg1refl_arg12pron_mtr &
+[ INPUT.RELS  < [ PRED "ja:_jisatsu_s_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_kill_v_1_rel" ] > ].
+
+
+;;;
+;;; some combinations
+;;; FIXME --- need to reattach the modifier
+
+onna-no-hito_woman_n+p+n_n_mtr := n+p+n_n_mtr & 
+[INPUT.RELS < [ PRED "ja:_onnna_n_1_rel" ],
+	      [ PRED "ja:udef_q_rel" ],
+	      [ PRED "ja:_no_p_rel" ],
+	      [ PRED "ja:_hito_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_woman_n_1_rel" ] > ].
+
+otoko-no-hito_man_n+p+n_n_mtr := n+p+n_n_mtr & 
+[INPUT.RELS < [ PRED "ja:_otoko_n_rel" ],
+	      [ PRED "ja:udef_q_rel" ],
+	      [ PRED "ja:_no_p_rel" ],
+	      [ PRED "ja:_hito_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_man_n_1_rel" ] > ].
+
+
+;;;
+;;; some things - need more processing for when they take an argument.
+;;;
+
+;; 私 の もの -> mine; あなた の 物　→ yours; ... 
+;; ERG treats these as decomposed with a generic_entity_rel (but no _n_)
+
+no+mono_n--possessive_pronoun_n := noun_mtr &
+[ CONTEXT.RELS < [ PRED "ja:_no_p_rel", ARG1 #x1, ARG2 #x2 ],
+		 [ PRED pron_rel, ARG0 #x2 ] >,
+  INPUT.RELS   < [ PRED "~ja:_mono_n_[15]_rel", ARG0 #x1 ] >,
+  OUTPUT.RELS  < [ PRED generic_entity_rel ] > ].
+
+;;; else もの -> thing
+mono_n--thing_n & noun_mtr &
+[ INPUT.RELS < [ PRED "~ja:_mono_n_[15]_rel" ] >,
+  OUTPUT.RELS < [ PRED "_thing_n_of-about_rel" ] > ].
+
+no_n_nom--thing_n_1-mtr := noun_omtr &
+
+[ INPUT.RELS < [ PRED "ja:_no_n_nom_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_thing_n_of-about_rel" ], ... > ].
+
+koto_n_nom--thing_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_koto_n_nom_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_thing_n_of-about_rel",
+		  ARG1 #h0 ], ... >,
+  FILTER [ RELS < [ LBL #h1 ] >,
+	   HCONS < [ HARG #h0, LARG #h1 ] > ] ].
+
+;; Special rule for implies possession in Japanese
+;; 私 の -> mine; あなた の → yours; ... 
+;; ERG treats these as decomposed with a generic_entity_rel (but no _n_)
+;; we can't copy features, so need many rules (one for each kind of pronoun)
+;; fugly
+pron-1sg-no--possessive_pronoun_n := monotonic_mtr &
+[ INPUT [RELS  < [ PRED pron_rel, LBL #h1, 
+		   ARG0 #x1 &  [PERS 1, NUM sg] ],
+		 [ PRED "ja:def_q_rel", ARG0 #x1, RSTR #hr ],
+		 [ PRED "ja:_no_n_4_rel", ARG1 #x1 ] >,
+	 HCONS < qeq & [ HARG #hr, LARG #h1 ] >],
+ OUTPUT [RELS  < [ PRED pron_rel, LBL #h2, 
+		   ARG0 #x2 &  [PERS 1, NUM sg]],
+ 		 [ PRED pronoun_q_rel,  ARG0 #x2, RSTR #h2r ],
+ 		 [ PRED generic_entity_rel, LBL #h1, ARG0 #x1 
+		   & [PERS 3, NUM no_number, GEND no_gender]],
+ 		 [ PRED def_implicit_q_rel, RSTR #hr, ARG0 #x1  ],
+ 		 [ PRED poss_rel, LBL #h1, ARG1 #x1, ARG2 #x2  ] >,
+ 	  HCONS < qeq & [ HARG #hr, LARG #h1 ],
+		  qeq & [ HARG #h2r, LARG #h2 ] > ]].
+
+pron-1pl-no--possessive_pronoun_n := monotonic_mtr &
+[ INPUT [RELS  < [ PRED pron_rel, LBL #h1, 
+		   ARG0 #x1 &  [PERS 1, NUM pl] ],
+		 [ PRED "ja:def_q_rel", ARG0 #x1, RSTR #hr ],
+		 [ PRED "ja:_no_n_4_rel", ARG1 #x1 ] >,
+	 HCONS < qeq & [ HARG #hr, LARG #h1 ] >],
+ OUTPUT [RELS  < [ PRED pron_rel, LBL #h2, 
+		   ARG0 #x2 &  [PERS 1, NUM pl]],
+ 		 [ PRED pronoun_q_rel,  ARG0 #x2, RSTR #h2r ],
+ 		 [ PRED generic_entity_rel, LBL #h1, ARG0 #x1 
+		   & [PERS 3, NUM no_number, GEND no_gender]],
+ 		 [ PRED def_implicit_q_rel, RSTR #hr, ARG0 #x1  ],
+ 		 [ PRED poss_rel, LBL #h1, ARG1 #x1, ARG2 #x2  ] >,
+ 	  HCONS < qeq & [ HARG #hr, LARG #h1 ],
+		  qeq & [ HARG #h2r, LARG #h2 ] > ]].
+
+pron-2-no--possessive_pronoun_n := monotonic_mtr &
+[ INPUT [RELS  < [ PRED pron_rel, LBL #h1, 
+		   ARG0 #x1 &  [PERS 2] ],
+		 [ PRED "ja:def_q_rel", ARG0 #x1, RSTR #hr ],
+		 [ PRED "ja:_no_n_4_rel", ARG1 #x1 ] >,
+	 HCONS < qeq & [ HARG #hr, LARG #h1 ] >],
+ OUTPUT [RELS  < [ PRED pron_rel, LBL #h2, 
+		   ARG0 #x2 &  [PERS 2]],
+ 		 [ PRED pronoun_q_rel,  ARG0 #x2, RSTR #h2r ],
+ 		 [ PRED generic_entity_rel, LBL #h1, ARG0 #x1 
+		   & [PERS 3, NUM no_number, GEND no_gender]],
+ 		 [ PRED def_implicit_q_rel, RSTR #hr, ARG0 #x1  ],
+ 		 [ PRED poss_rel, LBL #h1, ARG1 #x1, ARG2 #x2  ] >,
+ 	  HCONS < qeq & [ HARG #hr, LARG #h1 ],
+		  qeq & [ HARG #h2r, LARG #h2 ] > ]].
+
+pron-3sgm-no--possessive_pronoun_n := monotonic_mtr &
+[ INPUT [RELS  < [ PRED pron_rel, LBL #h1, 
+		   ARG0 #x1 &  [PERS 3, NUM sg, GEND m] ],
+		 [ PRED "ja:def_q_rel", ARG0 #x1, RSTR #hr ],
+		 [ PRED "ja:_no_n_4_rel", ARG1 #x1 ] >,
+	 HCONS < qeq & [ HARG #hr, LARG #h1 ] >],
+ OUTPUT [RELS  < [ PRED pron_rel, LBL #h2, 
+		   ARG0 #x2 &  [PERS 3, NUM sg, GEND m]],
+ 		 [ PRED pronoun_q_rel,  ARG0 #x2, RSTR #h2r ],
+ 		 [ PRED generic_entity_rel, LBL #h1, ARG0 #x1 
+		   & [PERS 3, NUM no_number, GEND no_gender]],
+ 		 [ PRED def_implicit_q_rel, RSTR #hr, ARG0 #x1  ],
+ 		 [ PRED poss_rel, LBL #h1, ARG1 #x1, ARG2 #x2  ] >,
+ 	  HCONS < qeq & [ HARG #hr, LARG #h1 ],
+		  qeq & [ HARG #h2r, LARG #h2 ] > ]].
+
+pron-3sgf-no--possessive_pronoun_n := monotonic_mtr &
+[ INPUT [RELS  < [ PRED pron_rel, LBL #h1, 
+		   ARG0 #x1 &  [PERS 3, NUM sg, GEND f] ],
+		 [ PRED "ja:def_q_rel", ARG0 #x1, RSTR #hr ],
+		 [ PRED "ja:_no_n_4_rel", ARG1 #x1 ] >,
+	 HCONS < qeq & [ HARG #hr, LARG #h1 ] >],
+ OUTPUT [RELS  < [ PRED pron_rel, LBL #h2, 
+		   ARG0 #x2 &  [PERS 3, NUM sg, GEND f]],
+ 		 [ PRED pronoun_q_rel,  ARG0 #x2, RSTR #h2r ],
+ 		 [ PRED generic_entity_rel, LBL #h1, ARG0 #x1 
+		   & [PERS 3, NUM no_number, GEND no_gender]],
+ 		 [ PRED def_implicit_q_rel, RSTR #hr, ARG0 #x1  ],
+ 		 [ PRED poss_rel, LBL #h1, ARG1 #x1, ARG2 #x2  ] >,
+ 	  HCONS < qeq & [ HARG #hr, LARG #h1 ],
+		  qeq & [ HARG #h2r, LARG #h2 ] > ]].
+
+pron-3sgn-no--possessive_pronoun_n := monotonic_mtr &
+[ INPUT [RELS  < [ PRED pron_rel, LBL #h1, 
+		   ARG0 #x1 &  [PERS 3, NUM sg, GEND n] ],
+		 [ PRED "ja:def_q_rel", ARG0 #x1, RSTR #hr ],
+		 [ PRED "ja:_no_n_4_rel", ARG1 #x1 ] >,
+	 HCONS < qeq & [ HARG #hr, LARG #h1 ] >],
+ OUTPUT [RELS  < [ PRED pron_rel, LBL #h2, 
+		   ARG0 #x2 &  [PERS 3, NUM sg, GEND n]],
+ 		 [ PRED pronoun_q_rel,  ARG0 #x2, RSTR #h2r ],
+ 		 [ PRED generic_entity_rel, LBL #h1, ARG0 #x1 
+		   & [PERS 3, NUM no_number, GEND no_gender]],
+ 		 [ PRED def_implicit_q_rel, RSTR #hr, ARG0 #x1  ],
+ 		 [ PRED poss_rel, LBL #h1, ARG1 #x1, ARG2 #x2  ] >,
+ 	  HCONS < qeq & [ HARG #hr, LARG #h1 ],
+		  qeq & [ HARG #h2r, LARG #h2 ] > ]].
+
+pron-3pl-no--possessive_pronoun_n := monotonic_mtr &
+[ INPUT [RELS  < [ PRED pron_rel, LBL #h1, 
+		   ARG0 #x1 &  [PERS 3, NUM pl] ],
+		 [ PRED "ja:def_q_rel", ARG0 #x1, RSTR #hr ],
+		 [ PRED "ja:_no_n_4_rel", ARG1 #x1 ] >,
+	 HCONS < qeq & [ HARG #hr, LARG #h1 ] >],
+ OUTPUT [RELS  < [ PRED pron_rel, LBL #h2, 
+		   ARG0 #x2 &  [PERS 3, NUM pl]],
+ 		 [ PRED pronoun_q_rel,  ARG0 #x2, RSTR #h2r ],
+ 		 [ PRED generic_entity_rel, LBL #h1, ARG0 #x1 
+		   & [PERS 3, NUM no_number, GEND no_gender]],
+ 		 [ PRED def_implicit_q_rel, RSTR #hr, ARG0 #x1  ],
+ 		 [ PRED poss_rel, LBL #h1, ARG1 #x1, ARG2 #x2  ] >,
+ 	  HCONS < qeq & [ HARG #hr, LARG #h1 ],
+		  qeq & [ HARG #h2r, LARG #h2 ] > ]].

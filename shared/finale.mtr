@@ -1,0 +1,9 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Coding: utf-8; -*- got it?
+
+;;;
+;;;
+;;; finally, make sure that none of the pseudo-predicates introduced within
+;;; either of the transfer phases leaks out with our results.
+;;;
+meta_ditch_ef := elision_mtr &
+[ INPUT.RELS < [ PRED meta ] > ].

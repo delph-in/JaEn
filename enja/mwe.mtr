@@ -1,0 +1,6 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;
+;;; `multi-word' transfer rules: typically things we should process before the
+;;; `regular' transfer rules consume some of the pieces these rules require.
+;;;

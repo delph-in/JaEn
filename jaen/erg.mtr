@@ -1,0 +1,209 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Coding: utf-8; -*- got it?
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; third transfer phase, ERG-specific accomodation: these rules map from the
+;;; LOGON transfer-level representations into MRS `idiosyncrasies' in the ERG.
+;;; in some case, the ERG may just be lagging behind in development, or the
+;;; ERG developers opt to maintain their design independent of LOGON (which we
+;;; could hardly criticize, given there is no LOGON budget line item for ERG
+;;; adaptation :-).  however, ideally, this file should be small
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+mark_ditch_ef := elision_mtr &
+[ INPUT.RELS < [ PRED "mark" ] > ].
+
+
+vmark_ditch_ef := elision_mtr &
+[ INPUT.RELS < [ PRED "vmark" ] > ].
+
+;;; PetterFix
+; #### 15 ####
+
+; JAEN: "_do_v_1_rel"@
+; ERG:  "_play_v_1_rel"@
+
+; Let's play baseball.
+; Let's play soccer.
+; I play tennis.
+; He played tennis.
+; They sometimes play baseball.
+; They are playing volleyball.
+; Let's play volleyball.
+; Jane plays tennis too.
+; He does not play baseball.
+; He plays soccer.
+; I played tennis.
+; I played football.
+; Kenji plays tennis.
+; Nancy does not play tennis.
+; She played basketball.
+
+;;; FIXME more games
+
+play-games := arg12_v_mtr &
+[ CONTEXT.RELS < [ PRED "~_(baseball|basketball|football|golf|soccer|tennis|volleyball|ball)", ARG0 #x  ] >,
+  INPUT.RELS   < [ PRED "_do_v_1_rel", ARG0 #2 ] >,
+  OUTPUT.RELS  < [ PRED "_play_v_1_rel" ] > ].
+
+;;;
+;;; to house -> home
+;;;
+
+to+house--home_mtr := pp_mtr &
+[ INPUT.RELS  < [ PRED _to_p_rel ], 
+		[ PRED "_house_n_1_rel" ], 
+		[ PRED def_udef_a_q_rel ], ... >,
+  OUTPUT.RELS < [ PRED loc_nonsp_rel ], 
+		[ PRED place_n_rel, LBL #h, ARG0 #x], 
+		[ PRED def_implicit_q_rel ],
+		[ PRED _home_p_rel, LBL #h, ARG1 #x,
+		  ARG0 e & [TENSE UNTENSED] ] > ].
+
+
+
+
+;;;
+;;; _fix_me_
+;;; there appears to be a growth industry of quantifier adjustments; turn this
+;;; into a type, but also aim for better harmonization.         (27-jul-04; oe)
+;;;
+def_q+named_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED named_rel, LBL #h1, ARG0 #x2 ] >,
+            HCONS < qeq & [ HARG #h3, LARG #h1 ] > ],
+  INPUT.RELS < [ PRED def_q_rel, LBL #h4, ARG0 #x2, RSTR #h3, BODY #h5 ] >,
+  FILTER.RELS < [ PRED compound_name_rel, ARG1 #x2 ] >,
+  OUTPUT.RELS < [ PRED proper_q_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+
+
+
+;;; Change superl_rel to "_most_a_1_rel" if it modifies a verb
+;;; Change comp_rel  to "_more_a_1_rel"
+;;; realy a syntactic thing
+
+most_ef := intersective_adverb_mtr &
+ [ CONTEXT.RELS <  [ PRED "~_v_", ARG0 #e ] >,
+   INPUT.RELS < [ PRED superl_rel, ARG1 #e  ] >,
+   OUTPUT.RELS < [ PRED "_most_a_1_rel" ] > ].
+
+more_ef := intersective_adverb_mtr &
+ [ CONTEXT.RELS <  [ PRED "~_v_", ARG0 #e ] >,
+   INPUT.RELS < [ PRED comp_rel, ARG1 #e  ] >,
+   OUTPUT.RELS < [ PRED "_more_a_1_rel" ] > ].
+
+
+very-a_lot_ef := intersective_adverb_mtr &
+ [ CONTEXT.RELS <  [ PRED "~_v_", ARG0 #e ] >,
+   INPUT.RELS <    [ PRED "_very_x_deg_rel", ARG1 #e  ] >,
+   OUTPUT.RELS <   [ PRED "_a+lot_a_1_rel" ] > ].
+
+;;;
+; progressive_nom_ef := monotonic_mtr &
+;  [ FILTER.RELS < [PRED prog_mark, LBL #h, ARG0 #e] >,
+;    CONTEXT.RELS <  [ PRED nominalization_rel, ARG1 #h ],
+;    		   [ PRED "~_v_", LBL #h, ARG0 #e]   >,
+;    OUTPUT.RELS < [PRED prog_mark, LBL #h, ARG0 #e] > ].
+progressive_nom_ef := monotonic_mtr &
+ [ FILTER.RELS < [PRED prog_mark, LBL #h, ARG0 #e] >,
+   CONTEXT.RELS < [ PRED nominalization_rel, ARG1 #h ] >,
+   INPUT.RELS	< [ PRED "~_v_", LBL #h, ARG0 #e & [ PROG - ]]   >,
+   OUTPUT.RELS < +copy+ & [ ARG0 [ PROG + ] ] > ].
+
+
+
+;;; (FCB 2008-06-05)
+;;
+;; It would be nice to block these earlier
+;;
+
+block-noun-nomilization_ef := monotonic_mtr &
+ [ INPUT.RELS	<  [ PRED nominalization_rel, ARG1 #h ],
+		   [ PRED "~_n_", LBL #h, ARG0 #e & e ] >,
+   FLAGS.BLOCK "nominalized noun" ].
+
+;;; make sure main clause and subordinate clause share tense -- eric 2008/06/13
+
+mark_subord_past_tense_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ LBL #h1, ARG0 #e1 & e, ARG1 #h2 & h, ARG2 #h3 & h ],
+		   [ LBL #h4, ARG0 #e2 & e & [ TENSE PAST ] ],
+		   [ LBL #h5, ARG0 #e3 ] >,
+	    HCONS < qeq & [ HARG #h2, LARG #h4 ],
+		    qeq & [ HARG #h3, LARG #h5 ] > ],
+  FILTER.RELS < [ PRED "subord_past_tense_mark", LBL #h5, ARG0 #e3 ] >,
+  OUTPUT.RELS < [ PRED "subord_past_tense_mark", LBL #h5, ARG0 #e3 ] >,
+  FLAGS.EQUAL < #e1, #h2, #e2, #h3 > ].
+
+mark_subord_pres_tense_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ LBL #h1, ARG0 #e1 & e, ARG1 #h2 & h, ARG2 #h3 & h ],
+		   [ LBL #h4, ARG0 #e2 & e & [ TENSE PRES ] ],
+		   [ LBL #h5, ARG0 #e3 ] >,
+	    HCONS < qeq & [ HARG #h2, LARG #h4 ],
+		    qeq & [ HARG #h3, LARG #h5 ] > ],
+  FILTER.RELS < [ PRED "subord_pres_tense_mark", LBL #h5, ARG0 #e3 ] >,
+  OUTPUT.RELS < [ PRED "subord_pres_tense_mark", LBL #h5, ARG0 #e3 ] >,
+  FLAGS.EQUAL < #e1, #h2, #e2, #h3 > ].
+
+fix_subord_past_tense_ef := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h, ARG0 #e ],
+	       [ PRED "subord_past_tense_mark", LBL #h, ARG0 #e ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 #e & e & [ TENSE PAST ] ] >,
+  FLAGS.EQUAL < #e > ].
+
+fix_subord_pres_tense_ef := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h, ARG0 #e ],
+	       [ PRED "subord_pres_tense_mark", LBL #h, ARG0 #e ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 #e & e & [ TENSE PRES ] ] >,
+  FLAGS.EQUAL < #e > ].
+
+;;; where questions need a loc_nonsp_rel instead of _be_v_id_rel -- eric 2008/06/15
+;;; 空港 バス の 乗り場 は どこ です か 。 → Where is the airport bus?
+be_v_id-loc_nonsp := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED which_q_rel, ARG0 #x1 ],
+		 [ PRED place_n_rel, ARG0 #x1 ]>,
+  INPUT.RELS < [ PRED _be_v_id_rel, LBL #h3, ARG0 #e, ARG1 #x2, ARG2 #x1 ] >,
+  OUTPUT.RELS < [ PRED loc_nonsp_rel, LBL #h3, ARG0 #e, ARG1 #x2, ARG2 #x1 ] > ].
+
+;;; relative noun fix -- insert a dummy ARG1
+;;; eric -- 2008/10/24
+
+; zero_arg1_rel_noun_ef := monotonic_mtr &
+; [ INPUT.RELS < [ PRED #p, LBL #h, ARG0 #x0 ],
+; 	       [ PRED "~rel_noun_mark", LBL #h, ARG0 #x0 ] >,
+;   OUTPUT.RELS < [ PRED #p, LBL #h, ARG0 #x0, ARG1 #i ] >,
+;   FLAGS.EQUAL < #i & i > ].
+
+all_mark_ditch_ef := elision_mtr &
+[ INPUT.RELS < [ PRED "~_mark\"?$" ] > ].
+
+;;;
+;;; The following two rules replaces "unit of" with either "piece of" or 
+;;; nothing.
+;;; unit of news > piece of news
+;;; Kindly caution the unit of health > Kindly caution the health
+;;;                                                             (24-sep-10; ph)
+
+unit_of-piece_of_change_mtr := monotonic_omtr &
+[ INPUT.RELS < [ PRED "_unit_n_of_rel", LBL #h1, ARG0 #x1, ARG1 #x2 ] >,
+  OUTPUT.RELS < [ PRED "_piece_n_of_rel", LBL #h1, ARG0 #x1, ARG1 #x2 ] > ].
+
+unit_of_n-n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ PRED #pred, LBL #h3, ARG0 #x3 ],
+                 [ PRED "_unit_n_of_rel", LBL #h1, ARG0 #x2, ARG1 #x3 ],
+                 [ PRED udef_q_rel, ARG0 #x3, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h3 ] > ],
+  OUTPUT.RELS < [ PRED #pred, LBL #h1, ARG0 #x2 ] > ].
+
+;;
+;; relaxed TENSE past_or_fut to TENSE TENSE
+;;
+
+conj_pres_jaen_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED conj_rel, 
+                 ARG0 #e0 & e & [ TENSE tense ], 
+                 L-INDEX #e1 & e & [ TENSE pres ] ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ TENSE pres ] ] >,
+  FLAGS.EQUAL < #e0, #e1 > ].

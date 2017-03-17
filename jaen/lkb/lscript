@@ -1,0 +1,121 @@
+;; Hey, emacs(1), this is -*- Mode: Common-Lisp; Package: LKB; -*- got it?
+
+;;;
+;;; first, load a number of LKB-specific settings; typically no need to look
+;;; too closely here
+;;;
+(lkb-load-lisp (parent-directory) "Version.lsp" t)
+(lkb-load-lisp (this-directory) "globals.lsp")
+(lkb-load-lisp (this-directory) "user-fns.lsp")
+(lkb-load-lisp (this-directory) "patches.lsp")
+
+;;;
+;;; next load the common transfer type hierarchy (the Transfer MatriX) ...
+;;;
+(read-tdl-type-files-aux
+  (list 
+   (lkb-pathname (grandparent-directory) "mrs.tdl")
+   (lkb-pathname (grandparent-directory) "mtr.tdl")
+   ;;
+   ;; ... plus additional MRS and MTR type definitions for this language pair
+   ;;
+   (lkb-pathname (parent-directory) "mrs.tdl")
+   (lkb-pathname (parent-directory) "mtr.tdl")
+   (lkb-pathname (parent-directory) "predicates.tdl")
+   (lkb-pathname (grandparent-directory) "predicates.tdl")
+   (lkb-pathname (grandparent-directory) "predicates.erg.tdl")
+   (lkb-pathname (grandparent-directory) "predicates.jacy.tdl")))
+
+;;;
+;;; a few more LKB-specific settings, this time for MRS post-processing and
+;;; generation; also, we always compute the generation index (while we have
+;;; small lexica) in the hope that the generator will be used frequently.
+;;;
+(lkb-load-lisp (this-directory) "mrsglobals.lsp" t)
+(lkb-load-lisp (this-directory) "mt.lsp")
+
+;;;
+;;; read the `in' and `out' variable property mappings (VPMs), adjusting index
+;;; properties in input and output MRSs, respectively.
+;;;
+(mt:read-vpm (lkb-pathname (parent-directory) "in.vpm") :in)
+(mt:read-vpm (lkb-pathname (parent-directory) "out.vpm") :out)
+
+;;;
+;;; also read the target language SEM-I, so as to filter transfer ouputs that
+;;; are doomed to fail downstream.
+;;;
+
+(mt:read-semi (logon-file "lingo/erg" "erg.smi"))
+
+;;;
+;;; transfer operates in three phases: (i) source-specific accomodation, (ii)
+;;; core transfer, and (iii) target-specific accomodation.
+;;;
+(mt:read-transfer-rules 
+ (list
+  (lkb-pathname (parent-directory) "jacy.mtr"))
+ "SL accomodation phase"
+ :filter nil :in :in :before "preprocess")
+
+(mt:read-transfer-rules 
+ (list
+  (lkb-pathname (parent-directory) "mwe.mtr")
+  ;; automatically generated MWE rules
+ ; (lkb-pathname (parent-directory) "auto/lex-auto-jaen.mwe.phr-tab.mtr")
+ ; (lkb-pathname (parent-directory) "auto/lex-auto-jaen.mwe.0.mtr")
+;;   (lkb-pathname (parent-directory) "names.mtr")
+  ; Experimental rules for IWSLT06 data -- eric-n
+  (lkb-pathname (parent-directory) "lex-exp.mtr")
+  ;; hand built lexicons of core words 
+  (lkb-pathname (parent-directory) "lex-verb.mtr")
+  (lkb-pathname (parent-directory) "lex-noun.mtr")
+  (lkb-pathname (parent-directory) "lex-pnoun.mtr")
+  (lkb-pathname (parent-directory) "lex-ad.mtr")
+  (lkb-pathname (parent-directory) "lexicon.mtr")
+  (lkb-pathname (parent-directory) "time.mtr") ;;; date/times
+  (lkb-pathname (parent-directory) "lex-mrs-jaen.mtr")
+
+; (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.phr-tab.mtr")
+; (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.0.mtr")
+; (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.1.mtr")
+; (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.2.mtr")
+; (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.3.mtr")
+; (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.4.mtr")
+; (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.5.mtr")
+; (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.6.mtr")
+;;;   (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.7.mtr")
+
+;;   (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.8.mtr")
+;;   (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.9.mtr")
+;;   (lkb-pathname (parent-directory) "auto/lex-auto-jaen.single.10.mtr")
+
+  ;; Rules that assume content words have been translated
+  ;; must come after auto-rules
+  (lkb-pathname (parent-directory) "rel-nouns.mtr")
+  (lkb-pathname (parent-directory) "prepositions.mtr")
+  (lkb-pathname (parent-directory) "quantifiers.mtr")
+  ;;(lkb-pathname (parent-directory) "unknowns.mtr")
+  (lkb-pathname (parent-directory) "zero-pronouns.mtr")
+ ;;
+  ;; at this point, for further fine-tuning, infuse information from the TL
+  ;; SEM-I, at this point marking predicates that are strictly countable or
+  ;; strictly non-countable.  then invoke the global `snugging' rules (which
+  ;; provide reasonably generic mechanisms for processes like splitting up or
+  ;; joining variables), followed by further snugging rules, specific to this
+  ;; language pair.
+  ;;
+  (lkb-pathname (grandparent-directory) "semi.erg.mtr")
+  (lkb-pathname (grandparent-directory) "snug.mtr")
+  (lkb-pathname (parent-directory) "snug.mtr"))
+
+ "core transfer phase"
+ :filter t)
+
+(mt:read-transfer-rules 
+ (list
+  (lkb-pathname (grandparent-directory) "erg.mtr")
+  (lkb-pathname (parent-directory) "erg.mtr")
+  (lkb-pathname (grandparent-directory) "finale.mtr"))
+ "TL accomodation phase"
+ :out :out :post :erg :filter nil :after "postprocess")

@@ -1,0 +1,73 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+; Rules for relative nouns that need to be done after noun translation but
+; before no etc.
+
+;;; mark the different relative noun types
+
+mark_of_rel_noun_ef := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "~_n_of", LBL #h, ARG0 #x0 ] >,
+  OUTPUT.RELS < [ PRED "of_rel_noun_mark", 
+		  LBL #h, ARG0 #x0 ] >,
+  FILTER.RELS < [ PRED "of_rel_noun_mark",
+		  LBL #h, ARG0 #x0 ] > ].
+
+mark_to_rel_noun_ef := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "~_n_to", LBL #h, ARG0 #x0 ] >,
+  OUTPUT.RELS < [ PRED "to_rel_noun_mark",
+		  LBL #h, ARG0 #x0 ] >,
+  FILTER.RELS < [ PRED "to_rel_noun_mark",
+		  LBL #h, ARG0 #x0 ] > ].
+
+mark_for_rel_noun_ef := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "~_n_for", LBL #h, ARG0 #x0 ] >,
+  OUTPUT.RELS < [ PRED "for_rel_noun_mark", 
+		  LBL #h, ARG0 #x0 ] >,
+  FILTER.RELS < [ PRED "for_rel_noun_mark", 
+		  LBL #h, ARG0 #x0 ] > ].
+
+mark_about_rel_noun_ef := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "~_n_about", LBL #h, ARG0 #x0 ] >,
+  OUTPUT.RELS < [ PRED "about_rel_noun_mark", 
+		  LBL #h, ARG0 #x0 ] >,
+  FILTER.RELS < [ PRED "about_rel_noun_mark", 
+		  LBL #h, ARG0 #x0 ] > ].
+
+embed_no+of_rel_noun := monotonic_omtr &
+[ INPUT.RELS < [ PRED #p, LBL #h, ARG0 #x0 ],
+	       [ PRED "of_rel_noun_mark",
+		 LBL #h, ARG0 #x0 ],
+	       [ PRED "ja:_no_p_rel", 
+		 ARG0 #e, ARG1 #x0, ARG2 #x1 ] >,
+  OUTPUT.RELS < [PRED #p, LBL #h, ARG0 #x0, ARG1 #x1 ] >].
+
+
+embed_e+no+to_rel_noun := monotonic_omtr &
+[ INPUT.RELS < [ PRED #p, LBL #h, ARG0 #x0 ],
+	       [ PRED "to_rel_noun_mark",
+		 LBL #h, ARG0 #x0 ],
+	       [ PRED "ja:_e_p_rel", 
+		 ARG0 #e, ARG1 #x0, ARG2 #x1 ],
+	       [ PRED "ja:_no_p_rel", 
+		 ARG0 #e, ARG1 #x1, ARG2 #x2 ] >,
+  OUTPUT.RELS < [PRED #p, LBL #h, ARG0 #x0, ARG1 #x1 ] > ].
+
+embed_notame+no+for_rel_noun := monotonic_omtr &
+[ INPUT.RELS < [ PRED #p, LBL #h, ARG0 #x0 ],
+	       [ PRED "for_rel_noun_mark",
+		 LBL #h, ARG0 #x0 ],
+	       [ PRED "ja:_notame_p_rel", 
+		 ARG0 #e, ARG1 #x0, ARG2 #x1 ],
+	       [ PRED "ja:_no_p_rel", 
+		 ARG0 #e, ARG1 #x1, ARG2 #x2 ] >,
+  OUTPUT.RELS < [PRED #p, LBL #h, ARG0 #x0, ARG1 #x1 ]> ].
+
+embed_nitsuite+no+about_rel_noun := monotonic_omtr &
+[ INPUT.RELS < [ PRED #p, LBL #h, ARG0 #x0 ],
+	       [ PRED "about_rel_noun_mark",
+		 LBL #h, ARG0 #x0 ],
+	       [ PRED "ja:_nitsuite_p_rel", 
+		 ARG0 #e, ARG1 #x0, ARG2 #x1 ],
+	       [ PRED "ja:_no_p_rel", 
+		 ARG0 #e, ARG1 #x1, ARG2 #x2 ] >,
+  OUTPUT.RELS < [PRED #p, LBL #h, ARG0 #x0, ARG1 #x1 ]> ].

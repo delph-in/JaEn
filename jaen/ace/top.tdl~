@@ -1,0 +1,67 @@
+:begin :type.
+:include "../../mrs.tdl".
+:include "../../mtr.tdl".
+:include "../mrs.tdl".
+:include "../../mrs.jacy.tdl".
+:include "../mtr.tdl".
+:include "../predicates.tdl".
+:include "../../predicates.tdl".
+:include "../../predicates.erg.tdl".
+:include "../../predicates.jacy.tdl".
+:end :type.
+
+:begin :instance :status rule.
+
+;;;
+;;; transfer operates in three phases: (i) source-specific accomodation, (ii.
+;;; core transfer, and (iii) target-specific accomodation.
+;;;
+:include "../jacy.mtr".
+:include "../mwe.mtr".
+
+; :include "../auto/mwe.selected.mtr".
+;:include "../auto/lex-auto-jaen.mwe.mrs-tab.mtr".
+;:include "../auto/lex-auto-jaen.mwe.phr-tab.mtr".
+:include "../select-out/mwe.selected.mtr".
+
+  ;; automatically generated MWE rules
+;; :include "../names.mtr".
+  ; Experimental rules for IWSLT06 data -- eric-n
+:include "../lex-exp.mtr".
+  ;; hand built lexicons of core words 
+:include "../lex-verb.mtr".
+:include "../lex-noun.mtr".
+:include "../lex-pnoun.mtr".
+:include "../lex-ad.mtr".
+:include "../lexicon.mtr".
+:include "../time.mtr". ;;; date/times
+:include "../lex-mrs-jaen.mtr".
+
+  ;; automatically generated single word rules
+; :include "../auto/single.selected.mtr".
+;:include "../auto/lex-auto-jaen.single.mrs-tab.mtr".
+;:include "../auto/lex-auto-jaen.single.phr-tab.mtr".
+:include "../select-out/single.selected.mtr".
+
+  ;; Rules that assume content words have been translated
+  ;; must come after auto-rules
+:include "../rel-nouns.mtr".
+:include "../prepositions.mtr".
+:include "../quantifiers.mtr".
+  ;;(lkb-pathname (parent-directory) "unknowns.mtr".
+:include "../zero-pronouns.mtr".
+ ;;
+  ;; at this point, for further fine-tuning, infuse information from the TL
+  ;; SEM-I, at this point marking predicates that are strictly countable or
+  ;; strictly non-countable.  then invoke the global `snugging' rules (which
+  ;; provide reasonably generic mechanisms for processes like splitting up or
+  ;; joining variables), followed by further snugging rules, specific to this
+  ;; language pair.
+  ;;
+:include "../../semi.erg.mtr".
+:include "../../snug.mtr".
+:include "../snug.mtr".
+:include "../../erg.mtr".
+:include "../erg.mtr".
+:include "../../finale.mtr".
+:end :instance.

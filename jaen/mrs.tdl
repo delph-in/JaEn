@@ -1,0 +1,11 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Coding: utf-8; -*- got it?
+
+;;; add some erg specific types
+;;; try taking these out
+e :+
+[ STATIVE luk, BOUNDED luk, PASS bool ].
+
+mrs_transfer_rule :+ 
+[ JA mrs,
+  EN mrs ].
+

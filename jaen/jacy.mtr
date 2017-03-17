@@ -1,0 +1,228 @@
+
+;;; -*- Mode: TDL; Package: LKB; Encoding: utf-8-*- got it?
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; first transfer phase, JaCY-specific accomodation: these rules primarly
+;;; patch up `deficiencies' in JaCY MRSs, e.g. ditch selected relations.
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;
+;;; FIXME: block some unwanted readings early on
+;;;
+;;; obviously it would be better to either
+;;; (a) block them in the gramamr
+;;; (b) rank them low enough we can ignore them
+;;;
+;;; (FCB 2007-05-24)
+block-kudasarau_nf := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_kudasaru_v_aux_rel", LBL #h0, ARG0 #e0],
+		 [ PRED "ja:coord", R-HNDL #h0 ] >,
+    FLAGS.BLOCK "coordinate -te kudasaru" ].
+
+block-te-iru-coord_nf  := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "~ja:_iru_v_", LBL #h0] >,
+  INPUT.RELS < [ PRED "ja:coord", R-HNDL #h0 ] >,
+    FLAGS.BLOCK "coordinate -te iru" ].
+
+block-te-iru-adjunct_nf  := monotonic_mtr &
+ [ CONTEXT.RELS < [ PRED "~ja:_iru_v_", LBL #hv] >,
+   INPUT [ RELS < [ PRED "ja:_te_adjunct_rel", R-HNDL #ht ] >,
+	   HCONS <  qeq & [ HARG #ht, LARG #hv ] > ],
+   FLAGS.BLOCK "adjunct -te iru" ].
+
+;;; block all te_adjunct for now
+block-te-adjunct_nf  := monotonic_mtr &
+ [ INPUT [ RELS < [ PRED "ja:_te_adjunct_rel", R-HNDL #ht ] >,
+	   HCONS <  qeq & [ HARG #ht, LARG #hv ] > ],
+   FLAGS.BLOCK "adjunct -te" ].
+
+;;; semantics malformed in jacy
+block-naru_v_3 := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_3_rel" ] >,
+    FLAGS.BLOCK "naru_v_3" ].
+
+
+;;; we have no rule for this yet
+block-rel_p_nf := monotonic_mtr &
+ [ INPUT.RELS < [ PRED "ja:rel_p_rel", LBL #h0, ARG0 #e0] >,
+   FLAGS.BLOCK "rel_p_rel" ].
+
+;;; later we may play with this, currently is is blocked by the proceeding rule.
+rel_p-d := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:rel_p_rel" ] >,
+ OUTPUT.RELS < [ PRED "ja:rel_d_rel" ] > ].
+
+block-kara_n_3_nf := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_kara_n_3_rel", LBL #h0, ARG0 #x0 ] >,
+  FLAGS.BLOCK "kana kara" ].
+
+block-de_n_1_nf := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_de_n_1_rel", LBL #h0, ARG0 #x0 ] >,
+  FLAGS.BLOCK "kana de" ].
+
+block-iru_v_6_nf := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_iru_v_6_rel", LBL #h0, ARG0 #e0 ] >,
+  FLAGS.BLOCK "kana consonant iru" ].
+
+block-_suru_v_intrans_nf := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_suru_v_intrans_rel", LBL #h0, ARG0 #e0 ] >,
+  FLAGS.BLOCK "intransitive suru" ].
+
+;;; fix Cardinal's label
+
+card_mark_jf := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "card_rel", LBL #h0, ARG0 #e1 & u ] >,
+  FILTER.RELS < [ PRED "card_mark", LBL #h0, ARG0 #e1 ] >,
+  OUTPUT.RELS < [ PRED "card_mark", LBL #h0, ARG0 #e1 ] >,
+  FLAGS.EQUAL < #e1 > ].
+
+card_relable_jf := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h0, ARG0 #x1 ] >,
+ INPUT.RELS < [ LBL #h1, PRED #card, ARG0 #e1, ARG1 #x1, CARG #c1],
+               [ PRED "card_mark", LBL #h1, ARG0 #e1 ] >,
+  OUTPUT.RELS < [ LBL #h0, PRED #card, 
+		  ARG0 #e1, ARG1 #x1, CARG #c1 ] > ].
+
+
+;;;
+;;; fill in tense in compound sentences 
+;;; if tense of the sub S is undefined, make it the same as the main S
+
+; conj_tense_mtr := monotonic_mtr &
+; [ INPUT.RELS < [ PRED #pred, LBL #h1, ARG0 #e1 & [MARK test],
+; 		 L-HNDL #hl, L-INDEX #el & [TENSE notense],
+; 		 R-HNDL #hr, R-INDEX #er & [TENSE #tense ] ] >,
+;  OUTPUT.RELS < [ PRED #pred, LBL #h1, ARG0 #e1 & [MARK complete],
+; 		 L-HNDL #hl, L-INDEX #el & [TENSE #tense],
+; 		 R-HNDL #hr, R-INDEX #er & [TENSE #tense] ] > ].
+
+;;; fix the wierd argument order in JACY for prepositions
+;;; fixed in JACY, kept as an example
+; prep_mark_jf := monotonic_mtr &
+; [ CONTEXT.RELS < [ PRED "~_p_", LBL #h0, ARG0 #e1 & e ] >,
+;   FILTER.RELS < [ PRED "prep_swap_mark", LBL #h0, ARG0 #e1 ] >,
+;   OUTPUT.RELS < [ PRED "prep_swap_mark", LBL #h0, ARG0 #e1 ] >,
+;   FLAGS.EQUAL < #e1 > ].
+
+;;
+;; Also does transitive (;_;).  Not very robust.
+;;
+
+vn-intrans-suru-verb_jf := optional_mtr &
+[  INPUT [ RELS < [PRED "ja:_suru_v_rel", LBL #hv,
+		 ARG0 #v0, ARG1 #v1, ARG2 #x0 ],
+		[ PRED "ja:nominalization_rel", LBL #hn, ARG0 #x0, ARG1 #hs],
+		[ PRED "ja:udef_q_rel", ARG0 #x0, RSTR #hr ],
+                [ PRED #pred, LBL #hs ] >,
+          HCONS < qeq & [ HARG #hr, LARG #hn ] > ],
+ OUTPUT [RELS < [ PRED #pred, LBL #hv, ARG0 #v0, ARG1 #v1 ] >,
+         HCONS < > ] ].
+
+
+;; FCB rewrite nominalizations into similar nouns
+;; be ambitous and don`t make it optional
+;;
+;; Note --- this is just smashing the arguments at the moment
+;;      --- need to transfer them if possible
+;;; <ex>運転 が 吠える
+
+
+vn-n_jf := optional_mtr &
+ [ CONTEXT.RELS < [ PRED "ja:udef_q_rel", ARG0 #x0 ] >,
+   INPUT.RELS < [ PRED "ja:nominalization_rel", LBL #h6, ARG0 #x0, ARG1 #h0],
+		  [ PRED #pred, LBL #h0 ] >,
+   OUTPUT.RELS < [ PRED #pred, LBL #h6, ARG0 #x0 ] >].
+
+
+;;
+;; Fix semantics of plural markers
+;; FIXME doesn't work properly for named_rel
+
+plural-marker-jf := monotonic_mtr &
+ [ CONTEXT [RELS < [ ARG0 #x0, RSTR #hr ] >,
+	    HCONs < qeq & [ HARG #hr, LARG #h0 ] > ],
+   INPUT.RELS < [ PRED #pred, LBL #h0, 
+		  ARG0 #x0 & [ PERS #pers, NUM #num ]],
+		[ PRED "~ja.*_a_pl_rel",
+		  LBL #h1, ARG0 #e1, ARG1 #x0 ] >,
+   OUTPUT.RELS < [PRED #pred, LBL #h0, 
+		  ARG0 #x0 & [ PERS #pers, NUM pl ]] > ].
+
+
+
+;;;
+;;; let's understand polite input, even if we aren't polite ourselves (^_^).
+;;; FCB 2007-05-24
+;;;
+gozaru_v--exist_v_jf := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_gozaru_v_1_rel" ] >,
+ OUTPUT.RELS < [ PRED "ja:_exist_v_rel" ] > ].
+
+;;; treat iru like aru
+iru_v--exist_v_jf := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_iru_v_be_rel" ] >,
+ OUTPUT.RELS < [ PRED "ja:_exist_v_rel" ] > ].
+
+;;; treat the exist in nai
+;nai--exist_v_jf := arg1_v_mtr &
+;[ INPUT.RELS < [ PRED "ja:exist_v_rel" ] >,
+; OUTPUT.RELS < [ PRED "ja:_exist_v_rel" ] > ].
+
+;;; until jacy gets updatesd
+;nai--exist_v_jf := arg1_v_mtr &
+;[ INPUT.RELS < [ PRED "ja:exist" ] >,
+; OUTPUT.RELS < [ PRED "ja:_exist_v_rel" ] > ].
+
+;;;
+;;; Treat topicalized locatives as just locatives
+;;; no longer need this (thanks to the ditch rel)
+
+; p-wa--p_jf := monotonic_mtr &
+; [ INPUT.RELS < [ PRED #pred,
+; 		 LBL  #h,
+; 		 ARG0 #e0,
+; 		 ARG1 #i1,
+; 		 ARG2 #i2],
+; 	       [ PRED "ja:_wa_d_rel",
+; 		 LBL  #h,
+; 		 ARG0 #e,
+; 		 ARG1 #i1,
+; 		 ARG2 #i2 ] >,
+;  OUTPUT.RELS < [ PRED #pred,
+; 		 LBL  #h,
+; 		 ARG0 #e0,
+; 		 ARG1 #i1,
+; 		 ARG2 #i2]  > ].
+
+;;
+;; treat Hiragana wakaru as 分かる
+wakaru_v_1--wakaru_v_3_jf := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_wakaru_v_1_rel" ] >,
+ OUTPUT.RELS < [ PRED "ja:_wakaru_v_3_rel" ] > ].
+
+;;;
+;;;  interlingua predicates
+;;; 
+compound_n_jf := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:compound_rel" ] >,
+  OUTPUT.RELS < +copy+ & [ PRED compound_rel ] > ].
+
+person_n_jf := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:person_n_rel" ] >,
+  OUTPUT.RELS < [ PRED person_rel ] > ].
+
+person_rel_n_1_jf := noun_mtr & 
+[ JA.RELS < [ PRED "ja:person" ] >,
+  EN.RELS < [ PRED person_rel ] > ].
+
+;;; ARG1 not #x
+nominalization_jf := relational_noun_mtr & 
+[ JA.RELS < [ PRED "ja:nominalization_rel" ] >,
+  EN.RELS < [ PRED nominalization_rel ] > ].
+
+;;; interlingua predicates
+;named_n := monotonic_mtr &
+;[ INPUT.RELS < [ PRED "ja:named_rel" ] >,
+;  OUTPUT.RELS < +copy+ & [ PRED named_rel ] > ].

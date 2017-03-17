@@ -1,0 +1,24 @@
+;;;
+;;; adjust target-language index properties post-transfer
+;;;
+
+TENSE : TENSE
+  * >> *
+
+MOOD : MOOD
+  * >> *
+
+PERF : PERF
+  * >> *
+
+PROG : PROG
+  * >> *
+
+PERS : PERS
+  * >> *
+
+NUM : NUM
+  * >> *
+
+GEND : GEND
+  * >> *

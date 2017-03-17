@@ -1,0 +1,87 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+; named_rel :=  proper_np_mtr &
+; [ INPUT.RELS < [ CARG #carg ], ... >,
+;   OUTPUT.RELS < [ CARG #carg & +downcase+ ], ... > ].
+
+getsu-mon-dofw_mtr :=  dofw-mtr &
+ [ INPUT.RELS < [ CARG "_mon" ] >, 
+   OUTPUT.RELS <[ CARG "Mon" ] > ].
+
+ka-tue-dofw_mtr :=  dofw-mtr &
+ [ INPUT.RELS < [ CARG "_tue" ] >,
+   OUTPUT.RELS <[ CARG "Tue" ] > ].
+
+sui-wed-dofw_mtr :=  dofw-mtr &
+ [ INPUT.RELS < [ CARG "_wed" ] >,
+   OUTPUT.RELS <[ CARG "Wed" ] > ].
+
+moku-thu-dofw_mtr :=  dofw-mtr &
+ [ INPUT.RELS < [ CARG "_thu" ] >,
+   OUTPUT.RELS <[ CARG "Thu" ] > ].
+
+kin-fri-dofw_mtr :=  dofw-mtr &
+ [ INPUT.RELS < [ CARG "_fri" ] >,
+   OUTPUT.RELS <[ CARG "Fri" ] > ].
+
+do-sat-dofw_mtr :=  dofw-mtr &
+ [ INPUT.RELS < [ CARG "_sat" ] >,
+   OUTPUT.RELS <[ CARG "Sat" ] > ].
+
+nichi-sun-dofw_mtr :=  dofw-mtr &
+ [ INPUT.RELS < [ CARG "_sun" ] >,
+   OUTPUT.RELS <[ CARG "Sun" ] > ].
+
+
+;;;
+;;; Months
+;;;
+
+1gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "1" ], ... >,
+  OUTPUT.RELS < [ CARG "Jan" ], ... > ].
+
+2gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "2" ], ... >,
+  OUTPUT.RELS < [ CARG "Feb" ], ... > ].
+
+3gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "3" ], ... >,
+  OUTPUT.RELS < [ CARG "Mar" ], ... > ].
+
+4gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "4" ], ... >,
+  OUTPUT.RELS < [ CARG "Apr" ], ... > ].
+
+5gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "5" ], ... >,
+  OUTPUT.RELS < [ CARG "May" ], ... > ].
+
+6gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "6" ], ... >,
+  OUTPUT.RELS < [ CARG "Jun" ], ... > ].
+
+7gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "7" ], ... >,
+  OUTPUT.RELS < [ CARG "Jul" ], ... > ].
+
+8gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "8" ], ... >,
+  OUTPUT.RELS < [ CARG "Aug" ], ... > ].
+
+9gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "9" ], ... >,
+  OUTPUT.RELS < [ CARG "Sep" ], ... > ].
+
+10gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "10" ], ... >,
+  OUTPUT.RELS < [ CARG "Oct" ], ... > ].
+
+11gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "11" ], ... >,
+  OUTPUT.RELS < [ CARG "Nov" ], ... > ].
+
+12gatsu-june-mtr :=  mofy-mtr &
+[ INPUT.RELS <  [ CARG "12" ], ... >,
+  OUTPUT.RELS < [ CARG "Dec" ], ... > ].
+

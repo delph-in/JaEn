@@ -1,0 +1,83 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Coding: utf-8; -*- got it?
+
+;;;
+;;; interlingual relation types, valid for all language pair (we think :-)
+;;;
+
+message_m_rel := predsort.
+imp_m_rel := message_m_rel.
+prop-or-ques_m_rel := message_m_rel.
+prpstn_m_rel := prop-or-ques_m_rel.
+int_m_rel := prop-or-ques_m_rel.
+
+
+discourse_rel := predsort.
+focus_d_rel := discourse_rel.
+parg_d_rel := discourse_rel.
+
+
+quant_rel := predsort.
+def_q_rel := quant_rel.
+idiom_q_rel := quant_rel.
+implicit_q_rel := quant_rel.
+number_q_rel := quant_rel.
+pronoun_q_rel := quant_rel.
+proper_q_rel := quant_rel.
+udef_q_rel := quant_rel.
+which_q_rel := quant_rel.
+
+
+card_rel := predsort.
+poss_rel := predsort.
+identity_rel := predsort.
+measure_rel := predsort.
+neg_rel := predsort.
+ord_rel := predsort.
+part_of_rel := predsort.
+pron_rel := predsort.
+
+manner_rel := predsort.
+named_rel := predsort.
+nominalization_rel := predsort.
+person_rel := predsort.
+place_n_rel := predsort.
+reason_rel := predsort.
+thing_rel := predsort.
+
+unspec_rel := predsort.
+appos_rel := unspec_rel.
+compound_rel := unspec_rel.
+compound_name_rel := unspec_rel.
+title_id_rel := unspec_rel.
+title_rel := unspec_rel.
+
+arit_rel := predsort.
+plus_rel := arit_rel.
+times_rel := arit_rel.
+
+meta := predsort.
+equate := meta.
+argument_equate := equate.
+intersective_equate := equate.
+gend_equate := equate.
+num_equate := equate.
+intersective_num_equate := intersective_equate & num_equate.
+pers_equate := equate.
+
+mark := meta.
+construction_mark := meta.
+count_noun_mark := mark.
+equate_mark := mark.
+focal_mark := mark.
+focal_name_mark := mark.
+individuality_mark := mark.
+mass_noun_mark := mark.
+plural_noun_mark := mark.
+prep_mark := mark.
+
+number_mark := mark.
+sg_mark := number_mark.
+pl_mark := number_mark.
+
+aspect_mark := mark.
+prog_mark := aspect_mark.

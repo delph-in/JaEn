@@ -1,0 +1,35 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Coding: utf-8; -*- got it?
+;;;
+;;; predicates from JACY that we need in the transfer grammar
+;;;
+
+;;; jacy's local message names (same as Matrix)
+propositional_m_rel := message_m_rel.
+proposition_m_rel := propositional_m_rel.
+question_m_rel := propositional_m_rel.
+command_m_rel := message_m_rel.
+
+;;; quantifiers --- try to harmonize with predicates.tdl if possible
+udef_rel := quant_rel.
+def_rel := quant_rel.
+indef_rel := quant_rel.
+whq_rel := quant_rel.
+;dem_rel := quant_rel.
+
+unspec_compound_rel := unspec_rel.
+
+generic-nom_rel := predsort.
+person_n_rel  := predsort. 
+place_rel := predsort.
+;harmonize with person_rel  := predsort.
+
+; eric-n -- 2006/8/29
+rareru_v_can_rel := predsort.
+tai_v_want_rel := predsort.
+
+;;; used for finer quantifier control
+no_num := number.
+not_pl := sg & no_num. 
+not_sg := pl & no_num. 
+;; redefine
+not_number := no_num. 

@@ -1,0 +1,4 @@
+Transfer should work like this:
+
+$ echo " 犬 が 猫 を 食べる " | ~/cdev/ace/ace -g ~/logon/dfki/jacy/ace/jacy.dat -1 2>/dev/null | ~/cdev/ace/ace -g ace/jaen.dat 2>/dev/null | ~/cdev/ace/ace -g ~/cdev/ace/erg-1111.dat -1e 2>/dev/null
+The dog eats the cat.

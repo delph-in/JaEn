@@ -1,0 +1,170 @@
+; "_ronsen_s_1_rel" >> "_discussion_n_1_rel"	1	1.0
+ronsen_s_1--discussion_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ronsen_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_discussion_n_1_rel" ] , ... > ].
+
+; "_ijou_a_3_rel" >> much-many_a_rel	1	0.33105
+ijou_a_3--much-many_a--any-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ijou_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED much-many_a_rel ] , ... > ].
+
+; "_shinsai_n_1_rel" >> "_week_n_1_rel"	1	0.281319
+shinsai_n_1--week_n_1--any-mtr := noun_omtr &
+[ INPUT.RELS < [ PRED "ja:_shinsai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_week_n_1_rel" ] , ... > ].
+
+; "_goui_s_1_rel" >> "_agreement_n_1_rel"	1	0.987972
+goui_s_1--agreement_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_goui_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_agreement_n_1_rel" ] , ... > ].
+
+; "_riyou_s_rel" >> "_passenger_n_1_rel"	1	1.0
+riyou_s--passenger_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_riyou_s_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_passenger_n_1_rel" ] , ... > ].
+
+; "_shinsai_n_1_rel" >> "_earthquake_n_1_rel"	1	0.536264
+shinsai_n_1--earthquake_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinsai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_earthquake_n_1_rel" ] , ... > ].
+
+; "_nishitagai_p_rel" >> _in_p_rel	1	0.352941
+nishitagai_p--in_p--any-mtr := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_nishitagai_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _in_p_rel ] , ... > ].
+
+; "_hajimaru_v_rel" >> "_begin_v_1_rel"	1	1.0
+hajimaru_v--begin_v_1--any-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hajimaru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_begin_v_1_rel" ] , ... > ].
+
+; "_nishitagai_p_rel" >> _of_p_rel	1	0.176471
+nishitagai_p--of_p--any-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_nishitagai_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _of_p_rel ] , ... > ].
+
+; "bei_1" >> "North_Korea"	1	0.417219
+bei_1--North_Korea--any-mtr := n_named_mtr &
+[ INPUT.RELS < [ CARG "bei_1" ] , ... >,
+  OUTPUT.RELS < [ CARG "North_Korea" ] , ... > ].
+
+; "_de_p_rel" >> _as_p_rel	1	0.108
+de_p--as_p--any-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_de_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _as_p_rel ] , ... > ].
+
+; "_kokkai_n_rel" >> "_diet_n_1_rel"	1	1.0
+kokkai_n--diet_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kokkai_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_diet_n_1_rel" ] , ... > ].
+
+; "_kaifuku_s_1_rel" >> "_victim_n_of_rel"	1	1.0
+kaifuku_s_1--victim_n_of--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kaifuku_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_victim_n_of_rel" ] , ... > ].
+
+; "_nitotte_p_rel" >> _of_p_rel	1	0.183333
+nitotte_p--of_p--any-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_nitotte_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _of_p_rel ] , ... > ].
+
+; "_kyoukun_s_1_rel" >> "_lesson_n_1_rel"	1	1.0
+kyoukun_s_1--lesson_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyoukun_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lesson_n_1_rel" ] , ... > ].
+
+; "unspec_p_rel" >> _of_p_rel	1	0.33
+unspec_p--of_p--any-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:unspec_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _of_p_rel ] , ... > ].
+
+; "_juutaku_n_1_rel" >> "_housing_n_1_rel"	1	0.999423
+juutaku_n_1--housing_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_juutaku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_housing_n_1_rel" ] , ... > ].
+
+; "_ooku_n_1_rel" >> "_victim_n_of_rel"	1	0.159544
+ooku_n_1--victim_n_of--any-mtr := noun_omtr &
+[ INPUT.RELS < [ PRED "ja:_ooku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_victim_n_of_rel" ] , ... > ].
+
+; "_ooku_n_1_rel" >> "_public_n_1_rel"	1	0.45584
+ooku_n_1--public_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ooku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_public_n_1_rel" ] , ... > ].
+
+; "_sha_a_4_rel" >> "_grow_v_1_rel"	1	0.29316
+sha_a_4--grow_v_1--any-mtr := adj_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_sha_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_grow_v_1_rel" ] , ... > ].
+
+; "_higai_n_1_rel" >> "_damage_n_to_rel"	1	0.734513
+higai_n_1--damage_n_to--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_higai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_damage_n_to_rel" ] , ... > ].
+
+; "kitachousen-agent" >> "North_Korea"	1	0.884475
+kitachousen-agent--North_Korea--any-mtr := n_named_mtr &
+[ INPUT.RELS < [ CARG "kitachousen-agent" ] , ... >,
+  OUTPUT.RELS < [ CARG "North_Korea" ] , ... > ].
+
+; "_hisai_s_1_rel" >> "_disaster_n_1_rel"	1	0.801337
+hisai_s_1--disaster_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hisai_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_disaster_n_1_rel" ] , ... > ].
+
+; "_ookii_a_rel" >> "_major_a_1_rel"	1	0.167496
+ookii_a--major_a_1--any-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ookii_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_major_a_1_rel" ] , ... > ].
+
+; "_seikatsu_s_1_rel" >> "_life_n_of_rel"	1	0.73679
+seikatsu_s_1--life_n_of--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_seikatsu_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_life_n_of_rel" ] , ... > ].
+
+; "_saiken_s_rel" >> "_life_n_of_rel"	1	0.742857
+saiken_s--life_n_of--any-mtr := noun_omtr &
+[ INPUT.RELS < [ PRED "ja:_saiken_s_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_life_n_of_rel" ] , ... > ].
+
+; "_anzen_n_rel" >> "_safety_n_1_rel"	1	0.998588
+anzen_n--safety_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_anzen_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_safety_n_1_rel" ] , ... > ].
+
+; "_shitsumon_s_1_rel" >> "_question_n_about_rel"	1	1.0
+shitsumon_s_1--question_n_about--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shitsumon_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_question_n_about_rel" ] , ... > ].
+
+; "_seifu_n_rel" >> "_government_n_of_rel"	1	0.987342
+seifu_n--government_n_of--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_seifu_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_government_n_of_rel" ] , ... > ].
+
+; "_hitsuyou_n_1_rel" >> "_disaster_n_1_rel"	1	0.974576
+hitsuyou_n_1--disaster_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hitsuyou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_disaster_n_1_rel" ] , ... > ].
+
+; "_hinan_s_1_rel" >> "_shelter_n_1_rel"	1	0.966365
+hinan_s_1--shelter_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hinan_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_shelter_n_1_rel" ] , ... > ].
+
+; "_fukaketsu_a_2_rel" >> "_essential_a_for_rel"	1	0.962205
+fukaketsu_a_2--essential_a_for--any-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fukaketsu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_essential_a_for_rel" ] , ... > ].
+
+; "_kagetsu_n_1_rel" >> "_month_n_1_rel"	1	1.0
+kagetsu_n_1--month_n_1--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kagetsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_month_n_1_rel" ] , ... > ].
+
+; "_saiken_s_rel" >> "_victim_n_of_rel"	1	0.190476
+saiken_s--victim_n_of--any-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_saiken_s_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_victim_n_of_rel" ] , ... > ].
+

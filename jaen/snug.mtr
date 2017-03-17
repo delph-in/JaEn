@@ -1,0 +1,56 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- 
+
+;;;
+;;; finally, perform some post-core fix-up: make sure variable equations are
+;;; being propagated, delete transfer-internal meta EPs, et al.
+;;;
+
+;; If two VPs are coordinated, and the subject of the second is a zero, 
+;; then co-index them (should maybe be done earlier?)
+
+
+
+;;; Specialize number if necessary.
+;;;
+;;; note the use of ARGM  so as not to set count_noun_mark to sg!
+;;;
+num_spec_sg_cf := optional_mtr &
+[ INPUT.RELS < [ ARG0 #x1 & x & [ NUM no_number ], ARGM  a ],
+           [ ARG0 #x0, ARGM  a ],
+           [ PRED num_equate, ARG0 #x0, ARG1 #x1 ]      >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ NUM sg ] ],
+        +copy+ & [ ARG0 [ NUM sg ] ] > ].
+
+num_spec_pl_cf := monotonic_mtr &
+[ INPUT.RELS < [ ARG0 #x1 & x & [ NUM no_number ], ARGM  a ],
+           [ LBL #h0, ARG0 #x0 ],
+           [ PRED num_equate, ARG0 #x0, ARG1 #x1 ]      >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ NUM pl ] ],
+        +copy+ & [ ARG0 [ NUM pl ] ] > ].
+
+;;; Get rid of any discourse markers we don't know how to translate.
+
+wa_d_rel_ditch_ef := elision_mtr &
+[ INPUT.RELS < [ PRED "ja:_wa_d_rel" ] > ].
+
+_d_ditch_ef := elision_mtr &
+[ INPUT.RELS < [ PRED "~^ja:.*_d_" ] > ].
+
+; An additional rule for adjective relations, allowing for not only the
+; relative clause translation "A dog, which is old, barks." but also for
+; the adjective translation "An old dog barks."
+; this rule only applies to pres (non-past) marked adjectives.
+; who share a label with a noun (and are thus outscoped by something)
+
+adj_tense_change := monotonic_mtr &
+ [ CONTEXT.HCONS < qeq & [ LARG #h ] >,
+   INPUT.RELS < [ PRED "~_a_", LBL #h, ARG0 e & [ TENSE pres ] ]  >,
+   OUTPUT.RELS < +copy+ & [ ARG0 [ TENSE untensed ] ] > ].
+
+;;; Another approach
+; adj_tense_change := monotonic_omtr &
+;  [ CONTEXT.RELS < [ PRED "~_n_", LBL #h ] >,
+;    INPUT.RELS < [ PRED "~^_.*_a_", LBL #h, 
+;  		 ARG0 e & [ TENSE pres ] ]      >,
+;    OUTPUT.RELS < +copy+ & [ ARG0 [ TENSE untensed ] ] >,
+;    FLAGS.EQUAL < #h > ].

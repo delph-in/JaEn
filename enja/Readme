@@ -1,0 +1,28 @@
+========================================================================
+English-Japanese Translation
+========================================================================
+
+M-x logon			    ;; for logon version of delphin
+:ld ~/logon/dot.clinit.cl	    ;; to not confuse things
+(lmt)				    ;; load the full logon system
+:ld ~/logon/dot.tsdbrc	    ;; overwrite my sane and beautiful settings
+(tsdb:tsdb :cpu :erg-parse :file t) ;; load erg
+
+;;; do by hand for now in logon/uio/enja/lkb/script
+(read-script-file-aux "~/logon/uio/enja/lkb/script")
+
+;;; start a generator [maybe in a new window]
+$LOGONROOT/lingo/lkb/server-ja
+
+(mt::parse-interactively "Dogs eat cats")
+
+========================
+Editing Transfer Results
+========================
+
+* In transfer input window, click Debug-->Edit
+* This will create a emacs buffer with the transfer contents in an
+  editable formation
+* Edit the RMRS and save
+* In transfer input window, click Read
+* A new transfer window corresponding to the new RMRS will appear

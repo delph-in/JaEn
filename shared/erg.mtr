@@ -1,0 +1,515 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Coding: utf-8; -*- got it?
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; third transfer phase, ERG-specific accomodation: these rules map from the
+;;; LOGON transfer-level representations into MRS `idiosyncrasies' in the ERG.
+;;; in some case, the ERG may just be lagging behind in development, or the
+;;; ERG developers opt to maintain their design independent of LOGON (which we
+;;; could hardly criticize, given there was no LOGON budget line item for ERG
+;;; adaptation originally:-).  however, ideally, this file should be small
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;
+;;; impersonal passives are common in Norwegian; whenever there is a tensed
+;;; verbal event without any arguments, make it a nominalization wrapped into
+;;; an expletive `there is', e.g.
+;;;
+;;; @ Det drives jakt. >> There is hunting.
+;;;
+impersonal_passive_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED #pred, LBL #h0, 
+                 ARG0 #e0 & e & [ TENSE tensed ], 
+                 ARG1 a, ARG2 a, ARG3 a, ARG4 a ],
+               [ PRED parg_d_rel, LBL #h0, ARG1 #e0 ] >,
+  OUTPUT [ RELS < [ PRED _be_v_there_rel, LBL #h0, ARG0 #e0, ARG1 #x0 ],
+                  [ PRED udef_q_rel, ARG0 #x0, RSTR #h1 ],
+                  [ PRED nominalization_rel, LBL #h2, 
+                    ARG0 #x0 & x_3sg, ARG1 #h3 ],
+                  [ PRED #pred, LBL #h3, ARG0 e_untensed & [ PROG + ] ] >,
+           HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+  FLAGS.EQUAL < #e0 > ].
+
+;;;
+;;; _fix_me_
+;;; the current (no-MSG) ERG does not make a distinction between, e.g.
+;;;
+;;;  Probably, he arrives.  vs.  He probably arrived.
+;;;
+;;; it seems as if scopal adverbs can never bear a `focus_d' mark; discuss with
+;;; dan (and helge) in bergen next week.
+;;;
+;;; --- but possible we can put a more general fix-up rule to work here: in the
+;;; configuration sketched above, the ARG1 of the `focus_d' EP is unbound in
+;;; the post-transfer MRS.  i expect we can globally discard any such EP.
+;;;                                                              (2-nov-07; oe)
+discourse_i_ditch_ef := monotonic_mtr &
+[ FILTER.RELS < [ ARG0 #i0 & i ] >,
+  INPUT.RELS < [ PRED "~_d_rel$", ARG2 #i0 ] >,
+  FLAGS.SUBSUME < #i0 > ].
+
+discourse_h_ditch_ef := monotonic_mtr &
+[ FILTER.RELS < [ LBL #ih & h ] >,
+  INPUT.RELS < [ PRED "~_d_rel$", ARG2 #h0 ] >,
+  FLAGS.EQUAL < #h0 > ].
+
+
+;;;
+;;; by convention, the ERG makes the index of event coordination share the SF
+;;; value (and possibly others) of the right conjunct; make it so, to allow the
+;;; generator to succeed.                                       (13-nov-07; oe)
+;;;
+;;; _fix_me_
+;;; it seems that SF is shared with the right conjunct; did i maybe mis-read
+;;; what dan said in recent email?                              (26-jan-08; oe)
+;;;
+conj_ques_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED conj_rel, 
+                 ARG0 #e0 & e & [ SF prop & #prop],
+                 R-INDEX #e1 & e & [ SF ques & #ques ] ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ SF ques ] ] >,
+  FLAGS.EQUAL < #e0, #e1, #prop, #ques > ].
+
+conj_comm_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED conj_rel, 
+                 ARG0 #e0 & e & [ SF prop & #prop],
+                 R-INDEX #e1 & e & [ SF comm & #comm ] ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ SF comm ] ] >,
+  FLAGS.EQUAL < #e0, #e1, #prop, #comm > ].
+
+conj_past_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED conj_rel, 
+                 ARG0 #e0 & e & [ TENSE pres_or_fut ], 
+                 L-INDEX #e1 & e & [ TENSE past ] ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ TENSE past ] ] >,
+  FLAGS.EQUAL < #e0, #e1 > ].
+
+conj_pres_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED conj_rel, 
+                 ARG0 #e0 & e & [ TENSE past_or_fut ], 
+                 L-INDEX #e1 & e & [ TENSE pres ] ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ TENSE pres ] ] >,
+  FLAGS.EQUAL < #e0, #e1 > ].
+
+conj_fut_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED conj_rel, 
+                 ARG0 #e0 & e & [ TENSE past_or_pres ], 
+                 L-INDEX #e1 & e & [ TENSE fut ] ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ TENSE fut ] ] >,
+  FLAGS.EQUAL < #e0, #e1 > ].
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; adjusting quantifiers is one of the more tedious aspects in accomodating
+;;; input requirements of the TL grammar; in some cases, i guess we are seeing
+;;; genuine language differences, in others i wonder about us maybe not having
+;;; found the right levels of abstractions, or possibly we simply (still) lack
+;;; perfect harmony between helge and dan.                     (20-dec-06; oe)
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;
+;;; make sure all pluralia tantum have a suitable NUM value, even though each
+;;; individual transfer rule was expected to already enforce that.
+;;;
+plural_noun_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED plural_noun_mark, LBL #h0, ARGM #x0 ] >,
+            HCONS < qeq & [ LARG #h0 ] > ],
+  INPUT.RELS < [ LBL #h0, ARG0 #x0 & [ NUM sg ] ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ NUM pl ] ] > ].
+
+;;;
+;;; _fix_me_
+;;; classifier insertion for plural mass nouns, e.g. `*informations'; requires
+;;; SEM-I for proper generalization.  move into a type.  --- something similar
+;;; presumably should be done for bare singulars, though we might rather want
+;;; to fix their quantifier to _not_ transfer to `_a_q' in the first place?
+;;;                                                            (25-apr-04; oe)
+;;; _fix_me_
+;;; for whatever reason, i fail to get the MTR type to work the way i think it
+;;; should; if only there i had budgeted time for debugging.    (5-jan-07; oe)
+;;;
+#|
+plural_equipment_ef := classifier_insertion_amtr &
+[ INPUT.RELS < [ PRED "_equipment_n_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_piece_n_of_rel" ], ... > ].
+
+plural_information_ef := classifier_insertion_amtr &
+[ INPUT.RELS < [ PRED "_information_n_on-about_rel" ] >,
+  OUTPUT.RELS < [ PRED "_piece_n_of_rel" ], ... > ].
+|#
+;;;
+;;; now aiming to do useful things on Japanese input too, francis points out a
+;;; few things: (a) there is no marking of number on nouns, hence we need to be
+;;; more careful in testing for (actual) [ NUM pl ]; (b) with quantifiers like
+;;; `each', `every', et al. (and related attributes like `various', and of
+;;; of course cardinality) it seems better to insert a classifier, instead of
+;;; going to the generic `udef_q' (as we did in the final LOGON release).
+;;;                                                 (24-feb-07; bondo-san & oe)
+;;;
+;;; --- the `individuality_mark' EP cannot use ARG0, because otherwise the rule
+;;; can feed on the mark itself, instead of the noun.           (27-jan-08; oe)
+;;;
+plural_individuality_ef := monotonic_mtr &
+[ CONTEXT [ HCONS < qeq & [ LARG #h0 ] >,
+            RELS < [ LBL #h0, ARG0 #x1 & x & [ NUM pl ] ],
+                   [ PRED mass_noun_mark, LBL #h0, ARGM #x1 ] > ],
+  FILTER.RELS < [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  OUTPUT.RELS < [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  FLAGS.EQUAL < #x1 > ].
+
+quantifier_individuality_1_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED "~(?:a|another|a.little|each|every|n?either)_q_rel",
+                     ARG0 #x1, RSTR #h2 ],
+                   [ LBL #h0, ARG0 #x1 & x ],
+                   [ PRED mass_noun_mark, LBL #h0, ARGM #x1 ] >,
+            HCONS < qeq & [ HARG #h2, LARG #h0 ] > ],
+  FILTER.RELS < [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  OUTPUT.RELS < [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  FLAGS.EQUAL < #x1 > ].
+
+quantifier_individuality_2_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED "~(?:many_a_q_rel|some_q_indiv_rel|such.a)_q_rel",
+                     ARG0 #x1, RSTR #h2 ],
+                   [ LBL #h0, ARG0 #x1 & x ],
+                   [ PRED mass_noun_mark, LBL #h0, ARGM #x1 ] >,
+            HCONS < qeq & [ HARG #h2, LARG #h0 ] > ],
+  FILTER.RELS < [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  OUTPUT.RELS < [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  FLAGS.EQUAL < #x1 > ].
+
+attribute_individuality_ef := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "~card_rel|ord_rel|_various_a_1_rel",
+                   LBL #h0, ARG0 #e0 & e, ARG1 #x1 ],
+                 [ LBL #h0, ARG0 #x1 & x ],
+                 [ PRED mass_noun_mark, LBL #h0, ARGM #x1 ] >,
+  FILTER.RELS < [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  OUTPUT.RELS < [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  FLAGS.EQUAL < #e0, #x1 > ].
+
+equipment_classifier_ef := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ LARG #h0 ] >,
+  INPUT.RELS < [ PRED "_equipment_n_1_rel", LBL #h0, ARG0 #x1 & x ],
+               [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  OUTPUT [ RELS < [ PRED "_piece_n_of_rel", LBL #h0, ARG0 #x1, ARG1 #x2 ],
+                  [ PRED "_equipment_n_1_rel", LBL #h4, 
+                    ARG0 #x2 & [ PERS 3, NUM sg, GRIND - ] ],
+                  [ PRED udef_q_rel, LBL h,
+                    ARG0 #x2, RSTR #h3, BODY h ] >,
+           HCONS < qeq & [ HARG #h3, LARG #h4 ] > ],
+  FLAGS.EQUAL < #x1 > ].
+
+information_classifier_ef := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ LARG #h0 ] >,
+  INPUT.RELS < [ PRED "_information_n_on-about_rel", LBL #h0, ARG0 #x1 & x ],
+               [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  OUTPUT [ RELS < [ PRED "_piece_n_of_rel", LBL #h0, ARG0 #x1, ARG1 #x2 ],
+                  [ PRED "_information_n_on-about_rel", LBL #h4, 
+                    ARG0 #x2 & [ PERS 3, NUM sg, GRIND - ] ],
+                  [ PRED udef_q_rel, LBL h,
+                    ARG0 #x2, RSTR #h3, BODY h ] >,
+           HCONS < qeq & [ HARG #h3, LARG #h4 ] > ],
+  FLAGS.EQUAL < #x1 > ].
+
+mass_classifier_noun_ef := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ LARG #h0 ] >,
+  INPUT.RELS < [ PRED #pred, LBL #h0, ARG0 #x1 & x ],
+               [ PRED individuality_mark, LBL #h0, ARGM #x1 ] >,
+  OUTPUT [ RELS < [ PRED "_unit_n_of_rel", LBL #h0, ARG0 #x1, ARG1 #x2 ],
+                  [ PRED #pred, LBL #h4, 
+                    ARG0 #x2 & [ PERS 3, NUM sg, GRIND - ] ],
+                  [ PRED udef_q_rel, LBL h,
+                    ARG0 #x2, RSTR #h3, BODY h ] >,
+           HCONS < qeq & [ HARG #h3, LARG #h4 ] > ],
+  FLAGS.EQUAL < #x1 > ].
+
+;;;
+;;; actually, bondo-san reminds us of potential for `scope' ambiguities in, 
+;;; e.g. `two big pieces of furniture' vs. `two pieces of big furniture', where
+;;; he hypothesizes a contrast with respect to the contextually salient set of
+;;; furniture and the `extent' of the property.  hence, try another variant of
+;;; classifier insertion that preserves the original index; this one should in
+;;; theory work better for examples that would otherwise require extraposition,
+;;; e.g. `two pieces of equipment i rented'.
+;;;
+;;; _fix_me_
+;;; which, after two more minutes of thought, we realize creates all sorts of
+;;; interesting opportunities: parts of the MRS might want to continue using
+;;; the `original' (now embedded) index, e.g. various modifiers maybe including
+;;; relative clauses, while others would need to grab the new `top' index, e.g.
+;;; the embedding predicate.                       (29-jul-04; bondo-san & oe)
+;;;
+
+
+;;;
+;;; for singular count nouns, change a covert determiner into `some', unless
+;;; a construction (e.g. compounding) actually licenses the `udef_q'.
+;;;
+;;; _fix_me_
+;;; not quite sure this is wise just tonight: there may well be more contexts
+;;; in which `udef_q' is actually legitimate with a singular count noun.
+;;;                                                            (21-dec-06; oe)
+#|
+card_mark_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED count_noun_mark, LBL #h0, ARGM #x0 & [ NUM sg ] ],
+                   [ PRED card_rel, ARG1 #x0 & x ] >,
+            HCONS < qeq & [ LARG #h0 ] > ],
+  FILTER.RELS < [ PRED construction_mark, LBL #h0, ARG0 #x0 ] >,
+  OUTPUT.RELS < [ PRED construction_mark, LBL #h0, ARG0 #x0 ] >,
+  FLAGS.EQUAL < #x0 > ].
+
+title_mark_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED count_noun_mark, LBL #h0, ARGM #x0 & [ NUM sg ] ],
+                   [ PRED compound_name_rel, ARG2 #x0 & x ] >,
+            HCONS < qeq & [ LARG #h0 ] > ],
+  FILTER.RELS < [ PRED construction_mark, LBL #h0, ARG0 #x0 ] >,
+  OUTPUT.RELS < [ PRED construction_mark, LBL #h0, ARG0 #x0 ] >,
+  FLAGS.EQUAL < #x0 > ].
+
+compound_mark_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED count_noun_mark, LBL #h0, ARGM #x0 & [ NUM sg ] ],
+                   [ PRED compound_rel, ARG2 #x0 & x ] >,
+            HCONS < qeq & [ LARG #h0 ] > ],
+  FILTER.RELS < [ PRED construction_mark, LBL #h0, ARG0 #x0 ] >,
+  OUTPUT.RELS < [ PRED construction_mark, LBL #h0, ARG0 #x0 ] >,
+  FLAGS.EQUAL < #x0 > ].
+
+udef_q+count_noun_sg_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED count_noun_mark, LBL #h0, ARGM #x0 & [ NUM sg ] ] >,
+            HCONS < qeq & [ HARG #h1, LARG #h0 ] > ],
+  INPUT.RELS < [ PRED udef_q_rel, LBL #h2, 
+                 ARG0 #x0, RSTR #h1, BODY #h3 ] >,
+  FILTER.RELS < [ PRED construction_mark, LBL #h0, ARG0 #x0 ] >,
+  OUTPUT.RELS < [ PRED _some_q_indiv_rel, LBL #h2, 
+                  ARG0 #x0, RSTR #h1, BODY #h3 ] > ].
+
+construction_mark_ditch_ef := elision_mtr &
+[ INPUT.RELS < [ PRED construction_mark ] > ].
+|#
+
+;;;
+;;; somewhat similar to what we did with mass nouns, now make sure that plural
+;;; entities come out with a suitable quantifier, and vice versa.
+;;;
+a_q+plural_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED _a_q_rel, LBL #h4, 
+                 ARG0 #x2 & [ NUM pl ], RSTR #h3, BODY #h5 ] >,
+  OUTPUT.RELS < [ PRED udef_q_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+that_q+plural_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED _that_q_dem_rel, LBL #h4, 
+                 ARG0 #x2 & [ NUM pl ], RSTR #h3, BODY #h5 ] >,
+  OUTPUT.RELS < [ PRED _those_q_dem_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+this_q+plural_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED _this_q_dem_rel, LBL #h4, 
+                 ARG0 #x2 & [ NUM pl ], RSTR #h3, BODY #h5 ] >,
+  OUTPUT.RELS < [ PRED _these_q_dem_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+those_q+singular_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED _those_q_dem_rel, LBL #h4, 
+                 ARG0 #x2 & [ NUM sg ], RSTR #h3, BODY #h5 ] >,
+  OUTPUT.RELS < [ PRED _that_q_dem_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+these_q+singular_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED _these_q_dem_rel, LBL #h4, 
+                 ARG0 #x2 & [ NUM sg ], RSTR #h3, BODY #h5 ] >,
+  OUTPUT.RELS < [ PRED _this_q_dem_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+;;;
+;;; _fix_me_
+;;; the ERG treats (all) gerunds as mass nouns, it seems; hence we need to make
+;;; sure there is a suitable quantifier.  maybe the rule creating the 
+;;; nominalization should be more careful instead?              (25-apr-04; oe)
+;;;
+a_q+nominalize_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED nominalization_rel, LBL #h1, ARG0 #x2 ] >,
+            HCONS < qeq & [ HARG #h3, LARG #h1 ] > ],
+  INPUT.RELS < [ PRED _a_q_rel, LBL #h4, 
+                 ARG0 #x2, RSTR #h3, BODY #h5 ] >,
+  OUTPUT.RELS < [ PRED implicit_q_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+udef_q+nominalize_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED nominalization_rel, LBL #h1, ARG0 #x2 ] >,
+            HCONS < qeq & [ HARG #h3, LARG #h1 ] > ],
+  INPUT.RELS < [ PRED udef_q_rel, LBL #h4, 
+                 ARG0 #x2, RSTR #h3, BODY #h5 ] >,
+  OUTPUT.RELS < [ PRED implicit_q_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+;;;
+;;; _fix_me_
+;;; there appears to be a growth industry of quantifier adjustments; turn this
+;;; into a type, but also aim for better harmonization.         (27-jul-04; oe)
+;;;
+udef_q+named_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED named_rel, LBL #h1, ARG0 #x2 ] >,
+            HCONS < qeq & [ HARG #h3, LARG #h1 ] > ],
+  INPUT.RELS < [ PRED udef_q_rel, LBL #h4, ARG0 #x2, RSTR #h3, BODY #h5 ] >,
+  FILTER.RELS < [ PRED compound_name_rel, ARG1 #x2 ] >,
+  OUTPUT.RELS < [ PRED proper_q_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+;;;
+;;; _fix_me_
+;;; this is getting old ... tidy up those quantifiers!   (15-jun-05; jtl & oe)
+;;;
+def_explicit_q+generic_nom_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED generic_entity_rel, LBL #h1, ARG0 #x2 ] >,
+            HCONS < qeq & [ HARG #h3, LARG #h1 ] > ],
+  INPUT.RELS < [ PRED def_explicit_q_rel, LBL #h4,
+                 ARG0 #x2, RSTR #h3, BODY #h5 ] >,
+  OUTPUT.RELS < [ PRED def_q_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+;;;
+;;; while the grammars differ on their analysis of month names, we also need to
+;;; make sure that `mofy' entities get their proper quantifier.  (9-apr-05; oe)
+;;;
+a_q+mofy_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED mofy_rel, LBL #h1, ARG0 #x2 ] >,
+            HCONS < qeq & [ HARG #h3, LARG #h1 ] > ],
+  INPUT.RELS < [ PRED _a_q_rel, LBL #h4, 
+                 ARG0 #x2, RSTR #h3, BODY #h5 ] >,
+  OUTPUT.RELS < [ PRED proper_q_rel, LBL #h4, 
+                  ARG0 #x2, RSTR #h3, BODY #h5 ] > ].
+
+;;;
+;;;
+;;; finally, try to provide quantifiers should any still be missing
+;;;
+missing_quantifier_sg_ef := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "~_n_", LBL #h1, ARG0 #x2 & x & [ NUM sg ] ] >,
+  FILTER.RELS < [ ARG0 #x2, RSTR #h3 & h ] >,
+  OUTPUT [ RELS < [ PRED some_q_rel, ARG0 #x2, RSTR #h4 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h1 ] > ],
+  FLAGS.EQUAL < #x2, #h3 > ].
+
+missing_quantifier_pl_ef := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "~_n_", LBL #h1, ARG0 #x2 & x & [ NUM pl ] ] >,
+  FILTER.RELS < [ ARG0 #x2, RSTR #h3 & h ] >,
+  OUTPUT [ RELS < [ PRED udef_q_rel, ARG0 #x2, RSTR #h4 ] >,
+           HCONS < qeq & [ HARG #h4, LARG #h1 ] > ],
+  FLAGS.EQUAL < #x2, #h3 > ].
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;; from here on, we still need to decide on a good way of ordering the rules. 
+;;; for now, the actual order is largely arbitrary, although there could be a 
+;;; small number of sequential dependencies
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;;
+;;; _fix_me_
+;;; it looks like the memo about `same' now being analyzed as comparative did
+;;; not quite make it to oslo; i am my skeptical self for now.  and what about 
+;;; `other', `different', et al. then?                         (30-apr-05; oe)
+;;;
+same_comp_ef := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "_same_a_as_rel", LBL #h0, ARG0 #e1, ARG1 #x2 ] >,
+  FILTER.RELS < [ PRED comp_equal_rel, LBL #h0, ARG0 #e4, ARG1 #e1 ] >,
+  OUTPUT.RELS < [ PRED comp_equal_rel, LBL #h0, ARG0 #e4, ARG1 #e1 ] > ].
+
+;;;
+;;; the (latest, maybe) ERG blocks some spurious ambiguity involving the there 
+;;; copula, e.g. in `there's a chair in my office', the ARG1 of `_in_p' cannot
+;;; be the event of existence.                            (2-may-05; dpf & oe)
+;;; 
+;;; _fix_me_
+;;; dan suggested the HCONS condition in the CONTEXT to make sure we match the
+;;; nominal EP rather than its quantifier; go through other rules, searching
+;;; for regular expressions containing `_n_' and refine as needed.
+;;;                                                             (2-may-05; oe)
+;;; berthold points out that the current ERG generates happily with modifiers
+;;; attached to the `_be_v_there' event.  i.e. `there's a chair in my office'
+;;; is now ambiguous in the way i had originally thought it should be.  hence,
+;;; the following rule becomes unnecessary.  still waiting for dan to confirm
+;;; that the ambiguity is intended.  also, if we were to retain the rule, it
+;;; should be refined: when topicalized, it seems, the modifier has to attach
+;;; to the event, i.e. at least there should be a FILTER.      (13-nov-08; oe)
+;;;
+#|
+be_v_there_modifier_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED _be_v_there_rel, LBL #h, ARG0 #e0, ARG1 #x2 ],
+                   [ LBL #h42, ARG0 #x2 & x ] > ,
+            HCONS < qeq & [ LARG #h42 ] > ],
+  INPUT.RELS < [ PRED #pred, LBL #h,
+                 ARG0 #e3, ARG1 #e0, ARG2 #x4 ] >,
+  FILTER.RELS < [ PRED focus_d_rel, LBL #h, ARG1 #e0, ARG2 #e3 ] >,
+  OUTPUT.RELS < [ PRED #pred, LBL #h42,
+                  ARG0 #e3, ARG1 #x2, ARG2 #x4 ] >,
+  FLAGS.EQUAL < #x2 > ].
+|#
+
+;;;
+;;; wrongly, in my view, but stubbornly, the ERG blocks adjunction of modifiers
+;;; to modals.  move any modifier on a modal event down into its complement.
+;;;                                                             (27-jan-08; oe)
+modal_modifier_ef := monotonic_mtr &
+[ CONTEXT [ RELS < [ PRED modal_rel, LBL #h0, ARG0 #e0, ARG1 #h1 & h ],
+                   [ PRED "~_v_(?:[^_]+_)?rel$", LBL #h2, 
+                     ARG0 #e1 & e & [ TENSE untensed ] ] > ,
+            HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+  INPUT.RELS < [ PRED #pred, LBL #h0, ARG0 #e2, ARG1 #e0 ] >,
+  OUTPUT.RELS < [ PRED #pred, LBL #h2, ARG0 #e2, ARG1 #e1 ] >,
+  FLAGS.EQUAL < #h1, #e1 > ].
+
+;;;
+;;; to block `Vosses Utferdslag and Bergens Turlag', assume proper names are
+;;; singular, unless the Andies Mountains tell us otherwise.
+;;;
+named_sg_1_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED named_rel, LBL #h1,
+                 ARG0 #x2 & [ NUM no_number ], CARG #carg ] >,
+  OUTPUT.RELS < [ PRED named_rel, LBL #h1,
+                  ARG0 #x2 & [ NUM sg ], CARG #carg ]  > ].
+
+named_sg_2_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED named_rel, LBL #h1,
+                 ARG0 #x2 & [ NUM pl ], CARG #carg ] >,
+  OUTPUT.RELS < [ PRED named_rel, LBL #h1,
+                  ARG0 #x2 & [ NUM sg ], CARG #carg ]  > ].
+
+;;;
+;;; in november 2008, it seems, we elevate the `identity' machinery to MatriX
+;;; status.  as the ERG does not encode binding of pronouns, make sure to make
+;;; pronouns that are marked as (grammatically) co-referential reflexive.
+;;;
+reflexive_pronoun_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED pron_rel, LBL #h0, ARG0 #x1 ],
+               [ PRED identity_rel, LBL #h0, ARG1 #x1 ] >,
+  FILTER.RELS < [ PRED poss_rel, ARG2 #x1 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 [ PRONTYPE refl ] ] > ].
+
+identity_ditch_ef := elision_mtr &
+[ INPUT.RELS < [ PRED identity_rel ] > ].
+
+;;;
+;;; as of late, the ERG deliberately avoids activating intransitive versions of
+;;; prepositions when there is an [ ARG2 u ] in the input.  probably we will
+;;; need to re-visit our notions of optionality and what it means for a role to
+;;; be filled by an `unbound' variable.  for now, just ditch those ARG2s.
+;;;                                                        (6-jun-06; jtl & oe)
+intransitive_preposition_ef := monotonic_mtr &
+[ INPUT.RELS < [ PRED "~_p_", ARG2 #u & u & [ DITCH - ] ] >,
+  OUTPUT.RELS < +copy+ & [ ARG2 [ DITCH + ] ] >,
+  FLAGS.EQUAL < #u > ].
+
+;;;
+;;; since the demise of messages, the ERG no longer provides a top handel that
+;;; is co-indexed with the highest-scoping EP in the MRS.
+;;;
+top_qeq_ef := monotonic_mtr &
+[ INPUT [ LTOP #h0,
+          HCONS < qeq & [ HARG #h0 ] > ] ].

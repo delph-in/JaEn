@@ -1,0 +1,294 @@
+;;; -*- Mode: TDL; Package: LKB; -*- 
+;;;
+;;; Hand written rules for verbs
+;;;  * the goal is to cover most basic level verbs (maybe 5,000 or so)
+;;; 
+
+
+;;;
+;;; Idioms
+;;;
+
+;;; Verbs of giving and receiving
+
+ni+morau_v_1--receive_v_1+from--edict-mtr := arg12+pp_arg12+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_morau_v_1_rel" ], 
+	       [ PRED "ja:_ni_p_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_receive_v_1_rel" ],
+		[ PRED _from_p_rel ], ... > ].
+
+ni+itadaku_v_1--receive_v_1+from--edict-mtr := arg12+pp_arg12+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_itadaku_v_1_rel" ], 
+	       [ PRED "ja:_ni_p_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_receive_v_1_rel" ],
+		[ PRED _from_p_rel ], ... > ].
+
+; 1 (-0.00053950617283950576, -0.043699999999999968, 81, 14, 95) 0 16 "_morau_v_1_rel" 201 1 "_receive_v_1_rel" 貰う receive edict arg12_v mtr
+morau_v_1--receive_v_1-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_morau_v_1_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_receive_v_1_rel" ], ... > ].
+
+itadaku_v_1--receive_v_1-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_itadaku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_receive_v_1_rel" ], ... > ].
+
+
+ni+ageru_v_5--give_v_1-mtr := arg12+pp_arg123_mtr &  ;;;
+[ INPUT.RELS < [ PRED "ja:_ageru_v_5_rel" ], 
+	       [ PRED "ja:_ni_p_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_give_v_1_rel" ], ... >  ].
+
+ageru_v_5--give_v_1-mtr := arg12_v_mtr &  ;;;
+[ INPUT.RELS < [ PRED "ja:_ageru_v_5_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_give_v_1_rel", ARG3 p ], ... > ].
+
+
+
+
+;;; Try to link dative
+ni-kureru_v_3-give_v_1  := arg12+pp_arg123_mtr &
+ [ INPUT.RELS < [ PRED "ja:_kureru_v_3_rel"], 
+		[PRED "ja:_ni_p_rel"]  >,
+   OUTPUT.RELS < [ PRED "_give_v_1_rel" ]   > ].
+
+;;; If there isn't one, then block ARG3, ..
+kureru_v_3-give_v_1  := arg123_v_omtr &
+ [ INPUT.RELS < [ PRED "ja:_kureru_v_3_rel"]  >,
+   OUTPUT.RELS < [ PRED "_give_v_1_rel", ARG3 p ]   > ].
+
+;;; Or as kureru is empathic make the receiver 1st person.
+kureru_v_3-give_v_1  := arg123_v_mtr &
+ [ INPUT.RELS < [ PRED "ja:_kureru_v_3_rel"]  >,
+   OUTPUT [RELS < [ PRED "_give_v_1_rel", ARG3 #x3 ],
+		  [ PRED pronoun_q_rel, ARG0 #x3, RSTR #h1 ],
+		  [ PRED pron_rel, LBL #h2, 
+		    ARG0 #x3 & [PRONTYPE std_pron, PERS 1]] >,
+	   HCONS < qeq & [ HARG #h1, LARG #h2 ] > ]].
+
+;;;
+;;; Add Yaru iff there is an ARG3.
+;;;
+;;; 犬 が 猿 に やる 。 → the dog gives [it] to the monkey.
+ni+yaru_v_3--give_v_1-mtr := arg12+pp_arg123_mtr &  
+ [ INPUT.RELS < [ PRED "ja:_yaru_v_3_rel" ], 
+		[ PRED "ja:_ni_p_rel" ], ... >,
+   OUTPUT.RELS < [ PRED "_give_v_1_rel" ], ... >  ].
+
+
+;;; 犬 が やる 。 → the dog does it.
+yaru_v_3_rel-do_v_rel-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yaru_v_3_rel" ] >,
+  OUTPUT.RELS < [ PRED "_do_v_1_rel" ] > ].
+
+;;;
+;;; constrained verbs
+;;;
+
+
+tsuku-lie := arg12_v_mtr &
+[ CONTEXT.RELS < [ PRED "~^ja:_uso_n", ARG0 #x  ] >,
+  INPUT.RELS   < [ PRED "ja:_tsuku_v_6_rel", ARG0 #2 ] >,
+  OUTPUT.RELS   < [ PRED "_tell_v_1_rel" ] > ].
+
+
+;; get a disease --- would like to use types
+;;彼 が インフルエンザ に　かかる
+kakaru_v_2--get_v-mtr := arg12_v_mtr &
+[ CONTEXT.RELS < [ PRED "~^ja:_(hashika|infuruenza|麻疹)_n", ARG0 #x  ] >,
+  INPUT.RELS   < [ PRED "ja:_kakaru_v_2_rel", ARG0 #2 ] >,
+  OUTPUT.RELS   < [ PRED "_get_v_1_rel" ] > ].
+
+
+wakaru_v_3--understand_v_by-omtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_wakaru_v_3_rel" ] >,
+  OUTPUT.RELS < [ PRED "_understand_v_by_rel" ] > ].
+
+wakaru_v_5--understand_v_by-omtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_wakaru_v_5_rel" ] >,
+  OUTPUT.RELS < [ PRED "_understand_v_by_rel" ] > ].
+
+
+
+au_v_1_-meet_v_1 := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_au_v_1_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_meet_v_1_rel" ], ... > ].
+
+au_v_4_-meet_v_1 := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_au_v_4_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_meet_v_1_rel" ], ... > ].
+
+hanasu_v_1-speak_v_to := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hanasu_v_1_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_speak_v_to_rel" ], ... > ].
+
+iu_v_1-say_v_to := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_iu_v_1_rel", LBL #h1, ARG0 #e, ARG1 #x, ARG2 #h2 ] >,
+  OUTPUT.RELS < [ PRED "_say_v_to_rel", LBL #h1, ARG0 #e, ARG1 #x, ARG2 #h2
+	        , ARG3 #i & i & [ PERF -, PROG -, SF PROP ]
+		 ] > ].
+
+;;;
+;;; Unexpressed Arg2 -> transitive
+;;;
+
+;;; FIXME also in edict (need to add as template)
+tobu_v--fly_v-arg1-omtr := arg1_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_tobu_v_rel", ARG2 i & #i ] , ... >,
+  OUTPUT.RELS < [ PRED "_fly_v_1_rel" ] , ... >,
+  FLAGS.EQUAL < #i > ].
+
+
+
+; iu_v_1-say_v_1 := arg12_v_mtr &
+; [ INPUT.RELS < [ PRED "ja:_iu_v_3_rel" ], ... >,
+;   OUTPUT.RELS < [ PRED "_say_v_1_rel" ], ... > ].
+
+toru_v_1-take_v_1 := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_toru_v_1_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_take_v_1_rel" ], ... > ].
+
+;
+; block help
+;
+; 1 432 心配 : 1 2223 help -- arg1_v_omtr
+shinpai_s_inchoative--worry_v_1--edict-omtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinpai_s_inchoative_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_worry_v_1_rel" ], ... > ].
+
+; 1 432 心配 : 1 2223 help -- arg1_v_omtr
+shinpai_s_causative--worry_v_1--edict-omtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinpai_s_causative_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_worry_v_1_rel" ], ... > ].
+
+;;; prefer this
+
+; 1 906 働く : 1 3410 work -- arg1_v_mtr
+hataraku_v--work_v_1--edict-omtr := arg1_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_hataraku_v_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_work_v_1_rel" ], ... > ].
+
+;;; 留学　→　study abroad
+;;; (surprisingly complicated)
+;;; FIXME what about 外国　に　留学　する 　→　study abroad abroad
+ryuugaku_s--study+abroad--mtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_ryuugaku_s_rel",
+		 LBL #h, ARG0 #e, ARG1 #x ] >,
+  OUTPUT [RELS < [ PRED "_study_v_1_rel",
+		 LBL #h, ARG0 #e, ARG1 #x ], 
+		 [ PRED loc_nonsp_rel, LBL #h,
+		   ARG0 e & [TENSE UNTENSED], ARG1 #e, ARG2 #xp   ],
+		 [ PRED place_n_rel, LBL #hp, ARG0 #xp  ],
+		 [ PRED def_implicit_q_rel, ARG0 #xp,
+		   RSTR #hr ],
+		 [ PRED _abroad_p_rel, ARG0 e & [TENSE UNTENSED], 
+		   LBL #hp, ARG1 #xp   ] >,
+	   HCONS < qeq & [ HARG #hr, LARG #hp ] > ]].
+
+;;;
+;;; FIXME block temporal!
+;;;
+;;;  (mt::parse-interactively "この　犬 が 夏 に 生駒　に　行く")
+;;;
+;;;  (mt::parse-interactively "この　犬 が 生駒　に　夏 に 行く")
+
+
+mendo-wo-miru_look+after_mtr := p+n+arg12_arg12_mtr & 
+[INPUT.RELS <  [ PRED "ja:_no_p_rel" ],
+	       [ PRED "ja:_mendou_n_1_rel" ],
+	       [ PRED "ja:udef_q_rel" ],
+	       [ PRED "ja:_miru_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_look_v_after_rel" ] > ].
+
+;;
+;; Prog + -> stative verb
+;;
+
+motte-iru--hold_mtr := arg12_v_omtr &
+[INPUT.RELS <  [ PRED "ja:_motsu_v_rel", ARG0 #e & e & [PROG +] ] >,
+  OUTPUT.RELS < [ PRED "_have_v_1_rel",  ARG0 #e & e & [PROG -] ] > ].
+
+;;; what about two punctures?
+punku-shiteru--has-a-puncture_mtr := arg1_arg12+np_v_mtr &
+[INPUT.RELS <  [ PRED "ja:_panku_s_1_rel", ARG0 #e & e & [PROG +] ] >,
+  OUTPUT.RELS < [ PRED "_have_v_1_rel",  ARG0 #e & e & [PROG -] ],
+		[ PRED _a_q_rel ],
+		[ PRED "_puncture_n_1_rel" ] > ].
+;;		[ PRED "_puncture_n_1_rel", ARG0 x & [ NUM sg ] ] > ].
+
+
+
+;;;
+;;; Common Verbs
+;;;
+
+;;;
+;;; Intransitive
+;;;
+
+
+iku--go := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_iku_v_rel" ] >,
+  OUTPUT.RELS < [ PRED "_go_v_1_rel" ] > ].
+
+ni-iku_go-to := arg1+pp_arg1+pp_mtr & 
+[INPUT.RELS < [ PRED "ja:_iku_v_1_rel" ],
+	      [ PRED "~ja:_(ni|e)_p_rel" ] >,
+  OUTPUT.RELS < [ PRED "_go_v_1_rel" ],
+	      [ PRED _to_p_rel ] > ].
+
+
+kuru_v-come_v-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kuru_v_rel" ] >,
+  OUTPUT.RELS < [ PRED "_come_v_1_rel" ] > ].
+
+
+;;;
+;;; Transitive
+;;;
+
+au-suit := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_au_v_4_rel" ] >,
+  OUTPUT.RELS < [ PRED "_suit_v_1_rel" ] > ].
+
+niau-suit := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_niau_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_suit_v_1_rel" ] > ].
+
+tsukau_v_use_v_mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_tsukau_v_1_rel"  ] >,
+  OUTPUT.RELS < [ PRED "_use_v_1_rel" ] > ].
+
+okonau-do := arg12_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_okonau_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_do_v_1_rel" ] > ].
+
+okonau-carry+out := arg12_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_okonau_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_carry_v_out_rel" ] > ].
+
+okonau-perform := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_okonau_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_perform_v_1_rel" ] > ].
+
+sumu-lives+in := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_sumu_v_4_rel" ] >,
+  OUTPUT.RELS < [ PRED "_live_v_1_rel" ],
+	       [ PRED _in_p_rel ] > ].
+
+;;; FIXME Jacy is wrong
+shinjiru-believe+in := arg12_v_omtr &
+[ INPUT.RELS < [ PRED "ja:_shinjiru_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_believe_v_in_rel" ]  > ].
+ 
+hikitsugu--take+over := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hikitsugu_v_rel" ] >,
+  OUTPUT.RELS < [ PRED "_take_v_over_rel" ] > ].
+
+
+
+
+;;; FIXME
+; ondoku-read+aloud 
+; [ INPUT.RELS < [ PRED ""ja:_ondoku_s_1_rel" ] >,
+;   OUTPUT.RELS < [ PRED "_read_v_1_rel" ]	   ,
+;    [ PRED "_aloud_a_1_rel" ] > ].      

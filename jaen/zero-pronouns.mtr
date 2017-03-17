@@ -1,0 +1,277 @@
+;;;  -*- Mode: TDL; Package: LKB; -*- 
+
+;;;
+;;; Co-indexing (intra-sentential)
+;;;
+
+;;; if they are conjoined and the RH predicate is zero subject, 
+;;; elide with the LH subject
+;;; infinite loop if LH is zero, restrict to #xl x for now
+;;; need to do a series of rules, like for zero pronouns, 
+;;; due to the weakness of the copy mechanism
+
+coord_arg2_12_ef := monotonic_mtr &
+ [  CONTEXT.RELS   < [ PRED "~(_and_c_rel|subord_rel)",
+		       L-INDEX #el, L-HNDL #hl,
+		       R-INDEX #er, R-HNDL #rl ],
+		      [ LBL #hl, ARG0 #el, ARG2 #xl & x]  >,
+    INPUT.RELS < [ PRED #pred, LBL #hr, ARG0 #er, 
+		   ARG1 #x1, ARG2 #i & i ] >,
+    OUTPUT.RELS < [  PRED #pred, LBL #hr, ARG0 #er,
+		     ARG1 #x1, ARG2 #xl ] >,
+    FLAGS.EQUAL < #i, #xl > ].
+
+
+coord_arg1_12_ef := monotonic_mtr &
+ [  CONTEXT.RELS   < [ PRED "~(_and_c_rel|subord_rel)",
+		       L-INDEX #el, L-HNDL #hl,
+		       R-INDEX #er, R-HNDL #rl ],
+		      [ LBL #hl, ARG0 #el, ARG1 #xl & x]  >,
+    INPUT.RELS < [ PRED #pred, LBL #hr, ARG0 #er, 
+		  ARG1 #i & i, ARG2 #x2 ] >,
+    OUTPUT.RELS < [  PRED #pred, LBL #hr, ARG0 #er,
+		    ARG1 #xl, ARG2 #x2 ] >,
+    FLAGS.EQUAL < #i, #xl > ].
+
+
+coord_arg1_1_ef := monotonic_mtr &
+ [  CONTEXT.RELS   < [ PRED "~(_and_c_rel|subord_rel)",
+		       L-INDEX #el, L-HNDL #hl,
+		       R-INDEX #er, R-HNDL #rl ],
+		      [ LBL #hl, ARG0 #el, ARG1 #xl & x]  >,
+    INPUT.RELS < [ PRED #pred, LBL #hr, ARG0 #er, 
+		  ARG1 #i & i ] >,
+    OUTPUT.RELS < [  PRED #pred, LBL #hr, ARG0 #er,
+		    ARG1 #xl ] >,
+    FLAGS.EQUAL < #i, #xl > ].
+
+
+;;; 
+;;; Zero pronoun insertion
+;;;
+
+;;  Add zero pronouns
+;;  - first check if ARG3 is zero, if so, add a pronoun
+;;  - then check  if ARG3 exists, and ARG2 is a pronoun
+;;    if so, add arg2 and copy x1,x3
+;;  - then check  if ARG3 exists, and ARG1 is a pronoun
+;;    if so, add arg1 and copy x2,x3
+;;  - then check if ARG2 exists and is a zero
+;;    if so, add a pronoun and copy ARG1
+ 
+
+zero_arg3_123_ef := monotonic_mtr &
+ [ INPUT.RELS < [ PRED #pred, LBL #h, ARG0 #e, 
+		  ARG1 #x1, ARG2 #x2, ARG3 #z3 & i] >,
+   OUTPUT [ RELS < [ PRED #pred, LBL #h,
+		     ARG0 #e, ARG1 #x1, ARG2 #x2, ARG3 #x3],
+		   [ PRED pronoun_q_rel, ARG0 #x3, RSTR #h1 ],
+		   [ PRED pron_rel, LBL #h2, 
+		     ARG0 #x3 & [PRONTYPE std_pron]] >,
+	    HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+   FLAGS.EQUAL < #h, #z3 > ].
+
+zero_arg2_123_ef := monotonic_mtr &
+ [ INPUT.RELS < [ PRED #pred, LBL #h, ARG0 #e, 
+		  ARG1 #x1, ARG2 #z2 & i, ARG3 #x3 & i] >,
+   OUTPUT [ RELS < [ PRED #pred, LBL #h,
+		     ARG0 #e, ARG1 #x1, ARG2 #x2, ARG3 #x3],
+		   [ PRED pronoun_q_rel, ARG0 #x2, RSTR #h1 ],
+		   [ PRED pron_rel, LBL #h2, 
+		     ARG0 #x2 & [PRONTYPE std_pron]] >,
+	    HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+   FLAGS [EQUAL < #h, #z2 >,
+	  SUBSUME < #x3 > ]].
+
+arg123_passive_omtr := monotonic_omtr &
+[ INPUT.RELS < [ LBL #h, PRED #pred, ARG0 #e2 & [ PASS +, SF #sf ], 
+		 ARG1 i & #i, ARG2 i & #x2, ARG3 i & #x3 ] >,
+  OUTPUT.RELS < [ LBL #h, PRED #pred, ARG0 #e2, 
+		  ARG1 p & #p, ARG2 i & #x2, ARG3 i & #x3 ],
+		[ PRED parg_d_rel, 
+		  LBL #h, ARG0 e & [ SF #sf ], ARG1 #e2 , ARG2 #x3 ] >,
+   FLAGS [ EQUAL < #h, #i, #p >,
+	   SUBSUME < #x2, #x3 > ] ].
+
+arg123_passive_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h, PRED #pred, ARG0 #e2 & [ PASS +, SF #sf ], 
+		 ARG1 i & #i, ARG2 i & #x2, ARG3 i & #x3 ] >,
+  OUTPUT.RELS < [ LBL #h, PRED #pred, ARG0 #e2, 
+		  ARG1 p & #p, ARG2 i & #x2, ARG3 i & #x3 ],
+		[ PRED parg_d_rel, 
+		  LBL #h, ARG0 e & [ SF #sf ], ARG1 #e2 , ARG2 #x2 ] >,
+   FLAGS [ EQUAL < #h, #i, #p >,
+	   SUBSUME < #x2, #x3 > ] ].
+
+zero_arg1_123_ef := monotonic_mtr &
+ [ INPUT.RELS < [ PRED #pred, LBL #h, ARG0 #e & [ PASS - ], 
+		  ARG1 #z1 & i, ARG2 #x2 & i, ARG3 #x3 & i] >,
+   OUTPUT [ RELS < [ PRED #pred, LBL #h,
+		     ARG0 #e, ARG1 #x1, ARG2 #x2, ARG3 #x3],
+		   [ PRED pronoun_q_rel, ARG0 #x1, RSTR #h1 ],
+		   [ PRED pron_rel, LBL #h2, 
+		     ARG0 #x1 & [PRONTYPE std_pron]] >,
+	    HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+   FLAGS [EQUAL < #h, #z1 >,
+	  SUBSUME < #x2, #x3 > ]].
+
+
+
+;;; optionaly change ARG2 zero into i (unexpressed object)
+; zero_arg2i_12_ef :=  optional_mtr &
+;   [ FILTER.RELS < [ARG0 #z2, RSTR #h2 ] >,
+;     INPUT.RELS < [ PRED #pred, LBL #h, ARG0 #e & e & [MARK test], 
+;  		  ARG1 #x1, ARG2 #z2 & i] >,
+;     OUTPUT.RELS < [ PRED #pred, LBL #h, ARG0 #e & e & [MARK complete], 
+; 		    ARG1 #x1, ARG2 #z2] >,
+;     FLAGS [EQUAL < #h >,
+; 	   SUBSUME < #z2, #e > ]].
+
+zero_arg2_12_ef :=  optional_mtr &
+   [ INPUT.RELS < [ PRED #pred, LBL #h, ARG0 #e & e, 
+  		  ARG1 #x1, ARG2 #z2 & i] >,
+     OUTPUT [ RELS < [ PRED #pred, LBL #h,
+  		     ARG0 #e, ARG1 #x1, ARG2 #x2],
+  		   [ PRED pronoun_q_rel, ARG0 #x2, RSTR #h1 ],
+  		   [ PRED pron_rel, LBL #h2, 
+  		     ARG0 #x2 & [PRONTYPE std_pron]] >,
+  	    HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+     FLAGS.EQUAL < #h, #z2, #e >].
+
+arg12_passive_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h, PRED #pred, ARG0 #e2 & [ PASS +, SF #sf ], 
+		 ARG1 i & #i, ARG2 i & #x2 ] >,
+  OUTPUT.RELS < [ LBL #h, PRED #pred, ARG0 #e2, 
+		  ARG1 p & #p, ARG2 i & #x2 ],
+		[ PRED parg_d_rel, 
+		  LBL #h, ARG0 e & [ SF #sf ], ARG1 #e2 , ARG2 #x2 ] >,
+   FLAGS [ EQUAL < #h, #i, #p >,
+	   SUBSUME < #x2 > ] ].
+
+zero_arg1_12_ef :=  monotonic_mtr &
+  [ INPUT.RELS < [ PRED #pred, LBL #h, ARG0 #e & [ PASS - ], 
+		   ARG1 #z1 & i, ARG2 #x2 & i] >,
+    OUTPUT [ RELS < [ PRED #pred, LBL #h,
+ 		     ARG0 #e, ARG1 #x1, ARG2 #x2],
+ 		   [ PRED pronoun_q_rel, ARG0 #x1, RSTR #h1 ],
+ 		   [ PRED pron_rel, LBL #h2, 
+ 		     ARG0 #x1 & [PRONTYPE std_pron]] >,
+ 	    HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+   FLAGS [EQUAL < #h, #z1 >,
+	  SUBSUME < #x2 > ]].
+
+
+
+
+; ;;; For verbs like "say" and "think" whose ARG2 is a handle to the subordinate clause. -- eric 2008/06/09
+; zero_arg1_12h_ef := monotonic_mtr &
+;  [ INPUT.RELS < [ PRED #pred, LBL #h, ARG0 #e, 
+; 		  ARG1 #z1 & i, ARG2 #x2 & h] >,
+;    OUTPUT [ RELS < [ PRED #pred, LBL #h,
+; 		     ARG0 #e, ARG1 #x1, ARG2 #x2],
+; 		   [ PRED pronoun_q_rel, ARG0 #x1, RSTR #h1 ],
+; 		   [ PRED pron_rel, LBL #h2, 
+; 		     ARG0 #x1 & [PRONTYPE std_pron]] >,
+; 	    HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+;    FLAGS [EQUAL < #h, #z1 >,
+; 	  SUBSUME < #x2 > ]].
+
+zero_arg1_1_ef := monotonic_mtr &
+  [ FILTER.RELS < [PRED nominalization_rel, ARG1 #h ] >,
+    INPUT.RELS < [ PRED #pred, LBL #h, ARG0 #e & e, ARG1 #z1 & i] >,
+    OUTPUT [ RELS <[ PRED #pred, LBL #h,  ARG0 #e, 
+		     ARG1 #x1],
+ 		   [ PRED pronoun_q_rel, ARG0 #x1, RSTR #h1 ],
+ 		   [ PRED pron_rel, LBL #h2, 
+ 		     ARG0 #x1 & [PRONTYPE std_pron]] >,
+ 	    HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
+    FLAGS.EQUAL < #h, #e, #z1 >].
+
+
+;;
+;; If is is a command, then change the subject to a 2nd person zero pronoun
+;;
+
+
+pron_imp_arg1_ef := monotonic_mtr &
+[ CONTEXT.RELS < [ ARG0 #e & e & [ SF comm], ARG1 #x1 ] >,
+  INPUT.RELS <  [ PRED pron_rel, LBL #h2, 
+		  ARG0 #x1 & [PRONTYPE std_pron]] >,
+  OUTPUT.RELS < [ PRED pron_rel, LBL #h2, 
+		  ARG0 #x1 & [PERS 2, PRONTYPE zero_pron]] >,
+  FLAGS.EQUAL < #e > ].
+
+
+;;;
+;;; Inherently possessed nouns
+;;  * if they are the object of a verb
+;;; * if the determiner is still underspecified
+;;;   this rules out  "this N" and "M's N"
+;;;   * replace the determiner with a possesive pronoun linked to the subject
+;;;
+;;; * If they are the subject, possess them with "my" 
+;;;  FIXME: probably over constrained? Questions?
+;;;
+;;;  FIXME: identity_rel not constrained enough for zeros (gender and person)
+;;;  needs to be fixed in tm/erg.mtr
+;;;
+;;;  FIXME: what if it is an indirect object, or in a PP?
+;;;  FIXME doesn't play well with n_of_
+;;;
+poss_verb_ditch_poss_noun_ef  := monotonic_mtr &
+[ CONTEXT.RELS   < [ PRED "~^_(have|own|possess|buy|acquire|steal|find)", ARG0 e, ARG1 x & #x1, ARG2 x & #xn],
+		   [ PRED def_udef_a_q_rel, ARG0 #xn ] >,
+  INPUT.RELS    < [ PRED "poss_mark", LBL #hn, ARG0 #xn ] >].
+
+possessed_object_ef := monotonic_mtr &
+ [  CONTEXT.RELS   < [ ARG0 e, ARG1 x & #x1, ARG2 x & #xn],
+		    [ PRED def_udef_a_q_rel, ARG0 #xn ] >,
+    INPUT.RELS    < [ PRED "poss_mark", LBL #hn, ARG0 #xn ] >,
+    OUTPUT [ RELS < [ PRED pron_rel,    LBL #hp, ARG0 #xp & x ],
+		    [ PRED pronoun_q_rel,  ARG0 #xp,  RSTR #hpr ],
+		    [ PRED identity_rel, LBL #hp, ARG0 #x1, ARG1 #xp ],
+		    [ PRED poss_rel,  LBL #hn, 
+		      ARG0 #e & e & [ TENSE UNTENSED ],
+		      ARG1 #xn, ARG2 #xp ]  >,
+	     HCONS <  qeq & [ HARG #hpr, LARG #hp ]  > ],
+    FLAGS.EQUAL < #xn > ].
+
+possessed_subject_ef := monotonic_mtr &
+  [  CONTEXT.RELS   < [ PRED "~(_[va]_)", ARG0 e, ARG1 x & #xn],
+ 		     [ PRED def_udef_a_q_rel, ARG0 #xn ] >,
+     INPUT.RELS    < [ PRED "poss_mark", LBL #hn, ARG0 #xn ] >,
+     OUTPUT [ RELS < [ PRED pron_rel,    LBL #hp, 
+ 		      ARG0 #xp & [PERS 1, NUM sg, PRONTYPE std_pron]],
+ 		    [ PRED pronoun_q_rel,  ARG0 #xp,  RSTR #hpr ],
+ 		    [ PRED poss_rel,  LBL #hn, 
+ 		      ARG0 #e & e & [ TENSE UNTENSED ],
+ 		      ARG1 #xn, ARG2 #xp ]  >,
+ 	     HCONS <  qeq & [ HARG #hpr, LARG #hp ]  > ]].
+
+
+
+;;
+;; If the a bound pronoun is unknown, then block it for now
+;; FIXME -- need to link it when we add in the zero.
+;; need to rethink the whole issue of zeros and 'u'
+
+block-bound-zero_ef := monotonic_mtr &
+[   INPUT.RELS <  [ PRED identity_rel, ARG0 i & #i0 ] >,
+    FLAGS [ EQUAL < #i0 >,
+	    BLOCK "unknown target for bound pronoun" ]].
+
+
+;;
+;; if it is a question, and number is unspecified, change it to second person
+;; - probably too strong, and I couldn't restrict it enough!
+
+
+;pron_int_arg1_ef := monotonic_mtr &
+;[ CONTEXT.RELS < [ PRED int_m_rel, ARG0 #e ],
+;		 [ ARG0 #e, ARG1 #x1 ] >,
+;  INPUT.RELS <  [ PRED pron_rel, LBL #h2, 
+;		  ARG0 #x1 & [PERS PERSON, PRONTYPE std_pron]] >,
+;  OUTPUT.RELS < [ PRED pron_rel, LBL #h2, 
+;		  ARG0 #x1 & [PERS 2, PRONTYPE std_pron]] >,
+;  FLAGS.EQUAL < #x1 >].
+

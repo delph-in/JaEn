@@ -1,0 +1,16 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Coding: utf-8; -*- got it?
+
+;;;
+;;; extensions to general transfer-level type hierarchy that are not universal
+;;; but affect multiple language pairs, in this case all pairs involving JaCY.
+;;;
+
+;;; used for finer quantifier control
+no_num := number.
+not_pl := sg & no_num.
+not_sg := pl & no_num.
+;; refine
+not_number := no_num.
+
+;;; Jacy" moods
+consultative := mood.

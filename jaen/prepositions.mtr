@@ -1,0 +1,619 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; Encoding: utf-8 -*- got it?
+
+;;;
+;;; a separate phase for prepositions, so that we can assume the arguments have
+;;; been transferred, and rules here can condition on the TL hierarchy.
+;;;
+
+;;; Particles, prepositions, etc.
+
+;;;
+;;; の -> possessive, compound, locative
+;;;
+;;; currently we severly undergenerate the locative (only for place_n_rel)
+;;;
+;;; could make super type of compound and prep and let the ERG decide
+;;;
+
+;;; Do first as these should not be compounds
+no_p_pron_rel-poss_rel-omtr := preposition_mtr &
+ [ CONTEXT.RELS < [ PRED "~(pron_rel|time_n_rel|person_rel|named_rel)", ARG0 #x2 & x ] >,
+   INPUT.RELS  < [ PRED "ja:_no_p_rel", ARG2 #x2] >,
+   OUTPUT.RELS < [ PRED poss_rel ] >,
+   FLAGS.EQUAL < #x2 > ].
+
+;;; ここ の 犬 -> the dog here
+;;; could make more general (lots of ambiguity)
+de_p_rel-unspec_loc_rel := preposition_mtr &
+ [ CONTEXT.RELS < [ PRED place_n_rel, ARG0 #x2 ] >,
+   INPUT.RELS < [ PRED "ja:_no_p_rel", ARG2 #x2 ] >,
+   OUTPUT.RELS < [ PRED loc_nonsp_rel ] > ].
+
+
+; XのY -> X Y
+; 
+no_p_rel-compound_rel-omtr := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_no_p_rel" ] >,
+  OUTPUT.RELS < [ PRED compound_rel ] > ].
+
+; XのY -> X's Y or Y of X
+; this is a supertype of _of_p_rel -- eric 2008/11/10
+
+no_p_n_rel-poss_rel-omtr := preposition_mtr &
+ [ CONTEXT.RELS < [ PRED "~_n_", LBL #h0, ARG0 #x2 & x ] >,
+   INPUT.RELS  < [ PRED "ja:_no_p_rel", ARG2 #x2] >,
+   OUTPUT.RELS < [ PRED poss_rel ] >,
+   FLAGS.EQUAL < #x2 > ].
+
+
+;;;
+;;; compounds
+;;;
+
+;;;
+;;; some things that are nouns in Japanese are adjectives in English
+;;; we have a noun to adjective rule, but there is an extra compound left over!
+;;;
+
+compound-adj_ef := monotonic_mtr &
+ [ INPUT.RELS <  [ PRED "adj_from_noun_mark", LBL #h, ARG0 #e],
+		 [ PRED #adj, LBL #h, ARG0 #e, ARG1 #x2],
+		 [ PRED compound_rel, LBL #h1, ARG0 #e1, ARG1 #x1, ARG2 #x2 ],
+		 [ PRED "ja:udef_q_rel", ARG0 #x2 ] >,
+   OUTPUT.RELS < [PRED #adj,  LBL #h1, ARG0 #e, ARG1 #x1]> ].
+
+;;;
+;;; n-n compounds
+;;;
+
+mark-compound_rel-lbl-mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "~_n_", LBL #h0, ARG0 #x1 & x ],
+		 [ PRED compound_rel, LBL #h1, ARG0 #e1, ARG1 #x1, ARG2 #x2 ] >,
+  OUTPUT.RELS < [ PRED "compound_rel_lbl_mark", LBL #h1, ARG0 #h0 ] >,
+  FILTER.RELS < [ PRED "compound_rel_lbl_mark", LBL #h1, ARG0 #h0 ] >,
+  FLAGS.EQUAL < #x1 > ].
+
+swap-compound_rel-lbl-mtr := monotonic_mtr &
+[ INPUT.RELS < [ PRED compound_rel, LBL #h1, ARG0 #e1, ARG1 #x1, ARG2 #x2 ],
+	       [ PRED "compound_rel_lbl_mark", LBL #h1, ARG0 #h2 ] >,
+  OUTPUT.RELS < [ PRED compound_rel, LBL #h2, ARG0 #e1, ARG1 #x1, ARG2 #x2 ] > ].
+
+
+
+
+ni_p+adj-adv := monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:_ni_p_rel", LBL #h1, ARG0 #e1 & e,
+		 ARG1 #e2 & e, ARG2 #e3 & e ],
+	       [ PRED #p, LBL #h2, ARG0 #e3, ARG1 #u ] >,
+  OUTPUT.RELS < [ PRED #p, LBL #h1, ARG0 #e3 & [ TENSE UNTENSED ], ARG1 #e2 ] >,
+  FLAGS.EQUAL < #e1, #e2, #e3 > ].
+
+; ni_p_rel-in+order+to_rel := monotonic_omtr &
+; [ CONTEXT.RELS < [ PRED "~_v_", LBL #h1, ARG0 #e1 & e ] >,
+;   INPUT.RELS < [ PRED "ja:_ni_p_rel", LBL #h1, ARG0 #e0 & e, ARG1 #e1 & e, ARG2 #e2 & e ] >,
+;   OUTPUT.RELS < [ PRED "_in+order+to_x_rel", LBL #h1, ARG0 #e0, MAIN #h2, SUBORD #h3 ] >,
+;   FLAGS.EQUAL < #e0, #e1, #e2 > ].
+
+;;;
+;;; This is to prevent prepositions from occurring before words like `here'.
+;;;                                                             (23-sep-10; ph)
+de_p_rel-loc_nonsp_rel := preposition_mtr &
+[ CONTEXT.RELS < [ PRED place_n_rel, ARG0 #x ] >,
+  INPUT.RELS < [ PRED "ja:_de_p_rel", ARG2 #x ] >,
+  OUTPUT.RELS < [ PRED loc_nonsp_rel ] > ].
+
+de_p_rel-unspec_loc_rel := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_de_p_rel", ARG2 #x ] >,
+  OUTPUT.RELS < [ PRED unspec_loc_rel ] > ].
+
+; de_p_rel-unspec_loc_rel := preposition_mtr &
+; [ CONTEXT.RELS < [ PRED "ja:place_rel", ARG0 #x ] >,
+;   INPUT.RELS < [ PRED "ja:_de_p_rel", ARG2 #x ] >,
+;   OUTPUT.RELS < [ PRED unspec_loc_rel ] > ].
+
+; ni_p_rel-unspec_loc_rel := preposition_mtr &
+; [ CONTEXT.RELS < [ PRED "ja:place_rel", ARG0 #x ] >,
+;   INPUT.RELS < [ PRED "ja:_ni_p_rel", ARG2 #x ] >,
+;   OUTPUT.RELS < [ PRED unspec_loc_rel ] > ].
+
+;;; should be handled by unspec_loc_rel now -- eric-n, 2008/04/25
+
+;;;; *in* January
+;ni_p_rel-in_p_temp_rel := preposition_mtr &
+;[ CONTEXT.RELS < [ PRED mofy_rel, ARG0 #x ] >,
+;  INPUT.RELS < [ PRED "ja:_ni_p_rel", ARG2 #x ] >,
+;  OUTPUT.RELS < [ PRED _in_p_temp_rel ] > ].
+
+;;; *in* Season (in summer, in spring)
+;;;
+;;; note we also make the season singular here.
+;;;
+ni_p_rel-in_p_season_rel := preposition_mtr &
+[ CONTEXT.RELS < [ PRED season_rel , ARG0 #x ] >,
+  INPUT.RELS < [ PRED "ja:_ni_p_rel", ARG2 #x ] >,
+  OUTPUT.RELS < [ PRED _in_p_temp_rel ] > ]. 
+
+;ni_p_rel-in_p_rel := preposition_omtr &
+;[ INPUT.RELS < [ PRED "ja:_ni_p_rel" ] >,
+;  OUTPUT.RELS < [ PRED _in_p_rel ] > ].
+
+ni_p_rel-to_p_rel := preposition_omtr &
+[ CONTEXT.RELS < [ ARG0 #e0 & [ PASS - ] ] >,
+  INPUT.RELS < [ PRED "ja:_ni_p_rel", ARG1 #e0 ] >,
+  OUTPUT.RELS < [ PRED _to_p_rel ] > ].
+
+ni_p_rel-by_p_rel := preposition_omtr &
+[ CONTEXT.RELS < [ ARG0 #e0 & [ PASS + ] ] >,
+  INPUT.RELS < [ PRED "ja:_ni_p_rel", ARG1 #e0 ] >,
+  OUTPUT.RELS < [ PRED _by_p_rel ] > ].
+
+;;; leave out for now
+; ni_p_rel-into_p_rel := preposition_omtr &
+; [ INPUT.RELS < [ PRED "ja:_ni_p_rel" ] >,
+;   OUTPUT.RELS < [ PRED _into_p_rel ] > ].
+
+;;; FIXME constrain with verbs
+ni_p_rel-for_p_rel := preposition_omtr &
+[ CONTEXT.RELS < [ ARG0 #e0 & [ PASS - ] ] >,
+  INPUT.RELS < [ PRED "ja:_ni_p_rel", ARG1 #e0 ] >,
+  OUTPUT.RELS < [ PRED _for_p_rel ] > ].
+
+;;;
+;;; This is to prevent prepositions from occurring before words like `here'.
+;;;                                                             (23-sep-10; ph)
+ni_p_rel-loc_nonsp_rel := preposition_mtr &
+[ CONTEXT.RELS < [ PRED place_n_rel, ARG0 #x ] >,
+  INPUT.RELS < [ PRED "ja:_ni_p_rel", ARG2 #x ] >,
+  OUTPUT.RELS < [ PRED loc_nonsp_rel ] > ].
+
+ni_p_rel-unspec_loc_rel := preposition_mtr &
+[ CONTEXT.RELS < [ ARG0 #e0 & [ PASS - ] ] >,
+  INPUT.RELS < [ PRED "ja:_ni_p_rel", ARG1 #e0, ARG2 i ] >,
+  OUTPUT.RELS < [ PRED unspec_loc_rel ] > ].
+
+e_p_rel-to_p_rel := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_e_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _toward_p_rel ] > ].
+
+e_p_rel-to_p_rel := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_e_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _to_p_rel ] > ].
+
+
+to_p_with_rel-with_p_rel := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_to_p_with_rel" ] >,
+  OUTPUT.RELS < [ PRED _with_p_rel ] > ].
+
+;;; should be handled by unspec_loc_rel now -- eric-n, 2008/04/25
+
+;de_p_rel-in_p_rel := preposition_omtr &
+;[ INPUT.RELS < [ PRED "ja:_de_p_rel" ] >,
+;  OUTPUT.RELS < [ PRED _in_p_rel ] > ].
+
+;de_p_rel-on_p_rel := preposition_omtr &
+;[ INPUT.RELS < [ PRED "ja:_de_p_rel" ] >,
+;  OUTPUT.RELS < [ PRED _on_p_rel ] > ].
+;
+;de_p_rel-at_p_rel := preposition_omtr &
+;[ INPUT.RELS < [ PRED "ja:_de_p_rel" ] >,
+;  OUTPUT.RELS < [ PRED _at_p_rel ] > ].
+
+de_p_rel-by_p_rel := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_de_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _by_p_rel ] > ].
+
+de_p_rel-by_p_rel := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_de_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _by_p_means_rel ] > ].
+
+de_p_rel-with_p_rel := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_de_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _with_p_rel ] > ].
+
+;;;　にて
+
+nite_p_rel-unspec_loc_rel := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_nite_p_1_rel", ARG2 #x ] >,
+  OUTPUT.RELS < [ PRED unspec_loc_rel ] > ].
+
+nite_p_rel-with_p_rel := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_nite_p_1_rel" ] >,
+  OUTPUT.RELS < [ PRED _with_p_rel ] > ].
+
+
+made_p_rel-to_p_rel := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_made_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _to_p_rel ] > ].
+
+nisotte--along_p_rel := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_nisotte_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _along_p_rel ] > ].
+
+
+nitotte--for_p_rel := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_nitotte_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _for_p_rel ] > ].
+
+nikanshite--about_p_rel := preposition_mtr &
+ [ INPUT.RELS < [ PRED "ja:_nikanshite_p_rel" ] >,
+   OUTPUT.RELS < [ PRED _about_p_rel ] > ].
+
+nikanshite--about_p_rel := preposition_mtr &
+ [ INPUT.RELS < [ PRED "ja:_nikaNshite_p_rel" ] >,
+   OUTPUT.RELS < [ PRED _about_p_rel ] > ].
+
+
+; nikansuru--about_p_rel := preposition_mtr &
+; [ INPUT.RELS < [ PRED "ja:_nikansuru_p_rel" ] >,
+;   OUTPUT.RELS < [ PRED _about_p_rel ] > ].
+
+
+; made_p_rel-until_p_rel := preposition_mtr &
+; [ INPUT.RELS < [ PRED "_made_p_rel" ] >,
+;   OUTPUT.RELS < [ PRED _until_p_rel ] > ].
+
+; how do I turn this off (^^;) -- eric-n 2006/9/1
+; -- use FLAGS.EQUAL to force equality comparison
+;;; FCB fixme
+
+;;;
+;;; COMP doesn't work with adverbs  properly
+;;;
+yori_p_rel-more+than_rel := preposition_mtr &
+[ CONTEXT.RELS <  [ PRED "~_v_", ARG0 #e ] >,
+  INPUT.RELS < [ PRED "ja:_yori_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _more+than_p_rel ] >].
+
+yori_p_rel-comp_rel := preposition_omtr &
+ [ INPUT.RELS < [ PRED "ja:_yori_p_rel" ] >,
+   OUTPUT.RELS < [ PRED comp_rel ] >].
+
+yori_p_rel-from_p_rel := preposition_mtr &
+ [ INPUT.RELS < [ PRED "ja:_yori_p_rel" ] >,
+   OUTPUT.RELS < [ PRED _from_p_rel ] >].
+
+;;; から
+
+kara_p_rel-from_p_rel := preposition_omtr &
+ [ INPUT.RELS < [ PRED "ja:_kara_p_rel" ] >,
+   OUTPUT.RELS < [ PRED _from_p_rel ] >].
+
+; Frequency: 1
+kara_p--out+of_p--pcorp-omtr := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_kara_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _out+of_p_rel ] , ... > ].
+
+kara_p_rel-since_p_rel := preposition_mtr &
+ [ INPUT.RELS < [ PRED "ja:_kara_p_rel" ] >,
+   OUTPUT.RELS < [ PRED _since_p_rel ] >].
+
+kara_p_rel-so_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_kara_p_rel", ARG0 #i & i ] >,
+  OUTPUT.RELS < [ PRED _so_c_rel ] >,
+  FLAGS.EQUAL < #i > ].
+
+;;; について
+
+nitsuite_p_rel-about_p_rel := preposition_omtr &
+ [ INPUT.RELS < [ PRED "ja:_nitsuite_p_rel" ] >,
+   OUTPUT.RELS < [ PRED _about_p_rel ] > ].
+
+nitsuite_p_rel-on_p_rel := preposition_mtr &
+ [ INPUT.RELS < [ PRED "ja:_nitsuite_p_rel" ] >,
+   OUTPUT.RELS < [ PRED _on_p_rel ] > ].
+
+;;; に対たいして
+
+;;; Very ambiguous need to include with verbs
+nitaishite_p-about_p := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_nitaishite_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _about_p_rel ] > ].
+
+nitaishite_p-toward_p := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_nitaishite_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _toward_p_rel ] > ].
+
+nitaishite_p-on_p-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_nitaishite_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _on_p_rel ] > ].
+
+;;; FIXME hard to translate
+niwataru_p-on_p-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_niwataru_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _for_p_rel ] > ].
+
+
+;nishite_p-for_p := preposition_mtr &
+;[ INPUT.RELS < [ PRED "ja:_nishite_p_rel" ] >,
+;  OUTPUT.RELS < [ PRED _for_p_rel ] > ].
+
+toshite_p-as_p := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_toshite_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _as_p_rel ] > ].
+
+niyotte_p--by_p_means--pcorp-omtr := preposition_omtr &
+[ FILTER.RELS < [ ARG0 #e0 & [ PASS + ] ] >,
+  INPUT.RELS < [ PRED "ja:_niyotte_p_rel", ARG1 #e0 ] , ... >,
+  OUTPUT.RELS < [ PRED _by_p_means_rel ] , ... > ].
+
+niyotte_p--by_p--pcorp-mtr := preposition_mtr &
+[ CONTEXT.RELS < [ ARG0 #e0 & [ PASS + ] ] >,
+  INPUT.RELS < [ PRED "ja:_niyotte_p_rel", ARG1 #e0 ] , ... >,
+  OUTPUT.RELS < [ PRED _by_p_rel ] , ... > ].
+
+;;; Mainly "in"
+nioite_p--at_p_temp--pcorp-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_nioite_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED unspec_loc_rel ] , ... > ].
+
+niokeru_p--at_p_temp--pcorp-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_niokeru_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED unspec_loc_rel ] , ... > ].
+
+nisaishite_p--at_p_temp--pcorp-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_nisaishite_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED unspec_loc_rel ] , ... > ].
+
+
+nishitagai_p--according+to_p_temp--pcorp-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_nishitagai_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _according+to_p_rel ] , ... > ].
+
+nimokakarawazu_p--despite_p_temp--pcorp-omtr := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_nimokakarawazu_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _despite_p_rel ] , ... > ].
+
+nimokakarawazu_p--despite_p_temp--pcorp-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_nimokakarawazu_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _in+spite+of_p_rel ] , ... > ].
+
+
+
+; Frequency: 1
+niyoru_p--in_p--pcorp-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_niyoru_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _by_p_means_rel ] , ... > ].
+
+; Frequency: 1
+otoushite_p--through_p_dir--pcorp-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_otoushite_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _through_p_dir_rel ] , ... > ].
+
+
+; とともに >> with 1877 0.165409
+totomo_p--with_p--pcorp-omtr := preposition_omtr &
+[ INPUT.RELS < [ PRED "ja:_totomo_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _with_p_rel ] , ... > ].
+
+; とともに >> together with 1877 0.165409
+totomo_p--together+with_p--pcorp-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_totomo_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _together+with_p_rel ] , ... > ].
+
+
+; おめぐって >> over
+omegutte_p--over_p--pcorp-mtr := preposition_mtr &
+[ INPUT.RELS < [ PRED "ja:_omegutte_p_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _over_p_rel ] , ... > ].
+
+
+
+;;;
+;;; discourse markers
+;;;
+;;; need to make def or 0
+;;; FIXME only if the verb is known, ...
+
+; wa_p_-as+for_p__rel := monotonic_mtr &
+;  [ INPUT.RELS < [ PRED "ja:_wa_d_rel", LBL #h,
+; 	       ARG0 #e0, ARG1 #e1, ARG2 #e2  ] >,
+;    OUTPUT.RELS < [ PRED _as+for_p_rel, LBL #h,
+; 	       ARG0 #e0, ARG1 #e1, ARG2 #e2 ],
+; 	     [ PRED focus_d_rel, LBL #h,
+; 	       ARG0 e, ARG1 #e1, ARG2 #e0] >].
+
+
+;;; Coordination
+
+node_p_rel-so_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_node_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _so_c_rel ] > ].
+
+ga_p_6_rel-but_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_ga_p_6_rel" ] >,
+  OUTPUT.RELS < [ PRED _but_c_rel ] > ].
+
+kedo_p_rel-but_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_kedo_p_rel" ] >,
+  OUTPUT.RELS < [ PRED _but_c_rel ] > ].
+
+to_p_and_rel-and_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_to_p_and_rel" ] >,
+  OUTPUT.RELS < [ PRED _and_c_rel ] > ].
+
+;;; FIXME や implies "and others"!
+to_p_and_rel-and_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_ya_p_conj_rel" ] >,
+  OUTPUT.RELS < [ PRED _and_c_rel ] > ].
+
+
+to_p_and_rel-and_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_to_p_and_rel" ] >,
+  OUTPUT.RELS < [ PRED _and_c_rel ] > ].
+
+to_p_sconj_rel-and_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_to_p_sconj_rel" ] >,
+  OUTPUT.RELS < [ PRED _and_c_rel ] > ].
+
+ando_p_conj_rel-and_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_ando_p_conj_rel" ] >,
+  OUTPUT.RELS < [ PRED _and_c_rel ] > ].
+
+
+katsu_p_conj_rel-or_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_katsu_p_conj_rel" ] >,
+  OUTPUT.RELS < [ PRED _or_c_rel ] > ].
+
+ka_p_conj_rel-or_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_ka_p_conj_rel" ] >,
+  OUTPUT.RELS < [ PRED _or_c_rel ] > ].
+
+ka_p_sconj_rel-or_c_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_ka_p_sconj_rel" ] >,
+  OUTPUT.RELS < [ PRED _or_c_rel ] > ].
+
+comma_p_conj_rel-implicit_conj_rel := conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:_comma_p_conj_rel" ] >,
+  OUTPUT.RELS < [ PRED implicit_conj_rel ] > ].
+
+coord-and_c_rel :=  conjunction_mtr &
+[ INPUT.RELS < [ PRED "ja:coord" ] >,
+  OUTPUT.RELS < [ PRED  _and_c_rel ] > ].
+
+noni-in+order+to := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h3, ARG0 #e0 ],
+	       [ PRED "ja:_noni_p_rel", LBL #h1, 
+		 ARG0 #e1, L-HNDL #h2, R-HNDL #h3 ] >,
+  OUTPUT.RELS < +copy+ & [ ARG0 #e1 ],
+		[ PRED "_in+order+to_x_rel", LBL #h1,
+		  ARG0 #e0, ARG1 #h2, ARG2 #h3 ] > ].
+
+eba_c-if_x_then-mtr := monotonic_mtr  &
+[ INPUT.RELS < [ PRED "ja:_eba_c_rel", 
+		 LBL #h1, ARG0 #e1, 
+		 L-HNDL #hl, L-INDEX #el, 
+		 R-HNDL #hr, R-INDEX #er ] >,
+  OUTPUT [ RELS < [ PRED "_if_x_then_rel", 
+		    LBL #h1, ARG0 #e1 & e_untensed, 
+		    ARG1 #h2, ARG2 #h3 ] >,
+	   HCONS < qeq & [ HARG #h2, LARG #hr ],
+		   qeq & [ HARG #h3, LARG #hl ] > ] ].
+
+nara_p-if_x_then-mtr := monotonic_mtr  &
+[ INPUT.RELS < [ PRED "ja:_nara_p_rel", 
+		 LBL #h1, ARG0 #e1, 
+		 L-HNDL #hl, L-INDEX #el, 
+		 R-HNDL #hr, R-INDEX #er ] >,
+  OUTPUT [ RELS < [ PRED "_if_x_then_rel", 
+		    LBL #h1, ARG0 #e1 & e_untensed, 
+		    ARG1 #h2, ARG2 #h3 ] >,
+	   HCONS < qeq & [ HARG #h2, LARG #hr ],
+		   qeq & [ HARG #h3, LARG #hl ] > ] ].
+
+tara_c-if_x_then-mtr := monotonic_mtr  &
+[ INPUT.RELS < [ PRED "ja:_tara_c_rel", 
+		 LBL #h1, ARG0 #e1, 
+		 L-HNDL #hl, L-INDEX #el, 
+		 R-HNDL #hr, R-INDEX #er ] >,
+  OUTPUT [ RELS < [ PRED "_if_x_then_rel", 
+		    LBL #h1, ARG0 #e1 & e_untensed, 
+		    ARG1 #h2, ARG2 #h3 ] >,
+	   HCONS < qeq & [ HARG #h2, LARG #hr ],
+		   qeq & [ HARG #h3, LARG #hl ] > ] ].
+
+link_main_to_index_mtr := mrs_transfer_rule &
+[ CONTEXT [ RELS < [ LBL #h1 & h, ARG0 #e1 & e, ARG1 #h2 & h, ARG2 #h3 & h ],
+		   [ LBL #h4 & h, ARG0 #e2 & e ] >,
+	    HCONS < qeq & [ HARG #h2 & h, LARG #h4 & h ] > ],
+  INPUT [ LTOP #h0 & h, INDEX #e1 & e ],
+  FILTER [ LTOP #h0, INDEX #e2 ],
+  OUTPUT [ LTOP #h0, INDEX #e2 ],
+  FLAGS.EQUAL < #h0, #h1, #e1, #h2, #e2, #h3, #h4 > ].
+
+;;;
+;;; Topic markers
+;;;
+
+mo-arg1-too-mtr := monotonic_mtr &
+[ CONTEXT.RELS < [LBL #hv,  ARG0 e, ARG1 #x ] >,
+ INPUT.RELS < [ PRED "ja:_mo_d_rel", ARG2 #x ] >,
+ OUTPUT [RELS < [ PRED "_too_a_also_rel", ARG0 e_untensed, ARG1 #h1 ] >,
+         HCONS < qeq & [ HARG #h1, LARG #hv ] > ]].
+
+
+;;;
+;;; N1-は N2-が ADJ -> N1's N2 Adj
+;;;
+;;; FIXME:  What about other topic markers?
+
+ha-ga--poss  := monotonic_mtr &
+[ CONTEXT [ RELS  < [PRED "~_a_", ARG0 #adj, ARG1 #n2 ],
+		    [PRED "~_n_", ARG0 #n2, LBL #ln2 ]> ],
+  INPUT.RELS < [ LBL #h1, PRED "ja:_wa_d_rel", ARG0 #e ,
+		 ARG1 #adj, ARG2 #n1 ] >,
+  OUTPUT.RELS <  [ LBL #ln2, PRED poss_rel, ARG0 #e, 
+		   ARG1 #n2, ARG2 #n1 ] >].
+
+
+;;; FIXME DAN: can I make the other two rules feed each other ...
+ha-mo--poss  := monotonic_mtr &
+[ CONTEXT [ RELS  < [LBL #hadj, PRED "~_a_", ARG0 #adj, ARG1 #n2 ],
+		    [PRED "~_n_", ARG0 #n2, LBL #ln2 ]> ],
+  INPUT.RELS < [ LBL #h1, PRED "ja:_mo_d_rel", ARG0 #e ,
+		 ARG1 #adj, ARG2 #n1 ] >,
+  OUTPUT [RELS <  [ LBL #ln2, PRED poss_rel, ARG0 #e, 
+		   ARG1 #n2, ARG2 #n1 ],
+		  [ PRED "_too_a_also_rel", ARG0 e_untensed, ARG1 #h1 ] >,
+	  HCONS < qeq & [ HARG #h1, LARG #hadj ] >  ]].
+
+
+
+;;;
+;;; Untranslated (not all PPs
+;;;
+
+; "_nitsurete_p_rel"
+; "_nitsuki_p_rel"
+; "_niataru_p_rel"
+; "_niatatte_p_rel"
+
+
+; "_monono_p_rel"
+; "_bakari_p_1_rel"
+; "_omotte_p_rel"
+; "_denaito_p_rel"
+; "_toka_p_rel"
+; "_toka_p_and_rel"
+; "_sorekara_p_conj_rel"
+; "_oyobi_p_conj_rel"
+; "_aruiwa_p_conj_rel"
+; "_goto_p_rel"
+; "_arrow_p_rel"
+; "_moshikuwa_p_conj_rel"
+; "_toitta_p_rel"
+; "_kurai_p_4_rel"
+; "_yara_p_conj_rel"
+; "_matawa_p_conj_rel"
+; "_goro_p_rel"
+; "_nitsuitedesuga_p_rel"
+; "_sonotame_p_rel"
+; "_mo_p_rel"
+; "_zutsu_p_rel"
+; "_bakari_p_2_rel"
+; "_hodo_p_rel"
+; "_na_p_nmod_rel"
+; "_kaato_p_conj_rel"
+; "_kara_p_cardmod_rel"
+; "_yainaya_p_sconj_rel"
+; "_wa_p_rel"
+; "_keredomo_p_rel"
+; "_dano_p_conj_rel"
+; "_kamata_p_conj_rel"
+; "_nari_p_conj_rel"
+; "_decl_p_rel"
+; "_ya_p_conj_rel"
+; "_dewa_p_rel"
+; "_tou_p_8_rel"
+; "_kara_p_prep_rel"
+; "_soku_p_1_rel"
+; "_to_p_conj_rel"
+; "_niwatatte_p_rel"
+; "_tomo_p_rel"
+; "_atari_p_rel"
+; "_ne_p_rel"
+; "_toshitara_p_rel"
+; "_nanode_p_rel"
+; "_ka_p_nmod_rel"
+; "_toiu_p_rel"
+; "_sonota_p_rel"
+; "_ken_p_24_rel"

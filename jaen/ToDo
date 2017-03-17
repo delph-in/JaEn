@@ -1,0 +1,118 @@
+
+? why aren't New York and London matching?
+ |私 たち は ロンドン から ニューヨーク まで 飛行機 で 行っ た 。| (107519) --- 5 x 48 x 50 = 49 [50]
+|@ |We flew from London to New York.|
+
+; 1 (0.0, 0.0, 0, 0, 0) 0 250 "rondon_1" 0 1 "London" ロンドン London edict pn mtr
+lex-auto-jaen.single.0.mtr:rondon1--London--edict-mtr := pn_mtr &
+lex-auto-jaen.single.0.mtr-[ INPUT.RELS < [ CARG "rondon_1" ] , ... >,
+lex-auto-jaen.single.0.mtr:  OUTPUT.RELS < [ CARG "London" ] , ... > ].
+
+
+We should add some manner of motion verbs.
+???
+grep -A 1 " で 行" /home/bond/logon/dfki/jacy/data/tanaka/tc*
+
+Why no オリンピック"? Why no 夏?
+
+Are we missing a n_pn (noun to proper noun) rule?
+
+NPI:  ちっとも
+
+Possessive:
+
+|< |太陽 は 時折 顔 を 見せ た 。| (107603) --- 2 x 24 x 30 = 30
+|@ |The sun sometimes shone.|
+|> |The sun sometimes showed a face.| {7.67e-1} <0.29> (0:0:1).
+|> |Sun sometimes showed a face.| {7.64e-1} <0.16> (0:0:2).
+|> |Solars sometimes showed the face.| {7.39e-1} <0.10> (0:4:2).
+|> |Solars sometimes showed a face.| {7.21e-1} <0.05> (0:4:1).
+|> |Suns sometimes showed a face.| {7.13e-1} <0.05> (0:0:0).
+
+"its face"
+
+New rules:
+----------
+やがて -> "in time" "before long"
+
+N+da -> adj
+
+満員だ -> full
+
+------------------------------------------------------------------------
+
+_book_n_of_rel + compound
+
+no -> of/compound
+
+Problems with zero pronouns.
+
+Do we want a dictionary user-dictionary?
+
+If so "resembling"
+
+A-no-B transfer bad if B has argument.
+
+nikanshite -> with respect to
+
+Synonym/unusually-very
+
+shuu -> species
+
+no - in //named_rel
+
+romaji
+
+粋 な 方法 で
+
+cultivated
+
+------------------------------------------------------------------------
+
+Some quick rules:
+
+< |彼女 は 故意 に 窓 を 壊し た 。| (30006752) --- 2 x 54 x 25 = 25
+|@ |She broke the window on purpose.|
+
+故意 に -> on purpose
+
+面白 半分 に -> for fun
+
+彼 は 風邪 に かかっ た 。| (30006033) --- 5 x 168 x 5 = 5
+|@ |He came down with a cold.|
+|> |He hanged cold.
+
+もちろん -> of course
+
+弟 -> My brother
+親 -> parent
+
+家 -> house
+
+どの 位 => how much
+
+春-> spring
+
+地下鉄 で -> by subway
+永遠 に -> for good
+
+健康 だ -> is healthy
+
+IDIOM:
+< |足 が 棒 に なっ た 。| (30006422) --- 2 x 9 x 25 = 25
+|@ |My legs feel heavy as lead.|
+|< |犬 は 棒 の 匂い を 嗅い で い た 。| (30006541) --- 5 x 270 x 10 = 5 [10]
+|@ |The dog was sniffing a stick.|
+
+
+渡っ => cross
+
+ラケット を 持っ て いる 。| (30006640) --- 5 x 216 x 92 = 34 [92]
+|@ |Mike has a nice racket.|
+|> |Mike has a good paddle
+
+Agreement bug:
+|@ |She helped her father with the work in the garden.|
+|> |She helped his father's garden work.| {7.93e-1} <0.15> (1:0:3).
+|> |She helped her father's garden work.| {7.93e-1} <0.33> (1:0:4).
+

@@ -1,0 +1,45 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+;;;
+;;;reduced lexicon for testing
+;;; 
+
+inu_n := noun_mtr &
+[ OUTPUT.RELS < [ PRED "_inu_n_rel" ] >,
+  INPUT.RELS < [ PRED "_dog_n_1_rel" ] > ].
+
+neko_n := noun_mtr &
+[ OUTPUT.RELS < [ PRED "_neko_n_rel" ] >,
+  INPUT.RELS < [ PRED "_cat_n_1_rel" ] > ].
+
+ookii_a := adjective_mtr &
+[ OUTPUT.RELS < [ PRED "_ookii_a_rel" ] >,
+  INPUT.RELS < [ PRED "_big_a_rel" ] > ].
+
+suwaru_v := arg1_v_mtr &
+[ OUTPUT.RELS < [ PRED "_suwaru_v_rel" ] >,
+  INPUT.RELS < [ PRED "_sit_v_down_rel" ] > ].
+
+taberu_v := arg12_v_mtr &
+[ OUTPUT.RELS < [ PRED "_taberu_v_rel" ] >,
+  INPUT.RELS < [ PRED "_eat_v_1_rel" ] > ].
+
+sassoku_a := intersective_adverb_mtr &
+ [ OUTPUT.RELS < [ PRED "_sassoku_a_rel"]  >,
+   INPUT.RELS < [ PRED "_immediate_a_rel" ] > ].
+
+tabun_a := scopal_adverb_mtr &
+ [ OUTPUT.RELS < [ PRED "_tabun_a_rel"]  >,
+   INPUT.RELS < [ PRED "_probable_a_rel" ] > ].
+
+bark_v_1-hoeru_v_1-omtr := arg1_v_omtr & 
+[ INPUT.RELS < [ PRED "_bark_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_hoeru_v_1_rel" ] > ].
+
+
+mado_n-window_n_1-mtr := noun_mtr & 
+[ OUTPUT.RELS < [ PRED "_mado_n_rel" ] >,
+  INPUT.RELS < [ PRED "_window_n_1_rel" ] > ].
+
+aku_v-open_v_1-mtr := arg1_v_mtr & 
+[ OUTPUT.RELS < [ PRED "_aku_v_inchoative_rel" ] >,
+  INPUT.RELS < [ PRED "_open_v_1_rel" ] > ].

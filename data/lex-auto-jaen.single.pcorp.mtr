@@ -1,0 +1,4440 @@
+shounen_n_1--boy_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shounen_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_boy_n_1_rel" ] , ... > ].
+
+koohii_n--coffee_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_koohii_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_coffee_n_1_rel" ] , ... > ].
+
+daigaku_n_1--college_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_daigaku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_college_n_of_rel" ] , ... > ].
+
+kisoku_n_1--rule_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kisoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rule_n_of_rel" ] , ... > ].
+
+ワシ_n_1_g--eagle_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ワシ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_eagle_n_1_rel" ] , ... > ].
+
+remon_n_1--lemon_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_remon_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lemon_n_1_rel" ] , ... > ].
+
+iruka_n_1--dolphin_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_iruka_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dolphin_n_1_rel" ] , ... > ].
+
+hitobito_n--people_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hitobito_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_people_n_of_rel" ] , ... > ].
+
+biriya_n_do_1--billiards_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_biriya_n_do_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_billiards_n_1_rel" ] , ... > ].
+
+garasu_n--glass_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_garasu_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_glass_n_of_rel" ] , ... > ].
+
+wani_n_1--alligator_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_wani_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_alligator_n_1_rel" ] , ... > ].
+
+higashi_n_east--east_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_higashi_n_east_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_east_n_1_rel" ] , ... > ].
+
+tekkou_n_1--steel_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tekkou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_steel_n_1_rel" ] , ... > ].
+
+ハエ_n_1_g--fly_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ハエ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fly_n_1_rel" ] , ... > ].
+
+zarigani_n_1--crayfish_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_zarigani_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_crayfish_n_1_rel" ] , ... > ].
+
+カキ_n_1_g--oyster_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_カキ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_oyster_n_1_rel" ] , ... > ].
+
+genzai_n--present_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_genzai_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_present_n_1_rel" ] , ... > ].
+
+kouseki_n_2--ore_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kouseki_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ore_n_1_rel" ] , ... > ].
+
+omocha_n_1--toy_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_omocha_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_toy_n_1_rel" ] , ... > ].
+
+kabu_n_1--turnip_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kabu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_turnip_n_1_rel" ] , ... > ].
+
+ryoushin_n_1--parent_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ryoushin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_parent_n_of_rel" ] , ... > ].
+
+zoku_n_2--genus_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_zoku_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_genus_n_1_rel" ] , ... > ].
+
+kyoudai_n_1--brother_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyoudai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_brother_n_of_rel" ] , ... > ].
+
+shuumatsu_n_2--weekend_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shuumatsu_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_weekend_n_of_rel" ] , ... > ].
+
+ヤギ_n_1_g--goat_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ヤギ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_goat_n_1_rel" ] , ... > ].
+
+minami_n_south--south_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_minami_n_south_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_south_n_1_rel" ] , ... > ].
+
+shida_n_2--fern_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shida_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fern_n_1_rel" ] , ... > ].
+
+iwashi_n_1--sardine_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_iwashi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sardine_n_1_rel" ] , ... > ].
+
+douzoku_n_1--cognate_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_douzoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cognate_n_1_rel" ] , ... > ].
+
+ro-zumari-_n_1--rosemary_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ro-zumari-_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rosemary_n_1_rel" ] , ... > ].
+
+youeki_n_1--solution_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_youeki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_solution_n_of_rel" ] , ... > ].
+
+komedii_n--comedy_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_komedii_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_comedy_n_1_rel" ] , ... > ].
+
+nakama_n_1--fellow_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nakama_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fellow_n_1_rel" ] , ... > ].
+
+houshajou_n_1--radial_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_houshajou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_radial_n_1_rel" ] , ... > ].
+
+とり_n_1_g--plant_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_とり_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_plant_n_1_rel" ] , ... > ].
+
+denkyoku_n_1--electrode_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_denkyoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_electrode_n_1_rel" ] , ... > ].
+
+saba_n_2--mackerel_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_saba_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mackerel_n_1_rel" ] , ... > ].
+
+ashika_n_1--seal_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ashika_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_seal_n_1_rel" ] , ... > ].
+
+ari_n_1--ant_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ari_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ant_n_1_rel" ] , ... > ].
+
+超自然_n_1_g--supernatural_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_超自然_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_supernatural_n_1_rel" ] , ... > ].
+
+oyakata_n_1--boss_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_oyakata_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_boss_n_1_rel" ] , ... > ].
+
+bukka_n_1--price_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_bukka_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_price_n_of_rel" ] , ... > ].
+
+garasu_n--pane_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_garasu_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pane_n_1_rel" ] , ... > ].
+
+ra_n_do_1--lard_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ra_n_do_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lard_n_1_rel" ] , ... > ].
+
+nishi_n_1--west_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nishi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_west_n_1_rel" ] , ... > ].
+
+tasogare_n_1--twilight_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tasogare_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_twilight_n_1_rel" ] , ... > ].
+
+kinensai_n_1--jubilee_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kinensai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_jubilee_n_1_rel" ] , ... > ].
+
+ika_n_7--cuttlefish_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ika_n_7_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cuttlefish_n_1_rel" ] , ... > ].
+
+kyuujitsu_n--holiday_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyuujitsu_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_holiday_n_1_rel" ] , ... > ].
+
+shiiru_n_1--seal_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shiiru_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_seal_n_1_rel" ] , ... > ].
+
+senseeshon_n--sensation_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_senseeshon_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sensation_n_of_rel" ] , ... > ].
+
+rousoku_n_1--candle_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_rousoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_candle_n_1_rel" ] , ... > ].
+
+bi_n_zu_1--bead_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_bi_n_zu_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bead_n_1_rel" ] , ... > ].
+
+わび_n_1_g--apology_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_わび_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_apology_n_1_rel" ] , ... > ].
+
+kirekomi_n_1--cut_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kirekomi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cut_n_1_rel" ] , ... > ].
+
+ガチョウ_n_1_g--goose_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ガチョウ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_goose_n_1_rel" ] , ... > ].
+
+キュウリ_n_1_g--cucumber_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_キュウリ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cucumber_n_1_rel" ] , ... > ].
+
+tennou_n_1--emperor_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tennou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_emperor_n_1_rel" ] , ... > ].
+
+イヌ_n_1_g--dog_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_イヌ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dog_n_1_rel" ] , ... > ].
+
+hokori_n_2--dust_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hokori_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dust_n_1_rel" ] , ... > ].
+
+jasumin_n_1--jasmine_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_jasumin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_jasmine_n_1_rel" ] , ... > ].
+
+retasu_n_1--lettuce_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_retasu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lettuce_n_1_rel" ] , ... > ].
+
+itachi_n_1--weasel_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_itachi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_weasel_n_1_rel" ] , ... > ].
+
+youhou_n_1--usage_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_youhou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_usage_n_of_rel" ] , ... > ].
+
+hiyoko_n_1--chicken_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hiyoko_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_chicken_n_1_rel" ] , ... > ].
+
+katorikku_n_1--catholic_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_katorikku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_catholic_n_1_rel" ] , ... > ].
+
+ama_n_1--nun_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ama_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_nun_n_1_rel" ] , ... > ].
+
+ma_n_buru_1--marble_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ma_n_buru_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_marble_n_1_rel" ] , ... > ].
+
+カバ_n_1_g--hippopotamus_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_カバ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hippopotamus_n_1_rel" ] , ... > ].
+
+shimauma_n_1--zebra_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shimauma_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_zebra_n_1_rel" ] , ... > ].
+
+ツグミ_n_1_g--chat_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ツグミ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_chat_n_1_rel" ] , ... > ].
+
+nantou_n_1--southeast_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nantou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_southeast_n_1_rel" ] , ... > ].
+
+souryou_n_1--amount_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_souryou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_amount_n_of_rel" ] , ... > ].
+
+gobou_n_2--burdock_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_gobou_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_burdock_n_1_rel" ] , ... > ].
+
+funiki_n--atmosphere_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_funiki_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_atmosphere_n_1_rel" ] , ... > ].
+
+shitsuji_n_1--deacon_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shitsuji_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_deacon_n_1_rel" ] , ... > ].
+
+po_n_ku_1--pork_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_po_n_ku_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pork_n_1_rel" ] , ... > ].
+
+baajin_n--virgin_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_baajin_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_virgin_n_1_rel" ] , ... > ].
+
+ブヨ_n_1_g--gnat_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ブヨ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gnat_n_1_rel" ] , ... > ].
+
+soketto_n_1--socket_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_soketto_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_socket_n_1_rel" ] , ... > ].
+
+nengetsu_n_1--year_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nengetsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_year_n_1_rel" ] , ... > ].
+
+wani_n_1--crocodile_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_wani_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_crocodile_n_1_rel" ] , ... > ].
+
+kyasuto_n_1--cast_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyasuto_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cast_n_1_rel" ] , ... > ].
+
+コイ_n_1_g--carp_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_コイ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_carp_n_1_rel" ] , ... > ].
+
+iradachi_n_3--irritation_n_at--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_iradachi_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_irritation_n_at_rel" ] , ... > ].
+
+ハチミツ_n_1_g--bee_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ハチミツ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bee_n_1_rel" ] , ... > ].
+
+サクランボ_n_1_g--cherry_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_サクランボ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cherry_n_1_rel" ] , ... > ].
+
+ワタ_n_1_g--cotton_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ワタ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cotton_n_1_rel" ] , ... > ].
+
+shiryou_n_1--forage_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shiryou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_forage_n_1_rel" ] , ... > ].
+
+ryouseirui_n_1--amphibian_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ryouseirui_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_amphibian_n_1_rel" ] , ... > ].
+
+hongoku_n_1--home_n_of-n--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hongoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_home_n_of-n_rel" ] , ... > ].
+
+horun_n_1--horn_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_horun_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_horn_n_1_rel" ] , ... > ].
+
+hiyoke_n_1--shade_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hiyoke_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_shade_n_1_rel" ] , ... > ].
+
+yoko_n_1--side_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_yoko_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_side_n_1_rel" ] , ... > ].
+
+shukusai_n_1--festival_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shukusai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_festival_n_1_rel" ] , ... > ].
+
+ヒナギク_n_1_g--daisy_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ヒナギク_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_daisy_n_1_rel" ] , ... > ].
+
+suraidaa_n_1--slider_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_suraidaa_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_slider_n_1_rel" ] , ... > ].
+
+fukusou_n_1--clothing_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_fukusou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clothing_n_1_rel" ] , ... > ].
+
+shanpan_n_1--champagne_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shanpan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_champagne_n_1_rel" ] , ... > ].
+
+daikon_n_2--radish_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_daikon_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_radish_n_1_rel" ] , ... > ].
+
+noumin_n_1--farmer_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_noumin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_farmer_n_1_rel" ] , ... > ].
+
+damii_n_1--dummy_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_damii_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dummy_n_1_rel" ] , ... > ].
+
+botan_n--button_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_botan_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_button_n_1_rel" ] , ... > ].
+
+yojou_n_1--surplus_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_yojou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_surplus_n_of_rel" ] , ... > ].
+
+suchiiru_n_1--still_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_suchiiru_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_still_n_1_rel" ] , ... > ].
+
+baketsu_n_1--bucket_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_baketsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bucket_n_1_rel" ] , ... > ].
+
+tsumeawase_n_1--sampler_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsumeawase_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sampler_n_1_rel" ] , ... > ].
+
+zan_n_1--residual_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_zan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_residual_n_1_rel" ] , ... > ].
+
+chishikijin_n_1--intellectual_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_chishikijin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_intellectual_n_1_rel" ] , ... > ].
+
+o-yamaneko_n_1--lynx_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_o-yamaneko_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lynx_n_1_rel" ] , ... > ].
+
+ブタ_n_1_g--pig_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ブタ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pig_n_1_rel" ] , ... > ].
+
+chidori_n_1--plover_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_chidori_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_plover_n_1_rel" ] , ... > ].
+
+genryou_n_1--resource_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_genryou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_resource_n_1_rel" ] , ... > ].
+
+hanagata_n_1--star_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hanagata_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_star_n_1_rel" ] , ... > ].
+
+shokki_n_1--dish_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shokki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dish_n_of_rel" ] , ... > ].
+
+切傷_n_1_g--gash_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_切傷_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gash_n_1_rel" ] , ... > ].
+
+トウモロコシ_n_1_g--corn_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_トウモロコシ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_corn_n_1_rel" ] , ... > ].
+
+mana_n_1--manner_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_mana_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_manner_n_of_rel" ] , ... > ].
+
+doubutsuen_n--zoo_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_doubutsuen_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_zoo_n_1_rel" ] , ... > ].
+
+karasu_n_1--crow_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_karasu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_crow_n_1_rel" ] , ... > ].
+
+toukyuu_n_1--grade_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_toukyuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_grade_n_1_rel" ] , ... > ].
+
+sutoro_n_ku_1--stroke_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sutoro_n_ku_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stroke_n_1_rel" ] , ... > ].
+
+yashu_n_1--fielder_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_yashu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fielder_n_1_rel" ] , ... > ].
+
+ツバメ_n_1_g--swallow_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ツバメ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_swallow_n_1_rel" ] , ... > ].
+
+hanon_n_1--semitone_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hanon_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_semitone_n_1_rel" ] , ... > ].
+
+kuudou_n_1--hollow_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kuudou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hollow_n_1_rel" ] , ... > ].
+
+insupireeshon_n--inspiration_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_insupireeshon_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inspiration_n_of_rel" ] , ... > ].
+
+futa_n_1--lid_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_futa_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lid_n_1_rel" ] , ... > ].
+
+teashi_n_1--limb_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_teashi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_limb_n_1_rel" ] , ... > ].
+
+zukei_n_1--graphic_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_zukei_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_graphic_n_1_rel" ] , ... > ].
+
+nise_n_1--counterfeit_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nise_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_counterfeit_n_1_rel" ] , ... > ].
+
+infoomeeshon_n--information_n_on-about--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_infoomeeshon_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_information_n_on-about_rel" ] , ... > ].
+
+arukarisei_n_1--alkaline_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_arukarisei_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_alkaline_n_1_rel" ] , ... > ].
+
+chakubarai_n_1--cod_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_chakubarai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cod_n_1_rel" ] , ... > ].
+
+ヒマワリ_n_1_g--sunflower_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ヒマワリ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sunflower_n_1_rel" ] , ... > ].
+
+nattsu_n_1--nut_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nattsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_nut_n_1_rel" ] , ... > ].
+
+sukanku_n_1--skunk_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sukanku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_skunk_n_1_rel" ] , ... > ].
+
+kobura_n_1--cobra_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kobura_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cobra_n_1_rel" ] , ... > ].
+
+kiji_n_2--pheasant_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kiji_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pheasant_n_1_rel" ] , ... > ].
+
+ikidoori_n_1--indignation_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ikidoori_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_indignation_n_1_rel" ] , ... > ].
+
+pengin_n_1--penguin_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_pengin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_penguin_n_1_rel" ] , ... > ].
+
+deijie_n--dj_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_deijie_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dj_n_1_rel" ] , ... > ].
+
+saiensu_n_1--science_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_saiensu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_science_n_1_rel" ] , ... > ].
+
+saikoro_n_5--die_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_saikoro_n_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_die_n_1_rel" ] , ... > ].
+
+mo-ta-bo-to_n_1--motorboat_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_mo-ta-bo-to_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_motorboat_n_1_rel" ] , ... > ].
+
+hikigaeru_n_1--toad_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hikigaeru_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_toad_n_1_rel" ] , ... > ].
+
+ハチドリ_n_1_g--hummingbird_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ハチドリ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hummingbird_n_1_rel" ] , ... > ].
+
+sutorecchi_n_1--stretch_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sutorecchi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stretch_n_of_rel" ] , ... > ].
+
+ika_n_7--squid_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ika_n_7_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_squid_n_1_rel" ] , ... > ].
+
+suzume_n_2--sparrow_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_suzume_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sparrow_n_1_rel" ] , ... > ].
+
+ikikata_n_1--living_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ikikata_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_living_n_1_rel" ] , ... > ].
+
+maguro_n_1--tuna_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_maguro_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tuna_n_1_rel" ] , ... > ].
+
+shinpuku_n_2--magnitude_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinpuku_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_magnitude_n_1_rel" ] , ... > ].
+
+ei_n_2--ray_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ei_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ray_n_1_rel" ] , ... > ].
+
+tsuide_n_1--ordinal_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsuide_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ordinal_n_1_rel" ] , ... > ].
+
+shinkou_n_7--friendship_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinkou_n_7_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_friendship_n_1_rel" ] , ... > ].
+
+handobukku_n_1--handbook_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_handobukku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_handbook_n_1_rel" ] , ... > ].
+
+shiryoku_n_1--vision_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shiryoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_vision_n_1_rel" ] , ... > ].
+
+ine_n_1--rice_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ine_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rice_n_1_rel" ] , ... > ].
+
+gaarikku_n_1--garlic_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_gaarikku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_garlic_n_1_rel" ] , ... > ].
+
+be-ta_n_1--beta_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_be-ta_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_beta_n_1_rel" ] , ... > ].
+
+teitetsu_n_1--horseshoe_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_teitetsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_horseshoe_n_1_rel" ] , ... > ].
+
+inshouha_n_1--impressionist_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_inshouha_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_impressionist_n_1_rel" ] , ... > ].
+
+erimaki_n_1--scarf_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_erimaki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_scarf_n_1_rel" ] , ... > ].
+
+sake_n_3--salmon_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sake_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_salmon_n_1_rel" ] , ... > ].
+
+zaigen_n_1--finance_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_zaigen_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_finance_n_1_rel" ] , ... > ].
+
+haiena_n_1--hyena_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_haiena_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hyena_n_1_rel" ] , ... > ].
+
+kaki_n_3--weapon_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kaki_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_weapon_n_1_rel" ] , ... > ].
+
+kanuu_n_1--canoe_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kanuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_canoe_n_1_rel" ] , ... > ].
+
+kirisutokyouto_n_1--christian_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kirisutokyouto_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_christian_n_1_rel" ] , ... > ].
+
+なぞ_n_1_g--riddle_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_なぞ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_riddle_n_1_rel" ] , ... > ].
+
+toki_n--time_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_toki_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_time_n_of_rel" ] , ... > ].
+
+hirame_n_1--sole_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hirame_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sole_n_1_rel" ] , ... > ].
+
+nokorimono_n_1--leftovers_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nokorimono_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_leftovers_n_1_rel" ] , ... > ].
+
+arinomama_n_1--crude_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_arinomama_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_crude_n_1_rel" ] , ... > ].
+
+goshippu_n_1--gossip_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_goshippu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gossip_n_1_rel" ] , ... > ].
+
+seisho_n_1--bible_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_seisho_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bible_n_1_rel" ] , ... > ].
+
+ma-jin_n_1--margin_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ma-jin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_margin_n_1_rel" ] , ... > ].
+
+taru_n_1--barrel_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_taru_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_barrel_n_of_rel" ] , ... > ].
+
+shika_n_2--dental_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shika_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dental_n_1_rel" ] , ... > ].
+
+イモ_n_1_g--palm_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_イモ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_palm_n_1_rel" ] , ... > ].
+
+mabuta_n_1--eyelid_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_mabuta_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_eyelid_n_1_rel" ] , ... > ].
+
+denatsu_n_1--voltage_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_denatsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_voltage_n_of_rel" ] , ... > ].
+
+anshitsu_n_1--amber_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_anshitsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_amber_n_1_rel" ] , ... > ].
+
+pirania_n_1--piranha_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_pirania_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_piranha_n_1_rel" ] , ... > ].
+
+matsubi_n_1--terminal_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_matsubi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_terminal_n_1_rel" ] , ... > ].
+
+garasu_n--window_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_garasu_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_window_n_1_rel" ] , ... > ].
+
+hakka_n_3--mint_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hakka_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mint_n_1_rel" ] , ... > ].
+
+tsuru_n_6--vine_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsuru_n_6_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_vine_n_1_rel" ] , ... > ].
+
+kinoko_n_1--mushroom_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kinoko_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mushroom_n_1_rel" ] , ... > ].
+
+shinsetsu_a--kind_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinsetsu_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_kind_a_1_rel" ] , ... > ].
+
+kanzen_a_2--complete_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kanzen_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_complete_a_1_rel" ] , ... > ].
+
+yuumei_a--famous_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuumei_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_famous_a_for_rel" ] , ... > ].
+
+koufuku_a_2--happy_a_with--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_koufuku_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_happy_a_with_rel" ] , ... > ].
+
+amari_a--uch-many_a--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_amari_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED much-many_a_rel ] , ... > ].
+
+ijou_a_2--abnormal_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ijou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_abnormal_a_1_rel" ] , ... > ].
+
+konnan_a_2--difficult_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_konnan_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_difficult_a_for_rel" ] , ... > ].
+
+hidoi_a--bad_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidoi_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bad_a_1_rel" ] , ... > ].
+
+tanjun_a_2--simple_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_tanjun_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_simple_a_for_rel" ] , ... > ].
+
+yoku_a_4--well_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yoku_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_well_a_1_rel" ] , ... > ].
+
+hidoi_a--terrible_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidoi_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_terrible_a_for_rel" ] , ... > ].
+
+warui_a_1--to+blame_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_warui_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_to+blame_a_for_rel" ] , ... > ].
+
+kanketsu_a_1--brief_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kanketsu_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_brief_a_1_rel" ] , ... > ].
+
+kodoku_a_2--lonely_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kodoku_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lonely_a_1_rel" ] , ... > ].
+
+jiyuu_a_isect--free_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_jiyuu_a_isect_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_free_a_1_rel" ] , ... > ].
+
+kousei_a_2--fair_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kousei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fair_a_1_rel" ] , ... > ].
+
+kanzen_a_2--perfect_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kanzen_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_perfect_a_1_rel" ] , ... > ].
+
+hidoku_a_1--bad_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidoku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bad_a_1_rel" ] , ... > ].
+
+shinsei_a_2--sacred_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinsei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sacred_a_1_rel" ] , ... > ].
+
+kouun_a_2--lucky_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kouun_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lucky_a_1_rel" ] , ... > ].
+
+ささい_a_1_g--trivial_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ささい_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_trivial_a_1_rel" ] , ... > ].
+
+fuhou_a_2--unlawful_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuhou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unlawful_a_1_rel" ] , ... > ].
+
+yoku_a_4--hard_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yoku_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hard_a_for_rel" ] , ... > ].
+
+fuantei_a_2--unstable_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuantei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unstable_a_1_rel" ] , ... > ].
+
+hidoi_a--awful_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidoi_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_awful_a_1_rel" ] , ... > ].
+
+yuuga_a_2--graceful_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuuga_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_graceful_a_1_rel" ] , ... > ].
+
+byouki_a--sick_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_byouki_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sick_a_of_rel" ] , ... > ].
+
+kinben_a_2--industrious_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kinben_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_industrious_a_1_rel" ] , ... > ].
+
+nidoto_a_3--again_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nidoto_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_again_a_1_rel" ] , ... > ].
+
+munou_a_2--no+good_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_munou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_no+good_a_1_rel" ] , ... > ].
+
+oishii_a--good_a_at-for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_oishii_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ] , ... > ].
+
+jojoni_a_1--gradual_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_jojoni_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gradual_a_1_rel" ] , ... > ].
+
+idai_a_1--great_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_idai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_great_a_for_rel" ] , ... > ].
+
+hidoi_a--dreadful_a_to--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidoi_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dreadful_a_to_rel" ] , ... > ].
+
+ekizochikku_a_1--exotic_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ekizochikku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_exotic_a_1_rel" ] , ... > ].
+
+jiyuu_a_isect--free_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_jiyuu_a_isect_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_free_a_of_rel" ] , ... > ].
+
+zen_a_4--former_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_zen_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_former_a_1_rel" ] , ... > ].
+
+yuuga_a_2--elegant_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuuga_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_elegant_a_1_rel" ] , ... > ].
+
+shizen_a_3--natural_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shizen_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_natural_a_for_rel" ] , ... > ].
+
+tsugi-ni_a_1--next_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsugi-ni_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_next_a_1_rel" ] , ... > ].
+
+socchoku_a_1--direct_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_socchoku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_direct_a_1_rel" ] , ... > ].
+
+noukou_a_1--heavy_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_noukou_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_heavy_a_1_rel" ] , ... > ].
+
+yuukou_a_2--effective_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuukou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_effective_a_1_rel" ] , ... > ].
+
+hidou_a_1--outrageous_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidou_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_outrageous_a_1_rel" ] , ... > ].
+
+kakujitsu_a--sure_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kakujitsu_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sure_a_1_rel" ] , ... > ].
+
+socchoku_a_1--frank_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_socchoku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_frank_a_1_rel" ] , ... > ].
+
+ぬるい_a_1_g--tepid_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ぬるい_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tepid_a_1_rel" ] , ... > ].
+
+辺鄙_a_1_g--outlying_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_辺鄙_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_outlying_a_1_rel" ] , ... > ].
+
+fukouhei_a_2--unfair_a_to--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fukouhei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unfair_a_to_rel" ] , ... > ].
+
+kanzen_a_2--absolute_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kanzen_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_absolute_a_1_rel" ] , ... > ].
+
+ondan_a_1--mild_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ondan_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mild_a_1_rel" ] , ... > ].
+
+subarashii_a_1--super_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_subarashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_super_a_1_rel" ] , ... > ].
+
+kanzen_a_2--thorough_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kanzen_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_thorough_a_1_rel" ] , ... > ].
+
+kouun_a_2--fortunate_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kouun_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fortunate_a_1_rel" ] , ... > ].
+
+gehin_a_2--coarse_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_gehin_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_coarse_a_1_rel" ] , ... > ].
+
+tanjun_a_2--unsophisticated_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_tanjun_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unsophisticated_a_1_rel" ] , ... > ].
+
+明敏_a_1_g--perceptive_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_明敏_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_perceptive_a_1_rel" ] , ... > ].
+
+chikaramakase_a_1--forcible_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_chikaramakase_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_forcible_a_1_rel" ] , ... > ].
+
+fukujiteki_a_1--auxiliary_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fukujiteki_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_auxiliary_a_1_rel" ] , ... > ].
+
+fankii_a_1--funky_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fankii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_funky_a_1_rel" ] , ... > ].
+
+soaku_a_1--inferior_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_soaku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inferior_a_1_rel" ] , ... > ].
+
+kandai_a_1--generous_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kandai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_generous_a_1_rel" ] , ... > ].
+
+muchi_a_2--ignorant_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_muchi_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ignorant_a_of_rel" ] , ... > ].
+
+nishi_a_4--western_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nishi_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_western_a_1_rel" ] , ... > ].
+
+fujitsu_a_1--false_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fujitsu_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_false_a_1_rel" ] , ... > ].
+
+gouman_a_1--arrogant_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_gouman_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_arrogant_a_1_rel" ] , ... > ].
+
+nameraka_a_1--smooth_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nameraka_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_smooth_a_1_rel" ] , ... > ].
+
+shizen_a_3--artless_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shizen_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_artless_a_1_rel" ] , ... > ].
+
+monosugoi_a_3--terrific_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_monosugoi_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_terrific_a_for_rel" ] , ... > ].
+
+mattaku_a_2--perfect_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_mattaku_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_perfect_a_1_rel" ] , ... > ].
+
+yuushuu_a_1--excellent_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuushuu_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_excellent_a_1_rel" ] , ... > ].
+
+muyami_a_2--extravagant_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_muyami_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_extravagant_a_1_rel" ] , ... > ].
+
+zen_a_3--overall_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_zen_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_overall_a_1_rel" ] , ... > ].
+
+りっぱ_a_1_g--noble_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_りっぱ_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_noble_a_1_rel" ] , ... > ].
+
+moto_a_8--former_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_moto_a_8_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_former_a_1_rel" ] , ... > ].
+
+chomei_a_1--prominent_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_chomei_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_prominent_a_1_rel" ] , ... > ].
+
+randamu_a_2--random_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_randamu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_random_a_1_rel" ] , ... > ].
+
+yoshi_a_4--all+right_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yoshi_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_all+right_a_1_rel" ] , ... > ].
+
+kouka_a_2--pricey_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kouka_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pricey_a_1_rel" ] , ... > ].
+
+yuufuku_a_1--wealthy_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuufuku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wealthy_a_1_rel" ] , ... > ].
+
+warui_a_1--wicked_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_warui_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wicked_a_1_rel" ] , ... > ].
+
+totetsumonai_a_1--monumental_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_totetsumonai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_monumental_a_1_rel" ] , ... > ].
+
+gouka_a_1--posh_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_gouka_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_posh_a_1_rel" ] , ... > ].
+
+gehin_a_2--vulgar_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_gehin_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_vulgar_a_1_rel" ] , ... > ].
+
+chotto_a--slight_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_chotto_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_slight_a_1_rel" ] , ... > ].
+
+taida_a_2--lazy_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_taida_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lazy_a_1_rel" ] , ... > ].
+
+wazuka_a_1--marginal_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_wazuka_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_marginal_a_1_rel" ] , ... > ].
+
+reitan_a_2--cold_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_reitan_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cold_a_1_rel" ] , ... > ].
+
+fuyukai_a_2--unpleasant_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuyukai_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unpleasant_a_1_rel" ] , ... > ].
+
+houfu_a_2--plentiful_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_houfu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_plentiful_a_1_rel" ] , ... > ].
+
+warui_a_1--ill_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_warui_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ill_a_1_rel" ] , ... > ].
+
+fuhou_a_2--illegal_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuhou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_illegal_a_for_rel" ] , ... > ].
+
+massao_a_1--white_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_massao_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_white_a_1_rel" ] , ... > ].
+
+yuushuu_a_1--superior_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuushuu_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_superior_a_1_rel" ] , ... > ].
+
+tsumaranai_a--boring_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsumaranai_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_boring_a_1_rel" ] , ... > ].
+
+kitto_a--certain_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kitto_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_certain_a_of_rel" ] , ... > ].
+
+masashiku_a_1--correct_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_masashiku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_correct_a_1_rel" ] , ... > ].
+
+fuseikaku_a_2--inaccurate_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuseikaku_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inaccurate_a_1_rel" ] , ... > ].
+
+kenmei_a_2--wise_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kenmei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wise_a_for_rel" ] , ... > ].
+
+mufunbetsu_a_2--senseless_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_mufunbetsu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_senseless_a_for_rel" ] , ... > ].
+
+fuantei_a_2--unsettled_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuantei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unsettled_a_1_rel" ] , ... > ].
+
+さわやか_a_1_g--fresh_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_さわやか_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fresh_a_1_rel" ] , ... > ].
+
+itazura_a_3--naughty_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_itazura_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_naughty_a_1_rel" ] , ... > ].
+
+warui_a_1--wrong_a_with--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_warui_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wrong_a_with_rel" ] , ... > ].
+
+fuyukai_a_2--disagreeable_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuyukai_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_disagreeable_a_1_rel" ] , ... > ].
+
+sou_a_10--gross_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_sou_a_10_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gross_a_1_rel" ] , ... > ].
+
+明敏_a_1_g--percipient_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_明敏_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_percipient_a_1_rel" ] , ... > ].
+
+nikkori_a_2--sweet_a_to--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nikkori_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sweet_a_to_rel" ] , ... > ].
+
+mouzento_a_1--fierce_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_mouzento_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fierce_a_1_rel" ] , ... > ].
+
+tashika_a_2--really_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_tashika_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_really_a_1_rel" ] , ... > ].
+
+chomei_a_1--outstanding_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_chomei_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_outstanding_a_1_rel" ] , ... > ].
+
+kodakai_a_1--low_a_on--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kodakai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_low_a_on_rel" ] , ... > ].
+
+まれ_a_1_g--rare_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_まれ_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rare_a_1_rel" ] , ... > ].
+
+ijou_a_2--aberrant_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ijou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_aberrant_a_1_rel" ] , ... > ].
+
+furumekashii_a_1--hoary_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_furumekashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hoary_a_1_rel" ] , ... > ].
+
+ippai_a_3--all+the+way_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ippai_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_all+the+way_a_1_rel" ] , ... > ].
+
+tsumashii_a_1--frugal_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsumashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_frugal_a_1_rel" ] , ... > ].
+
+soumei_a_2--intelligent_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_soumei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_intelligent_a_1_rel" ] , ... > ].
+
+nadakai_a_1--renowned_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nadakai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_renowned_a_1_rel" ] , ... > ].
+
+nai_a_8--inferior_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nai_a_8_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inferior_a_1_rel" ] , ... > ].
+
+kitto_a--allright_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kitto_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_allright_a_for_rel" ] , ... > ].
+
+すき_a_1_g--fond_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_すき_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fond_a_of_rel" ] , ... > ].
+
+kakujitsu_a--certain_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kakujitsu_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_certain_a_1_rel" ] , ... > ].
+
+キレイ_a_1_g--beautiful_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_キレイ_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_beautiful_a_1_rel" ] , ... > ].
+
+jizai_a_2--plastic_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_jizai_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_plastic_a_1_rel" ] , ... > ].
+
+onaji_a_1--the+same_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_onaji_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_the+same_a_1_rel" ] , ... > ].
+
+sokode_a_2--final_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_sokode_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_final_a_1_rel" ] , ... > ].
+
+manzoku_a_3--satisfied_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_manzoku_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_satisfied_a_1_rel" ] , ... > ].
+
+aburakkoi_a_1--fatty_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_aburakkoi_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fatty_a_1_rel" ] , ... > ].
+
+ketatamashii_a_1--loud_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ketatamashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_loud_a_1_rel" ] , ... > ].
+
+yuufuku_a_1--well+off_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuufuku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_well+off_a_1_rel" ] , ... > ].
+
+jiyuu_a_isect--independent_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_jiyuu_a_isect_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_independent_a_of_rel" ] , ... > ].
+
+wazuka_a_1--slight_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_wazuka_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_slight_a_1_rel" ] , ... > ].
+
+kado_a_2--superfluous_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kado_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_superfluous_a_1_rel" ] , ... > ].
+
+mou_a_6--yet_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_mou_a_6_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_yet_a_1_rel" ] , ... > ].
+
+karei_a_6--flowery_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_karei_a_6_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_flowery_a_1_rel" ] , ... > ].
+
+kouteki_a_1--public_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kouteki_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_public_a_1_rel" ] , ... > ].
+
+musekinin_a_2--idle_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_musekinin_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_idle_a_1_rel" ] , ... > ].
+
+hidoku_a_1--heavy_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidoku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_heavy_a_1_rel" ] , ... > ].
+
+heiwa_a_2--peaceful_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_heiwa_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_peaceful_a_1_rel" ] , ... > ].
+
+fuantei_a_2--volatile_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuantei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_volatile_a_1_rel" ] , ... > ].
+
+kiwadoi_a_1--narrow_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kiwadoi_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_narrow_a_1_rel" ] , ... > ].
+
+fukou_a_2--unfortunate_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fukou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unfortunate_a_1_rel" ] , ... > ].
+
+kajou_a_2--excessive_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kajou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_excessive_a_1_rel" ] , ... > ].
+
+subarashii_a_1--fine_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_subarashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fine_a_for_rel" ] , ... > ].
+
+shinsetsu_a--nice_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinsetsu_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_nice_a_for_rel" ] , ... > ].
+
+fuantei_a_2--wobbly_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuantei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wobbly_a_1_rel" ] , ... > ].
+
+nadakai_a_1--famous_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nadakai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_famous_a_for_rel" ] , ... > ].
+
+meiryou_a_2--lucid_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_meiryou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lucid_a_1_rel" ] , ... > ].
+
+hosonagai_a_1--slender_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hosonagai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_slender_a_1_rel" ] , ... > ].
+
+zenryou_a_1--good_a_at-for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_zenryou_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ] , ... > ].
+
+yuukou_a_2--in+effect_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuukou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_in+effect_a_1_rel" ] , ... > ].
+
+yoku_a_4--a+lot_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yoku_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_a+lot_a_1_rel" ] , ... > ].
+
+taihen_a_4--very+much_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_taihen_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_very+much_a_1_rel" ] , ... > ].
+
+kitto_a--no+doubt_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kitto_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_no+doubt_a_1_rel" ] , ... > ].
+
+fuchuui_a_2--inadvertent_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuchuui_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inadvertent_a_1_rel" ] , ... > ].
+
+ijou_a_2--extraordinary_a_to--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ijou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_extraordinary_a_to_rel" ] , ... > ].
+
+gouka_a_1--luxurious_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_gouka_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_luxurious_a_1_rel" ] , ... > ].
+
+fuyuu_a_1--prosperous_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuyuu_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_prosperous_a_1_rel" ] , ... > ].
+
+joutou_a_2--good_a_at-for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_joutou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ] , ... > ].
+
+mujihi_a_2--mortal_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_mujihi_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mortal_a_1_rel" ] , ... > ].
+
+subarashii_a_1--tremendous_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_subarashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tremendous_a_1_rel" ] , ... > ].
+
+zeitaku_a_3--well_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_zeitaku_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_well_a_1_rel" ] , ... > ].
+
+oshaberi_a_2--talkative_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_oshaberi_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_talkative_a_1_rel" ] , ... > ].
+
+kitto_a--sure_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kitto_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sure_a_of_rel" ] , ... > ].
+
+muda_a_2--to+no+avail_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_muda_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_to+no+avail_a_1_rel" ] , ... > ].
+
+chottoshita_a_1--mild_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_chottoshita_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mild_a_1_rel" ] , ... > ].
+
+ondan_a_1--temperate_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ondan_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_temperate_a_1_rel" ] , ... > ].
+
+wazuka_a_1--nominal_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_wazuka_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_nominal_a_1_rel" ] , ... > ].
+
+rippa_a_1--worthy_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_rippa_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_worthy_a_of_rel" ] , ... > ].
+
+subarashii_a_1--superb_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_subarashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_superb_a_1_rel" ] , ... > ].
+
+eien_a_2--always_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_eien_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_always_a_1_rel" ] , ... > ].
+
+joutou_a_2--excellent_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_joutou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_excellent_a_1_rel" ] , ... > ].
+
+choppiri_a_1--a+trifle_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_choppiri_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_a+trifle_a_1_rel" ] , ... > ].
+
+yuudai_a_1--spacious_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuudai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_spacious_a_1_rel" ] , ... > ].
+
+meiryou_a_2--articulate_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_meiryou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_articulate_a_1_rel" ] , ... > ].
+
+荘厳_a_1_g--majestic_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_荘厳_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_majestic_a_1_rel" ] , ... > ].
+
+misuborashii_a_1--mean_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_misuborashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mean_a_1_rel" ] , ... > ].
+
+tei_a_8--inferior_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_tei_a_8_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inferior_a_1_rel" ] , ... > ].
+
+ゆるい_a_1_g--slack_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ゆるい_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_slack_a_1_rel" ] , ... > ].
+
+subarashii_a_1--magnificent_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_subarashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_magnificent_a_1_rel" ] , ... > ].
+
+fusawashii_a_1--fitting_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fusawashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fitting_a_1_rel" ] , ... > ].
+
+noukou_a_1--rich_a_in--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_noukou_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rich_a_in_rel" ] , ... > ].
+
+よそよそしい_a_1_g--distant_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_よそよそしい_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_distant_a_1_rel" ] , ... > ].
+
+hidoi_a--lousy_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidoi_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lousy_a_1_rel" ] , ... > ].
+
+subarashii_a_1--raw_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_subarashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_raw_a_1_rel" ] , ... > ].
+
+higashi_a_3--eastern_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_higashi_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_eastern_a_1_rel" ] , ... > ].
+
+umai_a_delicious--good_a_at-for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_umai_a_delicious_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ] , ... > ].
+
+reitan_a_2--apathetic_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_reitan_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_apathetic_a_1_rel" ] , ... > ].
+
+memeshii_a_1--effeminate_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_memeshii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_effeminate_a_1_rel" ] , ... > ].
+
+yuubi_a_1--dainty_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuubi_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dainty_a_1_rel" ] , ... > ].
+
+susamajii_a_1--furious_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_susamajii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_furious_a_1_rel" ] , ... > ].
+
+ko_a_5--small_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ko_a_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_small_a_1_rel" ] , ... > ].
+
+かび臭い_a_1_g--moldy_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_かび臭い_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_moldy_a_1_rel" ] , ... > ].
+
+rafu_a_2--rough_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_rafu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rough_a_1_rel" ] , ... > ].
+
+meikai_a_1--lucid_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_meikai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lucid_a_1_rel" ] , ... > ].
+
+honnno_a_3--only_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_honnno_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_only_a_1_rel" ] , ... > ].
+
+waisetsu_a_2--dirty_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_waisetsu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dirty_a_1_rel" ] , ... > ].
+
+kyoubou_a_2--violent_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyoubou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_violent_a_1_rel" ] , ... > ].
+
+amari_a--much_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_amari_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_much_a_1_rel" ] , ... > ].
+
+daisuki_a_1--fond_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_daisuki_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fond_a_of_rel" ] , ... > ].
+
+shinayaka_a_1--supple_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinayaka_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_supple_a_1_rel" ] , ... > ].
+
+fudoutoku_a_2--evil_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fudoutoku_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_evil_a_1_rel" ] , ... > ].
+
+waisetsu_a_2--raunchy_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_waisetsu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_raunchy_a_1_rel" ] , ... > ].
+
+hikkirinashini_a_1--fast_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hikkirinashini_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fast_a_1_rel" ] , ... > ].
+
+fuantei_a_2--shaky_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuantei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_shaky_a_1_rel" ] , ... > ].
+
+shinmitsu_a_2--close_a_to--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinmitsu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_close_a_to_rel" ] , ... > ].
+
+hidoku_a_1--terrible_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidoku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_terrible_a_1_rel" ] , ... > ].
+
+tsumaranai_a--flat_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsumaranai_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_flat_a_1_rel" ] , ... > ].
+
+binkan_a_1--responsive_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_binkan_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_responsive_a_1_rel" ] , ... > ].
+
+goujou_a_2--obstinate_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_goujou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_obstinate_a_1_rel" ] , ... > ].
+
+subarashii_a_2--immense_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_subarashii_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_immense_a_1_rel" ] , ... > ].
+
+subarashii_a_1--amazing_a_to--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_subarashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_amazing_a_to_rel" ] , ... > ].
+
+sappuukei_a_1--stark_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_sappuukei_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stark_a_1_rel" ] , ... > ].
+
+byouki_a--ill_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_byouki_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ill_a_1_rel" ] , ... > ].
+
+hidoi_a--gross_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidoi_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gross_a_1_rel" ] , ... > ].
+
+akarasama_a_1--crude_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_akarasama_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_crude_a_1_rel" ] , ... > ].
+
+hidoku_a_1--hard_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hidoku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hard_a_for_rel" ] , ... > ].
+
+ganko_a_1--stubborn_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ganko_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stubborn_a_1_rel" ] , ... > ].
+
+zankoku_a_2--cruel_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_zankoku_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cruel_a_1_rel" ] , ... > ].
+
+ondan_a_1--warm_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ondan_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_warm_a_1_rel" ] , ... > ].
+
+強健_a_1_g--vigorous_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_強健_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_vigorous_a_1_rel" ] , ... > ].
+
+nama_a_2--raw_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nama_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_raw_a_1_rel" ] , ... > ].
+
+guuzen_a_3--by+chance_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_guuzen_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_by+chance_a_1_rel" ] , ... > ].
+
+尊大_a_1_g--lofty_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_尊大_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lofty_a_1_rel" ] , ... > ].
+
+wazuka_a_1--subtle_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_wazuka_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_subtle_a_1_rel" ] , ... > ].
+
+utagaibukai_a_1--skeptical_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_utagaibukai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_skeptical_a_of_rel" ] , ... > ].
+
+hisuterikku_a_1--hysterical_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hisuterikku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hysterical_a_1_rel" ] , ... > ].
+
+yuuga_a_2--gracious_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuuga_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gracious_a_1_rel" ] , ... > ].
+
+fuchuui_a_2--careless_a_with-about-of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuchuui_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_careless_a_with-about-of_rel" ] , ... > ].
+
+kenkyo_a_1--humble_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kenkyo_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_humble_a_1_rel" ] , ... > ].
+
+kiwadoi_a_1--juicy_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kiwadoi_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_juicy_a_1_rel" ] , ... > ].
+
+mattaku_a_1--at+all_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_mattaku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _at+all_a_1_rel ] , ... > ].
+
+umai_a_delicious--well_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_umai_a_delicious_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_well_a_1_rel" ] , ... > ].
+
+nesshin_a_2--eager_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nesshin_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_eager_a_1_rel" ] , ... > ].
+
+houfu_a_2--rich_a_in--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_houfu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rich_a_in_rel" ] , ... > ].
+
+muda_a_2--useless_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_muda_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_useless_a_1_rel" ] , ... > ].
+
+kandai_a_1--large_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kandai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_large_a_1_rel" ] , ... > ].
+
+fuseikaku_a_2--incorrect_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuseikaku_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_incorrect_a_1_rel" ] , ... > ].
+
+ゆるやか_a_1_g--gradual_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ゆるやか_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gradual_a_1_rel" ] , ... > ].
+
+nesshin_a_2--enthusiastic_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nesshin_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_enthusiastic_a_1_rel" ] , ... > ].
+
+fuyukai_a_2--uncomfortable_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuyukai_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_uncomfortable_a_1_rel" ] , ... > ].
+
+yoku_a_4--nice_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_yoku_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_nice_a_for_rel" ] , ... > ].
+
+hiwai_a_2--blue_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hiwai_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_blue_a_1_rel" ] , ... > ].
+
+shinjitsu_a_3--true_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinjitsu_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_true_a_of_rel" ] , ... > ].
+
+rippa_a_1--nice_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_rippa_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_nice_a_for_rel" ] , ... > ].
+
+shinmitsu_a_2--intimate_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinmitsu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_intimate_a_1_rel" ] , ... > ].
+
+nakanaka_a--quite_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_nakanaka_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_quite_a_1_rel" ] , ... > ].
+
+ippai_a_3--full_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ippai_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_full_a_of_rel" ] , ... > ].
+
+じょうぶ_a_1_g--tough_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_じょうぶ_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tough_a_for_rel" ] , ... > ].
+
+zeitaku_a_3--extravagant_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_zeitaku_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_extravagant_a_1_rel" ] , ... > ].
+
+akarasama_a_1--overt_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_akarasama_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_overt_a_1_rel" ] , ... > ].
+
+sainan_a_2--calamitous_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_sainan_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_calamitous_a_1_rel" ] , ... > ].
+
+ppoi_a--prone_a_to--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ppoi_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_prone_a_to_rel" ] , ... > ].
+
+ささい_a_1_g--small_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ささい_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_small_a_1_rel" ] , ... > ].
+
+kawaku_v_1--dry_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_kawaku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dry_a_1_rel" ] , ... > ].
+
+futoru_v--fat_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_futoru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fat_a_1_rel" ] , ... > ].
+
+ぬかるむ_v_1_g--slushy_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_ぬかるむ_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_slushy_a_1_rel" ] , ... > ].
+
+こわがる_v_1_g--terrified_a_of--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_こわがる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_terrified_a_of_rel" ] , ... > ].
+
+aku_v_6--empty_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_aku_v_6_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_empty_a_1_rel" ] , ... > ].
+
+見え透く_v_1_g--transparent_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_見え透く_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_transparent_a_1_rel" ] , ... > ].
+
+nigoru_v_1--muddy_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_nigoru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_muddy_a_1_rel" ] , ... > ].
+
+くもる_v_1_g--cloudy_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_くもる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cloudy_a_1_rel" ] , ... > ].
+
+yogoreru_v--foul_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_yogoreru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_foul_a_1_rel" ] , ... > ].
+
+kiniiru_v--fond_a_of--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_kiniiru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fond_a_of_rel" ] , ... > ].
+
+toshioiru_v_1--old_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_toshioiru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_old_a_1_rel" ] , ... > ].
+
+sukitooru_v_1--clear_a_of--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_sukitooru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clear_a_of_rel" ] , ... > ].
+
+jukusuru_v_1--ripe_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_jukusuru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ripe_a_1_rel" ] , ... > ].
+
+hamaru_v_1--addicted_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_hamaru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_addicted_a_1_rel" ] , ... > ].
+
+fusagikomu_v_4--gloomy_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_fusagikomu_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gloomy_a_1_rel" ] , ... > ].
+
+yurumu_v_1--slack_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_yurumu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_slack_a_1_rel" ] , ... > ].
+
+michiru_v_1--full_a_of--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_michiru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_full_a_of_rel" ] , ... > ].
+
+oboreru_v_2--addicted_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_oboreru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_addicted_a_1_rel" ] , ... > ].
+
+aisuru_v--loving_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_aisuru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_loving_a_1_rel" ] , ... > ].
+
+sou_v_20--likely_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_sou_v_20_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_likely_a_1_rel" ] , ... > ].
+
+こわがる_v_1_g--afraid_a_of--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_こわがる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_afraid_a_of_rel" ] , ... > ].
+
+akiru_v_2--tired_a_of--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_akiru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tired_a_of_rel" ] , ... > ].
+
+nareru_v_1--used_a_to--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_nareru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_used_a_to_rel" ] , ... > ].
+
+yogoreru_v--dirty_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_yogoreru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dirty_a_1_rel" ] , ... > ].
+
+bakageru_v_1--foolish_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_bakageru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_foolish_a_1_rel" ] , ... > ].
+
+kuruu_v_1--crazy_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_kuruu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_crazy_a_1_rel" ] , ... > ].
+
+itamu_v_2--bad_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_itamu_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bad_a_1_rel" ] , ... > ].
+
+daisuki_a_1--love_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_daisuki_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_love_v_1_rel" ] , ... > ].
+
+daisuki_a_1--adore_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_daisuki_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_adore_v_1_rel" ] , ... > ].
+
+kanzen_a_2--complete_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kanzen_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_complete_v_1_rel" ] , ... > ].
+
+ji_a_1--bud_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ji_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bud_v_1_rel" ] , ... > ].
+
+gantoshite_a_1--would_v_modal--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_gantoshite_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _would_v_modal_rel ] , ... > ].
+
+nanika_a_3--can_v_modal--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nanika_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _can_v_modal_rel ] , ... > ].
+
+guuzen_a_2--happen_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_guuzen_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_happen_v_to_rel" ] , ... > ].
+
+daisuki_a_1--like_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_daisuki_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_like_v_1_rel" ] , ... > ].
+
+doushitemo_a_1--would_v_modal--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_doushitemo_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _would_v_modal_rel ] , ... > ].
+
+rashii_a_2--seem_v_to--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_rashii_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_seem_v_to_rel" ] , ... > ].
+
+nakanaka_a--would_v_modal--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nakanaka_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _would_v_modal_rel ] , ... > ].
+
+douzo_a--go_v_ahead--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_douzo_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_go_v_ahead_rel" ] , ... > ].
+
+taikutsu_a_3--bore_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_taikutsu_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bore_v_1_rel" ] , ... > ].
+
+rashii_a_4--seem_v_to--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_rashii_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_seem_v_to_rel" ] , ... > ].
+
+yoroshii_a_2--may_v_modal--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yoroshii_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _may_v_modal_rel ] , ... > ].
+
+urayamashii_a--envy_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_urayamashii_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_envy_v_1_rel" ] , ... > ].
+
+monosugoi_a_3--whack_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_monosugoi_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_whack_v_1_rel" ] , ... > ].
+
+rashii_a_3--feel_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_rashii_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_feel_v_1_rel" ] , ... > ].
+
+sugoi_a--thump_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_sugoi_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_thump_v_1_rel" ] , ... > ].
+
+niru_v--resemble_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_niru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_resemble_v_1_rel" ] , ... > ].
+
+shiru_v_1--know_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shiru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_know_v_1_rel" ] , ... > ].
+
+umareru_v_2--bear_v_2--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_umareru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bear_v_2_rel" ] , ... > ].
+
+naru_v_3--become_v_id--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_become_v_id_rel" ] , ... > ].
+
+kiniiru_v--like_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kiniiru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_like_v_1_rel" ] , ... > ].
+
+makaseru_v--leave_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_makaseru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_leave_v_1_rel" ] , ... > ].
+
+yattekuru_v_1--come_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yattekuru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_come_v_1_rel" ] , ... > ].
+
+naru_v_5--become_v_id--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_become_v_id_rel" ] , ... > ].
+
+終わらす_v_1_g--terminate_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_終わらす_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_terminate_v_1_rel" ] , ... > ].
+
+hiku_v_4--play_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hiku_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_play_v_1_rel" ] , ... > ].
+
+hiroiageru_v_1--pick_v_up--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hiroiageru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pick_v_up_rel" ] , ... > ].
+
+sou_v_20--look_v_seem-to--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_sou_v_20_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_look_v_seem-to_rel" ] , ... > ].
+
+shiharau_v--pay_v_for--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shiharau_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pay_v_for_rel" ] , ... > ].
+
+butsukaru_v--run_v_unspec--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_butsukaru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_run_v_unspec_rel" ] , ... > ].
+
+yurumu_v_1--slacken_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yurumu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_slacken_v_1_rel" ] , ... > ].
+
+hiku_v_4--have_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hiku_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_have_v_1_rel" ] , ... > ].
+
+ふさぐ_v_1_g--plug_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ふさぐ_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_plug_v_1_rel" ] , ... > ].
+
+おかす_v_1_g--make_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_おかす_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_make_v_1_rel" ] , ... > ].
+
+itadaku_v_1--have_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_itadaku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_have_v_1_rel" ] , ... > ].
+
+naru_v_5--go_v_state--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_go_v_state_rel" ] , ... > ].
+
+sonaeru_v_gani--provide_v_for--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_sonaeru_v_gani_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_provide_v_for_rel" ] , ... > ].
+
+suru_v_soc--make_v_cause--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_suru_v_soc_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_make_v_cause_rel" ] , ... > ].
+
+抱きしめる_v_1_g--hug_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_抱きしめる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hug_v_1_rel" ] , ... > ].
+
+sou_v_21--look_v_seem-to--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_sou_v_21_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_look_v_seem-to_rel" ] , ... > ].
+
+makaseru_v--trust_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_makaseru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_trust_v_1_rel" ] , ... > ].
+
+saezuru_v_1--sing_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_saezuru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sing_v_1_rel" ] , ... > ].
+
+tsuku_v_9--go_v_on--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsuku_v_9_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_go_v_on_rel" ] , ... > ].
+
+morau_v_2--have_v_cause--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_morau_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_have_v_cause_rel" ] , ... > ].
+
+つかまえる_v_1_g--get_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_つかまえる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_get_v_1_rel" ] , ... > ].
+
+shiru_v_1--do_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shiru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_do_v_1_rel" ] , ... > ].
+
+sou_v_21--seem_v_to--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_sou_v_21_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_seem_v_to_rel" ] , ... > ].
+
+ひっかける_v_1_g--strike_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ひっかける_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_strike_v_1_rel" ] , ... > ].
+
+au_v_suit--match_v_cause--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_au_v_suit_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_match_v_cause_rel" ] , ... > ].
+
+つかまえる_v_1_g--collar_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_つかまえる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_collar_v_1_rel" ] , ... > ].
+
+mitsumeru_v_1--gaze_v_at--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_mitsumeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gaze_v_at_rel" ] , ... > ].
+
+ochikomu_v--decline_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ochikomu_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_decline_v_1_rel" ] , ... > ].
+
+ageru_v_5--have_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ageru_v_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_have_v_1_rel" ] , ... > ].
+
+hitaru_v_1--indulge_v_in--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hitaru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_indulge_v_in_rel" ] , ... > ].
+
+ijikuru_v_1--toy_v_with--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ijikuru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_toy_v_with_rel" ] , ... > ].
+
+したためる_v_1_g--draw_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_したためる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_draw_v_1_rel" ] , ... > ].
+
+warawaseru_v_1--amuse_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_warawaseru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_amuse_v_1_rel" ] , ... > ].
+
+ほる_v_1_g--dig_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ほる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dig_v_1_rel" ] , ... > ].
+
+akeru_v_1--unpack_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_akeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unpack_v_1_rel" ] , ... > ].
+
+のがれる_v_1_g--escape_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_のがれる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_escape_v_1_rel" ] , ... > ].
+
+mekuru_v_1--turn_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_mekuru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_turn_v_1_rel" ] , ... > ].
+
+gachi_v--tend_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_gachi_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tend_v_1_rel" ] , ... > ].
+
+ataeru_v--furnish_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ataeru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_furnish_v_to_rel" ] , ... > ].
+
+tsuranuku_v--penetrate_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsuranuku_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_penetrate_v_1_rel" ] , ... > ].
+
+sou_v_20--seem_v_to--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_sou_v_20_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_seem_v_to_rel" ] , ... > ].
+
+押しのける_v_1_g--push_v_away--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_押しのける_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_push_v_away_rel" ] , ... > ].
+
+hikaraseru_v_1--flash_v_cause--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hikaraseru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_flash_v_cause_rel" ] , ... > ].
+
+shiru_v_2--know_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shiru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_know_v_1_rel" ] , ... > ].
+
+yobimodosu_v_1--call_v_back--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yobimodosu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_call_v_back_rel" ] , ... > ].
+
+oriru_v_3--get_v_off--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_oriru_v_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_get_v_off_rel" ] , ... > ].
+
+negau_v_1--long_v_for--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_negau_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_long_v_for_rel" ] , ... > ].
+
+naru_v_5--bear_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bear_v_1_rel" ] , ... > ].
+
+nagekakeru_v_5--cast_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nagekakeru_v_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cast_v_1_rel" ] , ... > ].
+
+naru_v_5--blow_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_blow_v_1_rel" ] , ... > ].
+
+すう_v_1_g--take_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_すう_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_take_v_1_rel" ] , ... > ].
+
+kuttsuku_v_1--adhere_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kuttsuku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_adhere_v_1_rel" ] , ... > ].
+
+tsukaru_v_3--dip_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsukaru_v_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dip_v_1_rel" ] , ... > ].
+
+tobitsuku_v_1--jump_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tobitsuku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_jump_v_1_rel" ] , ... > ].
+
+nagetsukeru_v_1--hurl_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nagetsukeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hurl_v_1_rel" ] , ... > ].
+
+どける_v_1_g--take_v_away--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_どける_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_take_v_away_rel" ] , ... > ].
+
+かかげる_v_1_g--put_v_up--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_かかげる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_put_v_up_rel" ] , ... > ].
+
+mensuru_v_1--front_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_mensuru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_front_v_1_rel" ] , ... > ].
+
+nigedasu_v_1--escape_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nigedasu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_escape_v_1_rel" ] , ... > ].
+
+azawarau_v_1--laugh_v_at--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_azawarau_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_laugh_v_at_rel" ] , ... > ].
+
+negau_v_1--wish_v_for--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_negau_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wish_v_for_rel" ] , ... > ].
+
+soreru_v_3--wander_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_soreru_v_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wander_v_1_rel" ] , ... > ].
+
+hazusu_v_1--unfasten_v_cause--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hazusu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unfasten_v_cause_rel" ] , ... > ].
+
+suru_v_soc--have_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_suru_v_soc_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_have_v_1_rel" ] , ... > ].
+
+tsukasadoru_v_3--work_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsukasadoru_v_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_work_v_1_rel" ] , ... > ].
+
+tatsu_v_7--leave_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tatsu_v_7_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_leave_v_1_rel" ] , ... > ].
+
+tsukinukeru_v_1--penetrate_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsukinukeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_penetrate_v_1_rel" ] , ... > ].
+
+todoroku_v_2--roar_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_todoroku_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_roar_v_1_rel" ] , ... > ].
+
+hieru_v_1--cool_v_down--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hieru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cool_v_down_rel" ] , ... > ].
+
+suru_v_soc--keep_v_prd--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_suru_v_soc_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_keep_v_prd_rel" ] , ... > ].
+
+tsuku_v_6--have_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsuku_v_6_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_have_v_1_rel" ] , ... > ].
+
+arekuruu_v_1--bluster_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_arekuruu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bluster_v_1_rel" ] , ... > ].
+
+nagekakeru_v_5--beg_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nagekakeru_v_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_beg_v_1_rel" ] , ... > ].
+
+ため込む_v_1_g--accumulate_v_cause--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ため込む_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_accumulate_v_cause_rel" ] , ... > ].
+
+naru_v_5--turn_v_prd--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_turn_v_prd_rel" ] , ... > ].
+
+kuttsuku_v_1--stick_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kuttsuku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stick_v_to_rel" ] , ... > ].
+
+nakusu_v_1--lose_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nakusu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lose_v_1_rel" ] , ... > ].
+
+探し出す_v_1_g--find_v_out--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_探し出す_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_find_v_out_rel" ] , ... > ].
+
+irodoru_v_1--color_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_irodoru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_color_v_1_rel" ] , ... > ].
+
+ゆびさす_v_1_g--point_v_at--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ゆびさす_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_point_v_at_rel" ] , ... > ].
+
+taeru_v--bore_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_taeru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bore_v_1_rel" ] , ... > ].
+
+nadameru_v_1--soothe_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nadameru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_soothe_v_1_rel" ] , ... > ].
+
+kureru_v_1--abandon_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kureru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_abandon_v_1_rel" ] , ... > ].
+
+misebirakasu_v_1--sport_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_misebirakasu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sport_v_1_rel" ] , ... > ].
+
+horidasu_v_1--dig_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_horidasu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dig_v_1_rel" ] , ... > ].
+
+tsuku_v_1--work_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsuku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_work_v_1_rel" ] , ... > ].
+
+やぶる_v_1_g--tear_v_cause--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_やぶる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tear_v_cause_rel" ] , ... > ].
+
+しらべる_v_1_g--check_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_しらべる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_check_v_1_rel" ] , ... > ].
+
+tatsu_v_8--start_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tatsu_v_8_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_start_v_1_rel" ] , ... > ].
+
+ふきこぼれる_v_1_g--boil_v_over--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ふきこぼれる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_boil_v_over_rel" ] , ... > ].
+
+umareru_v_2--fall_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_umareru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fall_v_1_rel" ] , ... > ].
+
+走り去る_v_1_g--drive_v_off--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_走り去る_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_drive_v_off_rel" ] , ... > ].
+
+yurugasu_v_1--shake_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yurugasu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_shake_v_1_rel" ] , ... > ].
+
+sonaeru_v_gani--prepare_v_for--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_sonaeru_v_gani_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_prepare_v_for_rel" ] , ... > ].
+
+kiku_v_12--work_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kiku_v_12_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_work_v_1_rel" ] , ... > ].
+
+yattekuru_v_1--come_v_along--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yattekuru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_come_v_along_rel" ] , ... > ].
+
+arekuruu_v_1--rage_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_arekuruu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rage_v_1_rel" ] , ... > ].
+
+shimiru_v_4--soak_v_cause--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shimiru_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_soak_v_cause_rel" ] , ... > ].
+
+tsutawaru_v--travel_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsutawaru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_travel_v_1_rel" ] , ... > ].
+
+okuraseru_v_1--delay_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_okuraseru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_delay_v_1_rel" ] , ... > ].
+
+うったえる_v_1_g--complain_v_of--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_うったえる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_complain_v_of_rel" ] , ... > ].
+
+uneru_v_1--undulate_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_uneru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_undulate_v_1_rel" ] , ... > ].
+
+そそぎ入れる_v_1_g--pour_v_in--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_そそぎ入れる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pour_v_in_rel" ] , ... > ].
+
+つかまる_v_1_g--hang_v_onto--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_つかまる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hang_v_onto_rel" ] , ... > ].
+
+hagu_v--strip_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hagu_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_strip_v_1_rel" ] , ... > ].
+
+harikaeru_v_1--recover_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_harikaeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_recover_v_1_rel" ] , ... > ].
+
+akehanasu_v_1--draw_v_back--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_akehanasu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_draw_v_back_rel" ] , ... > ].
+
+nakunaru_v_4--go_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nakunaru_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_go_v_1_rel" ] , ... > ].
+
+さぼる_v_1_g--cut_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_さぼる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cut_v_1_rel" ] , ... > ].
+
+osamaru_v_4--subside_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_osamaru_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_subside_v_1_rel" ] , ... > ].
+
+omoiagaru_v_1--vault_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_omoiagaru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_vault_v_1_rel" ] , ... > ].
+
+すく_v_1_g--tease_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_すく_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tease_v_1_rel" ] , ... > ].
+
+hakobidasu_v_1--carry_v_out--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hakobidasu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_carry_v_out_rel" ] , ... > ].
+
+taeru_v--stand_v_2--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_taeru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stand_v_2_rel" ] , ... > ].
+
+ふさぐ_v_1_g--close_v_cause--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ふさぐ_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_close_v_cause_rel" ] , ... > ].
+
+kuttsuku_v_1--adhere_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kuttsuku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_adhere_v_to_rel" ] , ... > ].
+
+hajimeru_v_vemb--give_v_out-2--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hajimeru_v_vemb_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_give_v_out-2_rel" ] , ... > ].
+
+つかまえる_v_1_g--arrest_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_つかまえる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_arrest_v_1_rel" ] , ... > ].
+
+nureru_v_1--wet_v_cause--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nureru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wet_v_cause_rel" ] , ... > ].
+
+tsumaru_v--jam_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsumaru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_jam_v_1_rel" ] , ... > ].
+
+捜し出す_v_1_g--ferret_v_out--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_捜し出す_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ferret_v_out_rel" ] , ... > ].
+
+osamaru_v_4--die_v_away--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_osamaru_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_die_v_away_rel" ] , ... > ].
+
+わずらう_v_1_g--suffer_v_from--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_わずらう_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_suffer_v_from_rel" ] , ... > ].
+
+kawaku_v_1--dry_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kawaku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dry_v_1_rel" ] , ... > ].
+
+nagetsukeru_v_1--throw_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nagetsukeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_throw_v_1_rel" ] , ... > ].
+
+kakekomu_v_1--run_v_unspec--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kakekomu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_run_v_unspec_rel" ] , ... > ].
+
+omoitsuku_v_1--surprise_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_omoitsuku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_surprise_v_1_rel" ] , ... > ].
+
+umareru_v_2--come_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_umareru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_come_v_1_rel" ] , ... > ].
+
+dekuwasu_v_1--run_v_into--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_dekuwasu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_run_v_into_rel" ] , ... > ].
+
+発す_v_1_g--radiate_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_発す_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_radiate_v_1_rel" ] , ... > ].
+
+活気づく_v_1_g--flourish_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_活気づく_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_flourish_v_1_rel" ] , ... > ].
+
+aeru_v_2--dress_v_in--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_aeru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dress_v_in_rel" ] , ... > ].
+
+nureru_v_1--wet_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nureru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wet_v_1_rel" ] , ... > ].
+
+tsuku_v_8--catch_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsuku_v_8_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_catch_v_1_rel" ] , ... > ].
+
+活気づく_v_1_g--boom_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_活気づく_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_boom_v_1_rel" ] , ... > ].
+
+osamaru_v_4--abate_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_osamaru_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_abate_v_1_rel" ] , ... > ].
+
+yamu_v_4--die_v_down--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yamu_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_die_v_down_rel" ] , ... > ].
+
+hikkomeru_v_1--hold_v_back--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hikkomeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hold_v_back_rel" ] , ... > ].
+
+deau_v_1--surprise_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_deau_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_surprise_v_1_rel" ] , ... > ].
+
+naru_v_3--turn_v_prd--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_turn_v_prd_rel" ] , ... > ].
+
+you_v_1--kill_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_you_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_kill_v_1_rel" ] , ... > ].
+
+nasuritsukeru_v_1--pass_v_over--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nasuritsukeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pass_v_over_rel" ] , ... > ].
+
+思いあたる_v_1_g--recall_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_思いあたる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_recall_v_1_rel" ] , ... > ].
+
+tsukamu_v--get_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsukamu_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_get_v_1_rel" ] , ... > ].
+
+ふさぐ_v_1_g--seal_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ふさぐ_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_seal_v_1_rel" ] , ... > ].
+
+kuchizusamu_v_1--hum_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kuchizusamu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hum_v_1_rel" ] , ... > ].
+
+hanashikakeru_v_1--address_v_to--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hanashikakeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_address_v_to_rel" ] , ... > ].
+
+hikizuru_v_2--haul_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hikizuru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_haul_v_1_rel" ] , ... > ].
+
+wazurau_v_4--suffer_v_from--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_wazurau_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_suffer_v_from_rel" ] , ... > ].
+
+ふさぐ_v_1_g--patch_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ふさぐ_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_patch_v_1_rel" ] , ... > ].
+
+yuragu_v_1--surge_v_1--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuragu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_surge_v_1_rel" ] , ... > ].
+
+naru_v_5--learn_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_naru_v_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_learn_v_1_rel" ] , ... > ].
+
+oyobu_v_1--need_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_oyobu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_need_v_1_rel" ] , ... > ].
+ 
+suru_v_soc--make_v_i+into_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_suru_v_soc_rel" ] , ... >,
+ OUTPUT.RELS < [ PRED "_make_v_i_rel" ] , [ PRED _into_p_rel ], ... > ].
+
+折りたたむ_v_1_g--fold_v_1+up_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_折りたたむ_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fold_v_1_rel" ] , [ PRED _up_p_rel ], ... > ].
+
+tobinoru_v_1--jump_v_1+on_p_dir--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_tobinoru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_jump_v_1_rel" ] , [ PRED _on_p_dir_rel ], ... > ].
+
+くくる_v_1_g--loop_v_1+around_p_dir--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_くくる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_loop_v_1_rel" ] , [ PRED _around_p_dir_rel ], ... > ].
+
+noseru_v_2--serve_v_as+with_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_noseru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_serve_v_as_rel" ] , [ PRED _with_p_rel ], ... > ].
+
+urikiru_v_2--sell_v_1+out_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_urikiru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sell_v_1_rel" ] , [ PRED _out_p_rel ], ... > ].
+
+shiku_v--lie_v_2+with_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_shiku_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lie_v_2_rel" ] , [ PRED _with_p_rel ], ... > ].
+
+boyakeru_v_1--blur_v_1+between_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_boyakeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_blur_v_1_rel" ] , [ PRED _between_p_rel ], ... > ].
+
+kaburu_v_2--have_v_1+on_p_dir--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_kaburu_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_have_v_1_rel" ] , [ PRED _on_p_dir_rel ], ... > ].
+
+tsuku_v_8--fall_v_1+into_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsuku_v_8_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fall_v_1_rel" ] , [ PRED _into_p_rel ], ... > ].
+
+mekuru_v_1--turn_v_1+over_p_dir--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_mekuru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_turn_v_1_rel" ] , [ PRED _over_p_dir_rel ], ... > ].
+
+kuttsukeru_v_1--stick_v_1+together_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_kuttsukeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stick_v_1_rel" ] , [ PRED _together_p_rel ], ... > ].
+
+tsumaru_v--stop_v_1+up_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsumaru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stop_v_1_rel" ] , [ PRED _up_p_rel ], ... > ].
+
+tsuujiru_v_2--open_v_1+into_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsuujiru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_open_v_1_rel" ] , [ PRED _into_p_rel ], ... > ].
+
+shiku_v--cover_v_1+with_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_shiku_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cover_v_1_rel" ] , [ PRED _with_p_rel ], ... > ].
+
+motozuku_v--rest_v_1+upon_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_motozuku_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rest_v_1_rel" ] , [ PRED _upon_p_rel ], ... > ].
+
+taresagaru_v_1--hang_v_1+over_p_dir--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_taresagaru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hang_v_1_rel" ] , [ PRED _over_p_dir_rel ], ... > ].
+
+ふさぐ_v_1_g--stop_v_1+up_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_ふさぐ_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stop_v_1_rel" ] , [ PRED _up_p_rel ], ... > ].
+
+haru_v_2--stick_v_1+on_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_haru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stick_v_1_rel" ] , [ PRED _on_p_rel ], ... > ].
+
+omoitsuku_v_1--hit_v_1+on_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_omoitsuku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hit_v_1_rel" ] , [ PRED _on_p_rel ], ... > ].
+
+すべりおりる_v_1_g--slide_v_1+down_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_すべりおりる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_slide_v_1_rel" ] , [ PRED _down_p_rel ], ... > ].
+
+晴れわたる_v_1_g--clear_v_1+up_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_晴れわたる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clear_v_1_rel" ] , [ PRED _up_p_rel ], ... > ].
+
+mushikaesu_v_1--drag_v_1+up_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_mushikaesu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_drag_v_1_rel" ] , [ PRED _up_p_rel ], ... > ].
+
+tobimawaru_v_1--fly_v_1+around_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_tobimawaru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fly_v_1_rel" ] , [ PRED _around_p_rel ], ... > ].
+
+tekisuru_v_1--fit_v_1+for_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_tekisuru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fit_v_1_rel" ] , [ PRED _for_p_rel ], ... > ].
+
+au_v_suit--agree_v_on+with_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_au_v_suit_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_agree_v_on_rel" ] , [ PRED _with_p_rel ], ... > ].
+
+koshikakeru_v_1--sit_v_1+on_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_koshikakeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sit_v_1_rel" ] , [ PRED _on_p_rel ], ... > ].
+
+dassuru_v_2--move_v_1+out+of_p_dir--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_dassuru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_move_v_1_rel" ] , [ PRED _out+of_p_dir_rel ], ... > ].
+
+hazureru_v--come_v_1+off_p_dir--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_hazureru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_come_v_1_rel" ] , [ PRED _off_p_dir_rel ], ... > ].
+
+mukeru_v--turn_v_1+on_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_mukeru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_turn_v_1_rel" ] , [ PRED _on_p_rel ], ... > ].
+
+you_v_1--babble_v_about+with_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_you_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_babble_v_about_rel" ] , [ PRED _with_p_rel ], ... > ].
+
+kuttsukeru_v_1--glue_v_1+together_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_kuttsukeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_glue_v_1_rel" ] , [ PRED _together_p_rel ], ... > ].
+
+musubitsuku_v_1--unite_v_1+with_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_musubitsuku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unite_v_1_rel" ] , [ PRED _with_p_rel ], ... > ].
+
+oiharau_v_1--drive_v_1+away_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_oiharau_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_drive_v_1_rel" ] , [ PRED _away_p_rel ], ... > ].
+
+go_a_2--language_n_1--pcorp-mtr := adj_n_mtr &
+[ INPUT.RELS < [ PRED "ja:_go_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_language_n_1_rel" ] , ... > ].
+
+shuu_a_4--odor_n_1--pcorp-mtr := adj_n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shuu_a_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_odor_n_1_rel" ] , ... > ].
+
+go_a_2--term_n_of--pcorp-mtr := adj_n_mtr &
+[ INPUT.RELS < [ PRED "ja:_go_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_term_n_of_rel" ] , ... > ].
+
+ichinichichuu_n--all_a_1+day_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_ichinichichuu_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_all_a_1_rel" ] , [ PRED "_day_n_of_rel" ], ... > ].
+
+shinnnen_n_2--new_a_1+year_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinnnen_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_new_a_1_rel" ] , [ PRED "_year_n_1_rel" ], ... > ].
+
+senjitsu_n--other_a_1+day_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_senjitsu_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_other_a_1_rel" ] , [ PRED "_day_n_of_rel" ], ... > ].
+
+shushou_n_2--prime_a_1+minister_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shushou_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_prime_a_1_rel" ] , [ PRED "_minister_n_of_rel" ], ... > ].
+
+seiken_n_2--political_a_1+opinion_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_seiken_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_political_a_1_rel" ] , [ PRED "_opinion_n_of_rel" ], ... > ].
+
+chuushin_n_1--loyal_a_1+subject_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_chuushin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_loyal_a_1_rel" ] , [ PRED "_subject_n_of_rel" ], ... > ].
+
+sude_n_1--bare_a_1+hand_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_sude_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bare_a_1_rel" ] , [ PRED "_hand_n_1_rel" ], ... > ].
+
+taiji_n_1--unborn_a_1+child_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_taiji_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unborn_a_1_rel" ] , [ PRED "_child_n_1_rel" ], ... > ].
+
+suiheimen_n_1--horizontal_a_1+surface_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_suiheimen_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_horizontal_a_1_rel" ] , [ PRED "_surface_n_1_rel" ], ... > ].
+
+tanshoku_n_2--solid_a_1+color_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_tanshoku_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_solid_a_1_rel" ] , [ PRED "_color_n_1_rel" ], ... > ].
+
+keido_n_1--slight_a_1+degree_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_keido_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_slight_a_1_rel" ] , [ PRED "_degree_n_of_rel" ], ... > ].
+
+geppou_n_1--monthly_a_1+newsletter_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_geppou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_monthly_a_1_rel" ] , [ PRED "_newsletter_n_of_rel" ], ... > ].
+
+内耳_n_1_g--inner_a_1+ear_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_内耳_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inner_a_1_rel" ] , [ PRED "_ear_n_1_rel" ], ... > ].
+
+ブヨ_n_1_g--black_a_1+fly_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_ブヨ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_black_a_1_rel" ] , [ PRED "_fly_n_1_rel" ], ... > ].
+
+chuusei_n_1--medieval_a_1+times_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_chuusei_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_medieval_a_1_rel" ] , [ PRED "_times_n_1_rel" ], ... > ].
+
+akaragao_n_1--ruddy_a_1+complexion_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_akaragao_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ruddy_a_1_rel" ] , [ PRED "_complexion_n_1_rel" ], ... > ].
+
+noraneko_n_1--homeless_a_1+cat_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_noraneko_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_homeless_a_1_rel" ] , [ PRED "_cat_n_1_rel" ], ... > ].
+
+kaki_n_7--floral_a_1+organ_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kaki_n_7_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_floral_a_1_rel" ] , [ PRED "_organ_n_1_rel" ], ... > ].
+
+hayakuchi_n_1--fast_a_1+speaker_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_hayakuchi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fast_a_1_rel" ] , [ PRED "_speaker_n_1_rel" ], ... > ].
+
+nyuusan_n_1--lactic_a_1+acid_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_nyuusan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lactic_a_1_rel" ] , [ PRED "_acid_n_1_rel" ], ... > ].
+
+manpai_n_1--full_a_of+glass_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_manpai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_full_a_of_rel" ] , [ PRED "_glass_n_of_rel" ], ... > ].
+
+zennnin_n_2--good_a_at-for+man_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_zennnin_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ] , [ PRED "_man_n_1_rel" ], ... > ].
+
+jousui_n_1--clean_a_1+water_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_jousui_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clean_a_1_rel" ] , [ PRED "_water_n_1_rel" ], ... > ].
+
+danji_n_1--male_a_1+infant_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_danji_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_male_a_1_rel" ] , [ PRED "_infant_n_1_rel" ], ... > ].
+
+kaizu_n_1--nautical_a_1+chart_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kaizu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_nautical_a_1_rel" ] , [ PRED "_chart_n_of_rel" ], ... > ].
+
+burakkuyu-moa_n_1--black_a_1+humor_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_burakkuyu-moa_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_black_a_1_rel" ] , [ PRED "_humor_n_1_rel" ], ... > ].
+
+sakuban_n_1--last_a_1+night_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_sakuban_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_last_a_1_rel" ] , [ PRED "_night_n_of_rel" ], ... > ].
+
+genjiten_n_1--present_a_1+moment_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_genjiten_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_present_a_1_rel" ] , [ PRED "_moment_n_1_rel" ], ... > ].
+
+jitsudan_n_1--live_a_1+ammunition_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_jitsudan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_live_a_1_rel" ] , [ PRED "_ammunition_n_1_rel" ], ... > ].
+
+utan_n_1--far_a_1+right_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_utan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_far_a_1_rel" ] , [ PRED "_right_n_1_rel" ], ... > ].
+
+gaikai_n_1--outside_a_1+world_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_gaikai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_outside_a_1_rel" ] , [ PRED "_world_n_of_rel" ], ... > ].
+
+moudoku_n_1--deadly_a_1+poison_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_moudoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_deadly_a_1_rel" ] , [ PRED "_poison_n_1_rel" ], ... > ].
+
+haresugata_n_1--proud_a_of+moment_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_haresugata_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_proud_a_of_rel" ] , [ PRED "_moment_n_1_rel" ], ... > ].
+
+kousou_n_2--high_a_1+priest_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kousou_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_high_a_1_rel" ] , [ PRED "_priest_n_1_rel" ], ... > ].
+
+wagomu_n_1--elastic_a_1+band_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_wagomu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_elastic_a_1_rel" ] , [ PRED "_band_n_1_rel" ], ... > ].
+
+makeoshimi_n_1--sour_a_1+grape_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_makeoshimi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sour_a_1_rel" ] , [ PRED "_grape_n_1_rel" ], ... > ].
+
+genjiten_n_1--present_a_1+occasion_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_genjiten_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_present_a_1_rel" ] , [ PRED "_occasion_n_of_rel" ], ... > ].
+
+hageatama_n_1--bald_a_1+pate_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_hageatama_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bald_a_1_rel" ] , [ PRED "_pate_n_1_rel" ], ... > ].
+
+ouzoku_n_1--royal_a_1+party_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_ouzoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_royal_a_1_rel" ] , [ PRED "_party_n_of_rel" ], ... > ].
+
+ikaiyou_n_1--gastric_a_1+ulcer_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_ikaiyou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gastric_a_1_rel" ] , [ PRED "_ulcer_n_1_rel" ], ... > ].
+
+byakuya_n_1--white_a_1+night_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_byakuya_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_white_a_1_rel" ] , [ PRED "_night_n_of_rel" ], ... > ].
+
+tantai_n_1--simple_a_for+substance_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_tantai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_simple_a_for_rel" ] , [ PRED "_substance_n_1_rel" ], ... > ].
+
+shuuto_n_2--georgian_a_1+capital_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shuuto_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_georgian_a_1_rel" ] , [ PRED "_capital_n_1_rel" ], ... > ].
+
+heijitsu_n_1--ordinary_a_1+day_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_heijitsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ordinary_a_1_rel" ] , [ PRED "_day_n_of_rel" ], ... > ].
+
+kenpei_n_1--military_a_1+police_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kenpei_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_military_a_1_rel" ] , [ PRED "_police_n_1_rel" ], ... > ].
+
+irojiro_n_1--fair_a_1+complexion_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_irojiro_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_fair_a_1_rel" ] , [ PRED "_complexion_n_1_rel" ], ... > ].
+
+kaigen_n_1--martial_a_1+law_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kaigen_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_martial_a_1_rel" ] , [ PRED "_law_n_1_rel" ], ... > ].
+
+tonari_n_1--next_a_1+door_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_tonari_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_next_a_1_rel" ] , [ PRED "_door_n_1_rel" ], ... > ].
+
+suhada_n_1--bare_a_1+skin_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_suhada_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bare_a_1_rel" ] , [ PRED "_skin_n_1_rel" ], ... > ].
+
+uba_n_1--wet_a_1+nurse_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_uba_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wet_a_1_rel" ] , [ PRED "_nurse_n_1_rel" ], ... > ].
+
+kiten_n_1--ready_a_1+wit_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kiten_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ready_a_1_rel" ] , [ PRED "_wit_n_1_rel" ], ... > ].
+
+shinyouju_n_1--coniferous_a_1+tree_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinyouju_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_coniferous_a_1_rel" ] , [ PRED "_tree_n_of_rel" ], ... > ].
+
+無人島_n_1_g--uninhabited_a_1+island_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_無人島_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_uninhabited_a_1_rel" ] , [ PRED "_island_n_1_rel" ], ... > ].
+
+nessen_n_2--hot_a_1+wire_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_nessen_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hot_a_1_rel" ] , [ PRED "_wire_n_1_rel" ], ... > ].
+
+hoozuki_n_1--ground_a_1+cherry_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_hoozuki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ground_a_1_rel" ] , [ PRED "_cherry_n_1_rel" ], ... > ].
+
+gunpuku_n_1--military_a_1+uniform_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_gunpuku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_military_a_1_rel" ] , [ PRED "_uniform_n_1_rel" ], ... > ].
+
+sakuya_n_1--last_a_1+night_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_sakuya_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_last_a_1_rel" ] , [ PRED "_night_n_of_rel" ], ... > ].
+
+isei_n_2--other_a_1+sex_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_isei_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_other_a_1_rel" ] , [ PRED "_sex_n_1_rel" ], ... > ].
+
+shourei_n_3--ministerial_a_1+decree_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shourei_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ministerial_a_1_rel" ] , [ PRED "_decree_n_1_rel" ], ... > ].
+
+yabun_n_1--late_a_for+evening_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_yabun_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_late_a_for_rel" ] , [ PRED "_evening_n_of_rel" ], ... > ].
+
+getsumen_n_1--lunar_a_1+surface_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_getsumen_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lunar_a_1_rel" ] , [ PRED "_surface_n_1_rel" ], ... > ].
+
+sangoshou_n_3--coral_a_1+reef_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_sangoshou_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_coral_a_1_rel" ] , [ PRED "_reef_n_1_rel" ], ... > ].
+
+sugi_n_1--japanese_a_1+cedar_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_sugi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_japanese_a_1_rel" ] , [ PRED "_cedar_n_1_rel" ], ... > ].
+
+gakkai_n_1--academic_a_1+world_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_gakkai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_academic_a_1_rel" ] , [ PRED "_world_n_of_rel" ], ... > ].
+
+kakuheiki_n_1--nuclear_a_1+weapon_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kakuheiki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_nuclear_a_1_rel" ] , [ PRED "_weapon_n_1_rel" ], ... > ].
+
+teinou_n_1--weak_a_1+mind_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_teinou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_weak_a_1_rel" ] , [ PRED "_mind_n_1_rel" ], ... > ].
+
+juukinzoku_n_1--heavy_a_1+metal_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_juukinzoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_heavy_a_1_rel" ] , [ PRED "_metal_n_1_rel" ], ... > ].
+
+junqeki_n_1--clear_a_of+profit_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_junqeki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clear_a_of_rel" ] , [ PRED "_profit_n_1_rel" ], ... > ].
+
+isei_n_2--opposite_a_to+sex_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_isei_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_opposite_a_to_rel" ] , [ PRED "_sex_n_1_rel" ], ... > ].
+
+suiyoueki_n_1--aqueous_a_1+solution_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_suiyoueki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_aqueous_a_1_rel" ] , [ PRED "_solution_n_of_rel" ], ... > ].
+
+fukkin_n_1--abdominal_a_1+muscle_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_fukkin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_abdominal_a_1_rel" ] , [ PRED "_muscle_n_1_rel" ], ... > ].
+
+tanchou_n_1--minor_a_1+key_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_tanchou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_minor_a_1_rel" ] , [ PRED "_key_n_1_rel" ], ... > ].
+
+舌戦_n_1_g--verbal_a_1+dispute_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_舌戦_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_verbal_a_1_rel" ] , [ PRED "_dispute_n_1_rel" ], ... > ].
+
+gishi_n_3--false_a_1+tooth_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_gishi_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_false_a_1_rel" ] , [ PRED "_tooth_n_1_rel" ], ... > ].
+
+keikougyou_n_1--light_a_1+industry_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_keikougyou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_light_a_1_rel" ] , [ PRED "_industry_n_1_rel" ], ... > ].
+
+shokai_n_1--initial_a_1+time_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shokai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_initial_a_1_rel" ] , [ PRED "_time_n_of_rel" ], ... > ].
+
+ichininmae_n_1--single_a_1+serving_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_ichininmae_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_single_a_1_rel" ] , [ PRED "_serving_n_1_rel" ], ... > ].
+
+minamihankyuu_n_1--southern_a_1+hemisphere_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_minamihankyuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_southern_a_1_rel" ] , [ PRED "_hemisphere_n_1_rel" ], ... > ].
+
+taneuma_n_1--stable_a_1+horse_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_taneuma_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stable_a_1_rel" ] , [ PRED "_horse_n_1_rel" ], ... > ].
+
+shishin_n_4--private_a_1+correspondence_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shishin_n_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_private_a_1_rel" ] , [ PRED "_correspondence_n_1_rel" ], ... > ].
+
+koukyo_n_1--imperial_a_1+palace_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_koukyo_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_imperial_a_1_rel" ] , [ PRED "_palace_n_1_rel" ], ... > ].
+
+norainu_n_1--stray_a_1+dog_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_norainu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stray_a_1_rel" ] , [ PRED "_dog_n_1_rel" ], ... > ].
+
+satooya_n_1--foster_a_1+parent_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_satooya_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_foster_a_1_rel" ] , [ PRED "_parent_n_of_rel" ], ... > ].
+
+tokkouyaku_n_1--specific_a_to+remedy_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_tokkouyaku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_specific_a_to_rel" ] , [ PRED "_remedy_n_1_rel" ], ... > ].
+
+chikunoushou_n_1--suitable_a_for-as+aquarium_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_chikunoushou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_suitable_a_for-as_rel" ] , [ PRED "_aquarium_n_1_rel" ], ... > ].
+
+sekigaisen_n_1--infrared_a_1+radiation_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_sekigaisen_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_infrared_a_1_rel" ] , [ PRED "_radiation_n_1_rel" ], ... > ].
+
+gunbi_n_1--military_a_1+equipment_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_gunbi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_military_a_1_rel" ] , [ PRED "_equipment_n_1_rel" ], ... > ].
+
+gaiatsu_n_1--external_a_1+pressure_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_gaiatsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_external_a_1_rel" ] , [ PRED "_pressure_n_1_rel" ], ... > ].
+
+seikyoku_n_1--political_a_1+condition_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_seikyoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_political_a_1_rel" ] , [ PRED "_condition_n_1_rel" ], ... > ].
+
+usagi_n_3--mortal_a_1+man_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_usagi_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mortal_a_1_rel" ] , [ PRED "_man_n_1_rel" ], ... > ].
+
+kodomotachi_n--kid_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kodomotachi_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_kid_n_1_rel" ] , ... > ].
+
+ichiyaku_a_1--sudden_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ichiyaku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sudden_a_1_rel" ] , ... > ].
+
+masumasu_a_3--more+and+more_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_masumasu_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_more+and+more_a_1_rel" ] , ... > ].
+
+dekoboko_a_3--rough_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_dekoboko_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rough_a_1_rel" ] , ... > ].
+
+燃え尽きる_v_1_g--burn_v_out--pcorp-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_燃え尽きる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_burn_v_out_rel" ] , ... > ].
+
+のぞきこむ_v_1_g--look_v_into--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_のぞきこむ_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_look_v_into_rel" ] , ... > ].
+
+遊び回る_v_1_g--play_v_1+about_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_遊び回る_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_play_v_1_rel" ] , [ PRED _about_p_rel ], ... > ].
+
+toshiyori_n_1--old_a_1+people_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_toshiyori_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_old_a_1_rel" ] , [ PRED "_people_n_of_rel" ], ... > ].
+
+スゲ_n_1_g--grass_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_スゲ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_grass_n_1_rel" ] , ... > ].
+
+カモメ_n_1_g--gull_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_カモメ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gull_n_1_rel" ] , ... > ].
+
+hamaguri_n_1--clam_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hamaguri_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clam_n_1_rel" ] , ... > ].
+
+fukurou_n_2--owl_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_fukurou_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_owl_n_1_rel" ] , ... > ].
+
+mosuku_n_1--mosque_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_mosuku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mosque_n_1_rel" ] , ... > ].
+
+hoiru_n_1--foil_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hoiru_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_foil_n_1_rel" ] , ... > ].
+
+torein_n_1--train_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_torein_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_train_n_of_rel" ] , ... > ].
+
+teno-ru_n_1--tenor_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_teno-ru_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tenor_n_1_rel" ] , ... > ].
+
+サギ_n_1_g--egret_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_サギ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_egret_n_1_rel" ] , ... > ].
+
+owari_n_1--end_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_owari_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_end_n_of_rel" ] , ... > ].
+
+rasen_n_3--spiral_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_rasen_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_spiral_n_1_rel" ] , ... > ].
+
+chiji_n_1--governor_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_chiji_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_governor_n_1_rel" ] , ... > ].
+
+shokoku_n_1--nation_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shokoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_nation_n_of_rel" ] , ... > ].
+
+nimaigai_n_1--clam_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nimaigai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clam_n_1_rel" ] , ... > ].
+
+hiso_n_1--arsenic_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hiso_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_arsenic_n_1_rel" ] , ... > ].
+
+buppin_n_1--goods_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_buppin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_goods_n_1_rel" ] , ... > ].
+
+paatsu_n_1--part_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_paatsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_part_n_1_rel" ] , ... > ].
+
+boukou_n_3--bladder_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_boukou_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bladder_n_1_rel" ] , ... > ].
+
+toryou_n_1--paint_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_toryou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_paint_n_1_rel" ] , ... > ].
+
+sehyou_n_1--repute_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sehyou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_repute_n_1_rel" ] , ... > ].
+
+tango_n_4--tango_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tango_n_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tango_n_1_rel" ] , ... > ].
+
+dani_n_1--mite_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_dani_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mite_n_1_rel" ] , ... > ].
+
+paionia_n_1--pioneer_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_paionia_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pioneer_n_1_rel" ] , ... > ].
+
+popura_n_1--poplar_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_popura_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_poplar_n_1_rel" ] , ... > ].
+
+chikai_n_1--vow_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_chikai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_vow_n_1_rel" ] , ... > ].
+
+hi_n_ru_1--heel_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hi_n_ru_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_heel_n_1_rel" ] , ... > ].
+
+kihou_n_1--bubble_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kihou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bubble_n_1_rel" ] , ... > ].
+
+tawara_n_1--bale_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tawara_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bale_n_1_rel" ] , ... > ].
+
+fuwatari_n_1--rubber_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuwatari_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rubber_n_1_rel" ] , ... > ].
+
+horuda_n_1--holder_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_horuda_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_holder_n_of_rel" ] , ... > ].
+
+taimuzu_n_1--times_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_taimuzu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_times_n_1_rel" ] , ... > ].
+
+sekyuriteii_n_1--security_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sekyuriteii_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_security_n_1_rel" ] , ... > ].
+
+kouso_n_1--enzyme_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kouso_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_enzyme_n_1_rel" ] , ... > ].
+
+tsumasaki_n_2--toe_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsumasaki_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_toe_n_1_rel" ] , ... > ].
+
+sori_n_2--sled_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sori_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sled_n_1_rel" ] , ... > ].
+
+houshi_n_3--spore_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_houshi_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_spore_n_1_rel" ] , ... > ].
+
+minpei_n_1--militia_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_minpei_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_militia_n_1_rel" ] , ... > ].
+
+doutoku_n_1--moral_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_doutoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_moral_n_1_rel" ] , ... > ].
+
+razuberi_n_1--raspberry_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_razuberi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_raspberry_n_1_rel" ] , ... > ].
+
+kanrei_n_3--cold_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kanrei_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cold_n_1_rel" ] , ... > ].
+
+chuu_n--middle_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_chuu_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_middle_n_of_rel" ] , ... > ].
+
+shougo_n--meridian_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shougo_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_meridian_n_1_rel" ] , ... > ].
+
+カブトムシ_n_1_g--beetle_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_カブトムシ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_beetle_n_1_rel" ] , ... > ].
+
+hatsumimi_n_1--news_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hatsumimi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_news_n_1_rel" ] , ... > ].
+
+tokage_n_1--lizard_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tokage_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lizard_n_1_rel" ] , ... > ].
+
+shourai_n_2--future_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shourai_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_future_n_1_rel" ] , ... > ].
+
+tashutayou_n_1--manifold_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tashutayou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_manifold_n_1_rel" ] , ... > ].
+
+nishin_n_3--herring_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nishin_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_herring_n_1_rel" ] , ... > ].
+
+uedeingu_n_1--wedding_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_uedeingu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wedding_n_of_rel" ] , ... > ].
+
+handobooru_n_1--handball_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_handobooru_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_handball_n_1_rel" ] , ... > ].
+
+瓶詰め_n_1_g--pot_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_瓶詰め_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pot_n_1_rel" ] , ... > ].
+
+sotogawa_n_1--outside_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sotogawa_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_outside_n_of_rel" ] , ... > ].
+
+カタツムリ_n_1_g--snail_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_カタツムリ_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_snail_n_1_rel" ] , ... > ].
+
+tenbin_n_1--balance_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tenbin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_balance_n_of_rel" ] , ... > ].
+
+バク_n_1_g--tapir_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_バク_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tapir_n_1_rel" ] , ... > ].
+
+romansu_n_1--romance_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_romansu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_romance_n_1_rel" ] , ... > ].
+
+yamori_n_1--gecko_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_yamori_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gecko_n_1_rel" ] , ... > ].
+
+tore-da-_n_1--trader_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tore-da-_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_trader_n_1_rel" ] , ... > ].
+
+tobi_n_4--eagle_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tobi_n_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_eagle_n_1_rel" ] , ... > ].
+
+hiduke_n_1--date_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hiduke_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_date_n_of_rel" ] , ... > ].
+
+shuuzu_n_1--shoe_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shuuzu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_shoe_n_1_rel" ] , ... > ].
+
+ryoume_n_1--binoculars_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ryoume_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_binoculars_n_1_rel" ] , ... > ].
+
+nimaigai_n_1--bivalve_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nimaigai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bivalve_n_1_rel" ] , ... > ].
+
+deruta_n_3--delta_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_deruta_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_delta_n_1_rel" ] , ... > ].
+
+suzuki_n_1--bass_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_suzuki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bass_n_1_rel" ] , ... > ].
+
+mongon_n_1--text_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_mongon_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_text_n_of_rel" ] , ... > ].
+
+rokkotsu_n_1--rib_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_rokkotsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rib_n_1_rel" ] , ... > ].
+
+chikyuu_n_1--planet_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_chikyuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_planet_n_1_rel" ] , ... > ].
+
+risuna-_n_1--listener_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_risuna-_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_listener_n_1_rel" ] , ... > ].
+
+soboku_a_2--rustic_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_soboku_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rustic_a_1_rel" ] , ... > ].
+
+kyoubou_a_1--bestial_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyoubou_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bestial_a_1_rel" ] , ... > ].
+
+taiman_a_2--negligent_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_taiman_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_negligent_a_1_rel" ] , ... > ].
+
+seitou_a_2--righteous_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_seitou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_righteous_a_1_rel" ] , ... > ].
+
+mujaki_a_2--innocent_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_mujaki_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_innocent_a_1_rel" ] , ... > ].
+
+高潔_a_1_g--honorable_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_高潔_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_honorable_a_1_rel" ] , ... > ].
+
+seitou_a_2--honest_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_seitou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_honest_a_1_rel" ] , ... > ].
+
+tettoribayai_a_1--prompt_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_tettoribayai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_prompt_a_1_rel" ] , ... > ].
+
+kawaii_a_1--cunning_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kawaii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cunning_a_1_rel" ] , ... > ].
+
+gaiteki_a_1--outward_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_gaiteki_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_outward_a_1_rel" ] , ... > ].
+
+ereganto_a_1--elegant_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ereganto_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_elegant_a_1_rel" ] , ... > ].
+
+futekitou_a_1--unfortunate_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_futekitou_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unfortunate_a_1_rel" ] , ... > ].
+
+hokorashige_a_1--proud_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hokorashige_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_proud_a_of_rel" ] , ... > ].
+
+tearai_a_1--rough_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_tearai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rough_a_1_rel" ] , ... > ].
+
+hon_a_3--genuine_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hon_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_genuine_a_1_rel" ] , ... > ].
+
+reigitadashii_a_1--polite_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_reigitadashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_polite_a_1_rel" ] , ... > ].
+
+shisso_a_1--frugal_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shisso_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_frugal_a_1_rel" ] , ... > ].
+
+ikioiyoku_a_1--vigorous_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ikioiyoku_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_vigorous_a_1_rel" ] , ... > ].
+
+kahogo_a_2--overprotective_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kahogo_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_overprotective_a_1_rel" ] , ... > ].
+
+醜悪_a_1_g--ugly_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_醜悪_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ugly_a_1_rel" ] , ... > ].
+
+shoppai_a_1--salty_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_shoppai_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_salty_a_1_rel" ] , ... > ].
+
+heitan_a_2--smooth_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_heitan_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_smooth_a_1_rel" ] , ... > ].
+
+byouteki_a_1--morbid_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_byouteki_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_morbid_a_1_rel" ] , ... > ].
+
+kabosoi_a_1--feeble_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kabosoi_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_feeble_a_1_rel" ] , ... > ].
+
+頑健_a_1_g--tough_a_for--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_頑健_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tough_a_for_rel" ] , ... > ].
+
+omouzonbun_a--hearty_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_omouzonbun_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hearty_a_1_rel" ] , ... > ].
+
+すばやい_a_1_g--quick_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_すばやい_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_quick_a_1_rel" ] , ... > ].
+
+hokorashige_a_1--triumphant_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hokorashige_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_triumphant_a_1_rel" ] , ... > ].
+
+ao_a_2--blue_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ao_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_blue_a_1_rel" ] , ... > ].
+
+利発_a_1_g--apt_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_利発_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_apt_a_1_rel" ] , ... > ].
+
+kimiwarui_a_1--creepy_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_kimiwarui_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_creepy_a_1_rel" ] , ... > ].
+
+zeitaku_a_2--lavish_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_zeitaku_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lavish_a_1_rel" ] , ... > ].
+
+まばら_a_1_g--sparse_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_まばら_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sparse_a_1_rel" ] , ... > ].
+
+asahaka_a_1--shallow_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_asahaka_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_shallow_a_1_rel" ] , ... > ].
+
+muboubi_a_2--open_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_muboubi_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_open_a_1_rel" ] , ... > ].
+
+高潔_a_1_g--noble_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_高潔_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_noble_a_1_rel" ] , ... > ].
+
+matomo_a_1--decent_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_matomo_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_decent_a_1_rel" ] , ... > ].
+
+akkenai_a_7--hollow_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_akkenai_a_7_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hollow_a_1_rel" ] , ... > ].
+
+juuyou_a_3--weighty_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_juuyou_a_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_weighty_a_1_rel" ] , ... > ].
+
+samazama_a_2--assorted_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_samazama_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_assorted_a_1_rel" ] , ... > ].
+
+anka_a_2--inexpensive_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_anka_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inexpensive_a_1_rel" ] , ... > ].
+
+odokeru_v_1--playful_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_odokeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_playful_a_1_rel" ] , ... > ].
+
+magirawashii_a_1--mislead_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_magirawashii_a_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mislead_v_1_rel" ] , ... > ].
+
+nozomashii_a--desire_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nozomashii_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_desire_v_1_rel" ] , ... > ].
+
+ukenagasu_v_1--pass_v_off--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ukenagasu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pass_v_off_rel" ] , ... > ].
+
+かみ合う_v_1_g--mesh_v_cause--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_かみ合う_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mesh_v_cause_rel" ] , ... > ].
+
+ほぐす_v_1_g--loosen_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ほぐす_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_loosen_v_1_rel" ] , ... > ].
+
+hikaeru_v--abstain_v_from--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hikaeru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_abstain_v_from_rel" ] , ... > ].
+
+tsukinukeru_v_2--pierce_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsukinukeru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pierce_v_1_rel" ] , ... > ].
+
+chirabaru_v_1--disperse_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_chirabaru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_disperse_v_1_rel" ] , ... > ].
+
+すり減らす_v_1_g--wear_v_away--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_すり減らす_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wear_v_away_rel" ] , ... > ].
+
+ほどく_v_1_g--comb_v_2--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ほどく_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_comb_v_2_rel" ] , ... > ].
+
+kawaigaru_v_1--pet_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kawaigaru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pet_v_1_rel" ] , ... > ].
+
+すり減る_v_1_g--scuff_v_cause--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_すり減る_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_scuff_v_cause_rel" ] , ... > ].
+
+yurameku_v_1--flicker_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yurameku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_flicker_v_1_rel" ] , ... > ].
+
+kusuburu_v--smolder_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kusuburu_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_smolder_v_1_rel" ] , ... > ].
+
+karakau_v_1--tease_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_karakau_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tease_v_1_rel" ] , ... > ].
+
+arainagasu_v_1--wash_v_away--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_arainagasu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wash_v_away_rel" ] , ... > ].
+
+donaritsukeru_v_1--shout_v_at--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_donaritsukeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_shout_v_at_rel" ] , ... > ].
+
+yoromeku_v_1--totter_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_yoromeku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_totter_v_1_rel" ] , ... > ].
+
+執り行う_v_1_g--perform_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_執り行う_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_perform_v_1_rel" ] , ... > ].
+
+kikaeru_v_1--change_v_cause--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kikaeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_change_v_cause_rel" ] , ... > ].
+
+しおれる_v_1_g--wilt_v_cause--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_しおれる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wilt_v_cause_rel" ] , ... > ].
+
+usumeru_v_1--thin_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_usumeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_thin_v_1_rel" ] , ... > ].
+
+genkidukeru_v_7--stimulate_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_genkidukeru_v_7_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stimulate_v_1_rel" ] , ... > ].
+
+seou_v_1--wear_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_seou_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wear_v_1_rel" ] , ... > ].
+
+嗅ぎつける_v_1_g--pick_v_up--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_嗅ぎつける_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pick_v_up_rel" ] , ... > ].
+
+furimuku_v_1--turn_v_1+around_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_furimuku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_turn_v_1_rel" ] , [ PRED _around_p_rel ], ... > ].
+
+arukimawaru_v--walk_v_1+about_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_arukimawaru_v_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_walk_v_1_rel" ] , [ PRED _about_p_rel ], ... > ].
+
+toorinukeru_v_1--pass_v_1+through_p_dir--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_toorinukeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pass_v_1_rel" ] , [ PRED _through_p_dir_rel ], ... > ].
+
+嗅ぎつける_v_1_g--smell_v_1+out_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_嗅ぎつける_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_smell_v_1_rel" ] , [ PRED _out_p_rel ], ... > ].
+
+moeru_v_1--burn_v_1+with_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_moeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_burn_v_1_rel" ] , [ PRED _with_p_rel ], ... > ].
+
+ugokimawaru_v_1--move_v_1+around_p_dir--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_ugokimawaru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_move_v_1_rel" ] , [ PRED _around_p_dir_rel ], ... > ].
+
+nagesuteru_v_1--throw_v_1+away_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_nagesuteru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_throw_v_1_rel" ] , [ PRED _away_p_rel ], ... > ].
+
+saikin_n--recent_a_1+past_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_saikin_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_recent_a_1_rel" ] , [ PRED "_past_n_1_rel" ], ... > ].
+
+me_n_toruhou_1--metric_a_1+system_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_me_n_toruhou_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_metric_a_1_rel" ] , [ PRED "_system_n_of_rel" ], ... > ].
+
+kinku_n_1--dirty_a_1+word_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kinku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_dirty_a_1_rel" ] , [ PRED "_word_n_of_rel" ], ... > ].
+
+fo-kudansu_n_1--folk_a_1+dance_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_fo-kudansu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_folk_a_1_rel" ] , [ PRED "_dance_n_1_rel" ], ... > ].
+
+shigaisen_n_1--ultraviolet_a_1+radiation_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shigaisen_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ultraviolet_a_1_rel" ] , [ PRED "_radiation_n_1_rel" ], ... > ].
+
+raise_n_1--next_a_1+world_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_raise_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_next_a_1_rel" ] , [ PRED "_world_n_of_rel" ], ... > ].
+
+zouka_n_1--artificial_a_1+flower_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_zouka_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_artificial_a_1_rel" ] , [ PRED "_flower_n_1_rel" ], ... > ].
+
+gyakkyou_n_1--adverse_a_1+circumstance_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_gyakkyou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_adverse_a_1_rel" ] , [ PRED "_circumstance_n_1_rel" ], ... > ].
+
+seika_n_4--spiritual_a_1+song_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_seika_n_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_spiritual_a_1_rel" ] , [ PRED "_song_n_of_rel" ], ... > ].
+
+mukashi_n_1--olden_a_1+day_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_mukashi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_olden_a_1_rel" ] , [ PRED "_day_n_of_rel" ], ... > ].
+
+jisseikatsu_n_1--real_a_1+life_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_jisseikatsu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_real_a_1_rel" ] , [ PRED "_life_n_of_rel" ], ... > ].
+
+uwakuchibiru_n_1--upper_a_1+lip_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_uwakuchibiru_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_upper_a_1_rel" ] , [ PRED "_lip_n_1_rel" ], ... > ].
+
+katakori_n_1--stiff_a_1+neck_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_katakori_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stiff_a_1_rel" ] , [ PRED "_neck_n_1_rel" ], ... > ].
+
+kokueki_n_1--national_a_1+interest_n_in--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kokueki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_national_a_1_rel" ] , [ PRED "_interest_n_in_rel" ], ... > ].
+
+joushuuhan_n_1--old_a_1+offender_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_joushuuhan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_old_a_1_rel" ] , [ PRED "_offender_n_1_rel" ], ... > ].
+
+toppuu_n_1--gusty_a_1+wind_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_toppuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gusty_a_1_rel" ] , [ PRED "_wind_n_1_rel" ], ... > ].
+
+naizou_n_1--internal_a_1+organ_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_naizou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_internal_a_1_rel" ] , [ PRED "_organ_n_1_rel" ], ... > ].
+
+gyakufuu_n_1--unfavorable_a_1+wind_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_gyakufuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unfavorable_a_1_rel" ] , [ PRED "_wind_n_1_rel" ], ... > ].
+
+gyakufuu_n_1--unfavorable_a_1+wind_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_chikyuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_terrestrial_a_1_rel" ] , [ PRED "_half_n_of_rel" ], ... > ].
+
+shusei_n_4--defensive_a_1+stance_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shusei_n_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_defensive_a_1_rel" ] , [ PRED "_stance_n_1_rel" ], ... > ].
+
+食虫植物_n_1_g--insectivorous_a_1+plant_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_食虫植物_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_insectivorous_a_1_rel" ] , [ PRED "_plant_n_1_rel" ], ... > ].
+
+gyakufuu_n_1--contrary_a_to+wind_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_gyakufuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_contrary_a_to_rel" ] , [ PRED "_wind_n_1_rel" ], ... > ].
+
+tagaku_n_1--large_a_1+sum_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_tagaku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_large_a_1_rel" ] , [ PRED "_sum_n_of_rel" ], ... > ].
+
+saikousaibansho_n_1--supreme_a_1+tribunal_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_saikousaibansho_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_supreme_a_1_rel" ] , [ PRED "_tribunal_n_1_rel" ], ... > ].
+
+shinseiji_n_1--newborn_a_1+infant_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shinseiji_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_newborn_a_1_rel" ] , [ PRED "_infant_n_1_rel" ], ... > ].
+
+nettou_n_1--hot_a_1+water_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_nettou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hot_a_1_rel" ] , [ PRED "_water_n_1_rel" ], ... > ].
+
+chikyuu_n_1--terrestrial_a_1+ball_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_chikyuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_terrestrial_a_1_rel" ] , [ PRED "_ball_n_of_rel" ], ... > ].
+
+gendouryoku_n_1--prime_a_1+mover_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_gendouryoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_prime_a_1_rel" ] , [ PRED "_mover_n_of_rel" ], ... > ].
+
+daichou_n_2--inflammation_n_1+of_p--pcorp-mtr := n_n+p_mtr &
+[ INPUT.RELS < [ PRED "ja:_daichou_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inflammation_n_1_rel" ] , [ PRED _of_p_rel ], ... > ].
+
+ryoutan_n_1--hollow_n_1+with_p--pcorp-mtr := n_n+p_mtr &
+[ INPUT.RELS < [ PRED "ja:_ryoutan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_hollow_n_1_rel" ] , [ PRED _with_p_rel ], ... > ].
+
+jikangire_n_1--time_n_of+up_p--pcorp-mtr := n_n+p_mtr &
+[ INPUT.RELS < [ PRED "ja:_jikangire_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_time_n_of_rel" ] , [ PRED _up_p_rel ], ... > ].
+
+kikan_n_1--inflammation_n_1+of_p--pcorp-mtr := n_n+p_mtr &
+[ INPUT.RELS < [ PRED "ja:_kikan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inflammation_n_1_rel" ] , [ PRED _of_p_rel ], ... > ].
+
+nyuujuu_n_1--secretion_n_1+of_p--pcorp-mtr := n_n+p_mtr &
+[ INPUT.RELS < [ PRED "ja:_nyuujuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_secretion_n_1_rel" ] , [ PRED _of_p_rel ], ... > ].
+
+nyoudou_n_1--inflammation_n_1+of_p--pcorp-mtr := n_n+p_mtr &
+[ INPUT.RELS < [ PRED "ja:_nyoudou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inflammation_n_1_rel" ] , [ PRED _of_p_rel ], ... > ].
+
+haguki_n_1--inflammation_n_1+of_p--pcorp-mtr := n_n+p_mtr &
+[ INPUT.RELS < [ PRED "ja:_haguki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inflammation_n_1_rel" ] , [ PRED _of_p_rel ], ... > ].
+
+doumyaku_n_1--inflammation_n_1+of_p--pcorp-mtr := n_n+p_mtr &
+[ INPUT.RELS < [ PRED "ja:_doumyaku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inflammation_n_1_rel" ] , [ PRED _of_p_rel ], ... > ].
+
+ransou_n_1--inflammation_n_1+of_p--pcorp-mtr := n_n+p_mtr &
+[ INPUT.RELS < [ PRED "ja:_ransou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_inflammation_n_1_rel" ] , [ PRED _of_p_rel ], ... > ].
+
+kansatsu_s_2--observe_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kansatsu_s_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_observe_v_to_rel" ] , ... > ].
+
+kansoku_s_1--observe_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kansoku_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_observe_v_to_rel" ] , ... > ].
+
+tougou_s_1--integrate_v_into--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tougou_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_integrate_v_into_rel" ] , ... > ].
+
+henkan_s_2--convert_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_henkan_s_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_convert_v_1_rel" ] , ... > ].
+
+rikai_s_1--understand_v_by--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_rikai_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_understand_v_by_rel" ] , ... > ].
+
+seifuku_s_1--conquer_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_seifuku_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_conquer_v_1_rel" ] , ... > ].
+
+hakken_s_2--discover_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hakken_s_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_discover_v_1_rel" ] , ... > ].
+
+setsuritsu_s--establish_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_setsuritsu_s_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_establish_v_1_rel" ] , ... > ].
+
+shoumei_s_1--prove_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shoumei_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_prove_v_to_rel" ] , ... > ].
+
+shouka_s_1--digest_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shouka_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_digest_v_1_rel" ] , ... > ].
+
+honyaku_s_1--translate_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_honyaku_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_translate_v_1_rel" ] , ... > ].
+
+kyoukyuu_s_1--feed_v_2--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyoukyuu_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_feed_v_2_rel" ] , ... > ].
+
+jokyo_s_1--clear_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_jokyo_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clear_v_1_rel" ] , ... > ].
+
+kotei_s_1--anchor_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kotei_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_anchor_v_1_rel" ] , ... > ].
+
+kyouchou_s_2--emphasize_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyouchou_s_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_emphasize_v_to_rel" ] , ... > ].
+
+kisei_s_8--regulate_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kisei_s_8_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_regulate_v_1_rel" ] , ... > ].
+
+haishutsu_s_1--drain_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_haishutsu_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_drain_v_1_rel" ] , ... > ].
+
+kubetsu_s_1--differentiate_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kubetsu_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_differentiate_v_1_rel" ] , ... > ].
+
+setsumei_s_1--explain_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_setsumei_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_explain_v_to_rel" ] , ... > ].
+
+gasu_n--gas_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_gasu_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gas_n_1_rel" ] , ... > ].
+
+macchi_n_1--match_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_macchi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_match_n_1_rel" ] , ... > ].
+
+bentou_n_1--lunch_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_bentou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lunch_n_1_rel" ] , ... > ].
+
+nemuke_n_1--sleep_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nemuke_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sleep_n_1_rel" ] , ... > ].
+
+ro_n_3--furnace_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ro_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_furnace_n_1_rel" ] , ... > ].
+
+人なつこい_a_1_g--friendly_a_to--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_人なつこい_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_friendly_a_to_rel" ] , ... > ].
+
+よむ_v_1_g--read_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_よむ_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_read_v_1_rel" ] , ... > ].
+
+きく_v_1_g--act_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_きく_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_act_v_1_rel" ] , ... > ].
+
+tabidatsu_v_1--set_v_out--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tabidatsu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_set_v_out_rel" ] , ... > ].
+
+have_v_to--ought_v_modal--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_have_v_to_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED _ought_v_modal_rel ] , ... > ].
+
+machikogareru_v_1--long_v_for--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_machikogareru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_long_v_for_rel" ] , ... > ].
+
+toreru_v_1--come_v_1+off_p_dir--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_toreru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_come_v_1_rel" ] , [ PRED _off_p_dir_rel ], ... > ].
+
+kansatsu_s_2--observe_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kansatsu_s_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_observe_v_to_rel" ] , ... > ].
+
+kansoku_s_1--observe_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kansoku_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_observe_v_to_rel" ] , ... > ].
+
+tougou_s_1--integrate_v_into--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tougou_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_integrate_v_into_rel" ] , ... > ].
+
+henkan_s_2--convert_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_henkan_s_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_convert_v_1_rel" ] , ... > ].
+
+rikai_s_1--understand_v_by--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_rikai_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_understand_v_by_rel" ] , ... > ].
+
+seifuku_s_1--conquer_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_seifuku_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_conquer_v_1_rel" ] , ... > ].
+
+setsuritsu_s--establish_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_setsuritsu_s_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_establish_v_1_rel" ] , ... > ].
+
+shoumei_s_1--prove_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shoumei_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_prove_v_to_rel" ] , ... > ].
+
+hakken_s_2--discover_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_hakken_s_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_discover_v_1_rel" ] , ... > ].
+
+shouka_s_1--digest_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_shouka_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_digest_v_1_rel" ] , ... > ].
+
+honyaku_s_1--translate_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_honyaku_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_translate_v_1_rel" ] , ... > ].
+
+kyoukyuu_s_1--feed_v_2--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyoukyuu_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_feed_v_2_rel" ] , ... > ].
+
+jokyo_s_1--clear_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_jokyo_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clear_v_1_rel" ] , ... > ].
+
+kotei_s_1--anchor_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kotei_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_anchor_v_1_rel" ] , ... > ].
+
+kyouchou_s_2--emphasize_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyouchou_s_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_emphasize_v_to_rel" ] , ... > ].
+
+kisei_s_8--regulate_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kisei_s_8_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_regulate_v_1_rel" ] , ... > ].
+
+haishutsu_s_1--drain_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_haishutsu_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_drain_v_1_rel" ] , ... > ].
+
+kubetsu_s_1--differentiate_v_1--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kubetsu_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_differentiate_v_1_rel" ] , ... > ].
+
+setsumei_s_1--explain_v_to--pcorp-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_setsumei_s_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_explain_v_to_rel" ] , ... > ].
+
+kisetsu_n--weather_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kisetsu_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_weather_n_1_rel" ] , ... > ].
+
+ika_n_9--following_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ika_n_9_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_following_n_1_rel" ] , ... > ].
+
+shou_n_10--prize_n_for--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shou_n_10_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_prize_n_for_rel" ] , ... > ].
+
+joushi_n--boss_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_joushi_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_boss_n_1_rel" ] , ... > ].
+
+hontou_a_2--true_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_hontou_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_true_a_of_rel" ] , ... > ].
+
+茶色い_a_1_g--brown_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_茶色い_a_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_brown_a_1_rel" ] , ... > ].
+
+mousugu_a--soon_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_mousugu_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_soon_a_1_rel" ] , ... > ].
+
+uchiki_a_2--shy_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_uchiki_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_shy_a_1_rel" ] , ... > ].
+
+shibireru_v_1--asleep_a_1--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_shibireru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_asleep_a_1_rel" ] , ... > ].
+
+kodawaru_v_2--cling_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_kodawaru_v_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cling_v_1_rel" ] , ... > ].
+
+kansetsu_n_2--joint_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kansetsu_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_joint_n_1_rel" ] , ... > ].
+
+ryakushiki_n_1--debt_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ryakushiki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_debt_n_1_rel" ] , ... > ].
+
+natoriumu_n_1--sodium_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_natoriumu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sodium_n_1_rel" ] , ... > ].
+
+ro-karu_n_1--bus_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ro-karu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bus_n_1_rel" ] , ... > ].
+
+umi_n_2--pus_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_umi_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_pus_n_1_rel" ] , ... > ].
+
+guuzou_n_1--idol_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_guuzou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_idol_n_1_rel" ] , ... > ].
+
+ijime_n_1--tease_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ijime_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tease_n_1_rel" ] , ... > ].
+
+futago_n_1--twin_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_futago_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_twin_n_1_rel" ] , ... > ].
+
+intaanetto_n--internet_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_intaanetto_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_internet_n_1_rel" ] , ... > ].
+
+buhin_n_1--part_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_buhin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_part_n_1_rel" ] , ... > ].
+
+danshaku_n_1--baron_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_danshaku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_baron_n_1_rel" ] , ... > ].
+
+udedokei_n_1--watch_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_udedokei_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_watch_n_1_rel" ] , ... > ].
+
+kiri_n_1--cut_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kiri_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cut_n_1_rel" ] , ... > ].
+
+mukidashi_a_2--bare_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_mukidashi_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bare_a_1_rel" ] , ... > ].
+
+toumei_a_2--clear_a_of--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_toumei_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clear_a_of_rel" ] , ... > ].
+
+muchuu_a_2--keen_a_1--pcorp-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_muchuu_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_keen_a_1_rel" ] , ... > ].
+
+osekkai_a_2--interfere_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_osekkai_a_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_interfere_v_1_rel" ] , ... > ].
+
+さまよう_v_1_g--wander_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_さまよう_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_wander_v_1_rel" ] , ... > ].
+
+tatakitsukeru_v_1--whip_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tatakitsukeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_whip_v_1_rel" ] , ... > ].
+
+tsumazuku_v_1--trip_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsumazuku_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_trip_v_1_rel" ] , ... > ].
+
+やく_v_1_g--burn_v_cause--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_やく_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_burn_v_cause_rel" ] , ... > ].
+
+tsukuru_v_4--form_v_cause--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_tsukuru_v_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_form_v_cause_rel" ] , ... > ].
+
+mukuiru_v_1--return_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_mukuiru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_return_v_1_rel" ] , ... > ].
+
+nigirishimeru_v_1--clasp_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_nigirishimeru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_clasp_v_1_rel" ] , ... > ].
+
+soru_v_1--arch_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_soru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_arch_v_1_rel" ] , ... > ].
+
+ukitatsu_v_1--rise_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ukitatsu_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rise_v_1_rel" ] , ... > ].
+
+ほどける_v_1_g--unfasten_v_1--pcorp-mtr := arg123_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_ほどける_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_unfasten_v_1_rel" ] , ... > ].
+
+流れ落ちる_v_1_g--stream_v_1+down_p--pcorp-mtr := arg12_arg1+pp_mtr &
+[ INPUT.RELS < [ PRED "ja:_流れ落ちる_v_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_stream_v_1_rel" ] , [ PRED _down_p_rel ], ... > ].
+
+kokoku_n_2--native_a_1+land_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kokoku_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_native_a_1_rel" ] , [ PRED "_land_n_of_rel" ], ... > ].
+
+shougai_n_1--biography_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shougai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_biography_n_1_rel" ] , ... > ].
+
+yuisho_n_1--history_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuisho_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_history_n_of_rel" ] , ... > ].
+
+keijou_n_1--shape_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_keijou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_shape_n_1_rel" ] , ... > ].
+
+so_n_2--founder_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_so_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_founder_n_of_rel" ] , ... > ].
+
+raireki_n_1--biography_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_raireki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_biography_n_1_rel" ] , ... > ].
+
+rekidai_n_1--history_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_rekidai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_history_n_of_rel" ] , ... > ].
+
+keii_n_2--detail_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_keii_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_detail_n_1_rel" ] , ... > ].
+
+bikou_n_1--remark_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_bikou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_remark_n_1_rel" ] , ... > ].
+
+oitachi_n_1--background_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_oitachi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_background_n_1_rel" ] , ... > ].
+
+keii_n_2--history_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_keii_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_history_n_of_rel" ] , ... > ].
+
+yuisho_n_1--origin_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuisho_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_origin_n_1_rel" ] , ... > ].
+
+keii_n_2--background_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_keii_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_background_n_1_rel" ] , ... > ].
+
+bikou_n_1--note_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_bikou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_note_n_1_rel" ] , ... > ].
+
+sakufuu_n_1--style_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sakufuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_style_n_1_rel" ] , ... > ].
+
+satori_n_1--enlightenment_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_satori_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_enlightenment_n_1_rel" ] , ... > ].
+
+nenpyou_n_1--timeline_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_nenpyou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_timeline_n_1_rel" ] , ... > ].
+
+語義_n_1_g--meaning_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_語義_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_meaning_n_1_rel" ] , ... > ].
+
+kougai_n_4--synopsis_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kougai_n_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_synopsis_n_1_rel" ] , ... > ].
+
+raireki_n_1--history_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_raireki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_history_n_of_rel" ] , ... > ].
+
+shuuha_n_1--sect_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shuuha_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sect_n_1_rel" ] , ... > ].
+
+gairon_n_1--summary_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_gairon_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_summary_n_of_rel" ] , ... > ].
+
+ruigigo_n_1--synonym_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ruigigo_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_synonym_n_1_rel" ] , ... > ].
+
+jiseki_n_4--achievement_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_jiseki_n_4_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_achievement_n_of_rel" ] , ... > ].
+
+enmoku_n_1--program_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_enmoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_program_n_of_rel" ] , ... > ].
+
+ichiduke_n_2--placement_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ichiduke_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_placement_n_of_rel" ] , ... > ].
+
+sonogo_n_1--other_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sonogo_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_other_n_1_rel" ] , ... > ].
+
+人となり_n_1_g--personality_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_人となり_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_personality_n_1_rel" ] , ... > ].
+
+keii_n_2--process_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_keii_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_process_n_of_rel" ] , ... > ].
+
+ryakureki_n_1--biography_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ryakureki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_biography_n_1_rel" ] , ... > ].
+
+enkei_n_1--round_n_of--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_enkei_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_round_n_of_rel" ] , ... > ].
+
+goroku_n_1--saying_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_goroku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_saying_n_1_rel" ] , ... > ].
+
+tobaku_n_1--gamble_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tobaku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_gamble_n_1_rel" ] , ... > ].
+
+kajin_n_1--poet_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kajin_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_poet_n_1_rel" ] , ... > ].
+
+bukkyou_n_1--buddhism_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_bukkyou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_buddhism_n_1_rel" ] , ... > ].
+
+bekkan_n_1--annex_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_bekkan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_annex_n_1_rel" ] , ... > ].
+
+jisseki_n_1--accomplishment_n_1--pcorp-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_jisseki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_accomplishment_n_1_rel" ] , ... > ].
+
+kakawaru_v_1--concerned_a_about--pcorp-mtr := v_adj_mtr &
+[ INPUT.RELS < [ PRED "ja:_kakawaru_v_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_concerned_a_about_rel" ] , ... > ].
+
+hondou_n_1--main_a_1+hall_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_hondou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_main_a_1_rel" ] , [ PRED "_hall_n_1_rel" ], ... > ].
+
+honpen_n_1--main_a_1+part_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_honpen_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_main_a_1_rel" ] , [ PRED "_part_n_1_rel" ], ... > ].
+
+rekidai_n_1--chronological_a_1+order_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_rekidai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_chronological_a_1_rel" ] , [ PRED "_order_n_of_rel" ], ... > ].
+
+kouzoku_n_1--imperial_a_1+family_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kouzoku_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_imperial_a_1_rel" ] , [ PRED "_family_n_of_rel" ], ... > ].
+
+raireki_n_1--historical_a_1+trail_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_raireki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_historical_a_1_rel" ] , [ PRED "_trail_n_1_rel" ], ... > ].
+
+yuumei_a--famous_a_for+merchant_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_yuumei_a_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_famous_a_for_rel" ] , [ PRED "_merchant_n_of_rel" ], ... > ].
+
+honpen_n_1--main_a_1+story_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_honpen_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_main_a_1_rel" ] , [ PRED "_story_n_of_rel" ], ... > ].
+
+geifuu_n_1--artistic_a_1+style_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_geifuu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_artistic_a_1_rel" ] , [ PRED "_style_n_1_rel" ], ... > ].
+
+ryakureki_n_1--brief_a_1+biography_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_ryakureki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_brief_a_1_rel" ] , [ PRED "_biography_n_1_rel" ], ... > ].
+
+shosetsu_n_2--various_a_1+theory_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shosetsu_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_various_a_1_rel" ] , [ PRED "_theory_n_of_rel" ], ... > ].
+
+kodai_n--ancient_a_1+times_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kodai_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ancient_a_1_rel" ] , [ PRED "_times_n_1_rel" ], ... > ].
+
+teihon_n_2--original_a_1+text_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_teihon_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_original_a_1_rel" ] , [ PRED "_text_n_of_rel" ], ... > ].
+
+bikou_n_1--explanatory_a_1+note_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_bikou_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_explanatory_a_1_rel" ] , [ PRED "_note_n_1_rel" ], ... > ].
+
+rekidai_n_1--successive_a_1+head_n_of--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_rekidai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_successive_a_1_rel" ] , [ PRED "_head_n_of_rel" ], ... > ].
+
+shuuha_n_1--religious_a_1+school_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_shuuha_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_religious_a_1_rel" ] , [ PRED "_school_n_1_rel" ], ... > ].
+
+engimono_n_1--lucky_a_1+charm_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_engimono_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_lucky_a_1_rel" ] , [ PRED "_charm_n_1_rel" ], ... > ].
+
+genkyou_n_5--current_a_1+situation_n_1--pcorp-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_genkyou_n_5_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_current_a_1_rel" ] , [ PRED "_situation_n_1_rel" ], ... > ].
+

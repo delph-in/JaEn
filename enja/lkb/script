@@ -1,0 +1,79 @@
+;;; Hey, emacs(1), this is -*- Mode: Common-Lisp; Package: LKB; -*- got it?
+
+;;;
+;;; first, load a number of LKB-specific settings; typically no need to look
+;;; too closely here
+;;;
+(lkb-load-lisp (parent-directory) "Version.lsp" t)
+(lkb-load-lisp (this-directory) "globals.lsp")
+(lkb-load-lisp (this-directory) "mt.lsp")
+(lkb-load-lisp (this-directory) "user-fns.lsp")
+
+
+;;;
+;;; to allow using PET for parsing (via [incr tsdb()] and a cpu definition that
+;;; includes REPP pre-processing) interactively, also load the ERG REPP rules.
+;;;
+(read-repp (logon-file "lingo/erg/rpp" "setup.lsp"))
+
+;;;
+;;; next load the common transfer type hierarchy (the Transfer MatriX) ...
+;;;
+(read-tdl-type-files-aux
+  (list 
+   (lkb-pathname (grandparent-directory) "mrs.tdl")
+   (lkb-pathname (grandparent-directory) "mrs.jacy.tdl")
+   (lkb-pathname (grandparent-directory) "mtr.tdl")
+   ;;
+   ;; ... plus additional MRS and MTR type definitions for this language pair
+   ;;
+   (lkb-pathname (parent-directory) "mrs.tdl")
+   (lkb-pathname (parent-directory) "mtr.tdl")
+   (lkb-pathname (grandparent-directory) "predicates.tdl")
+   (lkb-pathname (grandparent-directory) "predicates.erg.tdl")
+   (lkb-pathname (grandparent-directory) "predicates.jacy.tdl")))
+
+;;;
+;;; a few more LKB-specific settings, this time for MRS post-processing and
+;;; generation; also, we always compute the generation index (while we have
+;;; small lexica) in the hope that the generator will be used frequently.
+;;;
+(lkb-load-lisp (this-directory) "mrsglobals.lsp" t)
+
+;;;
+;;; read the `in' and `out' variable property mappings (VPMs), adjusting index
+;;; properties in input and output MRSs, respectively.
+;;;
+(mt:read-vpm (lkb-pathname (parent-directory) "in.vpm") :in)
+(mt:read-vpm (lkb-pathname (parent-directory) "out.vpm") :out)
+
+;;;
+;;; transfer operates in three phases: (i) source-specific accomodation, (ii)
+;;; core transfer, and (iii) target-specific accomodation.
+;;;
+(mt:read-transfer-rules 
+ (list
+  (lkb-pathname (parent-directory) "erg.mtr"))
+ "SL accomodation phase"
+ :in :in :filter nil)
+
+(mt:read-transfer-rules 
+ (list
+  (lkb-pathname (parent-directory) "mwe.mtr")
+  (lkb-pathname (parent-directory) "names.mtr")
+  (lkb-pathname (parent-directory) "lexicon.mtr")
+  (lkb-pathname (parent-directory) "lex-mrs-enja.mtr")
+;  #-:debug
+;  (lkb-pathname (parent-directory) "lex-auto-ej.mtr")
+  (lkb-pathname (parent-directory) "prepositions.mtr")
+  (lkb-pathname (parent-directory) "collocations.mtr")
+  (lkb-pathname (grandparent-directory) "snug.mtr")
+  (lkb-pathname (parent-directory) "snug.mtr"))
+ "core transfer phase"
+ :filter t)
+
+(mt:read-transfer-rules 
+ (list
+  (lkb-pathname (parent-directory) "jacy.mtr"))
+ "TL accomodation phase"
+ :out :out :filter nil)

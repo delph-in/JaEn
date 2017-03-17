@@ -1,0 +1,365 @@
+;; -*- Mode: TDL; Package: LKB; Coding: utf-8; -*-
+;;
+;;  Hand written rules for Date/Time
+;;
+;;  Francis Bond
+;;
+
+
+
+;;;
+;;; Time of day (not so good cover)
+;;;
+
+nichi_n_rel-day_n_rel := noun_mtr &
+[ JA.RELS < [ PRED "ja:_nichi_n_rel" ] >,
+  EN.RELS < [ PRED "_day_n_of_rel" ] > ].
+
+yoru_n_rel-night_n_rel := noun_mtr &
+[ JA.RELS < [ PRED "ja:_yoru_n_5_rel" ] >,
+  EN.RELS < [ PRED "_night_n_of_rel" ] > ].
+
+asa_n_rel-morning_n_rel := noun_mtr &
+[ JA.RELS < [ PRED "ja:_asa_n_rel" ] >,
+  EN.RELS < [ PRED "_morning_n_of_rel" ] > ].
+
+gogo_n_rel-afternoon_n_rel := noun_mtr &
+[ JA.RELS < [ PRED "ja:_gogo_n_rel" ] >,
+  EN.RELS < [ PRED "_afternoon_n_of_rel" ] > ].
+
+yuugata_n_rel-evening_n_rel := noun_mtr &
+[ JA.RELS < [ PRED "ja:_yuugata_n_rel" ] >,
+  EN.RELS < [ PRED "_evening_n_of_rel" ] > ].
+
+
+;;;
+;;; Times' Dan does as adjectives
+;;;
+
+
+ima_n_rel-now_a_1_rel+time_n_rel-mtr := n_adj+time_n_rel-mtr &
+[ JA.RELS < [ PRED "ja:_ima_n_rel" ], ... >,
+  EN.RELS < [ PRED _now_a_1_rel ], ... > ].
+
+ima_n_rel-now_a_1_rel+time_n_rel_2-mtr := n_adj+time_n_rel_2-mtr &
+[ JA.RELS < [ PRED "ja:_ima_n_rel" ], ... >,
+  EN.RELS < [ PRED _now_a_1_rel ], ... > ].
+
+ima_n_rel-now_a_1_rel+time_n_rel_3-mtr := n_adj+time_n_rel_3-mtr &
+[ JA.RELS < [ PRED "ja:_ima_n_rel" ], ... >,
+  EN.RELS < [ PRED _now_a_1_rel ], ... > ].
+
+sugu_n_rel-soon_a_1_rel+time_n_rel-mtr := n_adj+time_n_rel-mtr &
+[ JA.RELS < [ PRED "ja:_sugu_n_time_rel" ], ... >,
+  EN.RELS < [ PRED _soon_p_rel ], ... > ].
+
+sugu_n_rel-soon_a_1_rel+time_n_rel_2-mtr := n_adj+time_n_rel_2-mtr &
+[ JA.RELS < [ PRED "ja:_sugu_n_time_rel" ], ... >,
+  EN.RELS < [ PRED _soon_p_rel ], ... > ].
+
+sugu_n_rel-soon_a_1_rel+time_n_rel_3-mtr := n_adj+time_n_rel_3-mtr &
+[ JA.RELS < [ PRED "ja:_sugu_n_time_rel" ], ... >,
+  EN.RELS < [ PRED _soon_p_rel ], ... > ].
+
+kyou_n_7_rel-today_a_1_rel+time_n_rel-mtr := n_adj+time_n_rel-mtr &
+[ JA.RELS < [ PRED "ja:_kyou_n_7_rel" ], ... >,
+  EN.RELS < [ PRED _today_a_1_rel ], ... > ].
+
+kyou_n_7_rel-today_a_1_rel+time_n_rel_2-mtr := n_adj+time_n_rel_2-mtr &
+[ JA.RELS < [ PRED "ja:_kyou_n_7_rel" ], ... >,
+  EN.RELS < [ PRED _today_a_1_rel ], ... > ].
+
+kyou_n_7_rel-today_a_1_rel+time_n_rel_3-mtr := n_adj+time_n_rel_3-mtr &
+[ JA.RELS < [ PRED "ja:_kyou_n_7_rel" ], ... >,
+  EN.RELS < [ PRED _today_a_1_rel ], ... > ].
+
+honjitsu_n-today_a_1_rel+time_n_rel-mtr := n_adj+time_n_rel-mtr &
+[ JA.RELS < [ PRED "ja:_honjitsu_n_rel" ], ... >,
+  EN.RELS < [ PRED _today_a_1_rel ], ... > ].
+
+honjitsu_n-today_a_1_rel+time_n_rel_2-mtr := n_adj+time_n_rel_2-mtr &
+[ JA.RELS < [ PRED "ja:_honjitsu_n_rel" ], ... >,
+  EN.RELS < [ PRED _today_a_1_rel ], ... > ].
+
+honjitsu_n-today_a_1_rel+time_n_rel_3-mtr := n_adj+time_n_rel_3-mtr &
+[ JA.RELS < [ PRED "ja:_honjitsu_n_rel" ], ... >,
+  EN.RELS < [ PRED _today_a_1_rel ], ... > ].
+
+konban_n_-tonight_a_1_rel+time_n_rel-mtr := n_adj+time_n_rel-mtr &
+[ JA.RELS < [ PRED "ja:_konban_n_rel" ], ... >,
+  EN.RELS < [ PRED _tonight_a_1_rel ], ... > ].
+
+konban_n_-tonight_a_1_rel+time_n_rel_2-mtr := n_adj+time_n_rel_2-mtr &
+[ JA.RELS < [ PRED "ja:_konban_n_rel" ], ... >,
+  EN.RELS < [ PRED _tonight_a_1_rel ], ... > ].
+
+konban_n_-tonight_a_1_rel+time_n_rel_3-mtr := n_adj+time_n_rel_3-mtr &
+[ JA.RELS < [ PRED "ja:_konban_n_rel" ], ... >,
+  EN.RELS < [ PRED _tonight_a_1_rel ], ... > ].
+
+konya_n_1-tonight_a_1+time_n-mtr := n_adj+time_n_rel-mtr &
+[ JA.RELS < [ PRED "ja:_konya_n_1_rel" ], ... >,
+  EN.RELS < [ PRED _tonight_a_1_rel ], ... > ].
+
+konya_n_1-tonight_a_1+time_n_2-mtr := n_adj+time_n_rel_2-mtr &
+[ JA.RELS < [ PRED "ja:_konya_n_1_rel" ], ... >,
+  EN.RELS < [ PRED _tonight_a_1_rel ], ... > ].
+
+konya_n_1-tonight_a_1+time_n_3-mtr := n_adj+time_n_rel_3-mtr &
+[ JA.RELS < [ PRED "ja:_konya_n_1_rel" ], ... >,
+  EN.RELS < [ PRED _tonight_a_1_rel ], ... > ].
+
+;;; 明日の朝 -> Tomorrow morning
+ashita_no--tommorrows-mtr := pp-adj_mtr &
+  [ CONTEXT.RELS < [ PRED "~^_(morning|afternoon|evening|night)_n_of_rel", ARG0 #x1 ] >,
+    INPUT.RELS < [PRED "ja:_ashita_n_rel" ] ,
+	       [ PRED "ja:_no_p_rel", ARG1 #x1  ], ... >,
+   OUTPUT.RELS < [ PRED _tomorrow_a_1_rel ] > ].
+
+ashita_n_rel-tomorrow_a_1_rel+time_n_rel-mtr := n_adj+time_n_rel-mtr &
+[ JA.RELS < [ PRED "ja:_ashita_n_rel" ], ... >,
+  EN.RELS < [ PRED _tomorrow_a_1_rel ], ... > ].
+
+ashita_n_rel-tomorrow_a_1_rel+time_n_rel_2-mtr := n_adj+time_n_rel_2-mtr &
+[ JA.RELS < [ PRED "ja:_ashita_n_rel" ], ... >,
+  EN.RELS < [ PRED _tomorrow_a_1_rel ], ... > ].
+
+ashita_n_rel-tomorrow_a_1_rel+time_n_rel_3-mtr := n_adj+time_n_rel_3-mtr &
+[ JA.RELS < [ PRED "ja:_ashita_n_rel" ], ... >,
+  EN.RELS < [ PRED _tomorrow_a_1_rel ], ... > ].
+
+asu_no--tommorrows-mtr := pp-adj_mtr &
+  [ CONTEXT.RELS < [ PRED "~^_(morning|afternoon|evening|night)_n_of_rel", ARG0 #x1 ] >,
+    INPUT.RELS < [PRED "ja:_asu_n_rel" ] ,
+	       [ PRED "ja:_no_p_rel", ARG1 #x1  ], ... >,
+   OUTPUT.RELS < [ PRED _tomorrow_a_1_rel ] > ].
+
+asu_n_rel-tomorrow_a_1_rel+time_n_rel-mtr := n_adj+time_n_rel-mtr &
+[ JA.RELS < [ PRED "ja:_asu_n_rel" ], ... >,
+  EN.RELS < [ PRED _tomorrow_a_1_rel ], ... > ].
+
+asu_n_rel-tomorrow_a_1_rel+time_n_rel_2-mtr := n_adj+time_n_rel_2-mtr &
+[ JA.RELS < [ PRED "ja:_asu_n_rel" ], ... >,
+  EN.RELS < [ PRED _tomorrow_a_1_rel ], ... > ].
+
+asu_n_rel-tomorrow_a_1_rel+time_n_rel_3-mtr := n_adj+time_n_rel_3-mtr &
+[ JA.RELS < [ PRED "ja:_asu_n_rel" ], ... >,
+  EN.RELS < [ PRED _tomorrow_a_1_rel ], ... > ].
+
+kino_no--yesterdays-mtr := pp-adj_mtr &
+  [ CONTEXT.RELS < [ PRED "~^_(morning|afternoon|evening|night)_n_of_rel", ARG0 #x1 ] >,
+    INPUT.RELS < [PRED "ja:_kinou_n_1_rel" ] ,
+	       [ PRED "ja:_no_p_rel", ARG1 #x1  ], ... >,
+   OUTPUT.RELS < [ PRED _yesterday_a_1_rel ] > ].
+
+kinou_n_rel-yesterday_a_1_rel+time_n_rel-mtr := n_adj+time_n_rel-mtr &
+[ JA.RELS < [ PRED "ja:_kinou_n_1_rel" ], ... >,
+  EN.RELS < [ PRED _yesterday_a_1_rel ], ... > ].
+
+kinou_n_rel-yesterday_a_1_rel+time_n_rel_2-mtr := n_adj+time_n_rel_2-mtr &
+[ JA.RELS < [ PRED "ja:_kinou_n_1_rel" ], ... >,
+  EN.RELS < [ PRED _yesterday_a_1_rel ], ... > ].
+
+kinou_n_rel-yesterday_a_1_rel+time_n_rel_3-mtr := n_adj+time_n_rel_3-mtr &
+[ JA.RELS < [ PRED "ja:_kinou_n_1_rel" ], ... >,
+  EN.RELS < [ PRED _yesterday_a_1_rel ], ... > ].
+
+asa_n_rel-morning_n_rel := noun_mtr &
+[ JA.RELS < [ PRED "ja:_asa_n_rel" ] >,
+  EN.RELS < [ PRED "_morning_n_of_rel" ] > ].
+
+udef_q-implicit_q-mtr := quantifier_mtr &
+[ CONTEXT [ HCONS < qeq & [ HARG #h1, LARG #h2 ] >,
+	    RELS < [ PRED time_n_rel, LBL #h2 ] > ],
+  JA.RELS < [ PRED "ja:udef_q_rel", RSTR #h1 ] >,
+  EN.RELS < [ PRED implicit_q_rel, RSTR #h1 ] > ].
+
+
+sakuya_n--last_night_n-mtr  := time_n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_sakuya_n_1_rel" ], ...  >,
+  OUTPUT.RELS < [ PRED "_last_a_1_rel" ], 
+		[ PRED "_night_n_of_rel" ], ...  > ].
+
+
+;;;
+;;; Weeks
+;;;
+
+senshuu_n--last_week_n-mtr  := time_n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_senshuu_n_rel" ], ...  >,
+  OUTPUT.RELS < [ PRED "_last_a_1_rel" ], 
+		[ PRED "_week_n_1_rel" ], ...  > ].
+
+raishuu_n--next_week_n-mtr  := time_n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_raishuu_n_rel" ], ...  >,
+  OUTPUT.RELS < [ PRED "_next_a_1_rel" ], 
+		[ PRED "_week_n_1_rel" ], ...  > ].
+
+konshuu_n--this_week_n-mtr  := np_mtr &
+[ INPUT.RELS  < [ PRED "ja:_konshuu_n_1_rel" ], 
+		[ PRED "ja:udef_q_rel" ] >,
+  OUTPUT.RELS < [ PRED "_week_n_1_rel" ], 
+		[ PRED _this_q_dem_rel ] > ].
+
+
+;;;
+;;; Months  
+;;;
+
+; kongetsu_n--this_month_n-mtr  := n_adj+n_omtr &
+; [ INPUT.RELS < [ PRED "ja:_kongetsu_n_rel" ], ... >,
+;   OUTPUT.RELS < [ PRED "_this_a_1_rel" ], [ PRED "_meat_n_1_rel" ], ... > ].
+
+sengetsu_n--last_month_n-mtr  := time_n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_sengetsu_n_rel" ], ...  >,
+  OUTPUT.RELS < [ PRED "_last_a_1_rel" ], 
+		[ PRED "_month_n_1_rel" ], ...  > ].
+
+raigetsu_n--next_month_n-mtr  := time_n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_raigetsu_n_rel" ], ...  >,
+  OUTPUT.RELS < [ PRED "_next_a_1_rel" ], 
+		[ PRED "_month_n_1_rel" ], ...  > ].
+
+kongetsu_n--this_month_n-mtr  := np_mtr &
+[ INPUT.RELS  < [ PRED "ja:_kongetsu_n_rel" ], 
+		[ PRED "ja:udef_q_rel" ] >,
+  OUTPUT.RELS < [ PRED "_month_n_1_rel" ], 
+		[ PRED _this_q_dem_rel ] > ].
+
+
+
+;;;
+;;; Years
+;;;
+
+
+;;; FIXME (jacy) 今年は, ....
+
+
+kyonen_n--last_year_n-mtr  := time_n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kyonen_n_1_rel" ], ...  >,
+  OUTPUT.RELS < [ PRED "_last_a_1_rel" ], 
+		[ PRED "_year_n_1_rel" ], ...  > ].
+
+sakunen_n--last_year_n-mtr  := time_n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_sakunen_n_rel" ], ...  >,
+  OUTPUT.RELS < [ PRED "_last_a_1_rel" ], 
+		[ PRED "_year_n_1_rel" ], ...  > ].
+
+rainen_n--next_year_n-mtr  := time_n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_rainen_n_rel" ], ...  >,
+  OUTPUT.RELS < [ PRED "_next_a_1_rel" ], 
+		[ PRED "_year_n_1_rel" ], ...  > ].
+
+kotoshi_n_1--this_year_n-mtr  := np_mtr &
+[ INPUT.RELS  < [ PRED "ja:_kotoshi_n_1_rel" ], 
+		[ PRED "ja:udef_q_rel" ] >,
+  OUTPUT.RELS < [ PRED "_year_n_1_rel" ], 
+		[ PRED _this_q_dem_rel ] > ].
+
+;;;
+;;; this time-of-day
+;;;
+
+kesa_n--this_morning_n-mtr  := np_mtr &
+[ INPUT.RELS  < [ PRED "ja:_kesa_n_rel" ], 
+		[ PRED "ja:udef_q_rel" ] >,
+  OUTPUT.RELS < [ PRED "_morning_n_of_rel" ], 
+		[ PRED _this_q_dem_rel ] > ].
+
+
+;; What about 本年 ?
+
+;;;
+;;; Specify unspec_loc for months and years
+;;; and mornings and afternoons
+
+unspec_loc-loc_nonsp_rel-mtr := preposition_mtr &
+[ CONTEXT.RELS < [ PRED "~^_(month|year|morning|week|day|night)_n_", ARG0 #x ] >,
+  INPUT.RELS < [ PRED unspec_loc_rel, ARG2 #x ] >,
+  OUTPUT.RELS < [ PRED loc_nonsp_rel ] > ].
+
+;;;
+;;; A special rule for topicalized time expressions
+;;; will not be needed if JACY parses unspec+wa_d
+
+;;; (mt::parse-interactively "今朝　は　犬 が 吠える")
+
+wa_d-loc_nonsp_rel-mtr := preposition_mtr &
+[ CONTEXT.RELS < [ PRED "~^_(month|year|morning|week|day|night)_n_", ARG0 #x ] >,
+  INPUT.RELS < [ PRED "ja:_wa_d_rel", ARG2 #x ] >,
+  OUTPUT.RELS < [ PRED loc_nonsp_rel ] > ].
+
+;;;
+;;; periodic time expressions
+;;;
+
+mainichi_n--every-day_np-mtr := np_mtr & 
+[ JA.RELS < [ PRED "ja:_mainichi_n_rel" ],
+	    [ PRED "ja:udef_q_rel" ]>,
+  EN.RELS < [ PRED "_day_n_of_rel" ],
+	    [ PRED _every_q_rel ] > ].
+
+maiban_n_1--every-night_np-mtr := np_mtr & 
+[ JA.RELS < [ PRED "ja:_maiban_n_1_rel" ],
+	    [ PRED "ja:udef_q_rel" ]>,
+  EN.RELS < [ PRED "_night_n_of_rel" ],
+	    [ PRED _every_q_rel ] > ].
+
+maitoshi_n_1--every-year_np-mtr := np_mtr & 
+[ JA.RELS < [ PRED "ja:_maitoshi_n_1_rel" ],
+	    [ PRED "ja:udef_q_rel" ]>,
+  EN.RELS < [ PRED "_year_n_1_rel" ],
+	    [ PRED _every_q_rel ] > ].
+
+;mainen_n_1--every-year_np-mtr := np_mtr & 
+;[ JA.RELS < [ PRED "ja:_mainen_n_1_rel" ],
+;	    [ PRED "ja:udef_q_rel" ]>,
+;  EN.RELS < [ PRED "_year_n_1_rel" ],
+;	    [ PRED _every_q_rel ] > ].
+
+maiasa_n--every-night_np-mtr := np_mtr & 
+[ JA.RELS < [ PRED "ja:_maiasa_n_rel" ],
+	    [ PRED "ja:udef_q_rel" ]>,
+  EN.RELS < [ PRED "_morning_n_1_rel" ],
+	    [ PRED _every_q_rel ] > ].
+
+maitsuki_n--every-month_np-mtr := np_mtr & 
+[ JA.RELS < [ PRED "ja:_maitsuki_n_rel" ],
+	    [ PRED "ja:udef_q_rel" ]>,
+  EN.RELS < [ PRED "_month_n_1_rel" ],
+	    [ PRED _every_q_rel ] > ].
+
+maishuu_n_1--every-week_np-mtr := np_mtr & 
+[ JA.RELS < [ PRED "ja:_maishuu_n_1_rel" ],
+	    [ PRED "ja:udef_q_rel" ]>,
+  EN.RELS < [ PRED "_week_n_1_rel" ],
+	    [ PRED _every_q_rel ] > ].
+
+;;;
+;;; Seasons 
+;;;
+
+; natsu_n_rel--season_rel-summer := noun_mtr &
+; [ JA.RELS < [ PRED "ja:_natsu_n_rel" ] >,
+;   EN.RELS < [ PRED season_rel ],  [ CARG "summer"] > ].
+
+; 
+haru_n_rel--season_rel-spring := n_season_mtr &
+[ INPUT.RELS < [ PRED "ja:_natsu_n_rel" ] >,
+  OUTPUT.RELS < [ CARG "summer" ] > ].
+
+natsu_n_rel--season_rel-summer := n_season_mtr &
+[ INPUT.RELS < [ PRED "ja:_natsu_n_rel" ] >,
+  OUTPUT.RELS < [ CARG "summer" ] > ].
+
+aki_n_rel--season_rel-fall := n_season_mtr &
+[ INPUT.RELS < [ PRED "ja:_aki_n_rel" ] >,
+  OUTPUT.RELS < [ CARG "fall" ] > ].
+
+fuyu_n_rel--season_rel-winter := n_season_mtr &
+[ INPUT.RELS < [ PRED "ja:_fuyu_n_rel" ] >,
+  OUTPUT.RELS < [ CARG "winter" ] > ].
+
+;;; FIXME (fix quantifier)
+

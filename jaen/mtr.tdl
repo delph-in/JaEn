@@ -1,0 +1,587 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Coding: utf-8; -*- got it?
+;;;
+;;; Rule types used by jaen but not sharable for all other language pairs
+;;;
+;;
+;; reversible rules
+;; - should they be a seperate type with CONTEXT set to null?
+
+monotonic_mtr := mrs_transfer_rule &
+[ CONTEXT [ LTOP #h, INDEX #i ],
+  INPUT #j & [ LTOP #h, INDEX #i ],
+  OUTPUT #e &[ LTOP #h, INDEX #i ], 
+  JA #j,
+  EN #e].
+
+
+n_conj_mtr  := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #i1, 
+                   L-INDEX #i3, R-INDEX #i5 ] >],
+  OUTPUT.RELS < [ LBL #h1, ARG0 #i1,
+                  L-INDEX #i3, R-INDEX #i5 ] > ].
+
+n_conj_omtr  := n_conj_mtr & optional_mtr.
+
+
+
+conj_subord_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e1,
+		 L-HNDL #hl, 
+		 R-HNDL #hr, R-INDEX #e1 ] >,
+  OUTPUT.RELS <	[ LBL #h1, 
+		  ARG0 #e1,
+		  ARG1 #hr,
+		  ARG2 #hl ] > ].
+
+;; Take an arg1 predicate with an argument and make an arg0 predicate.
+;; eg 雨が降る -> it  rains
+
+arg1+np_arg0_v_mtr :=  monotonic_mtr &
+ [ INPUT [ RELS < [ ARG0 #ame, LBL #h4 ],
+		  [ ARG0 #ame, RSTR #h7 ],
+		  [ ARG0 #furu, ARG1 #ame,  LBL #h ] >,
+	   HCONS < qeq & [ HARG #h7, LARG #h4 ] > ],
+   OUTPUT.RELS < [ ARG0 #furu, LBL #h ] >,
+   FLAGS.EQUAL < #ame > ].
+
+arg1+np_arg0_v_omtr := arg1+np_arg0_v_mtr & optional_mtr.
+
+
+adj+n_adj+n_mtr :=  monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #x3 ],
+	       [ LBL #h4, ARG0 #x3 ] >,
+   OUTPUT.RELS < [ LBL #h1, ARG0 #e2, ARG1 #x3 ],
+		 [ LBL #h4, ARG0 #x3 ] >].
+
+adj+n_adj+n_omtr := adj+n_adj+n_mtr & optional_mtr.
+
+n_adj+n_mtr :=  monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
+		[ LBL #h1, ARG0 #x2 ] > ].
+n_adj+n_omtr := n_adj+n_mtr & optional_mtr.
+
+; Experimental rule types for Ja-En MT system -- eric-n 2006/8/30
+
+n_adj_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h, ARG0 #x ] >,
+  OUTPUT.RELS < [ LBL #h, 
+		  ARG0 #e & e & [ TENSE UNTENSED, MOOD INDICATIVE ],
+		  ARG1 #x ], 
+		[ PRED "adj_from_noun_mark", LBL #h, ARG0 #e] > ].
+
+n_adj_omtr := n_adj_mtr & optional_mtr.
+
+;;; Added the loc_nonsp_rel.                                   (2011-01-24; ph)
+;;; 昨日 は 雨 が 降っ た >> It rained yesterday.
+n_adj+time_n_rel-mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ LBL #h2, PRED "ja:_wa_d_rel", ARG0 e, ARG1 e & #e, ARG2 #x ] >,
+  INPUT.RELS < [ LBL #h, ARG0 #x ] >,
+  OUTPUT.RELS < [ LBL #h,  
+		  ARG0 e & [ TENSE UNTENSED, MOOD INDICATIVE ],
+		  ARG1 #x ],
+		[ PRED time_n_rel, LBL #h, ARG0 #x ],
+		[ PRED loc_nonsp_rel,
+		  LBL #h2,
+		  ARG0 e,
+		  ARG1 #e,
+		  ARG2 #x ] > ].
+
+;;; これ を 昨日 買っ た >> I bought this yesterday.
+n_adj+time_n_rel_2-mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h, ARG0 #x ],
+	       [ PRED unspec_loc_rel, LBL #h2, ARG0 e, ARG1 #e, ARG2 #x ] >,
+  OUTPUT.RELS < [ LBL #h,  
+		  ARG0 e & [ TENSE UNTENSED, MOOD INDICATIVE ],
+		  ARG1 #x ],
+		[ PRED time_n_rel, LBL #h, ARG0 #x ],
+		[ PRED loc_nonsp_rel, LBL #h2, ARG0 e, ARG1 #e, ARG2 #x ] > ].
+
+n_adj+time_n_rel_3-mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h, ARG0 #x ] >,
+  OUTPUT.RELS < [ LBL #h,  
+		  ARG0 e & [ TENSE UNTENSED, MOOD INDICATIVE ],
+		  ARG1 #x ],
+		[ PRED time_n_rel, LBL #h, ARG0 #x ] > ].
+
+; vn_mtr := monotonic_mtr &
+; [ CONTEXT.RELS < [ PRED udef_q_rel, ARG0 #x0, RSTR #h2 ] >,
+;   INPUT [ RELS < [ LBL #h0, ARG0 #x0 ],
+; 		  [ PRED proposition_m_rel,  LBL #h4, ARG0 #x0, MARG #h5 ],
+; 		 [ PRED "noun-relation", LBL #h6, ARG0 #x0, ARG1 #h4 ] >,
+;           HCONS < qeq & [ HARG #h5, LARG #h0 ],
+;                   qeq & [ HARG #h2, LARG #h6 ] > ],
+;   OUTPUT [ RELS < [ LBL #h0, ARG0 #x0 ] >,
+;            HCONS < qeq & [ HARG #h2, LARG #h0 ] > ] ].
+
+; vn_omtr := vn_mtr & optional_mtr.
+
+pn_mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:named_rel" ]>,
+  OUTPUT.RELS < [ PRED named_rel ] > ].
+
+pn_omtr := pn_mtr & optional_mtr.
+
+; adj_n_mtr := monotonic_mtr &
+; [ INPUT [ RELS < [ LBL #h4, ARG0 #e2 ]
+; 		 [ PREP "ja:proposition_m_rel", LBL #h1, ARG0 #e2, MARG #h3 ] >,
+; 	  HCONS < qeq & [ HARG #h3, LARG #h4 ] > ],
+;   OUTPUT [ RELS < [ LBL #h4, ARG0 x & #x5 ],
+; 		  [ PRED  udef_q_rel, LBL h & #h6,
+; 		    ARG0 #x5, RSTR h & #h7, BODY h ] >,
+; 	   HCONS < qeq & [ HARG #h7, LARG #h4 ] > ] ].
+adj_n_mtr := monotonic_mtr.
+adj_n_omtr := adj_n_mtr & optional_mtr.
+
+;;; 1 50 残念 : 2 0 bad luck -- adj_adj+n_mtr
+adj_adj+n_mtr := monotonic_mtr.
+adj_adj+n_omtr := adj_adj+n_mtr & optional_mtr.
+
+adj_n+n_mtr := monotonic_mtr.
+adj_n+n_omtr := adj_adj+n_mtr & optional_mtr.
+
+n+n_adj+n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ],
+                 [ PRED compound_rel, LBL #h3, ARG1 #x4, ARG2 #x2 ],
+                 [ PRED "ja:udef_q_rel", ARG0 #x2, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
+  OUTPUT [ RELS < [ LBL #h3, ARG0 e_untensed, ARG1 #x4 ],
+		  [ LBL #h3, ARG0 #x4 ] > ] ].
+
+n+n_adj+n_omtr := n+n_adj+n_mtr & optional_mtr.
+
+;n+ni_adj+ni_mtr := monotonic_mtr &
+;[ INPUT [ RELS < [ LBL #h1, ARG0 x & #x2 ],
+;                 [ LBL #h3, ARG0 x & #x4 ],
+;                 [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x4 ],
+;                 [ PRED def_q_rel, ARG0 #x2, RSTR #h5 ] >,
+;          HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
+;  OUTPUT [ RELS < [ LBL #h3, ARG0 e_untensed, ARG1 #x4 ],
+;		  [ LBL #h3, ARG0 #x4 ] > ] ].
+
+;n+n_adj+n_omtr := n+n_adj+n_mtr & optional_mtr.
+
+; experimental rules for verb<->adjective. alias to arg1_v for now -- eric-n
+adj_v_mtr := arg1_v_mtr.
+adj_v_omtr := arg1_v_omtr.
+
+v_adj_mtr := arg1_v_mtr.
+v_adj_omtr := arg1_v_omtr.
+
+;; 日本 の -> Japanese
+pp-adj_mtr := monotonic_mtr &
+ [ INPUT [RELS  <  [ LBL #h1, ARG0 #x1 ],
+		   [ LBL #h0, ARG0 #e0, ARG1 #ext, ARG2 #x1 ],
+		   [ ARG0 #x1, RSTR #hr ] >,
+	  HCONS < qeq & [ HARG #hr, LARG #h1 ] > ],
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #ext ] >].
+
+pp-adj_omtr := pp-adj_mtr & optional_mtr.
+
+pp-adjest_mtr := monotonic_mtr &
+ [ INPUT [RELS  <  [ LBL #h1, ARG0 #x1 ],
+		   [ LBL #h0, ARG0 #e0, ARG1 #ext, ARG2 #x1 ],
+		   [ ARG0 #x1, RSTR #hr ]>,
+	  HCONS < qeq & [ HARG #hr, LARG #h1 ] > ],
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #ext ],
+		[ LBL #h0, ARG0 e,   ARG1 #e0, PRED superl_rel]>].
+
+pp-adjest_omtr := pp-adj_mtr & optional_mtr.
+
+;; 心して >> with caution
+adj_pp_mtr := monotonic_mtr &
+ [ INPUT.RELS < [ LBL #h0, ARG0 #e0, ARG1 #ext ] >,
+   OUTPUT [ RELS  <  [ LBL #h0, ARG0 #e0, ARG1 #ext, ARG2 #x1 ],
+		     [ ARG0 #x1 & [ NUM sg ], RSTR #hr ],
+		     [ LBL #h1, ARG0 #x1 ] >,
+	    HCONS < qeq & [ HARG #hr, LARG #h1 ] > ] ].
+
+adj_pp_omtr := adj_pp_mtr & optional_mtr.
+
+
+;; の　後ろ の/に - > behind 
+pp+p-p-mtr := monotonic_mtr &
+ [ INPUT [RELS  <  [ ARG1 #local, ARG2 #int ],
+		   [ LBL #h1, ARG0 #local ],
+		   [ LBL #hp, ARG0 #ep, ARG1 #ext, ARG2 #local ],
+		   [ ARG0 #local, RSTR #hr ] >,
+	  HCONS < qeq & [ HARG #hr, LARG #h1 ] > ],
+   OUTPUT.RELS  <  [ LBL #hp, ARG0 #ep, ARG1 #ext, ARG2 #int ] > ].
+;LBL #h0, ARG0 #e0, ARG1 #local, ARG2 #int ] > ]].
+;  [ INPUT [RELS  <  [ LBL #h0, ARG0 #e0, ARG1 #local, ARG2 #int ],
+; 		   [ LBL #h1, ARG0 #local ],
+; 		   [ LBL #hp, ARG0 #ep, ARG1 #ext, ARG2 #local ],
+; 		   [ ARG0 #x1, RSTR #hr ] >,
+; 	  HCONS < qeq & [ HARG #hr, LARG #h1 ] > ],
+;    OUTPUT.RELS < [ LBL #hp, ARG0 #ep, ARG1 #ext, ARG2 #int  ] >].
+
+pp+p-p-omtr := pp+p-p-mtr & optional_mtr.
+
+; For japanese noun noun compounds going to English noun where the Japanese
+; compound's ARG2 is ARG1 of another compound: 
+; 大学 事務 室 >> college office
+
+n+n_n-compound_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ],
+		 [ PRED compound_rel, LBL #h3, ARG1 #x4, ARG2 #x2 ],
+                 [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x7 ],
+                 [ PRED "ja:udef_q_rel", ARG0 #x2, RSTR #h5 ],
+                 [ PRED "ja:udef_q_rel", ARG0 #x4, RSTR #h6 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ],
+		  qeq & [ HARG #h6, LARG #h3 ]> ],
+  OUTPUT [ RELS < [ LBL #h3, ARG0 #x4 ],
+		  [ PRED "ja:udef_q_rel", ARG0 #x4, RSTR #h5 ],
+		  [ PRED compound_rel, LBL #h3, ARG1 #x4, ARG2 #x7 ] >,
+	   HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
+
+;;;
+;;; Not really universal is it?
+;;;
+
+n+n_n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ],
+                 [ PRED compound_rel, LBL #h3, ARG1 #x4, ARG2 #x2 ],
+                 [ PRED "ja:udef_q_rel", ARG0 #x2, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x4 ] > ].
+
+n+n_n_omtr := n+n_n_mtr & optional_mtr.
+
+; 風 蝶 草 >> cat whisker
+n+n+n_n+n_mtr  := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 x & #x1 ],
+		 [ LBL #h2, ARG0 x & #x2 ],
+                 [ LBL #h3, ARG0 x & #x3 ],
+		 [ PRED "ja:udef_q_rel", ARG0 #x2, RSTR #h6 ],
+		 [ PRED compound_rel, 
+		   LBL #h1, ARG1 #x1, ARG2 #x2 ],
+		 [ PRED compound_rel, 
+		   LBL #h2, ARG1 #x2, ARG2 #x3 ] >,
+	    HCONS < qeq & [ HARG #h6, LARG #h2 ] > ],
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x3 ],
+		[ LBL #h1, ARG0 #x1 ],
+		[ PRED compound_rel, 
+		  LBL #h1, ARG0 e_untensed, ARG1 #x1, ARG2 #x3 ] > ].
+
+n+n+n_n+n_omtr := n+n+n_n+n_mtr & optional_mtr.
+
+n+pn_n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ],
+                 [ PRED compound_rel, LBL #h3, ARG1 #x4, ARG2 #x2 ],
+                 [ PRED "ja:def_q_rel", ARG0 #x2, RSTR #h5 ] >,
+          HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x4 ] > ].
+
+n+pn_n_omtr := n+pn_n_mtr & optional_mtr.
+
+;;; REDEFINE THIS s/"unspec_rel"/unspec_rel
+n+n_n+n_mtr := monotonic_mtr &
+ [ CONTEXT.RELS < [ PRED compound_rel, LBL #h3, ARG1 #x4, ARG2 #x2 ] >,
+   INPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+                [ LBL #h3, ARG0 #x4 ] >,
+   OUTPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+                 [ LBL #h3, ARG0 #x4 ] > ].
+
+mofy-mtr :=  monotonic_mtr &
+[ INPUT.RELS < [ PRED "ja:card_rel",
+		  LBL #h5 ],
+	       [ PRED "ja:mofy_rel",
+		  LBL #hm,
+		  ARG0 #xm,
+		  ARG1 #h5 ],
+		[ PRED "ja:udef_q_rel",
+		  LBL #h9,
+		  ARG0 #xm,
+		  RSTR #r,
+		  BODY #b ] >,
+  OUTPUT.RELS < [ PRED mofy_rel,
+		  LBL #hm,
+		  ARG0 #xm ],
+		[ PRED proper_q_rel,
+		  LBL #h9,
+		  ARG0 #xm,
+		  RSTR #r,
+		  BODY #b ] > ].
+
+dofw-mtr :=  noun_mtr &
+ [ INPUT.RELS < [ PRED "ja:dofw_rel",
+		  CARG string ] >,
+   OUTPUT.RELS <[ PRED dofw_rel,
+		  CARG string ] > ].
+
+n_named-pred_mtr :=  monotonic_mtr &
+[ INPUT.RELS < [ PRED string,
+		 LBL #h1, ARG0 #x1 ], 
+	       [ PRED "ja:udef_q_rel", ARG0 #x1, RSTR #h2 ]  >,
+  OUTPUT.RELS < [ PRED named_rel, LBL #h1, ARG0 #x1 & x & [ DIV - ] ],
+		[ PRED proper_q_rel, ARG0 #x1, RSTR #h2 ]  > ].
+
+n_named-pred_omtr :=  n_named-pred_mtr & optional_mtr.
+
+n_named_mtr :=  monotonic_mtr &
+[ INPUT.RELS < [ PRED named_rel,
+		 LBL #h1, ARG0 #x1 ], 
+	       [ PRED "ja:udef_q_rel", ARG0 #x1 ]  >,
+  OUTPUT.RELS < [ PRED named_rel, LBL #h1, ARG0 #x1 & x & [ DIV - ] ],
+		[ PRED proper_q_rel, ARG0 #x1 ]  > ].
+
+n_named_omtr :=  n_named_mtr & optional_mtr.
+
+
+
+time_n_adj+n_mtr :=  monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x2 ],
+	       [ PRED "ja:udef_q_rel",
+		 LBL #h9, ARG0 #x2, RSTR #r, BODY #b ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
+		[ LBL #h1, ARG0 #x2 ],
+		[ PRED def_implicit_q_rel,
+		  LBL #h9, ARG0 #x2, RSTR #r, BODY #b ] > ].
+
+
+
+
+;;; 女 の 人 -> woman
+;;; FIXME --- need to reattach modifiers
+n+p+n_n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h0, ARG0 #x1 ],
+		 [ ARG0 #x1, RSTR #h5 ],
+		 [ LBL #h3, ARG0 e_untensed, ARG1 #x4, ARG2 #x1 ],
+		 [ LBL #h3, ARG0 #x4 ] >,
+           HCONS < qeq & [ HARG #h5, LARG #h0 ] > ],
+  OUTPUT.RELS < [ LBL #h3, ARG0 #x4 ] > ].
+
+;;;
+;;; @ シンボル の 崇拝 >> the worship of symbols
+;;;
+n_n+p_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #x1, ARG1 #x2 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #x1 ],
+		[ ARG0 e_untensed, ARG1 #x1, ARG2 #x2 ] > ].
+
+n_n+p_omtr := n_n+p_mtr & optional_mtr.
+
+;; に　いく　-> go to (fix the preposition translation along with the verb)
+arg1+pp_arg1+pp_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ],
+               [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ],
+		[ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ] > ].
+
+arg1+pp_arg1+pp_omtr := arg1+pp_arg1+pp_mtr & optional_mtr.
+
+; 〜　の　面倒　を　見る　-> look after ~
+p+n+arg12_arg12_mtr := monotonic_mtr &
+[ INPUT [ RELS <   [ LBL #h2, ARG0 e_untensed, ARG1 #x2, ARG2 #x ],
+		   [ LBL #h2, ARG0 #x2 & [PERS 3] ],
+		   [ ARG0 #x2,  RSTR #h3 ],
+		   [ LBL #h1, ARG0 #e1, ARG1 #x1, ARG2 #x2 ] >,
+	  HCONS < qeq & [ HARG #h3, LARG #h2 ] >],
+  OUTPUT.RELS < [ LBL #h1, 
+		  ARG0 #e1, ARG1 #x1, ARG2 #x ] >].
+
+p+n+arg12_arg12_omtr := p+n+arg12_arg12_mtr & optional_mtr.
+
+; 床 に タイル を 張る >> tile a floor 0 0.460526
+pp+arg12_arg12_mtr := monotonic_mtr &
+[ INPUT [ RELS <   [ LBL #h1, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ],
+		   [ LBL #h2, ARG0 #x4 & [PERS 3] ],
+		   [ ARG0 #x4,  RSTR #h3 ],
+		   [ LBL #h1, ARG0 #e1, ARG1 #x2, arg2 #x4 ], ... >,
+	  HCONS < qeq & [ HARG #h3, LARG #h2 ] >],
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #x2, ARG2 #x3 ] >].
+
+pp+arg12_arg12_omtr := pp+arg12_arg12_mtr & optional_mtr.
+
+; 農場 に 電話 を する
+pp+arg12+nom_arg12_mtr := monotonic_mtr &
+[ INPUT [ RELS <   [ LBL #h1, ARG0 e_untensed, ARG1 e & #e1, ARG2 #x3 ],
+		   [ LBL #h2, ARG0 e_untensed ],
+		   [ ARG0 #x4,  RSTR #h3 ],
+		   [ LBL #h1, ARG0 #e1, ARG1 #x1, ARG2 #x4 ],
+		   [ PRED "ja:_nominalization_rel",
+		     LBL #h4, ARG0 #x4, ARG1 #h2 ] >,
+	  HCONS < qeq & [ HARG #h3, LARG #h4 ] >],
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #x1, ARG2 #x3 ] >].
+
+pp+arg12+nom_arg12_omtr := pp+arg12+nom_arg12_mtr & optional_mtr.
+
+;; トム は 昨日 テレビ を 見 た -> Tom watched TV yesterday         (10-dec-10; ph)
+arg12+np_arg12+np_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ],
+               [ LBL #h2, ARG0 #x3, RSTR #h4 ],
+               [ LBL #h1, ARG0 #x3 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ],
+		[ LBL #h2, ARG0 #x3, RSTR #h4 ],
+		[ LBL #h1, ARG0 #x3 ] > ].
+
+arg12+np_arg12+np_omtr := arg12+np_arg12+np_mtr & optional_mtr.
+arg12+n_arg12+n_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ],
+               [ LBL #h1, ARG0 #x3 ] >,
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ],
+		[ LBL #h1, ARG0 #x3 ], ... > ].
+
+arg12+n_arg12+n_omtr := arg12+n_arg12+n_mtr & optional_mtr.
+
+
+arg12+np_arg1_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2, ARG2 #x3 ],
+		 [ ARG0 #x3, RSTR #h4 ],
+		 [ LBL #h1, ARG0 #x3 ] >,
+	  HCONS < qeq & [ HARG #h4, LARG #h1 ] > ],
+  OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ] > ].
+
+arg12+np_arg1_omtr := arg12+np_arg1_mtr & optional_mtr.
+
+; この 仕事 は 特別 な 技術 を 必要 と する >> This work needs special technology.
+np+suru+cop_arg12_mtr := monotonic_mtr &
+[ INPUT [ RELS <   [ LBL #h2, ARG0 #x2 ],
+		   [ LBL #h1, ARG0 #e1, PRED "ja:_suru_v_soc_rel", ARG1 #x1, ARG2 #h4 ],
+		   [ LBL #h5, PRED "ja:cop_id_rel", ARG1 #x3, ARG2 #x2 ],
+		   [ ARG0 #x2,  RSTR #h3 ]  >,
+	  HCONS < qeq & [ HARG #h3, LARG #h2 ], 
+		  qeq & [ HARG #h4, LARG #h5 ] > ],
+  OUTPUT.RELS < [ LBL #h1, ARG0 #e1, ARG1 #x1, ARG2 #x3 ] > ].
+
+np+suru+cop_arg12_omtr := np+suru+cop_arg12_mtr & optional_mtr.
+
+v+saseru_arg12_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG1 #x2 ],
+                 [ LBL #h2, PRED "ja:_saseru_v_cause_rel", ARG0 #e1, ARG1 #x1, ARG2 #x2, ARG3 #h3 ] >,
+          HCONS < [ HARG #h3, LARG #h1 ] > ],
+  OUTPUT.RELS < [ LBL #h2, ARG0 #e1, ARG1 #x1, ARG2 #x2 ] > ].
+
+v+saseru_arg12_omtr := v+saseru_arg12_mtr & optional_mtr.
+
+
+; 人 の 口 >> rumour
+pp+n_n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x1 & [PERS 3] ],
+		 [ LBL #h2, ARG0 #x2 & [PERS 3] ],
+		 [ LBL #h2, ARG0 e_untensed, ARG1 #x2, ARG2 #x1 ],
+		 [ ARG0 #x1, RSTR #h3 ], ... >,
+	  HCONS < qeq & [ HARG #h3, LARG #h1 ] >],
+  OUTPUT.RELS < [ LBL #h2, ARG0 #x2 ] >].
+
+pp+n_n_omtr := pp+n_n_mtr & optional_mtr.
+
+; ダイヤ の 指輪 >> diamond ring
+pp+n_n+n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x1 & [PERS 3] ],
+		 [ LBL #h2, ARG0 #x2 & [PERS 3] ],
+		 [ LBL #h2, ARG0 e_untensed, ARG1 #x2, ARG2 #x1 ], ... >  ],
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x1 ],
+		 [ LBL #h2, ARG0 #x2 & [PERS 3] ],
+		 [ LBL #h2, PRED compound_rel, ARG1 #x2, ARG2 #x1 ] >].
+
+pp+n_n+n_omtr := pp+n_n+n_mtr & optional_mtr.
+
+
+;; まちがう こと　-> mistake
+v+n-nom_n_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h0 ],
+		 [ LBL #h1, ARG0 #x0, ARG1 #h2 ] >,
+	  HCONS < [ HARG #h2, LARG #h0 ] > ],
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x0 ] > ].
+
+v+n-nom_n_omtr := v+n-nom_n_mtr & optional_mtr.
+
+;;;
+;;; Rule for seasons
+;;;
+n_season_mtr := noun_mtr &
+[ OUTPUT.RELS < [ PRED season_rel ] > ].
+
+n_season_omtr := n_season_mtr & optional_mtr.
+
+;;;
+;;; Rules for cardinal direction + proper name
+;;; イラン 北部 >> Northern Iran                                 (2010-11-23; ph)
+;;;
+
+card-dir+named_mtr := monotonic_mtr &
+[ INPUT [ RELS < [ LBL #h1, ARG0 #x2 ],
+                 [ PRED "ja:named_rel",
+		   LBL #h3, ARG0 #x4 ],
+		 [ PRED "ja:unknown_rel", ARG #x2 ],
+		 [ PRED compound_rel,
+		   LBL #h1, ARG1 #x2, ARG2 #x4 ],
+		 [ PRED "ja:def_q_rel",
+		   ARG0 #x2, RSTR #h5 ] >,
+	  HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
+  OUTPUT [ RELS < [ LBL #h3, ARG0 e_untensed, ARG1 #x4 ],
+		  [ PRED "ja:named_rel",
+		    LBL #h3, ARG0 #x4 ],
+		  [ PRED "ja:unknown_rel", ARG #x4 ] > ] ].
+
+card-dir+named_omtr := card-dir+named_mtr & optional_mtr.
+;;;
+;;; Inherently possessed nouns
+;;;
+;;; FIXME Maybe mark KIN and BODY parts separately
+;;; 
+possessed_noun_mtr := monotonic_mtr &
+[ INPUT.RELS < [ LBL #h1, ARG0 #x1 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 #x1 ], 
+		[ PRED "poss_mark",  LBL #h1, ARG0 #x1 ] > ].
+
+possessed_noun_omtr := possessed_noun_mtr & optional_mtr.
+
+;;
+;; Rule for pp -> pp
+;; (Preposition, Noun, Quantifier) -> (Preposition, Noun, Quantifier)
+pp_mtr := monotonic_mtr &
+[ CONTEXT.HCONS < qeq & [ HARG #h4, LARG #h1 ] >,
+  INPUT.RELS <  [ LBL #h0, ARG0 e_untensed, ARG1 #i0, ARG2 #x2 ],
+		[ LBL #h1, ARG0 #x2 ],
+		[ LBL #h3, ARG0 #x2, RSTR #h4, BODY #h5 ], ... >,
+  OUTPUT.RELS <  [ LBL #h0, ARG0 e_untensed, ARG1 #i0, ARG2 #x2 ],
+		 [ LBL #h1, ARG0 #x2 ],
+		 [ LBL #h3, ARG0 #x2, RSTR #h4, BODY #h5 ], ... > ].
+
+pp_omtr := pp_mtr &  optional_mtr.
+
+;;
+;; Rule for pp+np -> np+pp
+;; (Quantifier1, Noun1, Preposition, Quantifier2, Noun2) -> 
+;;   (Quantifier2, Noun2, Preposition, Quantifier1, Noun1)
+
+pp+np_np+pp_mtr := monotonic_mtr &
+[ INPUT.RELS <  [ LBL #h3, ARG0 #x2, RSTR #h4, BODY #h5 ],
+                [ LBL #h1, ARG0 #x2 ],
+                [ LBL #h0, ARG0 e_untensed, ARG1 #x0, ARG2 #x2 ],
+		[ LBL #h6, ARG0 #x0, RSTR #h7, BODY #h8 ],
+		[ LBL #h9, ARG0 #x0 ], ... >,
+  OUTPUT.RELS < [ LBL #h6, ARG0 #x0, RSTR #h7, BODY #h8 ],
+		[ LBL #h9, ARG0 #x0 ],
+		[ LBL #h0, ARG0 e_untensed, ARG1 #x0, ARG2 #x2 ],
+		[ LBL #h3, ARG0 #x2, RSTR #h4, BODY #h5 ],
+                [ LBL #h1, ARG0 #x2 ], ... > ].
+
+pp+np_np+pp_omtr := pp+np_np+pp_mtr &  optional_mtr.
+
+;;;
+;;; A ha B ga C
+;;;
+;;; Note: 
+;;;  * use the discourse particle to link the subject
+;;;  * copy it across as it contains information
+;;;  Instantiations  must have ... as the first element to allow for this
+;;; FIXME not quite working for premodifying
+;;; 
+n+adj-adj-mtr := monotonic_mtr &
+[ CONTEXT.RELS < [ PRED "~^ja:(rel|_ga|_wa|_mo)_d_rel$",
+ 		    LBL #he, ARG1 #ea, ARG2 #x ] >, 
+  INPUT [RELS < [ LBL #hn, ARG0 #xn ], 
+	        [ LBL #he, ARG0 #ea, ARG1 #xn ],  
+		[ PRED  "ja:udef_q_rel", RSTR #hq, ARG0 #xn ],
+		... >, 
+	 HCONS <  qeq & [ HARG #hq, LARG #hn]  > ],
+  OUTPUT.RELS <  [ LBL #he, ARG0 #ea, ARG1 #x ], ... >  ].
+
+n+adj-adj-omtr := n+adj-adj-mtr & optional_mtr.

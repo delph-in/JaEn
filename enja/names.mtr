@@ -1,0 +1,9 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+named_rel :=  proper_np_mtr &
+[ INPUT.RELS < [ CARG #carg ], ... >,
+  OUTPUT.RELS < [ CARG #carg & +downcase+ ], ... > ].
+
+named_rel :=  proper_noun_mtr &
+[ INPUT.RELS < [ CARG #carg ] >,
+  OUTPUT.RELS < [ CARG #carg & +downcase+ ] > ].

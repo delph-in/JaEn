@@ -1,0 +1,389 @@
+;;; -*- Mode: TDL; Package: LKB; -*- 
+;;;
+;;; Hand written rules for common nouns
+;;;  * the goal is to cover most basic level nouns (maybe 9,000 or so)
+;;; 
+
+;; Template
+;;
+;; --_n := noun_mtr &
+;;  [ INPUT.RELS  < [ PRED "ja:__n_rel" ] >,
+;;    OUTPUT.RELS < [ PRED "__n_1_rel" ] > ].
+
+;;; tc: 町 >> city	0.268018 	480
+machi--city_n := noun_omtr &
+  [ INPUT.RELS  < [ PRED "ja:_machi_n_rel" ] >,
+    OUTPUT.RELS < [ PRED "_city_n_1_rel" ] > ].
+
+machi--town_n := noun_mtr &
+  [ INPUT.RELS  < [ PRED "ja:_machi_n_rel" ] >,
+    OUTPUT.RELS < [ PRED "_town_n_1_rel" ] > ].
+
+; ふもと >> foot	0.257576
+fumoto_n_3--foot_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_fumoto_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_foot_n_1_rel" ] , ... > ].
+
+
+; 軒 >> cottage	1.0
+noki_n_1--cottage_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_noki_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cottage_n_1_rel" ] , ... > ].
+
+; クモ >> spider	0.333333
+kumo_n_2--spider_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kumo_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_spider_n_1_rel" ] , ... > ].
+
+; 思い出 >> memory	0.470588
+omoide_n_1--memory_n_of-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_omoide_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_memory_n_of_rel" ] , ... > ].
+
+; 神社 >> shrine	1.0
+jinja_n_1--shrine_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_jinja_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_shrine_n_1_rel" ] , ... > ].
+
+; はしご >> ladder	0.615385
+; 1 hashigo_n_3--ladder_n_1-mtr := noun_mtr
+hashigo_n_3--ladder_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hashigo_n_3_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_ladder_n_1_rel" ] , ... > ].
+
+
+; ベルト >> belt	0.428571
+beruto_n_1--belt_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_beruto_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_belt_n_1_rel" ] , ... > ].
+
+; ことわざ >> proverb	0.538
+kotowaza_n_2--proverb_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_kotowaza_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_proverb_n_1_rel" ] , ... > ].
+
+
+; インフルエンザ >> flu	0.5
+infuruenza_n_1--flu_n_1-mtr := noun_omtr &
+[ INPUT.RELS < [ PRED "ja:_infuruenza_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_flu_n_1_rel" ] , ... > ].
+
+infuruenza_n_1--flu_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_infuruenza_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_influenza_n_1_rel" ] , ... > ].
+
+hashika_n_1--measles_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hashika_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_measles_n_1_rel" ] , ... > ].
+
+麻疹_n_1--measles_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_麻疹_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_measles_n_1_rel" ] , ... > ].
+
+
+seika_n_1--result_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_seika_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_result_n_1_rel" ] , ... > ].
+
+;;  1 (0.0, 0.0, 0, 0, 0) 0 258 "_kanemochi_n_1_rel" 1 2 "_rich_n_1_rel","_person_n_1_rel" 金持ち rich,person edict n_n+n omtr
+kanemochi_n--richi+man-mtr := n_adj+n_mtr &
+[ INPUT.RELS < [ PRED "ja:_kanemochi_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_rich_a_in_rel" ], [ PRED "_man_n_1_rel" ] , ... > ].
+
+;;; tc: 他人 >> others	0.376068 	258
+tanin-others_n  := noun_mtr &
+  [ INPUT.RELS  < [ PRED "ja:_tanin_n_rel" ] >,
+    OUTPUT.RELS < [ PRED "_other_n_1_rel", 
+		    ARG0 #x0 & [ PERS #pers, NUM pl  ]] > ].
+
+
+shiken_s--exam_n_1-omtr := noun_omtr &
+[ INPUT.RELS < [ PRED "ja:_shiken_s_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_exam_n_1_rel" ] , ... > ].
+
+;;;
+;;; Nouns with no translation in the ERG (yet)
+;;;
+;;; unknown words marked as _0_
+;;;
+
+tatami_s--tatami_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tatami_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_tatami_n_0_rel" ] , ... > ].
+
+
+;;;
+;;; Inherently possessed nouns
+;;;
+;;;
+;;; Mark them here with a special marker (poss_mark)
+
+;;; (see quantifiers.mtr)
+;;; Otherwise, after the zero pronoun insertion, try to link with the subject
+;;; (see zero_pronouns.mtr)
+
+;;;
+;;; Body parts
+;;;
+
+ude--ones+arm_n_mtr :=  possessed_noun_mtr &
+ [ INPUT.RELS <   [ PRED "ja:_ude_n_1_rel", LBL #h, ARG0 #x ]  >,
+   OUTPUT.RELS < [ PRED "_arm_n_1_rel", LBL #h, ARG0 #x ] >].
+
+te--ones+hand_n_mtr  :=  possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_te_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_hand_n_1_rel" ] > ].
+
+atama_n--ones+head_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_atama_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_head_n_of_rel" ] , ... > ].
+
+me_n--ones+eye_n_1-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_me_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_eye_n_1_rel" ] , ... > ].
+;;; tc: 足 >> legs
+
+;;;
+;;; Kin 
+;;;
+;;; FIXME --- missing older/younger
+
+;;; Father
+
+chichi_n--ones+father_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_chichi_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_father_n_of_rel" ] , ... > ].
+
+chichioya_n--ones+father_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_chichioya_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_father_n_of_rel" ] , ... > ].
+
+otousan_n_1--father_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_otousan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_father_n_of_rel" ] , ... > ].
+
+
+;;; Mother
+
+haha_n--mother_n_of--edict-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_haha_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mother_n_of_rel" ] , ... > ].
+
+hahaoya_n--mother_n_of--edict-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_hahaoya_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mother_n_of_rel" ] , ... > ].
+
+
+okaasan_n--mother_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_okaasan_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mother_n_of_rel" ] , ... > ].
+
+
+shuutome_n_1--mother+in+law_n_1-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shuutome_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_mother+in+law_n_1_rel" ] , ... > ].
+
+;;; son, daughter
+
+; 1 (0.0, 0.0, 0, 0, 0) 155 373 "_ko_n_9_rel" 1470 1 "_child_n_1_rel" 子 child edict noun omtr
+ko_n_9--child_n_1--edict-omtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ko_n_9_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_child_n_1_rel" ] , ... > ].
+
+; 1 (0.0, 0.0, 0, 0, 0) 205 258 "_musume_n_rel" 216 1 "_daughter_n_1_rel" 娘 daughter edict noun omtr
+musume_n--daughter_n_1--edict-omtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_musume_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_daughter_n_1_rel" ] , ... > ].
+
+; 1 (0.0, 0.0, 0, 0, 0) 542 550 "_musuko_n_rel" 581 1 "_son_n_of_rel" 息子 son edict noun mtr
+musuko_n--son_n_of--edict-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_musuko_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_son_n_of_rel" ] , ... > ].
+
+
+;;; Brother
+
+; 1 (0.0, 0.0, 0, 0, 0) 0 200 "_otouto_n_rel" 0 2 "_young_a_1_rel","_brother_n_of_rel" 弟 younger,brother edict n_adj+n mtr
+otouto_n--young_a_1+brother_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_otouto_n_rel" ] , ... >,
+  OUTPUT.RELS <  [ PRED "_brother_n_of_rel" ] , ... > ].
+
+niisan_n_1--brother_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_niisan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_brother_n_of_rel" ] , ... > ].
+
+ani_n_1--brother_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ani_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_brother_n_of_rel" ] , ... > ].
+
+
+
+;;; Sister
+
+imouto_n--young_a_1+sister_n_of-mtr := possessed_noun_mtr  &
+[ INPUT.RELS < [ PRED "ja:_imouto_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sister_n_of_rel" ] , ... > ].
+
+ane_n_1--elder_n_1+sister_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ane_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sister_n_of_rel" ] , ... > ].
+
+neesan_n_1--elder_n_1+sister_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_neesan_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sister_n_of_rel" ] , ... > ].
+
+;;; non possessed !
+shimai_n_1--sister_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shimai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_sister_n_of_rel" ] , ... > ].
+
+;;; Grand parents
+
+; 1 (0.0, 0.0, 0, 0, 0) 63 75 "_sobo_n_1_rel" 91 1 "_grandmother_n_1_rel" 祖母 grandmother edict noun mtr
+sobo_n_1--grandmother_n_1-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sobo_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_grandmother_n_1_rel" ] , ... > ].
+
+お祖母さん_n_1_g--grandmother_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_お祖母さん_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_grandmother_n_of_rel" ] , ... > ].
+
+jiisan_n_2--grandfather_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_jiisan_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_grandfather_n_of_rel" ] , ... > ].
+
+sofu_n_1--grandfather_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_sofu_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_grandfather_n_of_rel" ] , ... > ].
+
+;;; Cousin
+
+itoko_n_1--cousin_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_itoko_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_cousin_n_of_rel" ] , ... > ].
+
+;;; Aunt/Uncle
+
+; 1 (0.0, 0.0, 0, 0, 0) 56 57 "_oba_n_2_rel" 82 1 "_aunt_n_of_rel" 叔母 aunt edict noun mtr
+oba_n_2--aunt_n_of--edict-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_oba_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_aunt_n_of_rel" ] , ... > ].
+
+; 1 (0.0, 0.0, 0, 0, 0) 22 26 "_叔母さん_n_1_g_rel" 82 1 "_aunt_n_of_rel" 叔母さん aunt edict noun mtr
+叔母さん_n_1_g--aunt_n_of--edict-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_叔母さん_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_aunt_n_of_rel" ] , ... > ].
+
+; 1 (0.0, 0.0, 0, 0, 0) 3 3 "_oba_n_1_rel" 82 1 "_aunt_n_of_rel" 伯母 aunt edict noun mtr
+oba_n_1--aunt_n_of--edict-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_oba_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_aunt_n_of_rel" ] , ... > ].
+
+; 1 (0.0, 0.0, 0, 0, 0) 125 125 "_oji_n_2_rel" 282 1 "_uncle_n_of_rel" 叔父 uncle edict noun mtr
+oji_n_2--uncle_n_of--edict-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_oji_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_uncle_n_of_rel" ] , ... > ].
+
+; 1 (0.0, 0.0, 0, 0, 0) 11 11 "_叔父さん_n_1_g_rel" 282 1 "_uncle_n_of_rel" 叔父さん uncle edict noun omtr
+叔父さん_n_1_g--uncle_n_of--edict-omtr := possessed_noun_mtr  &
+[ INPUT.RELS < [ PRED "ja:_叔父さん_n_1_g_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_uncle_n_of_rel" ] , ... > ].
+
+; 1 (0.0, 0.0, 0, 0, 0) 5 5 "_oji_n_1_rel" 282 1 "_uncle_n_of_rel" 伯父 uncle edict noun mtr
+oji_n_1--uncle_n_of--edict-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_oji_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_uncle_n_of_rel" ] , ... > ].
+
+;;;
+;;; niece/nephew
+;;;
+
+; 1 (0.0, 0.0, 0, 0, 0) 8 8 "_mei_n_1_rel" 9 1 "_niece_n_of_rel" 姪 niece edict noun mtr
+mei_n_1--niece_n_of--edict-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_mei_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_niece_n_of_rel" ] , ... > ].
+
+; 1 (0.0, 0.0, 0, 0, 0) 7 7 "_oi_n_rel" 12 1 "_nephew_n_of_rel" 甥 nephew edict noun mtr
+oi_n--nephew_n_of--edict-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_oi_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_nephew_n_of_rel" ] , ... > ].
+;;;
+;;; Other People
+;;;
+
+tomodachi_n--ones+friend_n_1-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tomodachi_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_friend_n_1_rel" ] , ... > ].
+
+
+;;;
+;;; Others
+;;;
+
+shukudai_n--ones+homework_n_of-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_shukudai_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_homework_n_1_rel" ] , ... > ].
+
+jitaku_n--ones+house_n-mtr := possessed_noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_jitaku_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_house_n_1_rel" ] , ... > ].
+
+
+
+
+; ude_ones+arm_n_mtr := monotonic_mtr &
+;  [ CONTEXT.RELS < [ ARG0 e, ARG1 x & #x1, ARG2 x & #xn] >,
+;    INPUT.RELS <   [  PRED "ja:_ude_n_1_rel", LBL #hn, ARG0 #xn ] >,
+;    OUTPUT [ RELS < [ PRED "_arm_n_1_rel", LBL #hn, ARG0 #xn ], 
+; 		   [ PRED pron_rel,    LBL #hp, ARG0 #xp & x ],
+; 		   [ PRED pronoun_q_rel,  ARG0 #xp,  RSTR #hpr ],
+; 		   [ PRED identity_rel, LBL #hp, ARG0 #x1, ARG1 #xp ],
+; 		   [ PRED poss_rel,  LBL #hn, 
+; 		     ARG0 #e & e & [ TENSE UNTENSED ],
+; 		     ARG1 #xn, ARG2 #xp ]  >,
+; 	    HCONS <  qeq & [ HARG #hpr, LARG #hp ]  > ]].
+
+;;; 家 → house
+;;; later changed to "home" if complement of "to" (erg.mtr)
+ie_n--house_n-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_ie_n_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_house_n_1_rel" ] , ... > ].
+
+
+;;;
+;;; common animals used in test sets 
+;;;
+;;; FIXME: add complete zodiac
+
+;;; ネズミ >> mouse
+nezumi_n-mouse_n_1-mtr := noun_omtr & 
+[ INPUT.RELS < [ PRED "ja:_nezumi_n_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_mouse_n_1_rel" ] > ].
+
+;;; ネズミ >> rat
+nezumi_n-rat_n_1-mtr := noun_mtr & 
+[ INPUT.RELS < [ PRED "ja:_nezumi_n_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_rat_n_1_rel" ] > ].
+
+inu_n-dog_n_1-mtr := noun_mtr & 
+[ INPUT.RELS < [ PRED "ja:_inu_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_dog_n_1_rel" ] > ].
+
+neko-cat_n-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_neko_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_cat_n_1_rel" ] > ].
+
+; サル >> monkey	0.333333
+saru_n_2--monkey_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_saru_n_2_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_monkey_n_1_rel" ] , ... > ].
+
+; 猿 >> monkey	0.333333
+saru_n_2--monkey_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_saru_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_monkey_n_1_rel" ] , ... > ].
+
+; 鳥 >> bird
+saru_n_2--monkey_n_1-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_tori_n_1_rel" ] , ... >,
+  OUTPUT.RELS < [ PRED "_bird_n_1_rel" ] , ... > ].

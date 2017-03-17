@@ -1,0 +1,41 @@
+;;;
+;;; adjust target-language index properties post-transfer
+;;;
+
+TENSE : TENSE
+  tense => tensed
+  * >> *
+
+MOOD : MOOD
+  * >> *
+
+PERF : PERF
+  * >> *
+
+PROG : PROG
+  * >> *
+
+PERS : PERS
+  * >> *
+
+NUM : NUM
+  no_number => !
+  * >> *
+
+GEND : GEND
+  gender => !
+  * >> *
+
+DIV : DIV
+  * => !
+
+PRONTYPE : PRONTYPE
+  prontype => !
+  * >> *
+
+SF : SF
+  * >> *
+
+; We don't need this, passive is now handled by a relation in the ERG
+;PASS : PASS
+;  * >> *

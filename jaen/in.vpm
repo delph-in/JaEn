@@ -1,0 +1,35 @@
+;;;
+;;; make a few adjustments to index properties on source-language MRSs
+;;;
+
+TENSE : TENSE
+  * >> *
+
+MOOD : MOOD
+  * >> *
+
+PERF : PERF
+  * >> *
+  [e] >> -
+
+PROG : PROG
+  * >> *
+  [e] >> -
+
+PERS : PERS
+  * >> *
+
+NUM : NUM
+  sg  >> sg
+  pl  >> pl
+  *   >> no_number
+  [x] >> no_number
+
+GEND : GEND
+  * >> *
+
+SF : SF
+  * >> *
+
+PASS : PASS
+  * >> *

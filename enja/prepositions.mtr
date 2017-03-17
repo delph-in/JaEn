@@ -1,0 +1,7 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; -*- got it?
+
+;;;
+;;; a separate phase for prepositions, so that we can assume the arguments have
+;;; been transferred, and rules here can condition on the TL hierarchy.
+;;;
+

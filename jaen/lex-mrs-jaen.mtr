@@ -1,0 +1,362 @@
+;;; Hey, emacs(1), this is -*- Mode: TDL; Package: LKB; Coding: utf-8 -*- got it?
+
+;;; 
+;;; Reversible predicates for the mrs test-suite
+;;;
+
+
+ookii_a-mtr := adjective_mtr &
+[ INPUT.RELS < [ PRED "ja:_ookii_a_rel" ] >,
+  OUTPUT.RELS < [ PRED "_big_a_1_rel" ] > ].
+
+suwaru_v-mtr := arg1_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_suwaru_v_rel" ] >,
+  OUTPUT.RELS < [ PRED "_sit_v_down_rel" ] > ].
+
+taberu_v-mtr := arg12_v_mtr &
+[ INPUT.RELS < [ PRED "ja:_taberu_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_eat_v_1_rel" ] > ].
+
+sassoku_a-mtr := intersective_adverb_mtr &
+ [ INPUT.RELS < [ PRED "ja:_sassoku_a_rel"]  >,
+   OUTPUT.RELS < [ PRED "_immediate_a_1_rel" ] > ].
+
+;;; FIXME issue with the Japanese grammar here
+tabun_a-mtr := scopal_adverb_mtr &
+ [ INPUT.RELS < [ PRED "ja:_tabun_r_rel"]  >,
+   OUTPUT.RELS < [ PRED "_probable_a_1_rel", ARG0 #e1 & e ] > ].
+
+;;; for the MRS test suite
+; ano-that_q-mtr := quantifier_mtr &
+; [ INPUT.RELS < [ PRED "_ano_q_rel" ] >,
+;   OUTPUT.RELS < [ PRED "_that_q_dem_rel" ] > ].
+
+; demonstrative_q-mtr := quantifier_mtr &
+; [ INPUT.RELS < [ PRED "dem_rel" ] >,
+;   OUTPUT.RELS < [ PRED _that_q_dem_rel ] > ].
+
+generic-nom-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:generic-nom_rel"  ] >,
+  OUTPUT.RELS < [ PRED generic_entity_rel ] > ].
+
+tarou_n-mtr := pn_mtr &
+[ INPUT.RELS < [ CARG "tarou_2"  ] >,
+  OUTPUT.RELS < [ CARG "Tarou" ] > ].
+
+jirou_n-mtr := pn_mtr &
+[ INPUT.RELS < [ CARG "jirou_2"  ] >,
+  OUTPUT.RELS < [ CARG "Jirou" ] > ].
+
+abrams_n-mtr := pn_mtr &
+[ INPUT.RELS < [ CARG "eiburamuzu"  ] >,
+  OUTPUT.RELS < [ CARG "abrams" ] > ].
+
+braun_n-mtr := pn_mtr &
+[ INPUT.RELS < [ CARG "buraun"  ] >,
+  OUTPUT.RELS < [ CARG "browne" ] > ].
+
+; no_of_p-mtr := preposition_mtr &
+; [ INPUT.RELS < [ PRED "_no_p_rel"  ] >,
+;   OUTPUT.RELS < [ PRED of_p_rel  ] > ].
+
+;; FIXME should be in/on/at
+; de_in_p-mtr := preposition_mtr &
+; [ INPUT.RELS < [ PRED "_de_p_rel"  ] >,
+;   OUTPUT.RELS < [ PRED _in_p_rel  ] > ].
+
+; ni_in_p-mtr := preposition_mtr &
+; [ INPUT.RELS < [ PRED "_ni_p_rel"  ] >,
+;   OUTPUT.RELS < [ PRED _in_p_rel  ] > ].
+
+; to_with_p-mtr := preposition_mtr &
+; [ INPUT.RELS < [ PRED "_to_p_with_rel"  ] >,
+;   OUTPUT.RELS < [ PRED _with_p_rel  ] > ].
+
+; to_and_c-mtr := n_conj_mtr &
+; [ INPUT.RELS < [ PRED "_to_p_and_rel"  ] >,
+;   OUTPUT.RELS < [ PRED _and_c_rel  ] > ].   
+
+; nara_if_p-mtr := conj_subord_mtr  &
+;  [ INPUT.RELS  < [ PRED "_nara_p_rel"], ... >,
+;    OUTPUT.RELS < [ PRED "_if_x_then_rel"], ... > ].
+
+; eba_if_p-mtr := conj_subord_mtr  &
+;  [ INPUT.RELS  < [ PRED "_eba_c_rel"], ... >,
+;    OUTPUT.RELS < [ PRED "_if_x_then_rel"], ... > ].
+
+kirei_a_1-clean_a_1-mtr := adjective_mtr & 
+[ INPUT.RELS < [ PRED "ja:_kirei_a_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_clean_a_1_rel" ] > ].
+
+shiawase_a_2-happy_a_about-mtr := adjective_omtr & 
+ [ INPUT.RELS < [ PRED "ja:_shiawase_a_2_rel" ] >,
+  OUTPUT.RELS < [ PRED "_happy_a_about_rel" ] > ].
+
+shiawase_a_2-happy_a_with-mtr := adjective_mtr & 
+ [ INPUT.RELS < [ PRED "ja:_shiawase_a_2_rel" ] >,
+  OUTPUT.RELS < [ PRED "_happy_a_with_rel" ] > ].
+
+teeburu_n_1-table_n_1-mtr := noun_mtr & 
+[ INPUT.RELS < [ PRED "ja:_teeburu_n_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_table_n_1_rel" ] > ].
+
+ou_v-chase_v_1-mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_ou_v_5_rel" ] >,
+  OUTPUT.RELS < [ PRED "_chase_v_1_rel" ] > ].
+
+oikakeru_v-chase_v_1-mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_oikakeru_v_4_rel" ] >,
+  OUTPUT.RELS < [ PRED "_chase_v_1_rel" ] > ].
+
+omou_v-think_v_1-mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_omou_v_1_rel" ] >,
+ OUTPUT.RELS < [ PRED "_think_v_1_rel" ] > ].
+
+hoeru_v_1-bark_v_1-mtr := arg1_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_hoeru_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_bark_v_1_rel" ] > ].
+
+hiraku_v_inchoative-open_v_up-mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_hiraku_v_inchoative_rel" ] >,
+  OUTPUT.RELS < [ PRED "_open_v_up_rel" ] > ].
+
+aku_v_inchoative-open_v_up-omtr := arg1_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_aku_v_inchoative_rel" ] >,
+  OUTPUT.RELS < [ PRED "_open_v_up_rel" ] > ].
+
+tewatasu_hand_v-mtr := arg123_v_mtr  & 
+[ INPUT.RELS < [ PRED "ja:_tewatasu_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_hand_v_1_rel" ] > ].
+
+watasu_hand_v-mtr := arg123_v_mtr  & 
+[ INPUT.RELS < [ PRED "ja:_watasu_v_rel" ] >,
+  OUTPUT.RELS < [ PRED "_hand_v_1_rel" ] > ].
+
+ame_n-rain_n_1-mtr := noun_mtr & 
+[ INPUT.RELS < [ PRED "_ame_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_rain_n_1_rel" ] > ].
+
+yuki_n-rain_n_1-mtr := noun_mtr & 
+[ INPUT.RELS < [ PRED "ja:_yuki_n_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_snow_n_1_rel" ] > ].
+
+mado_n-window_n_1-mtr := noun_mtr & 
+[ INPUT.RELS < [ PRED "ja:_mado_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_window_n_1_rel" ] > ].
+
+niwa_garden-mtr := noun_mtr & 
+[ INPUT.RELS < [ PRED "ja:_niwa_n_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_garden_n_1_rel" ] > ].
+
+;asa_morning-omtr := noun_omtr & 
+;[ INPUT.RELS < [ PRED "_asa_n_1_rel" ] >,
+;  OUTPUT.RELS < [ PRED "_garden_n_1_rel" ] > ].
+
+furui_a-old_a_1-mtr := adjective_omtr & 
+[ INPUT.RELS < [ PRED "ja:_furui_a_2_rel" ] >,
+  OUTPUT.RELS < [ PRED "_old_a_1_rel" ] > ].
+
+furui_a-ancient_a_1-omtr := adjective_mtr & 
+[ INPUT.RELS < [ PRED "ja:_furui_a_2_rel" ] >,
+  OUTPUT.RELS < [ PRED "_ancient_a_1_rel" ] > ].
+
+
+fuku_v_6-wipe_v_1-mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_fuku_v_6_rel" ] >,
+  OUTPUT.RELS < [ PRED "_wipe_v_1_rel" ] > ].
+
+akiraka_a-obvious_a_to-mtr := adjective_mtr & 
+[ INPUT.RELS < [ PRED "ja:_akiraka_a_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_obvious_a_to_rel" ] > ].
+
+
+;;; tweaked
+; new name
+aku_v-open_v_1-mtr := arg1_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_aku_v_inchoative_rel" ] >,
+  OUTPUT.RELS < [ PRED "_open_v_1_rel" ] > ].
+
+;;; FIXME: check that hiraku can be intransitive
+hiraku_v-open_v_1-omtr := arg1_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_hiraku_v_inchoative_rel" ] >,
+  OUTPUT.RELS < [ PRED "_open_v_1_rel" ] > ].
+
+hiraku_v-open_v_cause-mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_hiraku_v_cause_rel" ] >,
+  OUTPUT.RELS < [ PRED "_open_v_cause_rel" ] > ].
+
+; new lextype
+furu_v_1-fall_v_1-mtr := arg1_v_mtr & 
+[ INPUT.RELS < [ PRED "_furu_v_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_fall_v_1_rel" ] > ].
+;; added tabako
+tabako_n_1-cigarette_n_1-omtr := noun_omtr & 
+[ INPUT.RELS  < [ PRED  "ja:_tabako_n_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_cigarette_n_1_rel" ] > ].
+
+tabako_n_1-tabacco_n_1-mtr := noun_mtr & 
+[ INPUT.RELS  < [ PRED  "ja:_tabako_n_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_tobacco_n_1_rel" ] > ].
+
+;; new entry
+tsuku_v-arrive_v-mtr := arg1_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_tsuku_v_7_rel" ] >,
+  OUTPUT.RELS < [ PRED "_arrive_v_1_rel" ] > ].
+
+todoku_v-arrive_v-mtr := arg1_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_todoku_v_rel" ] >,
+  OUTPUT.RELS < [ PRED "_arrive_v_1_rel" ] > ].
+
+shizuka_a-peaceful_a_1-mtr := adjective_mtr & 
+[ INPUT.RELS < [ PRED "ja:_shizuka_a_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_soft_a_1_rel" ] > ].
+
+yasashii_a_1-simple_a_1-mtr := adjective_mtr & 
+[ INPUT.RELS < [ PRED "ja:_yasashii_a_1_rel" ] >,
+  OUTPUT.RELS < [ PRED "_soft_a_1_rel" ] > ].
+
+utsusu_v_2-picture_v_1-mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_e_n_4_rel" ] >,
+  OUTPUT.RELS < [ PRED "_picture_v_1_rel" ] > ].
+
+totemo_a_2--very_a-mtr := intersective_adverb_mtr &
+ [ INPUT.RELS < [ PRED "ja:_totemo_a_2_rel"]  >,
+   OUTPUT.RELS < [ PRED "_very_x_deg_rel" ] > ].
+
+
+
+densha_v-train_n_1-mtr := noun_mtr & 
+[ INPUT.RELS < [ PRED "ja:_densha_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_train_n_of_rel" ] > ].
+
+;;; a translation, not the only one
+hito_n-person_n_1-mtr := noun_omtr & 
+[ INPUT.RELS < [ PRED "ja:_hito_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_person_n_1_rel" ] > ].
+
+
+unten_v-drive_v_1-mtr := arg1_v_omtr & 
+[ INPUT.RELS < [ PRED "ja:_unten_s_2_rel" ] >,
+  OUTPUT.RELS < [ PRED "_drive_v_1_rel" ] > ].
+
+; 1 67 運転 : 1 3 motion -- noun_omtr
+unten_s_2--motion_n_1--edict-omtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_unten_s_2_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_operation_n_of_rel" ], ... > ].
+
+touchaku_v-arrive_v_1-mtr := arg1_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_touchaku_s_rel" ] >,
+  OUTPUT.RELS < [ PRED "_arrive_v_1_rel" ] > ].
+
+
+;;;
+;;; control verbs
+;;; need to do something about aspect
+
+tudukeru_v-keep_v_1-mtr := arg12_v_omtr & 
+[ INPUT.RELS < [ PRED "ja:_tsudukeru_v_rais_rel" ] >,
+  OUTPUT.RELS < [ PRED "_keep_v_on_rel" ] > ].
+
+tudukeru_v-continue_v_2-mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_tsudukeru_v_rais_rel" ] >,
+  OUTPUT.RELS < [ PRED "_continue_v_2_rel" ] > ].
+
+
+hajimeru_v-start_v_1-mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_hajimeru_v_rais_rel" ] >,
+  OUTPUT.RELS < [ PRED "_start_v_1_rel" ] > ].
+
+hajimeru_v-start_v_1-mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_dasu_v_rais_rel" ] >,
+  OUTPUT.RELS < [ PRED "_start_v_1_rel" ] > ].
+
+owaru_v_stop_v_mtr := arg12_v_mtr & 
+[ INPUT.RELS < [ PRED "ja:_owaru_v_rais_rel"  ] >,
+  OUTPUT.RELS < [ PRED "_stop_v_prd_rel" ] > ].
+
+kuruma_n-car_n_1-mtr := noun_mtr & 
+[ INPUT.RELS < [ PRED "ja:_kuruma_n_rel" ] >,
+  OUTPUT.RELS < [ PRED "_car_n_1_rel" ] > ].
+
+kangaeru_v-wonder_v_1-mtr := arg12_v_omtr & 
+[ INPUT.RELS < [ PRED "ja:_kangaeru_v_rel" ] >,
+  OUTPUT.RELS < [ PRED "_wonder_v_1_rel" ] > ].
+
+; ja:_eru_v_rais_rel
+; ja:_eru_v_rais_rel
+; ja:_uru_v_rais_rel
+; ja:_kakeru_v_rais_rel
+; ja:_kiru_v_rais_rel
+; ja:_makuru_v_rais_rel
+; ja:_sugiru_v_rais_rel
+; ja:_sugiru_v_rais_rel
+
+
+; ja:_au_v_emb_rel
+; ja:_kiru_v_emb_rel
+; ja:_makuru_v_emb_rel
+; ja:_osameru_v_emb_rel
+; ja:_tateru_v_emb_rel
+; ja:_tateru_v_emb_rel
+; ja:_tsudukeru_v_emb_rel
+
+
+;;;
+;;; unlink embedded verb, make tenseless --- should fix in JACY
+;;;
+;;; brittle --- only works with intransitive verbs
+;;;
+
+
+saseru_v_arg1-make_v_cause-mtr := monotonic_mtr & 
+[ CONTEXT.HCONS  < qeq & [ HARG #h, LARG #hv ] >,
+  INPUT.RELS < [ PRED "ja:_saseru_v_cause_rel",
+	      LBL #h1, ARG0 #e1, ARG1 #1, ARG3 #h],
+	      [ LBL #hv, PRED #v, ARG1 #x1 ]   >,
+  OUTPUT.RELS < [ PRED "_make_v_cause_rel",
+	      LBL #h1, ARG0 #e1, ARG1 #1, ARG2 #h ], 
+	    [ LBL #hv, PRED #v, ARG1 #x1, ARG0 e_untensed] >].
+
+
+nagara_c-subord-mtr := monotonic_mtr  &
+[ INPUT.RELS < [ PRED "ja:_nagara_c_rel", 
+		 LBL #h1, ARG0 #e1, 
+		 L-HNDL #hl, 
+		 R-HNDL #hr ] >,
+  OUTPUT [ RELS < [ PRED subord_rel, 
+		    LBL #h1, ARG0 #e1 & e_untensed, 
+		    ARG1 #h2, ARG2 #h3 ] >,
+	   HCONS < qeq & [ HARG #h2, LARG #hr ],
+		   qeq & [ HARG #h3, LARG #hl ] > ] ].
+
+hotondo_a_--almost_a_1--edict-omtr := intersective_scopal_adverb_omtr &
+[ INPUT.RELS < [ PRED "ja:_hotondo_a_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_almost_a_1_rel" ], ... > ].
+
+; 1 495 絵 : 1 663 picture -- noun_omtr
+e_n_4--picture_n_of--edict-omtr := noun_omtr &
+[ INPUT.RELS < [ PRED "ja:_e_n_4_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_picture_n_of_rel" ], ... > ].
+
+; 1 495 絵 : 1 172 painting -- noun_omtr
+e_n_4--painting_n_of--edict-omtr := noun_omtr &
+[ INPUT.RELS < [ PRED "ja:_e_n_4_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_painting_n_of_rel" ], ... > ].
+
+; 1 495 絵 : 1 16 drawing -- noun_mtr
+e_n_4--drawing_n_of--edict-mtr := noun_mtr &
+[ INPUT.RELS < [ PRED "ja:_e_n_4_rel" ], ... >,
+  OUTPUT.RELS < [ PRED "_drawing_n_of_rel" ], ... > ].
+
+;   〜に　入れる　→　put in ~
+ni+ireru_v-put_in_v-mtr := monotonic_mtr & 
+[ INPUT.RELS < [ PRED "ja:_ireru_v_rel", LBL #hv, ARG0 #ev, 
+	      ARG1 #x1, ARG2 #x2 ],
+	    [ PRED "ja:_ni_p_rel", LBL #hv, ARG0 #ep & e_untensed, 
+	      ARG1 #ev, ARG2 #x ] >,
+  OUTPUT [ RELS <  [ PRED "_put_v_1_rel", LBL #hv, ARG0 #ev, 
+		     ARG1 #x1, ARG2 #x2, ARG3 #h3 ],
+	  	   [ PRED unspec_loc_rel,
+		     LBL #hp, ARG0 #ep, ARG1 #x2, ARG2 #x ] >,
+	   HCONS < qeq & [ HARG #h3, LARG #hp ] > ] ].
+
