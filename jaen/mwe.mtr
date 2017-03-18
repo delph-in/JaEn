@@ -636,7 +636,7 @@ ire-ni-iru--at-home_mtr := monotonic_mtr &
  		     ARG0 #ev, ARG1 #x1, ARG2 #xp ],
  		   [ PRED def_implicit_q_rel, ARG0 #xp, RSTR #h1 ],
  		   [ LBL #h2, PRED place_n_rel, ARG0 #xp ],
- 		   [ LBL #h2, PRED _home_p_rel, ARG0 #ehome & e & e_untensed, ARG1 #xp ] >,
+ 		   [ LBL #h2, PRED _home_p_rel, ARG0 #ehome & e & [TENSE untensed], ARG1 #xp ] >,
  	   HCONS < qeq & [ HARG #h1, LARG #h2 ] > ],
   FLAGS.EQUAL < #ehome >].
 

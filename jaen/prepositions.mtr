@@ -484,7 +484,7 @@ eba_c-if_x_then-mtr := monotonic_mtr  &
 		 L-HNDL #hl, L-INDEX #el, 
 		 R-HNDL #hr, R-INDEX #er ] >,
   OUTPUT [ RELS < [ PRED "_if_x_then_rel", 
-		    LBL #h1, ARG0 #e1 & e_untensed, 
+		    LBL #h1, ARG0 #e1 & e & [ TENSE untensed ], 
 		    ARG1 #h2, ARG2 #h3 ] >,
 	   HCONS < qeq & [ HARG #h2, LARG #hr ],
 		   qeq & [ HARG #h3, LARG #hl ] > ] ].
@@ -495,7 +495,7 @@ nara_p-if_x_then-mtr := monotonic_mtr  &
 		 L-HNDL #hl, L-INDEX #el, 
 		 R-HNDL #hr, R-INDEX #er ] >,
   OUTPUT [ RELS < [ PRED "_if_x_then_rel", 
-		    LBL #h1, ARG0 #e1 & e_untensed, 
+		    LBL #h1, ARG0 #e1 & e & [ TENSE untensed ], 
 		    ARG1 #h2, ARG2 #h3 ] >,
 	   HCONS < qeq & [ HARG #h2, LARG #hr ],
 		   qeq & [ HARG #h3, LARG #hl ] > ] ].
@@ -506,7 +506,7 @@ tara_c-if_x_then-mtr := monotonic_mtr  &
 		 L-HNDL #hl, L-INDEX #el, 
 		 R-HNDL #hr, R-INDEX #er ] >,
   OUTPUT [ RELS < [ PRED "_if_x_then_rel", 
-		    LBL #h1, ARG0 #e1 & e_untensed, 
+		    LBL #h1, ARG0 #e1 & e & [ TENSE untensed ], 
 		    ARG1 #h2, ARG2 #h3 ] >,
 	   HCONS < qeq & [ HARG #h2, LARG #hr ],
 		   qeq & [ HARG #h3, LARG #hl ] > ] ].
@@ -527,7 +527,7 @@ link_main_to_index_mtr := mrs_transfer_rule &
 mo-arg1-too-mtr := monotonic_mtr &
 [ CONTEXT.RELS < [LBL #hv,  ARG0 e, ARG1 #x ] >,
  INPUT.RELS < [ PRED "ja:_mo_d_rel", ARG2 #x ] >,
- OUTPUT [RELS < [ PRED "_too_a_also_rel", ARG0 e_untensed, ARG1 #h1 ] >,
+ OUTPUT [RELS < [ PRED "_too_a_also_rel", ARG0 e & [ TENSE untensed ], ARG1 #h1 ] >,
          HCONS < qeq & [ HARG #h1, LARG #hv ] > ]].
 
 
@@ -553,7 +553,7 @@ ha-mo--poss  := monotonic_mtr &
 		 ARG1 #adj, ARG2 #n1 ] >,
   OUTPUT [RELS <  [ LBL #ln2, PRED poss_rel, ARG0 #e, 
 		   ARG1 #n2, ARG2 #n1 ],
-		  [ PRED "_too_a_also_rel", ARG0 e_untensed, ARG1 #h1 ] >,
+		  [ PRED "_too_a_also_rel", ARG0 e & [ TENSE untensed ], ARG1 #h1 ] >,
 	  HCONS < qeq & [ HARG #h1, LARG #hadj ] >  ]].
 
 

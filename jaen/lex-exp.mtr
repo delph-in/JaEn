@@ -244,7 +244,7 @@ e_p_rel-loc_nonsp_rel := arg12_v_mtr &
 cop_id_rel+neg_rel-be_v_id_rel-neg_rel_mtr := monotonic_mtr &
  [ INPUT.RELS < [ PRED neg_rel, LBL #h1, ARG0 #e1, ARG1 #h2 ],
  	       	[ PRED "ja:cop_id_rel", LBL #h3, ARG0 #e2, ARG1 #x1, ARG2 #x2 ] >,
-   OUTPUT.RELS < [ PRED neg_rel, LBL #h1, ARG0 #e2 & e_untensed, ARG1 #h2 ],
+   OUTPUT.RELS < [ PRED neg_rel, LBL #h1, ARG0 #e2 & e & [ TENSE untensed ], ARG1 #h2 ],
  		 [ PRED _be_v_id_rel, LBL #h3, ARG0 #e1, ARG1 #x1, ARG2 #x2 ] > ].
 
 ;; NP to fragment: すり だ 。　→ thief
@@ -357,7 +357,7 @@ soko_n_rel-there_a_1_rel := n_adj_mtr &
 asoko_n_rel-over_x_deg_rel+there_a_1_rel := monotonic_mtr &
 [ JA.RELS < [ PRED "ja:_asoko_n_rel", LBL #h1, ARG0 #x1 ] >,
   EN.RELS < [ PRED "_over_x_deg_rel", LBL #h1, 
-	      ARG0 #e1 & e_untensed, ARG1 #e2 ],
+	      ARG0 #e1 & e & [ TENSE untensed ], ARG1 #e2 ],
 	    [ PRED _there_a_1_rel, LBL #h1, ARG1 #x1, ARG0 #e2 & e] > ].
 
 
@@ -370,7 +370,7 @@ tai_v_want_rel-want_v_1_rel := monotonic_mtr &
    INPUT.RELS < [ LBL #l, PRED "ja:tai_v_want_rel", ARG0 #e, ARG1 #x, ARG2 #h ],
 		[ LBL #hv ] >,
    OUTPUT.RELS < [ LBL #l, PRED "_want_v_1_rel", ARG0 #e, ARG1 #x, ARG2 #h ], 
-		 +copy+ & [ ARG0 e_untensed ]> ].
+		 +copy+ & [ ARG0 e & [ TENSE untensed ] ]> ].
 
 
 
@@ -388,7 +388,7 @@ rareru_v_can+PRES_rel-can_v_modal_rel-mtr := monotonic_mtr &
 		[ LBL #hv ] >,
    OUTPUT.RELS < [ LBL #l, PRED _can_v_modal_rel, 
 		   ARG0 e &  [TENSE PRES],  ARG1 #h ], 
-		 +copy+ & [ ARG0 e_untensed ]> ].
+		 +copy+ & [ ARG0 e & [ TENSE untensed ] ]> ].
 
 rareru_v_can+PAST_rel-can_v_modal_rel-mtr := monotonic_mtr &
 [ CONTEXT.HCONS  < qeq & [ HARG #h, LARG #hv ] >,
@@ -397,7 +397,7 @@ rareru_v_can+PAST_rel-can_v_modal_rel-mtr := monotonic_mtr &
 		[ LBL #hv ] >,
    OUTPUT.RELS < [ LBL #l, PRED _can_v_modal_rel, 
 		   ARG0 e &  [TENSE PAST],  ARG1 #h ], 
-		 +copy+ & [ ARG0 e_untensed ]> ].
+		 +copy+ & [ ARG0 e & [ TENSE untensed ] ]> ].
 
 
 
@@ -407,7 +407,7 @@ dekiru_v_1_rel-can_v_modal_rel-mtr := monotonic_mtr &
 [ JA.RELS < [ PRED "ja:_dekiru_v_1_rel", LBL #h0, ARG0 #e1, ARG1 #x1 ] >,
   EN [ RELS < [ PRED _can_v_modal_rel, LBL #h0, ARG0 #e1, ARG1 #h1 ],
               [ PRED ellipsis_ref_rel, LBL #h2,
-		ARG0 #e2 & e_untensed, ARG1 #x1 ]
+		ARG0 #e2 & e & [ TENSE untensed ], ARG1 #x1 ]
 	      >,
        HCONS < qeq & [ HARG #h1, LARG #h2 ] > ]].
 
@@ -418,7 +418,7 @@ dekiru_v_can_rel+koto_n_nom_rel-can_v_modal_rel-mtr := monotonic_mtr &
 	       [ PRED "ja:_dekiru_v_can_rel", LBL #h3, ARG0 #e1, ARG1 #x1 ],
 	       [ PRED "ja:_koto_n_nom_rel", LBL #h5, ARG0 #x1, ARG1 #h4 ],
 	       [ PRED "ja:udef_q_rel", LBL #h6, ARG0 #x1, RSTR #h7, BODY #h8 ] >,
-  OUTPUT.RELS < +copy+ & [ LBL #h9, ARG0 e_untensed ],
+  OUTPUT.RELS < +copy+ & [ LBL #h9, ARG0 e & [ TENSE untensed ] ],
                 [ PRED _can_v_modal_rel, LBL #h3, ARG0 #e1, ARG1 #h4 ] > ]. 
 
 dekiru_v_can_rel+no_n_nom_rel-can_v_modal_rel-mtr := monotonic_mtr &
@@ -427,7 +427,7 @@ dekiru_v_can_rel+no_n_nom_rel-can_v_modal_rel-mtr := monotonic_mtr &
 	       [ PRED "ja:_dekiru_v_can_rel", LBL #h3, ARG0 #e1, ARG1 #x1 ],
 	       [ PRED "ja:_no_n_nom_rel", LBL #h5, ARG0 #x1, ARG1 #h4 ],
 	       [ PRED "ja:udef_q_rel", LBL #h6, ARG0 #x1, RSTR #h7, BODY #h8 ] >,
-  OUTPUT.RELS < +copy+ & [ LBL #h9, ARG0 e_untensed ],
+  OUTPUT.RELS < +copy+ & [ LBL #h9, ARG0 e & [ TENSE untensed ] ],
                 [ PRED _can_v_modal_rel, LBL #h3, ARG0 #e1, ARG1 #h4 ] > ].
                
 
@@ -440,7 +440,7 @@ beki-should_modal_rel-mtr := monotonic_mtr &
 INPUT.RELS < [ PRED "ja:_beki_v_modal_rel", LBL #l, ARG0 #e, ARG1 #h ],
 	     [ LBL #hv ] >,
   OUTPUT.RELS < [ PRED _should_v_modal_rel, LBL #l, ARG0 #e, ARG1 #h ], 
-		 +copy+ & [ ARG0 e_untensed ] >].
+		 +copy+ & [ ARG0 e & [ TENSE untensed ] ] >].
 
 
 

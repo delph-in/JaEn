@@ -57,7 +57,7 @@ adj+n_adj+n_omtr := adj+n_adj+n_mtr & optional_mtr.
 
 n_adj+n_mtr :=  monotonic_mtr &
 [ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
-  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
+  OUTPUT.RELS < [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG1 #x2 ],
 		[ LBL #h1, ARG0 #x2 ] > ].
 n_adj+n_omtr := n_adj+n_mtr & optional_mtr.
 
@@ -146,7 +146,7 @@ n+n_adj+n_mtr := monotonic_mtr &
                  [ PRED compound_rel, LBL #h3, ARG1 #x4, ARG2 #x2 ],
                  [ PRED "ja:udef_q_rel", ARG0 #x2, RSTR #h5 ] >,
           HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
-  OUTPUT [ RELS < [ LBL #h3, ARG0 e_untensed, ARG1 #x4 ],
+  OUTPUT [ RELS < [ LBL #h3, ARG0 e & [ TENSE untensed ], ARG1 #x4 ],
 		  [ LBL #h3, ARG0 #x4 ] > ] ].
 
 n+n_adj+n_omtr := n+n_adj+n_mtr & optional_mtr.
@@ -157,7 +157,7 @@ n+n_adj+n_omtr := n+n_adj+n_mtr & optional_mtr.
 ;                 [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x4 ],
 ;                 [ PRED def_q_rel, ARG0 #x2, RSTR #h5 ] >,
 ;          HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
-;  OUTPUT [ RELS < [ LBL #h3, ARG0 e_untensed, ARG1 #x4 ],
+;  OUTPUT [ RELS < [ LBL #h3, ARG0 e & [ TENSE untensed ], ARG1 #x4 ],
 ;		  [ LBL #h3, ARG0 #x4 ] > ] ].
 
 ;n+n_adj+n_omtr := n+n_adj+n_mtr & optional_mtr.
@@ -264,7 +264,7 @@ n+n+n_n+n_mtr  := monotonic_mtr &
   OUTPUT.RELS < [ LBL #h3, ARG0 #x3 ],
 		[ LBL #h1, ARG0 #x1 ],
 		[ PRED compound_rel, 
-		  LBL #h1, ARG0 e_untensed, ARG1 #x1, ARG2 #x3 ] > ].
+		  LBL #h1, ARG0 e & [ TENSE untensed ], ARG1 #x1, ARG2 #x3 ] > ].
 
 n+n+n_n+n_omtr := n+n+n_n+n_mtr & optional_mtr.
 
@@ -337,7 +337,7 @@ time_n_adj+n_mtr :=  monotonic_mtr &
 [ INPUT.RELS < [ LBL #h1, ARG0 #x2 ],
 	       [ PRED "ja:udef_q_rel",
 		 LBL #h9, ARG0 #x2, RSTR #r, BODY #b ] >,
-  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
+  OUTPUT.RELS < [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG1 #x2 ],
 		[ LBL #h1, ARG0 #x2 ],
 		[ PRED def_implicit_q_rel,
 		  LBL #h9, ARG0 #x2, RSTR #r, BODY #b ] > ].
@@ -350,7 +350,7 @@ time_n_adj+n_mtr :=  monotonic_mtr &
 n+p+n_n_mtr := monotonic_mtr &
 [ INPUT [ RELS < [ LBL #h0, ARG0 #x1 ],
 		 [ ARG0 #x1, RSTR #h5 ],
-		 [ LBL #h3, ARG0 e_untensed, ARG1 #x4, ARG2 #x1 ],
+		 [ LBL #h3, ARG0 e & [ TENSE untensed ], ARG1 #x4, ARG2 #x1 ],
 		 [ LBL #h3, ARG0 #x4 ] >,
            HCONS < qeq & [ HARG #h5, LARG #h0 ] > ],
   OUTPUT.RELS < [ LBL #h3, ARG0 #x4 ] > ].
@@ -361,22 +361,22 @@ n+p+n_n_mtr := monotonic_mtr &
 n_n+p_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h0, ARG0 #x1, ARG1 #x2 ] >,
   OUTPUT.RELS < [ LBL #h0, ARG0 #x1 ],
-		[ ARG0 e_untensed, ARG1 #x1, ARG2 #x2 ] > ].
+		[ ARG0 e & [ TENSE untensed], ARG1 #x1, ARG2 #x2 ] > ].
 
 n_n+p_omtr := n_n+p_mtr & optional_mtr.
 
 ;; に　いく　-> go to (fix the preposition translation along with the verb)
 arg1+pp_arg1+pp_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ],
-               [ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ] >,
+               [ LBL #h0, ARG0 e & [ TENSE untensed ], ARG1 #e1, ARG2 #x3 ] >,
   OUTPUT.RELS < [ LBL #h0, ARG0 #e1, ARG1 #x2 ],
-		[ LBL #h0, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ] > ].
+		[ LBL #h0, ARG0 e & [ TENSE untensed ], ARG1 #e1, ARG2 #x3 ] > ].
 
 arg1+pp_arg1+pp_omtr := arg1+pp_arg1+pp_mtr & optional_mtr.
 
 ; 〜　の　面倒　を　見る　-> look after ~
 p+n+arg12_arg12_mtr := monotonic_mtr &
-[ INPUT [ RELS <   [ LBL #h2, ARG0 e_untensed, ARG1 #x2, ARG2 #x ],
+[ INPUT [ RELS <   [ LBL #h2, ARG0 e & [ TENSE untensed ], ARG1 #x2, ARG2 #x ],
 		   [ LBL #h2, ARG0 #x2 & [PERS 3] ],
 		   [ ARG0 #x2,  RSTR #h3 ],
 		   [ LBL #h1, ARG0 #e1, ARG1 #x1, ARG2 #x2 ] >,
@@ -388,7 +388,7 @@ p+n+arg12_arg12_omtr := p+n+arg12_arg12_mtr & optional_mtr.
 
 ; 床 に タイル を 張る >> tile a floor 0 0.460526
 pp+arg12_arg12_mtr := monotonic_mtr &
-[ INPUT [ RELS <   [ LBL #h1, ARG0 e_untensed, ARG1 #e1, ARG2 #x3 ],
+[ INPUT [ RELS <   [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG1 #e1, ARG2 #x3 ],
 		   [ LBL #h2, ARG0 #x4 & [PERS 3] ],
 		   [ ARG0 #x4,  RSTR #h3 ],
 		   [ LBL #h1, ARG0 #e1, ARG1 #x2, arg2 #x4 ], ... >,
@@ -399,8 +399,8 @@ pp+arg12_arg12_omtr := pp+arg12_arg12_mtr & optional_mtr.
 
 ; 農場 に 電話 を する
 pp+arg12+nom_arg12_mtr := monotonic_mtr &
-[ INPUT [ RELS <   [ LBL #h1, ARG0 e_untensed, ARG1 e & #e1, ARG2 #x3 ],
-		   [ LBL #h2, ARG0 e_untensed ],
+[ INPUT [ RELS <   [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG1 e & #e1, ARG2 #x3 ],
+		   [ LBL #h2, ARG0 e & [ TENSE untensed ] ],
 		   [ ARG0 #x4,  RSTR #h3 ],
 		   [ LBL #h1, ARG0 #e1, ARG1 #x1, ARG2 #x4 ],
 		   [ PRED "ja:_nominalization_rel",
@@ -463,7 +463,7 @@ v+saseru_arg12_omtr := v+saseru_arg12_mtr & optional_mtr.
 pp+n_n_mtr := monotonic_mtr &
 [ INPUT [ RELS < [ LBL #h1, ARG0 #x1 & [PERS 3] ],
 		 [ LBL #h2, ARG0 #x2 & [PERS 3] ],
-		 [ LBL #h2, ARG0 e_untensed, ARG1 #x2, ARG2 #x1 ],
+		 [ LBL #h2, ARG0 e & [ TENSE untensed ], ARG1 #x2, ARG2 #x1 ],
 		 [ ARG0 #x1, RSTR #h3 ], ... >,
 	  HCONS < qeq & [ HARG #h3, LARG #h1 ] >],
   OUTPUT.RELS < [ LBL #h2, ARG0 #x2 ] >].
@@ -474,7 +474,7 @@ pp+n_n_omtr := pp+n_n_mtr & optional_mtr.
 pp+n_n+n_mtr := monotonic_mtr &
 [ INPUT [ RELS < [ LBL #h1, ARG0 #x1 & [PERS 3] ],
 		 [ LBL #h2, ARG0 #x2 & [PERS 3] ],
-		 [ LBL #h2, ARG0 e_untensed, ARG1 #x2, ARG2 #x1 ], ... >  ],
+		 [ LBL #h2, ARG0 e & [ TENSE untensed ], ARG1 #x2, ARG2 #x1 ], ... >  ],
   OUTPUT.RELS < [ LBL #h1, ARG0 #x1 ],
 		 [ LBL #h2, ARG0 #x2 & [PERS 3] ],
 		 [ LBL #h2, PRED compound_rel, ARG1 #x2, ARG2 #x1 ] >].
@@ -514,7 +514,7 @@ card-dir+named_mtr := monotonic_mtr &
 		 [ PRED "ja:def_q_rel",
 		   ARG0 #x2, RSTR #h5 ] >,
 	  HCONS < qeq & [ HARG #h5, LARG #h1 ] > ],
-  OUTPUT [ RELS < [ LBL #h3, ARG0 e_untensed, ARG1 #x4 ],
+  OUTPUT [ RELS < [ LBL #h3, ARG0 e & [ TENSE untensed ], ARG1 #x4 ],
 		  [ PRED "ja:named_rel",
 		    LBL #h3, ARG0 #x4 ],
 		  [ PRED "ja:unknown_rel", ARG #x4 ] > ] ].
@@ -537,10 +537,10 @@ possessed_noun_omtr := possessed_noun_mtr & optional_mtr.
 ;; (Preposition, Noun, Quantifier) -> (Preposition, Noun, Quantifier)
 pp_mtr := monotonic_mtr &
 [ CONTEXT.HCONS < qeq & [ HARG #h4, LARG #h1 ] >,
-  INPUT.RELS <  [ LBL #h0, ARG0 e_untensed, ARG1 #i0, ARG2 #x2 ],
+  INPUT.RELS <  [ LBL #h0, ARG0 e & [ TENSE untensed ], ARG1 #i0, ARG2 #x2 ],
 		[ LBL #h1, ARG0 #x2 ],
 		[ LBL #h3, ARG0 #x2, RSTR #h4, BODY #h5 ], ... >,
-  OUTPUT.RELS <  [ LBL #h0, ARG0 e_untensed, ARG1 #i0, ARG2 #x2 ],
+  OUTPUT.RELS <  [ LBL #h0, ARG0 e & [ TENSE untensed ], ARG1 #i0, ARG2 #x2 ],
 		 [ LBL #h1, ARG0 #x2 ],
 		 [ LBL #h3, ARG0 #x2, RSTR #h4, BODY #h5 ], ... > ].
 
@@ -554,12 +554,12 @@ pp_omtr := pp_mtr &  optional_mtr.
 pp+np_np+pp_mtr := monotonic_mtr &
 [ INPUT.RELS <  [ LBL #h3, ARG0 #x2, RSTR #h4, BODY #h5 ],
                 [ LBL #h1, ARG0 #x2 ],
-                [ LBL #h0, ARG0 e_untensed, ARG1 #x0, ARG2 #x2 ],
+                [ LBL #h0, ARG0 e & [ TENSE untensed ], ARG1 #x0, ARG2 #x2 ],
 		[ LBL #h6, ARG0 #x0, RSTR #h7, BODY #h8 ],
 		[ LBL #h9, ARG0 #x0 ], ... >,
   OUTPUT.RELS < [ LBL #h6, ARG0 #x0, RSTR #h7, BODY #h8 ],
 		[ LBL #h9, ARG0 #x0 ],
-		[ LBL #h0, ARG0 e_untensed, ARG1 #x0, ARG2 #x2 ],
+		[ LBL #h0, ARG0 e & [ TENSE untensed ], ARG1 #x0, ARG2 #x2 ],
 		[ LBL #h3, ARG0 #x2, RSTR #h4, BODY #h5 ],
                 [ LBL #h1, ARG0 #x2 ], ... > ].
 
