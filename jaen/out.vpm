@@ -2,6 +2,8 @@
 ;;; adjust target-language index properties post-transfer
 ;;;
 
+e_untensed >> e
+
 TENSE : TENSE
   tense => tensed
   * >> *

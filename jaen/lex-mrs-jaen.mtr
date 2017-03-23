@@ -315,7 +315,7 @@ saseru_v_arg1-make_v_cause-mtr := monotonic_mtr &
 	      [ LBL #hv, PRED #v, ARG1 #x1 ]   >,
   OUTPUT.RELS < [ PRED "_make_v_cause_rel",
 	      LBL #h1, ARG0 #e1, ARG1 #1, ARG2 #h ], 
-	    [ LBL #hv, PRED #v, ARG1 #x1, ARG0 e & [ TENSE untensed ]] >].
+	    [ LBL #hv, PRED #v, ARG1 #x1, ARG0 e_untensed] >].
 
 
 nagara_c-subord-mtr := monotonic_mtr  &
@@ -324,7 +324,7 @@ nagara_c-subord-mtr := monotonic_mtr  &
 		 L-HNDL #hl, 
 		 R-HNDL #hr ] >,
   OUTPUT [ RELS < [ PRED subord_rel, 
-		    LBL #h1, ARG0 #e1 & e & [ TENSE untensed ], 
+		    LBL #h1, ARG0 #e1 & e_untensed, 
 		    ARG1 #h2, ARG2 #h3 ] >,
 	   HCONS < qeq & [ HARG #h2, LARG #hr ],
 		   qeq & [ HARG #h3, LARG #hl ] > ] ].
@@ -352,7 +352,7 @@ e_n_4--drawing_n_of--edict-mtr := noun_mtr &
 ni+ireru_v-put_in_v-mtr := monotonic_mtr & 
 [ INPUT.RELS < [ PRED "ja:_ireru_v_rel", LBL #hv, ARG0 #ev, 
 	      ARG1 #x1, ARG2 #x2 ],
-	    [ PRED "ja:_ni_p_rel", LBL #hv, ARG0 #ep & e & [ TENSE untensed ], 
+	    [ PRED "ja:_ni_p_rel", LBL #hv, ARG0 #ep & e_untensed, 
 	      ARG1 #ev, ARG2 #x ] >,
   OUTPUT [ RELS <  [ PRED "_put_v_1_rel", LBL #hv, ARG0 #ev, 
 		     ARG1 #x1, ARG2 #x2, ARG3 #h3 ],

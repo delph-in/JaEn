@@ -2048,7 +2048,7 @@ n+n_n+p+q+n_pl_omtr := n+n_n+p+q+n_pl_mtr & optional_mtr.
 ;;; @ et småbarn >> a small child
 ;;; n_adj+n_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
-  OUTPUT.RELS < [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG1 #x2 ],
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
                 [ LBL #h1, ARG0 #x2 ] > ].
 
 n_adj+n_omtr := n_adj+n_mtr & optional_mtr.
@@ -2057,7 +2057,7 @@ n_adj+n_omtr := n_adj+n_mtr & optional_mtr.
 ;;; @ et rundt skue >> a panorama
 ;;;
 adj+n_n_mtr := monotonic_mtr &
-[ INPUT.RELS <  [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG1 #x2 ],
+[ INPUT.RELS <  [ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
                 [ LBL #h1, ARG0 #x2 ] >,
   OUTPUT.RELS < [ LBL #h1, ARG0 #x2 ] > ].
 
@@ -2092,7 +2092,7 @@ a_n+a_omtr := a_n+a_mtr & optional_mtr.
 ;;; @ et kjemisk produkt >> a chemical product
 ;;;
 adj+n_n+n_mtr := monotonic_mtr &
-[ INPUT.RELS < [ LBL #h1,  ARG0 e & [ TENSE untensed ], ARG1 #x2 ],
+[ INPUT.RELS < [ LBL #h1,  ARG0 e_untensed, ARG1 #x2 ],
                [ LBL #h1, ARG0 #x2 ] >,
   OUTPUT [ RELS < [ LBL #h3, ARG0 #x4 ],
                   [ LBL #h1, ARG0 #x2 ],
@@ -2107,9 +2107,9 @@ adj+n_n+n_omtr := adj+n_n+n_mtr & optional_mtr.
 ;;; @ en lysegrønn plante >> a bright green plant
 ;;;
 adj+n_adj+n+n_mtr := monotonic_mtr &
-[ INPUT.RELS < [ LBL #h1,  ARG0 e & [ TENSE untensed ], ARG1 #x2 ],
+[ INPUT.RELS < [ LBL #h1,  ARG0 e_untensed, ARG1 #x2 ],
                [ LBL #h1, ARG0 #x2 ] >,
-  OUTPUT [ RELS < [ LBL #h3, ARG0 e & [ TENSE untensed ], ARG1 #x4 ],
+  OUTPUT [ RELS < [ LBL #h3, ARG0 e_untensed, ARG1 #x4 ],
                   [ LBL #h3, ARG0 #x4 ],
                   [ LBL #h1, ARG0 #x2 ],
                   [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x4 ],
@@ -2120,7 +2120,7 @@ adj+n_adj+n+n_mtr := monotonic_mtr &
 adj+n_adj+n+n_omtr := adj+n_adj+n+n_mtr & optional_mtr.
 
 adj+n_n+n+n_min := monotonic_mtr &
-[ INPUT.RELS < [ LBL #h1,  ARG0 e & [ TENSE untensed ], ARG1 #x2 ],
+[ INPUT.RELS < [ LBL #h1,  ARG0 e_untensed, ARG1 #x2 ],
                [ LBL #h1, ARG0 #x2 ] >,
   OUTPUT [ RELS < [ LBL #h6, ARG0 #x7 ],
                   [ LBL #h3, ARG0 #x4 ],
@@ -2153,12 +2153,12 @@ adj+n_n+pn+n_omtr := adj+n_n+pn+n_mtr & optional_mtr.
 ;;; @ en firhjuls sykkel >> a four wheeled bicycle
 ;;;
 adj+n_card+n+n_mtr := monotonic_mtr &
-[ INPUT.RELS < [ LBL #h1,  ARG0 e & [ TENSE untensed ], ARG1 #x2 ],
+[ INPUT.RELS < [ LBL #h1,  ARG0 e_untensed, ARG1 #x2 ],
                [ LBL #h1, ARG0 #x2 ] >,
   OUTPUT [ RELS < [ LBL #h3, PRED card_rel, ARG0 i, ARG1 #x4 ],
                   [ LBL #h3, ARG0 #x4 ],
                   [ LBL #h1, ARG0 #x2 ],
-                  [ PRED compound_rel, LBL #h1, ARG0 e & [ TENSE untensed ], 
+                  [ PRED compound_rel, LBL #h1, ARG0 e_untensed, 
 		    ARG1 #x2, ARG2 #x4 ],
                   [ PRED udef_q_rel, 
                     ARG0 #x4 & [ PERS 3, NUM pl, GRIND - ], RSTR #h5 ] >,
@@ -2238,7 +2238,7 @@ n_pn+n_omtr := n_pn+n_mtr & optional_mtr.
 ;;;
 n_nominalization_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h1, ARG0 #x2 & [ NUM sg ] ] >,
-  OUTPUT.RELS < [ LBL #h3, ARG0 e & [ TENSE untensed ] & [ PROG + ] ],
+  OUTPUT.RELS < [ LBL #h3, ARG0 e_untensed & [ PROG + ] ],
                 [ PRED nominalization_rel, LBL #h1, ARG0 #x2, ARG1 #h3 ] > ].
 
 n_nominalization_omtr := n_nominalization_mtr & optional_mtr.
@@ -2248,7 +2248,7 @@ n_nominalization_omtr := n_nominalization_mtr & optional_mtr.
 ;;;
 n_adj+n+n_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h0, ARG0 #x1 ] >,
-  OUTPUT [ RELS < [ LBL #h2, ARG0 e & [ TENSE untensed ], ARG1 #x3 ],
+  OUTPUT [ RELS < [ LBL #h2, ARG0 e_untensed, ARG1 #x3 ],
                   [ LBL #h2, ARG0 #x3 & [ PERS 3, NUM sg, GRIND - ] ],
                   [ LBL #h0, ARG0 #x1 ],
                   [ PRED udef_q_rel, RSTR #h4, ARG0 #x3 ],
@@ -2262,7 +2262,7 @@ n_adj+n+n_omtr := n_adj+n+n_mtr & optional_mtr.
 ;;; 
 n_nominalization+n_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
-  OUTPUT [ RELS < [ LBL #h3, ARG0 e & [ TENSE untensed ] & [ PROG + ] ],
+  OUTPUT [ RELS < [ LBL #h3, ARG0 e_untensed & [ PROG + ] ],
                   [ LBL #h1, ARG0 #x2 & [ PERS 3, NUM sg, GRIND - ] ],
                   [ PRED nominalization_rel, LBL #h7, ARG0 #x8, ARG1 #h3 ],
                   [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x8 ],
@@ -2277,7 +2277,7 @@ n_nominalization+n_omtr := n_nominalization+n_mtr & optional_mtr.
 n_n+nominalization_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h1, ARG0 #x2 & [ NUM sg ] ] >,
   OUTPUT [ RELS < [ LBL #h7, ARG0 #x8 & [ PERS 3, NUM sg, GRIND - ] ],
-                  [ LBL #h3, ARG0 e & [ TENSE untensed ] & [ PROG + ] ],
+                  [ LBL #h3, ARG0 e_untensed & [ PROG + ] ],
                   [ PRED nominalization_rel, LBL #h1, ARG0 #x2, ARG1 #h3 ],
                   [ PRED compound_rel, LBL #h1, ARG1 #x2, ARG2 #x8 ],
                   [ PRED udef_q_rel, RSTR #h9, ARG0 #x8 ] >,
@@ -2290,8 +2290,8 @@ n_n+nominalization_omtr := n_n+nominalization_mtr & optional_mtr.
 ;;; 
 n_nominalization+pp_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
-  OUTPUT.RELS < [ LBL #h3, ARG0 e & [ TENSE untensed ] & [ PROG + ] ],
-		[ LBL #h1, ARG0 e & [ TENSE untensed ], ARG1 #x2 ],
+  OUTPUT.RELS < [ LBL #h3, ARG0 e_untensed & [ PROG + ] ],
+		[ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
 		[ PRED nominalization_rel, LBL #h1, ARG0 #x2, ARG1 #h3 ] > ].
 
 n_nominalization+pp_omtr := n_nominalization+pp_mtr & optional_mtr.
@@ -2309,7 +2309,7 @@ name_name+name_mtr := monotonic_mtr &
                     ARG0 #x4 & [ NUM sg ] ],
                   [ PRED named_rel, LBL #h1, ARG0 #x2 ],
                   [ PRED compound_name_rel, LBL #h1, 
-                    ARG0 e & [ TENSE untensed ], ARG1 #x4, ARG2 #x2 ],
+                    ARG0 e_untensed, ARG1 #x4, ARG2 #x2 ],
                   [ PRED "udef_q_rel", ARG0 #x4, RSTR #h5 ] >,
            HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
 
@@ -2324,7 +2324,7 @@ name_name+name_mtr := monotonic_mtr &
 name_adj+name_mtr := monotonic_mtr &
 [ INPUT [ RELS < [ PRED "named_rel", LBL #h0, ARG0 #x0 ] > ],
   OUTPUT [ RELS < [ PRED "named_rel", LBL #h0, ARG0 #x0 ],
-                  [ LBL #h0, ARG0 e & [ TENSE untensed ], ARG1 #x0 ] > ] ].
+                  [ LBL #h0, ARG0 e_untensed, ARG1 #x0 ] > ] ].
 
 ;;;
 ;;; some nouns are analysed as relational in the source language, but then have
@@ -2338,7 +2338,7 @@ name_adj+name_mtr := monotonic_mtr &
 n_n+pp_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h0, ARG0 #x1, ARG1 #x2 ] >,
   OUTPUT.RELS < [ LBL #h0, ARG0 #x1 ],
-                [ LBL #h0, ARG0 e & [ TENSE untensed ], ARG1 #x1, ARG2 #x2 ] > ].
+                [ LBL #h0, ARG0 e_untensed, ARG1 #x1, ARG2 #x2 ] > ].
 
 n_n+pp_omtr := n_n+pp_mtr & optional_mtr.
 
@@ -2349,7 +2349,7 @@ n_n+p+n_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h0, ARG0 #x1 ] >,
   OUTPUT [ RELS < [ LBL #h0, ARG0 #x1 ],
                   [ LBL #h3, ARG0 #x4 & [ PERS 3, NUM sg, GRIND - ] ],
-                  [ LBL #h0, ARG0 e & [ TENSE untensed ], ARG1 #x1, ARG2 #x4 ],
+                  [ LBL #h0, ARG0 e_untensed, ARG1 #x1, ARG2 #x4 ],
                   [ PRED udef_q_rel, ARG0 #x4, RSTR #h5 ] >,
            HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
 
@@ -2358,7 +2358,7 @@ n_n+p+n_omtr := n_n+p+n_mtr & optional_mtr.
 n_n+p+q+n_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h0, ARG0 #x1 ] >,
   OUTPUT [ RELS < [ LBL #h0, ARG0 #x1 ],
-                  [ LBL #h0, ARG0 e & [ TENSE untensed ], ARG1 #x1, ARG2 #x4 ],
+                  [ LBL #h0, ARG0 e_untensed, ARG1 #x1, ARG2 #x4 ],
                   [ ARG0 #x4, RSTR #h5 ],
                   [ LBL #h3, ARG0 #x4 & [ PERS 3, GRIND - ] ] >,
            HCONS < qeq & [ HARG #h5, LARG #h3 ] > ] ].
@@ -2483,28 +2483,28 @@ equate_x_cmtr := monotonic_mtr &
 
 relational_adjective_amtr := monotonic_mtr &
 [ CONTEXT.RELS < [ LBL #h1, ARG2 #x1 & x & [ MARK test ] ] >,
-  OUTPUT.RELS < [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG2 #x1 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG2 #x1 ] >,
   FLAGS.SUBSUME < #x1 > ].
 
 relational_adjective_oamtr := relational_adjective_amtr & optional_mtr.
 
 relational_noun_amtr := monotonic_mtr &
 [ CONTEXT.RELS < [ LBL #h1, ARG1 #x1 & x & [ MARK test ] ] >,
-  OUTPUT.RELS < [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG2 #x1 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG2 #x1 ] >,
   FLAGS.SUBSUME < #x1 > ].
 
 arg1_v_amtr := monotonic_mtr &
 [ CONTEXT.RELS < [ LBL #h1, ARG0 #e1 & [ MARK test ] ] >,
-  OUTPUT.RELS < [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG1 #e1 ] > ].
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #e1 ] > ].
 
 arg12_v_amtr := monotonic_mtr &
 [ CONTEXT.RELS < [ LBL #h1, ARG2 #x1 & x & [ MARK test ] ] >,
-  OUTPUT.RELS < [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG2 #x1 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG2 #x1 ] >,
   FLAGS.SUBSUME < #x1 > ].
 
 arg123_v_amtr := monotonic_mtr &
 [ CONTEXT.RELS < [ LBL #h1, ARG3 #x1 & x & [ MARK test ] ] >,
-  OUTPUT.RELS < [ LBL #h1, ARG0 e & [ TENSE untensed ], ARG2 #x1 ] >,
+  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG2 #x1 ] >,
   FLAGS.SUBSUME < #x1 > ].
 
 arg12_v_prtcl_amtr := arg12_v_amtr &
@@ -2515,7 +2515,7 @@ decomposed_quantifier_amtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h0, ARG0 #x1, RSTR #h2, BODY #h3 ] >,
   CONTEXT [ RELS < [ LBL #h4, ARG0 #x1 & x ] >,
             HCONS < qeq & [ HARG #h2, LARG #h4 ] > ],
-  OUTPUT.RELS < [ LBL #h4, ARG0 e & [ TENSE untensed ], ARG1 #x1 ],
+  OUTPUT.RELS < [ LBL #h4, ARG0 e_untensed, ARG1 #x1 ],
                 [ PRED udef_q_rel, LBL #h0, ARG0 #x1, RSTR #h2, BODY #h3 ] >,
   FLAGS.EQUAL < #x1 > ].
 
