@@ -5,30 +5,44 @@
 ### Script for representing a lexicon as a table
 ###
 
-import sys, os
+import argparse
 
-lex = open(sys.argv[1])
+from delphin import tdl
 
-for line in lex:
-    if ':=' in line:
-        items = line.split()
-        t = items[2]
-    if 'ORTH' in line or 'STEM' in line:
-        items = line.split()
-        expr = ''
-        for item in items:
-            if item[-1] == ',':
-                item = item[:-1]
-            if '"' in item:
-                item = item.replace('"','')
-                expr = expr + item + ' '
-        o = expr[:-1]
-    if 'KEYREL.PRED' in line:
-        items = line.split()
-        for item in items:
-            if '_rel' in item:
-                if item[-1] == ',':
-                    item = item[:-1]
-                p = item
-                print o + '\t' + p + '\t' + t
+parser = argparse.ArgumentParser(
+    description='Convert a lexicon to a tab-separated table'
+)
+parser.add_argument('lexicon', type=open, help='path to a lexicon tdl file')
 
+args = parser.parse_args()
+
+for entry in tdl.parse(args.lexicon):
+
+    if len(entry.supertypes) != 1:
+        continue  # lexical entries should have only 1 supertype
+    supertype = entry.supertypes[0]
+
+    try:
+        if 'ORTH' in entry:
+            orth = ' '.join(o.strip('"') for o in entry['ORTH'].values())
+        elif 'STEM' in entry:
+            orth = ' '.join(o.strip('"') for o in entry['STEM'].values())
+        else:
+            continue  # no orth/stem value
+    except AttributeError:
+        continue
+
+    if 'SYNSEM.LKEYS.KEYREL.PRED' in entry:
+        pred = entry['SYNSEM.LKEYS.KEYREL.PRED']
+        if hasattr(pred, 'supertypes'):
+            pred = pred.supertypes[0]
+    elif 'SYNSEM.LKEYS.ALTKEYREL.PRED' in entry:
+        pred = entry['SYNSEM.LKEYS.ALTKEYREL.PRED']
+        if hasattr(pred, 'supertypes'):
+            pred = pred.supertypes[0]
+    else:
+        continue
+    if not pred.strip('"').endswith('_rel'):
+        continue
+
+    print('\t'.join([orth, pred, supertype]))

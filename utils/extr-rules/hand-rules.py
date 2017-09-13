@@ -5,12 +5,16 @@
 ### Script for finding existing transfer rules
 ###
 
-# python hand-rules.py $LOGONROOT > hand-rules
+# python hand-rules.py $JAENDIR $LANGDIR > hand-rules
+# where JAENDIR is the path to the JaEn transfer grammar (subdirectory
+# `jaen/` at the top of this repository), and LANGDIR is the resources
+# for extraction specific to this transfer grammar (subdirectory
+# `jaen/` in this directory)
 
 import sys, os
 
-path = sys.argv[1] + '/'
-langdir = sys.argv[2] + '/'
+jaendir = sys.argv[1]
+langdir = sys.argv[2]
 
 trans_dict = {}
 
@@ -122,17 +126,17 @@ def findtrans(infile):
     return([difflist,diff_dict])
 
 difflist = []
-mtr_paths = open(langdir + 'mtr-file-paths')
+mtr_paths = open(os.path.join(langdir, 'mtr-file-paths'))
 for line in mtr_paths:
-    filepath = path+line[:-1]
+    filepath = os.path.join(jaendir, line.rstrip('\n'))
     mtr_file = open(filepath)
     difflist.extend(findtrans(mtr_file)[0])
 
 diffdict = {}
 
-mtr_paths = open(langdir + 'mtr-file-paths')
+mtr_paths = open(os.path.join(langdir, 'mtr-file-paths'))
 for line in mtr_paths:
-    filepath = path+line[:-1]
+    filepath = os.path.join(jaendir, line.rstrip('\n'))
     mtr_file = open(filepath)
     diffdict.update(findtrans(mtr_file)[1])
 
