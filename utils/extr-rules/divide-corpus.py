@@ -14,7 +14,8 @@ infile = open(sys.argv[3])
 outfile = open(sys.argv[4])
 transdir = sys.argv[5]
 
-bitextpath = transdir + corpus + '-profiles/'
+bitextpath = os.path.join(transdir, corpus)  # e.g. jaen/mini
+pathbase = os.path.join(bitextpath, corpus)  # e.g. jaen/mini/mini{1,2,...}
 
 if not os.path.exists(bitextpath):
    os.makedirs(bitextpath)
@@ -42,42 +43,33 @@ average = wordnr/6
 x = 0
 y = 1
 try:
-    path = bitextpath + corpus + '1'
-    os.mkdir( path, 0775 ) ;
-    os.mkdir( path + '/bitext', 0775 );
+    os.mkdir( pathbase + '1', 0775 ) ;
+    os.mkdir( os.path.join(pathbase + '1', 'bitext'), 0775 );
 except:
     pass
-orig = open(bitextpath + corpus + '1/bitext/original','w')
-obje = open(bitextpath + corpus + '1/bitext/object','w')
+
+orig = open(os.path.join(pathbase + '1', 'bitext', 'original'), 'w')
+obje = open(os.path.join(pathbase + '1', 'bitext', 'object'), 'w')
 #print len(endict.keys())
 wordnr = 0
 for key in outdictkeys:
-    z = len(key)
-    myid = '1'
-    while z < 7:
-        myid = myid + '0'
-        z = z+1
-    myid = myid + key + '0'
     wordnr = wordnr + len(outdict[key].split())
     if wordnr > average:
-       #print y
        wordnr = 0
     if x < profilelength:
-#        orig.write('[' + myid + '] ' + indict[key] + ';;MYID=' + key + '\n')
         orig.write(indict[key] + '\n')
-#        obje.write('[' + myid + '] ' + outdict[key] + ';;MYID=' + key + '\n')
         obje.write(outdict[key] + '\n')
         x = x + 1
     if x == profilelength:
         y = y+1
         try:
-            path = bitextpath + corpus + str(y)
+            path = pathbase + str(y)
             os.mkdir( path, 0775 ) ;
-            os.mkdir( path + '/bitext', 0775 );
+            os.mkdir( os.path.join(path, 'bitext'), 0775 );
         except:
             pass
-        orig = open(bitextpath + corpus + str(y) + '/bitext/original','w')
-        obje = open(bitextpath + corpus + str(y) + '/bitext/object','w')
+        orig = open(os.path.join(path, 'bitext', 'original'), 'w')
+        obje = open(os.path.join(path, 'bitext', 'object'), 'w')
         x = 0
 
 print y

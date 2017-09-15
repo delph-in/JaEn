@@ -5,10 +5,16 @@
 ### Script for extracting transfer rules from mrs phrase tables
 ###
 
+from __future__ import print_function
+
 import sys
-logonroot = sys.argv[1]
-corpus = sys.argv[2]
-transdir = sys.argv[3]
+import os
+
+corpus = sys.argv[1]
+transdir = sys.argv[2]
+pathbase = os.path.join(transdir, corpus)  # e.g. jaen/mini
+singlepath = os.path.join(transdir, corpus, corpus + '.single.mtr')
+mwepath = os.path.join(transdir, corpus, corpus + '.mwe.mtr')
 
 # Prefix added to source language predicates in order to avoid loops
 # in the tranfer grammar. Change the value to '' if the source
@@ -22,7 +28,7 @@ threshold = 0.1
 mwe_thresh = 0.01
 
 # Reading the source language lexicon
-srclex = open(transdir + 'source-lex.tab')
+srclex = open(os.path.join(transdir, corpus, 'source-lex.tab'))
 srcrel2lem = {}
 for line in srclex:
     items = line.split('\t')
@@ -31,7 +37,7 @@ for line in srclex:
     srcrel2lem[rel] = lemma
 
 # Reading the target language lexicon
-tgtlex = open(transdir + 'target-lex.tab')
+tgtlex = open(os.path.join(transdir, corpus, 'target-lex.tab'))
 tgtrel2lem = {}
 for line in tgtlex:
     items = line.split('\t')
@@ -40,7 +46,7 @@ for line in tgtlex:
     tgtrel2lem[rel] = lemma
 
 # Reading the existing transfer rules
-transfer = open(transdir + 'hand-rules')
+transfer = open(os.path.join(transdir, corpus, 'hand-rules'))
 transferset = set([])
 enset = set([])
 alltrans = set([])
@@ -65,7 +71,7 @@ freqs = {}
 trans2freq = {}
 trans2prob = {}
 def readfile(phrtab):
-    infile = open(transdir + corpus + '-profiles/mrs-thin')
+    infile = open(os.path.join(pathbase, 'mrs-thin'))
     for line in infile:
         items = line.split('\t')
         sourcestr = items[0]
@@ -120,8 +126,8 @@ transset = set([])
 evaldict = {}
 
 # Printing the transfer rules
-a = open(transdir + corpus + '.single.mtr','w')
-b = open(transdir + corpus + '.mwe.mtr','w')
+a = open(singlepath, 'w')
+b = open(mwepath, 'w')
 newtrans2prob = {}
 x = 0
 y = 0
@@ -157,7 +163,7 @@ for key in rulekeys:
         transset.add(translation)
         evaldict[translation] = evaldict.get(translation, []) + [key]
       except:
-          print translation
+          print(translation)
       if inlen == 1:
           a.write(rule)
           x = x+1
@@ -165,11 +171,5 @@ for key in rulekeys:
           b.write(rule)
           y = y+1
 
-infl = 's'
-if x == 1:
-    infl = ''
-print 'Wrote '+str(x)+' rule'+infl+' in \''+transdir + corpus + '.single.mtr\''
-infl = 's'
-if y == 1:
-    infl = ''
-print 'Wrote '+str(y)+' rule'+infl+' in \''+transdir + corpus + '.mwe.mtr\''
+print('Wrote {} rule(s) in \'{}\''.format(str(x), singlepath))
+print('Wrote {} rule(s) in \'{}\''.format(str(y), mwepath))

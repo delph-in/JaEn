@@ -6,11 +6,11 @@
 ###
 #
 # phrase tables should be in:
-# corpus + '-profiles/moses.mrs'
-# corpus + '-anymalign.mrs'
+# corpus/moses.mrs
+# corpus/anymalign.mrs
 #
 # and are written to
-# corpus + '-profiles/mrs-thin
+# corpus/mrs-thin
 
 import sys, os
 
@@ -19,10 +19,10 @@ corpus = sys.argv[1]
 
 try:
     # This is the Moses phrase table
-    pt = open(corpus + '-profiles/moses.mrs')
+    pt = open(os.path.join(corpus, 'moses.mrs'))
 except:
     pt = []
-ptt = open(corpus + '-profiles/mrs-thin','w')
+ptt = open(os.path.join(corpus, 'mrs-thin'),'w')
 thindict = {}
 for line in pt:
     items = line.split(' ||| ')
@@ -40,7 +40,7 @@ for line in pt:
         thindict[source + '\t' + target + '\tmos'] = prob
 
 # This is the Anymalign phrase table
-pt = open(corpus + '-anymalign.mrs')
+pt = open(os.path.join(corpus, 'anymalign.mrs'))
 for line in pt:
     items = line.split('\t')
     source = items[0]
