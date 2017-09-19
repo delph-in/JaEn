@@ -16,7 +16,7 @@ import argparse
 from delphin import itsdb
 from delphin.mrs import simplemrs
 from delphin.mrs.components import (
-    var_sort,
+    var_re,
     Pred,
     ElementaryPredication as EP
 )
@@ -44,10 +44,12 @@ def extract_valency(ep):
     for role in ('ARG1', 'ARG2', 'ARG3', 'ARG4'):
         v = ep.args.get(role)
         if v is not None:
-            n = role[-1]
-            vs = var_sort(v)
-            if vs not in ('u', 'i', 'p'):
-                valencies.append(n + vs)
+            m = var_re.match(v)
+            if m is not None:
+                n = role[-1]
+                vs = m.group(1)
+                if vs not in ('u', 'i', 'p'):
+                    valencies.append(n + vs)
     return ''.join(valencies)
 
 
