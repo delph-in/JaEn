@@ -25,19 +25,19 @@ parser = argparse.ArgumentParser(
     description='Create a parallel corpus of MRSs from profiles'
 )
 parser.add_argument(
-    'transdir', help='directory of language-pair-specific code'
+    'source_profile', help='input source profile from which to extract'
 )
 parser.add_argument(
-    'corpus', help='directory containing the current experiment profiles'
+    'target_profile', help='input target profile from which to extract'
 )
 parser.add_argument(
-    'n', type=int, help='number of profiles in corpus directory'
+    'source_preds', help='output file for linearized source predicates'
+)
+parser.add_argument(
+    'target_preds', help='output file for linearized target predicates'
 )
 args = parser.parse_args()
 
-transdir = args.transdir
-corpus = args.corpus
-profilenr = args.n
 
 def extract_valency(ep):
     valencies = []
@@ -94,21 +94,15 @@ def pred_strings(prof):
         yield (int(i_id), ' '.join(preds))
 
 
+with open(args.source_preds, 'w') as src, \
+     open(args.target_preds, 'w') as tgt:
+    source_profile = itsdb.ItsdbProfile(args.source_profile)
+    target_profile = itsdb.ItsdbProfile(args.target_profile)
 
-source_mrsfile = os.path.join(transdir, corpus, 'mrs_source.txt')
-target_mrsfile = os.path.join(transdir, corpus, 'mrs_target.txt')
+    sourcemrs = dict(pred_strings(source_profile))
+    targetmrs = dict(pred_strings(target_profile))
 
-with open(source_mrsfile, 'w') as src, open(target_mrsfile, 'w') as tgt:
-    for x in range(1, profilenr + 1):
-        cdir = os.path.join(transdir, corpus, corpus + str(x))
-        
-        source_profile = itsdb.ItsdbProfile(os.path.join(cdir, 'source'))
-        target_profile = itsdb.ItsdbProfile(os.path.join(cdir, 'target'))
-
-        sourcemrs = dict(pred_strings(source_profile))
-        targetmrs = dict(pred_strings(target_profile))
-
-        # only print pred strings where they exist in both sides
-        for id_ in set(sourcemrs).intersection(targetmrs):
-            print(sourcemrs[id_], file=src)
-            print(targetmrs[id_], file=tgt)
+    # only print pred strings where they exist in both sides
+    for id_ in set(sourcemrs).intersection(targetmrs):
+        print(sourcemrs[id_], file=src)
+        print(targetmrs[id_], file=tgt)

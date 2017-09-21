@@ -1,13 +1,42 @@
 #!/bin/bash
 
-i="0"
-while [ $i -lt $1 ]
-do
-    i=$[$i+1]
-    mkdir -p $2/ku${i}/jacy/
-    cheap -comment-passthrough -mrs -nsolutions=1 -results=1 -packing=15 -timeout=10 -yy -default-les -tsdbdum=$2/ku${i}/jacy -inputfile=$2/ku${i}/bitext/original ~/logon/dfki/jacy/japanese &> $2/ku${i}/jacy/log
-    mkdir -p $2/ku${i}/erg/
-    cheap -repp -tagger -default-les=all -cm -packing -mrs -nsolutions=1 -results=1 -packing=15 -timeout=10 -inputfile=$2/ku${i}/bitext/object -tsdbdump $2/ku${i}/erg  ~/logon/lingo/erg/english.grm &> $2/ku${i}/erg/log
+# usage: parse-profiles.bash DIR (source|target) [PARAM]
+#
+# parse profiles found under DIR/*/(source|target), e.g.:
+#     parse-profiles.bash jaen/tc source
+#     parse-profiles.bash jaen/tc target
+# PARAM is the parameter file specific to this run; if not given, then
+# parameters.bash is used
 
+usage() { echo "usage: parse-profiles.bash DIR (source|target) [PARAM]"; }
 
-done 
+[ -d "$1" ] || { usage; exit 1; }
+pdir="$1/profiles"
+
+cwd=$( cd `dirname $0` && pwd)
+source "${3:-$cwd/parameters.bash}"
+
+case "$2" in
+	source)
+		sfx="$source_suffix"
+		cmd="$source_ace_command"
+		opt="$source_art_options"
+		;;
+	target)
+		sfx="$target_suffix"
+		cmd="$target_ace_command"
+		opt="$target_art_options"
+		;;
+	*)
+		usage
+		exit 1
+		;;
+esac
+
+for bitext in ${bitexts[@]}; do
+	read -d: name <<< "$bitext"  # get just name field from bitext array
+
+	for d in `find "$pdir" -name "$name*.$sfx" -type d | sort -V`; do
+		"$art" -a "$cmd" $opt "$d" &> "$d/log"
+	done
+done
