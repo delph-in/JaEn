@@ -35,7 +35,7 @@ for bitext in ${bitexts[@]}; do
 			python profiles2mrsparcorp.py "$src" "$tgt" "$lsrc" "$ltgt"
 			# append to singular bipred file
 			cat "$lsrc" >> "$workspace/mrs_source.txt"
-			cat "$lsrc" >> "$workspace/mrs_target.txt"
+			cat "$ltgt" >> "$workspace/mrs_target.txt"
 		else
 			echo "Warning: no corresponding target profile for source: $src"
 		fi
