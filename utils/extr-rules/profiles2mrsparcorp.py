@@ -75,13 +75,14 @@ def pred_strings(prof):
 
         # extract and simplify predicates
         for ep in mrs.eps():
-            pred = ep.pred.short_form()
+            normpred = ep.pred.short_form()
+            pred = ep.pred.string
             # skip omitted preds
-            if pred == 'nominalization' or pred.endswith('unknown'):
+            if normpred == 'nominalization' or normpred.endswith('unknown'):
                 continue
             # combine named with CARG value
-            if pred == 'named':
-                pred = 'nmd_' + str(ep.carg or '')
+            if normpred == 'named':
+                pred = 'nmd_"{}"'.format(str(ep.carg or ''))
             # normalize verbs
             if ep.pred.pos == 'v':
                 # mark if nominalized
