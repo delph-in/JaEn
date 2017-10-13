@@ -153,11 +153,11 @@ def templates(source, target, prob, threshold, opt, trans, phrtab,src_prefix,all
                     target = [tgt]
                     printrule = True
 
-        if source[0] == '"_ni_p_rel"':
-            supertype = 'pp+arg12_arg12_'
-            source = ['"_ni_p_rel"', source[2], '"udef_q_rel"', src]
-            target = [tgt]
-            printrule = True
+                if source[0] == '"_ni_p_rel"':
+                    supertype = 'pp+arg12_arg12_'
+                    source = ['"_ni_p_rel"', source[2], '"udef_q_rel"', src]
+                    target = [tgt]
+                    printrule = True
         
     if len(source) == 3 and len(target) == 1 and float(prob) > mwe_thresh:
         if n_in(source) == [0,2] and "_no_p_" in source[1] and n_in(target) == [0]:
