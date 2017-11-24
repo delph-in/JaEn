@@ -57,7 +57,7 @@ kureru_v_3-give_v_1  := arg123_v_omtr &
    OUTPUT.RELS < [ PRED "_give_v_1_rel", ARG3 p ]   > ].
 
 ;;; Or as kureru is empathic make the receiver 1st person.
-kureru_v_3-give_v_1  := arg123_v_mtr &
+kureru_v_3-give_v_1-pers1  := arg123_v_mtr &
  [ INPUT.RELS < [ PRED "ja:_kureru_v_3_rel"]  >,
    OUTPUT [RELS < [ PRED "_give_v_1_rel", ARG3 #x3 ],
 		  [ PRED pronoun_q_rel, ARG0 #x3, RSTR #h1 ],

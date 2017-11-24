@@ -9,7 +9,7 @@
 monotonic_mtr := mrs_transfer_rule &
 [ CONTEXT [ LTOP #h, INDEX #i ],
   INPUT #j & [ LTOP #h, INDEX #i ],
-  OUTPUT #e &[ LTOP #h, INDEX #i ], 
+  OUTPUT #e & [ LTOP #h, INDEX #i ], 
   JA #j,
   EN #e].
 
@@ -54,12 +54,6 @@ adj+n_adj+n_mtr :=  monotonic_mtr &
 		 [ LBL #h4, ARG0 #x3 ] >].
 
 adj+n_adj+n_omtr := adj+n_adj+n_mtr & optional_mtr.
-
-n_adj+n_mtr :=  monotonic_mtr &
-[ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
-  OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
-		[ LBL #h1, ARG0 #x2 ] > ].
-n_adj+n_omtr := n_adj+n_mtr & optional_mtr.
 
 ; Experimental rule types for Ja-En MT system -- eric-n 2006/8/30
 

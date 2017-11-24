@@ -581,11 +581,11 @@ fujisan_n-mtr := pn_mtr &
 
 ;; ニッポン Nippon loc_name-lex 0
 
-ニッポン-pn-mtr := pn_omtr &
+ニッポン--Japan-pn-mtr := pn_omtr &
 [ INPUT.RELS  < [ CARG "nippon_1" ] >,
   OUTPUT.RELS < [ CARG "Japan" ] > ].
 
-ニッポン-pn-mtr := pn_mtr &
+ニッポン--Nippon-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "nippon_1" ] >,
   OUTPUT.RELS < [ CARG "Nippon" ] > ].
 
@@ -2751,7 +2751,7 @@ fujisan_n-mtr := pn_mtr &
 
 ;; アマゾン Amazon inst_name-lex 0
 
-アマゾン-pn-mtr := pn_mtr &
+アマゾン-1-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "amazon_1" ] >,
   OUTPUT.RELS < [ CARG "Amazon" ] > ].
 
@@ -3063,7 +3063,7 @@ fujisan_n-mtr := pn_mtr &
 
 ;; 香里 Koori loc_name-lex 0
 
-香里-pn-mtr := pn_mtr &
+香里--Koori-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "koori_2" ] >,
   OUTPUT.RELS < [ CARG "Koori" ] > ].
 
@@ -4221,7 +4221,7 @@ fujisan_n-mtr := pn_mtr &
 
 ;; ダーバン Da-Ban inst_name-lex 0
 
-ダーバン-pn-mtr := pn_mtr &
+ダーバン--D-urban-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "da-ban_1" ] >,
   OUTPUT.RELS < [ CARG "D'urban" ] > ].
 
@@ -12736,7 +12736,7 @@ fujisan_n-mtr := pn_mtr &
 
 ;; ダーバン Da-Ban loc_name-lex 0
 
-ダーバン-pn-mtr := pn_mtr &
+ダーバン--Durban-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "da-ban_2" ] >,
   OUTPUT.RELS < [ CARG "Durban" ] > ].
 
@@ -13528,7 +13528,7 @@ fujisan_n-mtr := pn_mtr &
 
 ;; アマゾン Amazon loc_name-lex 0
 
-アマゾン-pn-mtr := pn_mtr &
+アマゾン-2-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "amazon_2" ] >,
   OUTPUT.RELS < [ CARG "Amazon" ] > ].
 
@@ -14026,7 +14026,7 @@ fujisan_n-mtr := pn_mtr &
 
 ;; 紀 Ki loc-or-surname-lex 0
 
-紀-pn-mtr := pn_mtr &
+紀--Ki-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "ki_3" ] >,
   OUTPUT.RELS < [ CARG "Ki" ] > ].
 
@@ -14272,7 +14272,7 @@ fujisan_n-mtr := pn_mtr &
 
 ;; 清 Kiyoshi other_name-lex 0
 
-清-pn-mtr := pn_mtr &
+清--Kiyoshi-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "kiyoshi_2" ] >,
   OUTPUT.RELS < [ CARG "Kiyoshi" ] > ].
 
@@ -14890,7 +14890,7 @@ fujisan_n-mtr := pn_mtr &
 
 ;; 紀 Osamu first_name-lex 0
 
-紀-pn-mtr := pn_mtr &
+紀--Osamu-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "osamu_7" ] >,
   OUTPUT.RELS < [ CARG "Osamu" ] > ].
 
@@ -15886,7 +15886,7 @@ fujisan_n-mtr := pn_mtr &
 
 ;; 香里 Kaori first_name-lex 0
 
-香里-pn-mtr := pn_mtr &
+香里--Kaori-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "kaori_29" ] >,
   OUTPUT.RELS < [ CARG "Kaori" ] > ].
 
@@ -20056,7 +20056,7 @@ Europe" ] > ].
 
 ;; 清 _Shin loc_name-lex 0
 
-清-pn-mtr := pn_mtr &
+清--Shin-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "_shin_4" ] >,
   OUTPUT.RELS < [ CARG "Shin" ] > ].
 
@@ -23740,7 +23740,7 @@ Europe" ] > ].
 
 ;; 真備 Mabi loc_name-lex 0
 
-真備-pn-mtr := pn_mtr &
+真備--Mabi-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "mabi_1" ] >,
   OUTPUT.RELS < [ CARG "Mabi" ] > ].
 
@@ -23944,7 +23944,7 @@ Europe" ] > ].
 
 ;; 真備 Makibi first_name-lex 0
 
-真備-pn-mtr := pn_mtr &
+真備--Makibi-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "makibi_1" ] >,
   OUTPUT.RELS < [ CARG "Makibi" ] > ].
 
@@ -26314,7 +26314,7 @@ Europe" ] > ].
 
 ;; 明 Man loc_name-lex 0
 
-明-pn-mtr := pn_mtr &
+明--Min-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "min_1" ] >,
   OUTPUT.RELS < [ CARG "Min" ] > ].
 
@@ -29314,7 +29314,7 @@ IPO-pn-mtr := pn_mtr &
 
 ;; Smith Sumisu loc-or-surname-lex 0
 
-Smith-pn-mtr := pn_mtr &
+Smith-2-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "sumisu_2" ] >,
   OUTPUT.RELS < [ CARG "Smith" ] > ].
 
@@ -30238,7 +30238,7 @@ UFJ-pn-mtr := pn_mtr &
 
 ;; マウンテン ビュー Mountain_View loc_name-lex 0
 
-マウンテンビュー-pn-mtr := pn_mtr &
+mountain_view-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "mountain_view" ] >,
   OUTPUT.RELS < [ CARG "Mountain View" ] > ].
 
@@ -30742,7 +30742,7 @@ CC-pn-mtr := pn_mtr &
 
 ;; 明 Man first_name-lex 0
 
-明-pn-mtr := pn_mtr &
+明--Akira-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "akira_2" ] >,
   OUTPUT.RELS < [ CARG "Akira" ] > ].
 
@@ -31720,9 +31720,10 @@ sslv-pn-mtr := pn_mtr &
 
 ;; マクドナルド Mcdonald inst_name-lex 0
 
-マクドナルド-pn-mtr := pn_omtr &
-[ INPUT.RELS  < [ CARG "makudonarudo" ] >,
-  OUTPUT.RELS < [ CARG "Mcdonalds" ] > ].
+; Duplicates the following one?
+; マクドナルド-pn-mtr := pn_omtr &
+; [ INPUT.RELS  < [ CARG "makudonarudo" ] >,
+;   OUTPUT.RELS < [ CARG "Mcdonalds" ] > ].
 
 マクドナルド-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "makudonarudo" ] >,
@@ -32810,7 +32811,7 @@ ETF-pn-mtr := pn_mtr &
 
 ;; SMITH Sumisu loc-or-surname-lex 0
 
-SMITH-pn-mtr := pn_mtr &
+Smith-3-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "sumisu_3" ] >,
   OUTPUT.RELS < [ CARG "Smith" ] > ].
 
@@ -33734,7 +33735,7 @@ Dan-pn-mtr := pn_mtr &
 
 ;; カク Kaku_Person other_name-lex 0
 
-カク-pn-mtr := pn_mtr &
+kaku_person-pn-mtr := pn_mtr &
 [ INPUT.RELS  < [ CARG "kaku_person" ] >,
   OUTPUT.RELS < [ CARG "Kak" ] > ].
 

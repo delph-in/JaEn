@@ -26,10 +26,3 @@ place_rel := predsort.
 ; eric-n -- 2006/8/29
 rareru_v_can_rel := predsort.
 tai_v_want_rel := predsort.
-
-;;; used for finer quantifier control
-no_num := number.
-not_pl := sg & no_num. 
-not_sg := pl & no_num. 
-;; redefine
-not_number := no_num. 

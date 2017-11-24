@@ -334,11 +334,6 @@ nasaru_v_1_rel-do_v_rel-mtr := arg12_v_mtr &
 
 ;;; ko-/so-/aso- demonstratives
 
-;;; この 犬 が 吠える 。 → this dog barks.
-kono-this_q-mtr := quantifier_mtr &
-[ JA.RELS < [ PRED "ja:_kono_q_rel" ] >,
-  EN.RELS < [ PRED _this_q_dem_rel ] > ].
-
 ; "_koko_n_rel" --> "_koko_n_3_rel" : changed in 2006/09/27 grammar
 ; 		--> "_koko_n_rel", "_koko_n_7_rel"
 
@@ -519,7 +514,7 @@ place_rel-place_n_rel-mtr := noun_mtr &
 [ JA.RELS < [ PRED "ja:place_rel" ] >,
   EN.RELS < [ PRED place_n_rel ] > ].
 
-place_rel-place_n_rel-mtr := noun_mtr &
+place_n_rel-place_n_rel-mtr := noun_mtr &
 [ JA.RELS < [ PRED "ja:place_n_rel" ] >,
   EN.RELS < [ PRED place_n_rel ] > ].
 

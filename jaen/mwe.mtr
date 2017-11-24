@@ -21,7 +21,7 @@ arare_hail_mwe_mtr := arg1+np_arg0_v_omtr &
 		[ PRED "ja:_furu_v_1_rel"] >,
    OUTPUT.RELS < [ PRED "_hail_v_1_rel" ] > ].
 
-arare_hail_mwe_mtr := arg1+np_arg0_v_omtr &
+kirisame_hail_mwe_mtr := arg1+np_arg0_v_omtr &
  [ INPUT.RELS < [ PRED "ja:_kirisame_n_1_rel" ], [ PRED "ja:udef_q_rel" ],
 		[ PRED "ja:_furu_v_1_rel"] >,
    OUTPUT.RELS < [ PRED "_drizzle_v_1_rel" ] > ].
@@ -229,7 +229,7 @@ no+ushiro+nonide-behind-mtr := pp+p-p-omtr &
     OUTPUT.RELS < [ PRED _behind_p_rel ] > ].
 
 ;; time
-no+ushiro+nonide-behind-mtr := pp+p-p-omtr &
+no+ushiro+nonide-after-mtr := pp+p-p-omtr &
    [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
  		 [PRED "ja:_ushiro_n_1_rel" ] ,
  	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
@@ -295,14 +295,14 @@ no+yoko+nonide-next+to-mtr := pp+p-p-mtr &
     OUTPUT.RELS < [ PRED _next+to_p_rel ] > ].
 
 ; の そば に → beside
-no+soba+nonide-beside-mtr := pp+p-p-mtr &
+no+soba1+nonide-beside-mtr := pp+p-p-mtr &
    [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
  		 [PRED "ja:_soba_n_1_rel" ] ,
  	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,
     OUTPUT.RELS < [ PRED _beside_p_rel ] > ].
 
 ; の 側 に → beside
-no+soba+nonide-beside-mtr := pp+p-p-mtr &
+no+soba2+nonide-beside-mtr := pp+p-p-mtr &
    [ INPUT.RELS < [ PRED "ja:_no_p_rel" ],
  		 [PRED "ja:_soba_n_2_rel" ] ,
  	       [ PRED "~ja:_(ni|no|de)_p_rel" ], ... >,

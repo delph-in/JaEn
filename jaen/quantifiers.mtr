@@ -76,7 +76,7 @@ udef-def-possessor_q := quantifier_mtr &
   OUTPUT.RELS < [ PRED def_explicit_q_rel ] > ].
 
 ;;; for "at night"
-udef_q-implicit_q-mtr := quantifier_mtr &
+night-udef_q-implicit_q-mtr := quantifier_mtr &
 [ CONTEXT [ HCONS < qeq & [ HARG #h1, LARG #h2 ] >,
 	    RELS < [ PRED "_night_n_of_rel", LBL #h2 ] > ],
   JA.RELS < [ PRED "ja:udef_q_rel", RSTR #h1 ] >,
@@ -175,7 +175,7 @@ kono-this_q-mtr := quantifier_mtr &
   EN.RELS < [ PRED _this_q_dem_rel ] > ].
 
 ;;; その こ が 吠える 。 → the child barks.
-sono-that_q-mtr := quantifier_omtr &
+poss-sono-that_q-mtr := quantifier_omtr &
 [ CONTEXT.RELS   < [ PRED "poss_mark", ARG0 #xn ] >,
   INPUT.RELS < [ PRED "ja:_sono_q_rel", ARG0 #xn ] >,
   OUTPUT.RELS < [ PRED def_q_rel ] > ].

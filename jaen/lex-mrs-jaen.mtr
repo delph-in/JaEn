@@ -266,7 +266,7 @@ hajimeru_v-start_v_1-mtr := arg12_v_mtr &
 [ INPUT.RELS < [ PRED "ja:_hajimeru_v_rais_rel" ] >,
   OUTPUT.RELS < [ PRED "_start_v_1_rel" ] > ].
 
-hajimeru_v-start_v_1-mtr := arg12_v_mtr & 
+dasu_v_rais-start_v_1-mtr := arg12_v_mtr & 
 [ INPUT.RELS < [ PRED "ja:_dasu_v_rais_rel" ] >,
   OUTPUT.RELS < [ PRED "_start_v_1_rel" ] > ].
 

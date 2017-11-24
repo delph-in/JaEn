@@ -2046,7 +2046,7 @@ n+n_n+p+q+n_pl_omtr := n+n_n+p+q+n_pl_mtr & optional_mtr.
 ;;; English; various subtypes depending on the OUTPUT requirements.
 ;;;
 ;;; @ et småbarn >> a small child
-;;; n_adj+n_mtr := monotonic_mtr &
+n_adj+n_mtr := monotonic_mtr &
 [ INPUT.RELS < [ LBL #h1, ARG0 #x2 ] >,
   OUTPUT.RELS < [ LBL #h1, ARG0 e_untensed, ARG1 #x2 ],
                 [ LBL #h1, ARG0 #x2 ] > ].

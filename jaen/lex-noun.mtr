@@ -68,7 +68,7 @@ infuruenza_n_1--flu_n_1-mtr := noun_omtr &
 [ INPUT.RELS < [ PRED "ja:_infuruenza_n_1_rel" ] , ... >,
   OUTPUT.RELS < [ PRED "_flu_n_1_rel" ] , ... > ].
 
-infuruenza_n_1--flu_n_1-mtr := noun_mtr &
+infuruenza_n_1--influenza_n_1-mtr := noun_mtr &
 [ INPUT.RELS < [ PRED "ja:_infuruenza_n_1_rel" ] , ... >,
   OUTPUT.RELS < [ PRED "_influenza_n_1_rel" ] , ... > ].
 
@@ -379,11 +379,11 @@ saru_n_2--monkey_n_1-mtr := noun_mtr &
   OUTPUT.RELS < [ PRED "_monkey_n_1_rel" ] , ... > ].
 
 ; 猿 >> monkey	0.333333
-saru_n_2--monkey_n_1-mtr := noun_mtr &
+saru_n_1--monkey_n_1-mtr := noun_mtr &
 [ INPUT.RELS < [ PRED "ja:_saru_n_1_rel" ] , ... >,
   OUTPUT.RELS < [ PRED "_monkey_n_1_rel" ] , ... > ].
 
 ; 鳥 >> bird
-saru_n_2--monkey_n_1-mtr := noun_mtr &
+tori_n_1--bird_n_1-mtr := noun_mtr &
 [ INPUT.RELS < [ PRED "ja:_tori_n_1_rel" ] , ... >,
   OUTPUT.RELS < [ PRED "_bird_n_1_rel" ] , ... > ].

@@ -164,10 +164,6 @@ kinou_n_rel-yesterday_a_1_rel+time_n_rel_3-mtr := n_adj+time_n_rel_3-mtr &
 [ JA.RELS < [ PRED "ja:_kinou_n_1_rel" ], ... >,
   EN.RELS < [ PRED _yesterday_a_1_rel ], ... > ].
 
-asa_n_rel-morning_n_rel := noun_mtr &
-[ JA.RELS < [ PRED "ja:_asa_n_rel" ] >,
-  EN.RELS < [ PRED "_morning_n_of_rel" ] > ].
-
 udef_q-implicit_q-mtr := quantifier_mtr &
 [ CONTEXT [ HCONS < qeq & [ HARG #h1, LARG #h2 ] >,
 	    RELS < [ PRED time_n_rel, LBL #h2 ] > ],

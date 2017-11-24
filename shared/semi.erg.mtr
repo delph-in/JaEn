@@ -3853,7 +3853,7 @@ count_mark_kilogram_ef := count_mark_amtr &
 count_mark_kilometer_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_kilometer_n_1_rel" ] > ].
 
-count_mark_kind_ef := count_mark_amtr &
+count_mark_kind-n_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_kind_n_of-n_rel" ] > ].
 
 count_mark_kind_ef := count_mark_amtr &
@@ -4693,7 +4693,7 @@ count_mark_north_ef := count_mark_amtr &
 count_mark_northeast_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_northeast_n_1_rel" ] > ].
 
-count_mark_northeast_ef := count_mark_amtr &
+count_mark_northeast-of_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_northeast_n_of_rel" ] > ].
 
 count_mark_northeaster_ef := count_mark_amtr &
@@ -4702,7 +4702,7 @@ count_mark_northeaster_ef := count_mark_amtr &
 count_mark_northwest_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_northwest_n_1_rel" ] > ].
 
-count_mark_northwest_ef := count_mark_amtr &
+count_mark_northwest-of_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_northwest_n_of_rel" ] > ].
 
 count_mark_northwester_ef := count_mark_amtr &
@@ -5308,7 +5308,7 @@ count_mark_plea_ef := count_mark_amtr &
 count_mark_pliers_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_pliers_n_1_rel" ] > ].
 
-count_mark_pliers_ef := count_mark_amtr &
+count_mark_pliers-pair_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_pliers_n_pair_rel" ] > ].
 
 count_mark_plot_ef := count_mark_amtr &
@@ -5614,7 +5614,7 @@ count_mark_quarry_ef := count_mark_amtr &
 count_mark_quarter_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_quarter_n_of_rel" ] > ].
 
-count_mark_quarter_ef := count_mark_amtr &
+count_mark_quarter-temp_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_quarter_n_temp_rel" ] > ].
 
 count_mark_quay_ef := count_mark_amtr &
@@ -6160,7 +6160,7 @@ count_mark_scientist_ef := count_mark_amtr &
 count_mark_scissors_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_scissors_n_1_rel" ] > ].
 
-count_mark_scissors_ef := count_mark_amtr &
+count_mark_scissors-pair_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_scissors_n_pair_rel" ] > ].
 
 count_mark_scoop_ef := count_mark_amtr &
@@ -6616,13 +6616,13 @@ count_mark_south_ef := count_mark_amtr &
 count_mark_southeast_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_southeast_n_1_rel" ] > ].
 
-count_mark_southeast_ef := count_mark_amtr &
+count_mark_southeast-of_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_southeast_n_of_rel" ] > ].
 
 count_mark_southwest_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_southwest_n_1_rel" ] > ].
 
-count_mark_southwest_ef := count_mark_amtr &
+count_mark_southwest-of_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_southwest_n_of_rel" ] > ].
 
 count_mark_souvenir_ef := count_mark_amtr &
@@ -6928,7 +6928,7 @@ count_mark_storm_ef := count_mark_amtr &
 count_mark_story_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_story_n_1_rel" ] > ].
 
-count_mark_story_ef := count_mark_amtr &
+count_mark_story-of_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_story_n_of_rel" ] > ].
 
 count_mark_storyteller_ef := count_mark_amtr &
@@ -7669,7 +7669,7 @@ count_mark_tympanum_ef := count_mark_amtr &
 count_mark_type_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_type_n_of-n_rel" ] > ].
 
-count_mark_type_ef := count_mark_amtr &
+count_mark_type-of_ef := count_mark_amtr &
 [ CONTEXT.RELS < [ PRED "_type_n_of_rel" ] > ].
 
 count_mark_ulcer_ef := count_mark_amtr &

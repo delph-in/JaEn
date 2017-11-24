@@ -207,7 +207,7 @@ cardinal_je := adjective_mtr &
 ; 	 ARG1 #e2,
 ; 	 ARG2 #x1 ] > ].
 
-ichiban_a_3-best-mtr := intersective_adverb_mtr &
+ichiban_a_3-superlative-mtr := intersective_adverb_mtr &
 [ JA.RELS < [ PRED "ja:_ichiban_a_3_rel" ] >,
   EN.RELS < [ PRED superl_rel ] > ].
 
@@ -373,7 +373,7 @@ tooku_n_1--distance_n_1-mtr := noun_mtr &
 ;;
 ;; FIXME: link に to arg2
 ;;
-shitashii_a_1--close_a_1-mtr := adjective_mtr &
+anzen_a_2--safe_a_for-mtr := adjective_mtr &
 [ INPUT.RELS < [ PRED "ja:_anzen_a_2_rel" ], ... >,
   OUTPUT.RELS < [ PRED "_safe_a_for_rel" ], ... > ].
 
@@ -452,7 +452,7 @@ yoi_a_1-good_a_at-for := adjective_mtr &
 [ INPUT.RELS < [ PRED "ja:_yoi_a_1_rel" ], ... >,
   OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
 
-ii_a_4-good_a_at-for := adjective_mtr &
+yoi_a_9-good_a_at-for := adjective_mtr &
 [ INPUT.RELS < [ PRED "ja:_yoi_a_9_rel" ], ... >,
   OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
 
@@ -540,7 +540,7 @@ no+mono_n--possessive_pronoun_n := noun_mtr &
   OUTPUT.RELS  < [ PRED generic_entity_rel ] > ].
 
 ;;; else もの -> thing
-mono_n--thing_n & noun_mtr &
+mono_n--thing_n-mtr := noun_mtr &
 [ INPUT.RELS < [ PRED "~ja:_mono_n_[15]_rel" ] >,
   OUTPUT.RELS < [ PRED "_thing_n_of-about_rel" ] > ].
 

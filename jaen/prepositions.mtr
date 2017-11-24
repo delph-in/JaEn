@@ -24,7 +24,7 @@ no_p_pron_rel-poss_rel-omtr := preposition_mtr &
 
 ;;; ここ の 犬 -> the dog here
 ;;; could make more general (lots of ambiguity)
-de_p_rel-unspec_loc_rel := preposition_mtr &
+no_p_rel-loc_nonsp_rel-mtr := preposition_mtr &
  [ CONTEXT.RELS < [ PRED place_n_rel, ARG0 #x2 ] >,
    INPUT.RELS < [ PRED "ja:_no_p_rel", ARG2 #x2 ] >,
    OUTPUT.RELS < [ PRED loc_nonsp_rel ] > ].
@@ -171,7 +171,7 @@ ni_p_rel-unspec_loc_rel := preposition_mtr &
   INPUT.RELS < [ PRED "ja:_ni_p_rel", ARG1 #e0, ARG2 i ] >,
   OUTPUT.RELS < [ PRED unspec_loc_rel ] > ].
 
-e_p_rel-to_p_rel := preposition_omtr &
+e_p_rel-toward_p_rel := preposition_omtr &
 [ INPUT.RELS < [ PRED "ja:_e_p_rel" ] >,
   OUTPUT.RELS < [ PRED _toward_p_rel ] > ].
 
@@ -202,7 +202,7 @@ de_p_rel-by_p_rel := preposition_omtr &
 [ INPUT.RELS < [ PRED "ja:_de_p_rel" ] >,
   OUTPUT.RELS < [ PRED _by_p_rel ] > ].
 
-de_p_rel-by_p_rel := preposition_omtr &
+de_p_rel-by_p_means_rel := preposition_omtr &
 [ INPUT.RELS < [ PRED "ja:_de_p_rel" ] >,
   OUTPUT.RELS < [ PRED _by_p_means_rel ] > ].
 
@@ -237,11 +237,6 @@ nitotte--for_p_rel := preposition_mtr &
 nikanshite--about_p_rel := preposition_mtr &
  [ INPUT.RELS < [ PRED "ja:_nikanshite_p_rel" ] >,
    OUTPUT.RELS < [ PRED _about_p_rel ] > ].
-
-nikanshite--about_p_rel := preposition_mtr &
- [ INPUT.RELS < [ PRED "ja:_nikaNshite_p_rel" ] >,
-   OUTPUT.RELS < [ PRED _about_p_rel ] > ].
-
 
 ; nikansuru--about_p_rel := preposition_mtr &
 ; [ INPUT.RELS < [ PRED "ja:_nikansuru_p_rel" ] >,
@@ -432,14 +427,10 @@ to_p_and_rel-and_c_rel := conjunction_mtr &
   OUTPUT.RELS < [ PRED _and_c_rel ] > ].
 
 ;;; FIXME や implies "and others"!
-to_p_and_rel-and_c_rel := conjunction_mtr &
+ya_p_conj_rel-and_c_rel := conjunction_mtr &
 [ INPUT.RELS < [ PRED "ja:_ya_p_conj_rel" ] >,
   OUTPUT.RELS < [ PRED _and_c_rel ] > ].
 
-
-to_p_and_rel-and_c_rel := conjunction_mtr &
-[ INPUT.RELS < [ PRED "ja:_to_p_and_rel" ] >,
-  OUTPUT.RELS < [ PRED _and_c_rel ] > ].
 
 to_p_sconj_rel-and_c_rel := conjunction_mtr &
 [ INPUT.RELS < [ PRED "ja:_to_p_sconj_rel" ] >,
