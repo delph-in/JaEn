@@ -18,23 +18,23 @@
 ;;; (FCB 2007-05-24)
 block-kudasarau_nf := monotonic_mtr &
 [ INPUT.RELS < [ PRED "ja:_kudasaru_v_aux_rel", LBL #h0, ARG0 #e0],
-		 [ PRED "ja:coord", R-HNDL #h0 ] >,
+		 [ PRED "ja:coord_c", R-HNDL #h0 ] >,
     FLAGS.BLOCK "coordinate -te kudasaru" ].
 
 block-te-iru-coord_nf  := monotonic_mtr &
 [ CONTEXT.RELS < [ PRED "~ja:_iru_v_", LBL #h0] >,
-  INPUT.RELS < [ PRED "ja:coord", R-HNDL #h0 ] >,
+  INPUT.RELS < [ PRED "ja:coord_c", R-HNDL #h0 ] >,
     FLAGS.BLOCK "coordinate -te iru" ].
 
 block-te-iru-adjunct_nf  := monotonic_mtr &
  [ CONTEXT.RELS < [ PRED "~ja:_iru_v_", LBL #hv] >,
-   INPUT [ RELS < [ PRED "ja:_te_adjunct_rel", R-HNDL #ht ] >,
+   INPUT [ RELS < [ PRED "ja:_te_p_adjunct_rel", R-HNDL #ht ] >,
 	   HCONS <  qeq & [ HARG #ht, LARG #hv ] > ],
    FLAGS.BLOCK "adjunct -te iru" ].
 
-;;; block all te_adjunct for now
+;;; block all te_p_adjunct for now
 block-te-adjunct_nf  := monotonic_mtr &
- [ INPUT [ RELS < [ PRED "ja:_te_adjunct_rel", R-HNDL #ht ] >,
+ [ INPUT [ RELS < [ PRED "ja:_te_p_adjunct_rel", R-HNDL #ht ] >,
 	   HCONS <  qeq & [ HARG #ht, LARG #hv ] > ],
    FLAGS.BLOCK "adjunct -te" ].
 

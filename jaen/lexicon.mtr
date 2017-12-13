@@ -438,23 +438,23 @@ taihen_a_2--very_x_deg_rel-omtr := arg1_v_omtr &
 
 ii_a_2-good_a_at-for := adjective_mtr &
 [ INPUT.RELS < [ PRED "ja:_ii_a_2_rel" ], ... >,
-  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
+  OUTPUT.RELS < [ PRED "_good_a_at-for-of_rel" ], ... > ].
 
 ii_a_3-good_a_at-for := adjective_mtr &
 [ INPUT.RELS < [ PRED "ja:_ii_a_3_rel" ], ... >,
-  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
+  OUTPUT.RELS < [ PRED "_good_a_at-for-of_rel" ], ... > ].
 
 ii_a_4-good_a_at-for := adjective_mtr &
 [ INPUT.RELS < [ PRED "ja:_ii_a_4_rel" ], ... >,
-  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
+  OUTPUT.RELS < [ PRED "_good_a_at-for-of_rel" ], ... > ].
 
 yoi_a_1-good_a_at-for := adjective_mtr &
 [ INPUT.RELS < [ PRED "ja:_yoi_a_1_rel" ], ... >,
-  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
+  OUTPUT.RELS < [ PRED "_good_a_at-for-of_rel" ], ... > ].
 
 yoi_a_9-good_a_at-for := adjective_mtr &
 [ INPUT.RELS < [ PRED "ja:_yoi_a_9_rel" ], ... >,
-  OUTPUT.RELS < [ PRED "_good_a_at-for_rel" ], ... > ].
+  OUTPUT.RELS < [ PRED "_good_a_at-for-of_rel" ], ... > ].
 
 sensei_n_3-teacher_n_of := noun_mtr &
 [ INPUT.RELS < [ PRED "ja:_sensei_n_3_rel" ], ... >,

@@ -282,9 +282,9 @@ kara_p_rel-since_p_rel := preposition_mtr &
  [ INPUT.RELS < [ PRED "ja:_kara_p_rel" ] >,
    OUTPUT.RELS < [ PRED _since_p_rel ] >].
 
-kara_p_rel-so_c_rel := conjunction_mtr &
+kara_p_rel-so_x_rel := conjunction_mtr &
 [ INPUT.RELS < [ PRED "ja:_kara_p_rel", ARG0 #i & i ] >,
-  OUTPUT.RELS < [ PRED _so_c_rel ] >,
+  OUTPUT.RELS < [ PRED _so_x_rel ] >,
   FLAGS.EQUAL < #i > ].
 
 ;;; について
@@ -410,9 +410,9 @@ omegutte_p--over_p--pcorp-mtr := preposition_mtr &
 
 ;;; Coordination
 
-node_p_rel-so_c_rel := conjunction_mtr &
+node_p_rel-so_x_rel := conjunction_mtr &
 [ INPUT.RELS < [ PRED "ja:_node_p_rel" ] >,
-  OUTPUT.RELS < [ PRED _so_c_rel ] > ].
+  OUTPUT.RELS < [ PRED _so_x_rel ] > ].
 
 ga_p_6_rel-but_c_rel := conjunction_mtr &
 [ INPUT.RELS < [ PRED "ja:_ga_p_6_rel" ] >,
@@ -458,7 +458,7 @@ comma_p_conj_rel-implicit_conj_rel := conjunction_mtr &
   OUTPUT.RELS < [ PRED implicit_conj_rel ] > ].
 
 coord-and_c_rel :=  conjunction_mtr &
-[ INPUT.RELS < [ PRED "ja:coord" ] >,
+[ INPUT.RELS < [ PRED "ja:coord_c" ] >,
   OUTPUT.RELS < [ PRED  _and_c_rel ] > ].
 
 noni-in+order+to := monotonic_mtr &

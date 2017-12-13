@@ -326,7 +326,7 @@ shukudai_n--ones+homework_n_of-mtr := possessed_noun_mtr &
 
 jitaku_n--ones+house_n-mtr := possessed_noun_mtr &
 [ INPUT.RELS < [ PRED "ja:_jitaku_n_rel" ] , ... >,
-  OUTPUT.RELS < [ PRED "_house_n_1_rel" ] , ... > ].
+  OUTPUT.RELS < [ PRED "_house_n_of_rel" ] , ... > ].
 
 
 
@@ -347,7 +347,7 @@ jitaku_n--ones+house_n-mtr := possessed_noun_mtr &
 ;;; later changed to "home" if complement of "to" (erg.mtr)
 ie_n--house_n-mtr := noun_mtr &
 [ INPUT.RELS < [ PRED "ja:_ie_n_rel" ] , ... >,
-  OUTPUT.RELS < [ PRED "_house_n_1_rel" ] , ... > ].
+  OUTPUT.RELS < [ PRED "_house_n_of_rel" ] , ... > ].
 
 
 ;;;

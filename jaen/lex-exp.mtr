@@ -131,27 +131,12 @@ kureru-for-past := monotonic_mtr &
 
 ;;; Auxiliary verbs, copula, etc.
 
-;;; Handle negatives: should Jacy's neg be a real relation? -- eric-n
-neg_rel-neg_rel-mtr := monotonic_mtr &
-[ JA.RELS < [ PRED "ja:neg_rel", LBL #h1, ARG0 #e1, ARG1 #x1 ] >,
-  EN.RELS < [ PRED neg_rel, LBL #h1, ARG0 #e1, ARG1 #x1 ]  > ].
-
+;;; mwg 2017-12-12: updated neg_v_rel to neg_x_rel
+;;;                 removed _neg_v_rel rule
+;;;                 removed neg_rel rule
 ;;; 犬 が 吠え ない 。 → the dog doesn't bark.
-neg_v_rel-neg_rel-mtr := monotonic_mtr &
-[ JA.RELS < [ PRED "ja:_neg_v_rel", LBL #h1, ARG0 #e2, ARG1 #h3 ] >,
-  EN.RELS < [ PRED neg_rel, LBL #h1,
-	      ARG0 #e2 & e & [ TENSE untensed, 
-			       MOOD indicative, 
-			       PERF -, PROG -, SF PROP,
-			       MARK complete ],
-	      ARG1 #h3 ] > ].
-
-;;; FIXME Both "neg_v_rel" and "_neg_v_rel" are used in Jacy. I added an
-;;; extra rule for now:
-;;; Rule for "ja:neg_v_rel" without an underscore before 'neg' (2011-01-25; ph)
-;;; うそ を 言う な >> Don't tell lies.
-neg_v_rel-neg_rel_2-mtr := monotonic_mtr &
-[ JA.RELS < [ PRED "ja:neg_v_rel", LBL #h1, ARG0 #e2, ARG1 #h3 ] >,
+neg_x_rel-neg_rel-mtr := monotonic_mtr &
+[ JA.RELS < [ PRED "ja:neg_x_rel", LBL #h1, ARG0 #e2, ARG1 #h3 ] >,
   EN.RELS < [ PRED neg_rel, LBL #h1,
 	      ARG0 #e2 & e & [ TENSE untensed, 
 			       MOOD indicative, 

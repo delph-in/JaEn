@@ -54,7 +54,7 @@ play-games := arg12_v_mtr &
 
 to+house--home_mtr := pp_mtr &
 [ INPUT.RELS  < [ PRED _to_p_rel ], 
-		[ PRED "_house_n_1_rel" ], 
+		[ PRED "_house_n_of_rel" ],
 		[ PRED def_udef_a_q_rel ], ... >,
   OUTPUT.RELS < [ PRED loc_nonsp_rel ], 
 		[ PRED place_n_rel, LBL #h, ARG0 #x], 
