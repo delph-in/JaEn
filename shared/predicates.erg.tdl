@@ -296,7 +296,7 @@ _nor_c_neither_rel := conj_rel.
 _or_c_rel := conj_rel.
 _or_c_either_rel := conj_rel.
 _plus_c_rel := conj_rel.
-_so_c_rel := conj_rel.
+_so_x_rel := conj_rel.
 subord_rel := conj_rel.
 unspec_conj_rel := conj_rel.
 
